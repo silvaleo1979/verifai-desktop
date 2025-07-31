@@ -690,6 +690,7 @@ const onUIAction = async (actionData: any) => {
 }
 
 defineExpose({
+  newChat: onNewChat,
   startDictation: () => chatArea.value?.startDictation(),
 })
 
