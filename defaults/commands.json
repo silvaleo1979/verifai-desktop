@@ -1,0 +1,377 @@
+[
+  {
+    "id": "00000000-0000-0000-0000-000000000000",
+    "type": "system",
+    "icon": "⌨️",
+    "action": "chat_window",
+    "shortcut": "A",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "90dd1cd3-903a-4f60-bccf-0542fa78d8ef",
+    "type": "system",
+    "icon": "❓",
+    "action": "chat_window",
+    "shortcut": "E",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "3e629079-6a0b-4096-9e5d-e2dd39268fa7",
+    "type": "system",
+    "icon": "💡",
+    "action": "paste_in_place",
+    "shortcut": "F",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "adfabf0c-7ae2-4b54-9083-0abdae84a859",
+    "type": "system",
+    "icon": "🪄",
+    "action": "chat_window",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "ae93b6e7-5d19-43dd-a859-967194523550",
+    "type": "system",
+    "icon": "💡",
+    "action": "paste_below",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "9bbae0f1-afde-41f8-b423-c5d8db1a264d",
+    "type": "system",
+    "icon": "💡",
+    "action": "paste_below",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "c57f4afd-2524-4914-be65-f18eb8566544",
+    "type": "system",
+    "icon": "💡",
+    "action": "chat_window",
+    "shortcut": "K",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "177bf65e-20ec-46ee-ae0e-84f9b0eb7490",
+    "type": "system",
+    "icon": "💡",
+    "action": "chat_window",
+    "shortcut": "S",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "1fc4e041-f4bc-471f-a02e-82cf20d12ea1",
+    "type": "system",
+    "icon": "💡",
+    "action": "chat_window",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "49de2329-9863-4fb4-beea-ad2677408e3f",
+    "type": "system",
+    "icon": "💡",
+    "action": "paste_in_place",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "d0306fbe-f1c4-497c-a356-a8fd4b5cbf0c",
+    "type": "system",
+    "icon": "💡",
+    "action": "paste_in_place",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "9ca7d996-4490-4c86-99c2-223686fdd48e",
+    "type": "system",
+    "icon": "💡",
+    "action": "paste_in_place",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "84fd2995-946a-4d42-81d3-dfe150212529",
+    "type": "system",
+    "icon": "💡",
+    "action": "paste_in_place",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "7556325e-ece7-45f2-acbb-c0d78cfa3e9b",
+    "type": "system",
+    "icon": "💡",
+    "action": "paste_in_place",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "7a213d4a-9ba9-4bc9-ada8-b6bab611d4ee",
+    "type": "system",
+    "icon": "💡",
+    "action": "paste_in_place",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "c29ef79c-d850-4ca5-8c14-089156154f70",
+    "type": "system",
+    "icon": "💡",
+    "action": "paste_in_place",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "b1c563a9-0d8e-4295-87b1-b78c283c19e6",
+    "type": "system",
+    "icon": "💡",
+    "action": "paste_in_place",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "56a4da10-8aad-4830-8e7a-a70780bd6abe",
+    "type": "system",
+    "icon": "💡",
+    "action": "paste_in_place",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "a78a9a9c-4264-4a03-a0ab-db7e864d0729",
+    "type": "system",
+    "icon": "🇺🇸",
+    "action": "paste_below",
+    "shortcut": "X",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "1f2618d3-9b5b-44be-8829-0456fd392c5c",
+    "type": "system",
+    "icon": "🇫🇷",
+    "action": "paste_below",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "13635570-7d09-478a-9e87-8163c96c421c",
+    "type": "system",
+    "icon": "🇪🇸",
+    "action": "paste_below",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "4b0d6229-f539-4ffd-bb30-eaee456592bb",
+    "type": "system",
+    "icon": "🇩🇪",
+    "action": "paste_below",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "8249950f-7fc3-4897-b08a-1d107ead14d8",
+    "type": "system",
+    "icon": "🇳🇱",
+    "action": "paste_below",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "371513af-c68a-4dd1-b513-73c8eb61e525",
+    "type": "system",
+    "icon": "🇷🇺",
+    "action": "paste_below",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "337adf45-3614-42f0-80e4-414f193f74fd",
+    "type": "system",
+    "icon": "🇨🇳",
+    "action": "paste_below",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "840d3be0-1ce2-41ed-98b1-2fb25e1f4fef",
+    "type": "system",
+    "icon": "🇻🇳",
+    "action": "paste_below",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "72bffaad-28aa-47a8-90df-1f3e6cc511e5",
+    "type": "system",
+    "icon": "🇮🇳",
+    "action": "paste_below",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "5d538c6e-90ed-4533-9ecc-e14bdedc7f49",
+    "type": "system",
+    "icon": "🇹🇭",
+    "action": "paste_below",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "a0bb82a3-7c81-43f8-977f-0a327913d1c8",
+    "type": "system",
+    "icon": "💡",
+    "action": "paste_below",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "8b3ecb01-75c2-4902-998d-04d619abd147",
+    "type": "system",
+    "icon": "💡",
+    "action": "paste_below",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "e245e8cc-6c0a-40a5-8c1e-faf96aabfa3b",
+    "type": "system",
+    "icon": "💡",
+    "action": "paste_below",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "624bfd2a-3a98-4575-bee0-1e28d12deafa",
+    "type": "system",
+    "icon": "💡",
+    "action": "paste_below",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "5c83e343-3305-435f-8ecc-c5406f9cf05b",
+    "type": "system",
+    "icon": "💡",
+    "action": "paste_below",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "e4583555-85f3-441e-b199-05bdcd0e374d",
+    "type": "system",
+    "icon": "💡",
+    "action": "paste_below",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "0979ebe7-f71f-44a3-b76b-2841cb00a5b6",
+    "type": "system",
+    "icon": "💡",
+    "action": "paste_below",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "a6f1a4bf-6c3d-4f10-be6f-a7c72c06ec22",
+    "type": "system",
+    "icon": "💡",
+    "action": "paste_below",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "35847b3b-0ff6-44b2-aa59-5d8ad5e17f5c",
+    "type": "system",
+    "icon": "💡",
+    "action": "chat_window",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "2015c27c-6b97-461f-acb7-6fc9886be376",
+    "type": "system",
+    "icon": "💡",
+    "action": "paste_in_place",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "57c9ccec-1da3-443b-a3db-5626728d20e8",
+    "type": "system",
+    "icon": "💡",
+    "action": "paste_below",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "c4a3bedb-87bf-4125-9edc-c75c02633806",
+    "type": "system",
+    "icon": "🧑‍💻",
+    "action": "paste_below",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  },
+  {
+    "id": "e8ab9860-b99a-4763-bbaa-8cc3b7fe9dc4",
+    "type": "system",
+    "icon": "🧑‍💻",
+    "action": "paste_below",
+    "state": "enabled",
+    "engine": "",
+    "model": ""
+  }
+]

@@ -1,0 +1,28 @@
+{
+  //"extends": "@tsconfig/node22/tsconfig.json",
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "commonjs",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "outDir": "dist",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "baseUrl": "src",
+    // "paths": {
+    //   "@types/*": [ "types/*" ]
+    // }
+  },
+  // "include": [
+  //   "main.ts",
+  //   "types/**/*",
+  //   "automations/**/*",
+  //   "main/**/*",
+  //   "rag/**/*"
+  // ],
+  "exclude": [
+  ]  
+}

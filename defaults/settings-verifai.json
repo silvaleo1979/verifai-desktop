@@ -1,0 +1,227 @@
+{
+  "general": {
+    "firstRun": true,
+    "onboardingDone": false,
+    "keepRunning": true,
+    "hideOnStartup": false,
+    "proxyMode": "default",
+    "customProxy": "",
+    "tips": {
+    },
+    "confirm": {
+      "retryGeneration": true
+    },
+    "locale": "pt"
+  },
+  "llm": {
+    "locale": "pt",
+    "forceLocale": true,
+    "engine": "openai",
+    "instructions": "empresa",
+    "favorites": [],
+    "autoVisionSwitch": true,
+    "conversationLength": 20,
+    "imageResize": 768,
+    "defaults": [],
+    "customInstructions": [
+      {
+        "name": "VerifAI",
+        "prompt": "Você é um assistente de IA especializado em VerifAI. Sempre responda de forma profissional e alinhada com os valores da empresa: inovação, qualidade e automação. Use um tom amigável mas profissional."
+      }
+    ]
+  },
+  "deepresearch": {
+    "runtime": "ms",
+    "breadth": 4,
+    "depth": 1,
+    "searchResults": 8
+  },
+  "appearance": {
+    "theme": "verifai",
+    "lighTint": "white",
+    "darkTint": "black",
+    "chatList": {
+      "mode": "timeline",
+      "layout": "normal"
+    },
+    "chat": {
+      "showReasoning": true,
+      "showToolCalls": "always",
+      "theme": "verifai",
+      "fontFamily": "",
+      "fontSize": 3
+    }
+  },
+  "scratchpad": {
+    "engine": "",
+    "model": "",
+    "fontSize": "3",
+    "fontFamily": "serif"
+  },
+  "prompt": {
+    "engine": "",
+    "model": "",
+    "autosave": false,
+    "disableStreaming": false,
+    "disableTools": false
+  },
+  "commands": {
+    "engine": "",
+    "model": ""
+  },
+  "automation": {
+    "altWinCopyPaste": false
+  },
+  "studio": {
+    "type": "image",
+    "engines": {
+      "image": "openai",
+      "imageEdit": "google",
+      "video": "replicate",
+      "videoEdit": "replicate"
+    },
+    "favorites": [],
+    "defaults": []
+  },
+  "shortcuts": {
+    "chat": {
+      "key": "Space",
+      "ctrl": true
+    },
+    "command": {
+      "key": "Space",
+      "alt": true,
+      "ctrl": true
+    },
+    "prompt": {
+      "key": "P",
+      "shift": true,
+      "meta": true
+    },
+    "transcribe": {
+      "key": "Space",
+      "shift": true,
+      "ctrl": true,
+      "alt": true
+    },
+    "readaloud": {
+      "key": "R",
+      "shift": true,
+      "meta": true
+    },
+    "scratchpad": {
+      "key": "S",
+      "shift": true,
+      "meta": true
+    },
+    "realtime": {
+      "key": "V",
+      "shift": true,
+      "meta": true
+    },
+    "studio": {
+      "key": "D",
+      "shift": true,
+      "meta": true
+    },
+    "forge": {
+      "key": "F",
+      "shift": true,
+      "meta": true
+    }
+  },
+  "engines": {
+    "openai": {
+      "apiKey": "",
+      "baseUrl": "https://api.openai.com/v1",
+      "models": []
+    },
+    "anthropic": {
+      "apiKey": "",
+      "models": []
+    },
+    "google": {
+      "apiKey": "",
+      "models": []
+    },
+    "ollama": {
+      "baseUrl": "http://localhost:11434",
+      "models": []
+    }
+  },
+  "plugins": {
+    "search": {
+      "tavily": {
+        "apiKey": ""
+      },
+      "brave": {
+        "apiKey": ""
+      },
+      "exa": {
+        "apiKey": ""
+      }
+    },
+    "image": {
+      "openai": {
+        "apiKey": ""
+      },
+      "google": {
+        "apiKey": ""
+      },
+      "replicate": {
+        "apiKey": ""
+      },
+      "falai": {
+        "apiKey": ""
+      }
+    },
+    "video": {
+      "replicate": {
+        "apiKey": ""
+      },
+      "falai": {
+        "apiKey": ""
+      }
+    },
+    "tts": {
+      "openai": {
+        "apiKey": ""
+      },
+      "elevenlabs": {
+        "apiKey": ""
+      },
+      "groq": {
+        "apiKey": ""
+      }
+    },
+    "stt": {
+      "openai": {
+        "apiKey": ""
+      },
+      "falai": {
+        "apiKey": ""
+      },
+      "fireworks": {
+        "apiKey": ""
+      },
+      "groq": {
+        "apiKey": ""
+      },
+      "speechmatics": {
+        "apiKey": ""
+      }
+    }
+  },
+  "mcp": {
+    "servers": []
+  },
+  "memory": {
+    "enabled": false,
+    "engine": "openai",
+    "apiKey": "",
+    "baseUrl": "",
+    "model": "text-embedding-3-small",
+    "maxResults": 5,
+    "threshold": 0.7
+  }
+} 

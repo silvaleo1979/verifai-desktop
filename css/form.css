@@ -1,0 +1,234 @@
+
+.control-group {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.form {
+  
+  font-size: var(--form-normal-font-size);
+
+  &.medium {
+
+    font-size: var(--form-medium-font-size);
+
+    .form-field {
+      input:not([type=checkbox]):not([type=range]), select {
+        margin: 0;
+        padding: 0.25rem;
+      }
+    }
+
+    input, select, textarea, button, a, span {
+      font-size: var(--form-medium-font-size);
+    }
+  }
+
+  &.form-large {
+    
+    font-size: var(--form-large-font-size);
+
+    input, select, textarea, button, a, span {
+      font-size: var(--form-large-font-size);
+    }
+
+    button {
+      padding: 0.375rem 0.75rem;
+    }
+
+    .form-field {
+      input:not([type=checkbox]):not([type=range]) {
+        padding: 5px 0.25rem;
+        margin: 0.25rem 0;
+      }
+
+      select {
+        padding: 0.25rem 0.25rem;
+        margin: 0.25rem 0;
+      }
+
+      .control-group {
+        &:has(input[type=text]), &:has(select) {
+          button {
+            padding-top: 6.25px;
+            padding-bottom: 6.25px;
+          }
+        }
+      }
+    }
+  }
+
+  .form-field {
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0.5rem;
+
+    &.top {
+      align-items: flex-start;
+    }
+
+    &:has(.form-subgroup) {
+      align-items: flex-start;
+      margin-bottom: 12px;
+
+      label {
+        margin-top: 4px;
+      }
+    }
+
+    &:has([required]) label:not(:empty)::after {
+      content: '*' !important;
+    }
+
+    .form-subgroup {
+      flex-grow: 1;
+    }
+
+    label {
+      min-width: 160px;
+      margin-right: 10px;
+      text-align: right;
+
+      &:not(:empty)::after {
+        content: ':';
+      }
+
+      &.no-colon::after {
+        content: none !important;
+      }
+    }
+
+    ul, ol {
+      margin-top: 0px;
+    }
+
+    li {
+      padding-top: 4px;
+      padding-bottom: 4px;
+    }
+
+    input, textarea {
+      width: calc(100% - 10px);
+    }
+
+    span, a {
+      display: inline-block;
+      margin-top: 4px;
+    }
+  }
+
+  &.form-vertical {
+    
+    display: flex;
+    flex-direction: column;
+    align-items: normal;
+    color: var(--text-color);
+
+    .form-field-container {
+      display: flex;
+      flex-direction: column;
+      align-items: normal;
+      border: 1px solid var(--control-border-color);
+      border-radius: 1rem;
+      padding: 2rem 4rem;
+    }
+
+    &.medium {
+      .form-field {
+        margin: 0.75rem 0;
+      }
+    }
+
+    .header:not(:empty) {
+      margin-bottom: 1rem;
+    }
+
+    .text {
+      font-size: 8.5pt;
+      margin-top: 12px;
+      padding: 0px 32px;
+      text-align: center;
+    }
+
+    .form-field {
+      width: 100%;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.33rem;
+      margin-left: 0px;
+      margin-right: 0px;
+
+      .form-subgroup, .slider-group {
+        width: 100%;
+      }
+
+      &.horizontal {
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+
+        &:has(input[type=checkbox]) {
+          gap: 0.125rem;
+        }
+      }
+
+      label {
+        font-weight: 600;
+        min-width: auto !important;
+        text-align: left;
+        margin-left: 2px;
+
+        &::after {
+          content: '' !important;
+        }
+      }
+
+      [type=checkbox] + label {
+        font-weight: normal;
+      }
+
+      select {
+        margin: 0;
+      }
+
+      .wrapper {
+        width: 100%;
+      }
+    }
+
+    .buttons {
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.25rem;
+    }
+  }
+
+  .slider-group {
+    position: relative;
+    display: inline;
+    flex: 1;
+    top: -3px;
+    margin: 0.25rem 0px;
+  }
+
+  .slider-label {
+    display: inline-block;
+    margin: 0 8px !important;
+  }
+}
+
+.colon-spaced .form .form-field {
+  &:has([required]) label:not(:empty)::after {
+    content: '\00a0\00a0:\00a0\00a0*';
+  }
+
+  label:not(:empty)::after {
+    content: '\00a0\00a0:';
+  }
+}

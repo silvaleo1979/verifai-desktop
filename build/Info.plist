@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>Witsy tries to grab highlighted text in other applications for AI commands.</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Witsy searches for Nestor services on your local network</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Witsy uses the microphone to transcribe your voice to text.</string>	
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>LSMultipleInstancesProhibited</key>
+	<true/>
+</dict>
+</plist>

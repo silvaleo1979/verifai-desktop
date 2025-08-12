@@ -1,0 +1,140 @@
+/* Tema personalizado para VerifAI */
+
+/* Cores principais da VerifAI - Baseado na paleta RPA */
+:root {
+  /* Cores principais baseadas na identidade RPA */
+  --verifai-primary: #007bff;      /* Azul principal - robô e botão */
+  --verifai-secondary: #424242;    /* Cinza escuro - elementos mecânicos */
+  --verifai-accent: #e3f2fd;       /* Azul claro - nuvens/formações */
+  --verifai-warning: #ffc107;      /* Amarelo de aviso */
+  --verifai-danger: #dc3545;       /* Vermelho de erro */
+  
+  /* Cores de fundo */
+  --verifai-bg-primary: #ffffff;   /* Fundo principal branco */
+  --verifai-bg-secondary: #f5f9ff; /* Fundo secundário azul muito claro */
+  --verifai-bg-tertiary: #e3f2fd;  /* Fundo terciário azul claro */
+  
+  /* Cores de texto */
+  --verifai-text-primary: #424242; /* Texto principal cinza escuro */
+  --verifai-text-secondary: #9e9e9e; /* Texto secundário cinza claro */
+  --verifai-text-muted: #bdbdbd;   /* Texto suave cinza muito claro */
+  
+  /* Cores adicionais da paleta RPA */
+  --verifai-mechanical: #9e9e9e;   /* Cinza para elementos mecânicos */
+  --verifai-robotic: #007bff;      /* Azul para elementos robóticos */
+  --verifai-automation: #e3f2fd;   /* Azul claro para automação */
+}
+
+/* Aplicar cores personalizadas */
+[data-theme="verifai"] {
+  --highlight-color: var(--verifai-primary);
+  --link-color: var(--verifai-primary);
+  --menubar-highlight-color: var(--verifai-primary);
+  --tool-value-text-color: var(--verifai-primary);
+  
+  /* Botões */
+  --control-button-active-bg-color: var(--verifai-bg-tertiary);
+  
+  /* Sidebar */
+  --sidebar-selected-color: var(--verifai-bg-secondary);
+  
+  /* Mensagens */
+  --message-list-actions-text-color: var(--verifai-text-secondary);
+}
+
+/* Estilo personalizado para botões */
+[data-theme="verifai"] button.default {
+  background-color: var(--verifai-primary);
+  border-color: var(--verifai-primary);
+  color: white;
+}
+
+[data-theme="verifai"] button.default:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+/* Estilo para links */
+[data-theme="verifai"] a {
+  color: var(--verifai-primary);
+}
+
+[data-theme="verifai"] a:hover {
+  color: #0056b3;
+}
+
+/* Estilo para elementos de destaque */
+[data-theme="verifai"] .highlight {
+  background-color: var(--verifai-accent);
+  color: white;
+}
+
+/* Estilo para mensagens do assistente */
+[data-theme="verifai"] .message.assistant {
+  border-left: 3px solid var(--verifai-primary);
+}
+
+/* Estilo para a barra de menu - Gradiente RPA */
+[data-theme="verifai"] .menubar {
+  background: linear-gradient(135deg, var(--verifai-primary), var(--verifai-automation));
+  border-bottom: 2px solid var(--verifai-mechanical);
+}
+
+/* Estilo para o logo da VerifAI */
+[data-theme="verifai"] .verifai-logo {
+  background: linear-gradient(45deg, var(--verifai-primary), var(--verifai-robotic));
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+}
+
+/* Estilos adicionais baseados na paleta RPA */
+[data-theme="verifai"] .sidebar {
+  background-color: var(--verifai-bg-secondary);
+  border-right: 1px solid var(--verifai-automation);
+}
+
+[data-theme="verifai"] .sidebar .selected {
+  background-color: var(--verifai-automation);
+  border-left: 3px solid var(--verifai-primary);
+}
+
+[data-theme="verifai"] .tool-call {
+  background-color: var(--verifai-bg-tertiary);
+  border: 1px solid var(--verifai-mechanical);
+  border-radius: 8px;
+}
+
+[data-theme="verifai"] .message.assistant {
+  border-left: 4px solid var(--verifai-primary);
+  background-color: var(--verifai-bg-secondary);
+}
+
+[data-theme="verifai"] .message.user {
+  background-color: var(--verifai-bg-primary);
+  border-left: 4px solid var(--verifai-mechanical);
+}
+
+/* Botões com estilo RPA */
+[data-theme="verifai"] button.primary {
+  background: linear-gradient(45deg, var(--verifai-primary), var(--verifai-robotic));
+  border: none;
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+}
+
+[data-theme="verifai"] button.primary:hover {
+  background: linear-gradient(45deg, #0056b3, var(--verifai-primary));
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+}
+
+/* Elementos de automação */
+[data-theme="verifai"] .automation-indicator {
+  background-color: var(--verifai-automation);
+  color: var(--verifai-primary);
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 0.8em;
+  font-weight: 500;
+} 

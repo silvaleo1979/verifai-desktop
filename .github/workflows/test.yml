@@ -1,0 +1,40 @@
+# .github/workflows/release.yml
+name: Test app
+on:
+  push:
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Github checkout
+        uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run tests
+        id: test
+        run: |
+          set -o pipefail
+          npm run test-ci 2>&1 | tee test-output.txt
+          echo "SUMMARY=$(tail -5 test-output.txt | head -1)" > $GITHUB_OUTPUT
+      - name: Capture coverage
+        id: coverage
+        run: |
+          SUMMARY="${{ steps.test.outputs.SUMMARY }}"
+          TOKENS=($SUMMARY)
+          echo "COVERAGE=$(echo ${TOKENS[2]})" > $GITHUB_OUTPUT
+      - name: Create coverage badge
+        uses: schneegans/dynamic-badges-action@v1.0.0
+        with:
+          auth: ${{ secrets.GIST_SECRET }}
+          gistID: 8febadb1ecb32078db4c003d0c09f565
+          filename: witsy__main.json
+          label: Coverage
+          message: ${{ steps.coverage.outputs.COVERAGE }}
+          labelColor: rgb(61, 70, 78)
+          logoColor: rgb(255, 255, 255)
+          color: rgb(51, 203, 85)
+          namedLogo: vitest

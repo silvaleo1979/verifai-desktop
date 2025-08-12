@@ -1,0 +1,16 @@
+
+# .github/workflows/build-darwin-x64.yml
+name: Build macOS arm64 Release
+on:
+  workflow_dispatch:
+jobs:
+  build-darwin-arm64:
+    uses: ./.github/workflows/build-darwin.yml
+    with:
+      arch: arm64
+    secrets:
+      BUILD_CERTIFICATE_BASE64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
+      APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
+      APPLE_ID: ${{ secrets.APPLE_ID }}
+      APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+      IDENTIFY_DARWIN_CODE: ${{ secrets.IDENTIFY_DARWIN_CODE }}

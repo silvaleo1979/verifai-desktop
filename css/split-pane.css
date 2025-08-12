@@ -1,0 +1,332 @@
+
+.split-pane {
+  
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  color: var(--text-color);
+
+  * {
+    scrollbar-color: var(--sidebar-scroll-thumb-color) var(--sidebar-bg-color);
+  }
+
+  .sp-sidebar {
+    
+    /* concrete windows should probably override
+      the flex with their desired width */
+    
+    flex: 0 0 200px;
+    height: 100vh;
+    overflow-x: hidden;
+    background-color: var(--sidebar-bg-color);
+    color: var(--sidebar-text-color);
+    display: flex;
+    flex-direction: column;
+
+    .icon {
+      color: var(--sidebar-icon-color);
+      cursor: pointer;
+      display: inline-block;
+      margin: 0px 8px;
+
+      &:has(span) svg {
+        margin-right: 4px;
+      }
+
+      &:last-child {
+        margin-right: 0px;
+      }
+      
+    }
+    
+    header {
+
+      flex: 0 0 var(--window-toolbar-height);
+      background-color: var(--window-decoration-color);
+      border-bottom: 1px solid var(--toolbar-border-color);
+      padding: 0px 1rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      -webkit-app-region: drag;
+
+      .form, input, select, .icon {
+        -webkit-app-region: no-drag;
+      }
+
+      .form {
+        flex: 1;
+      }
+
+      .title {
+        flex: 1;
+        font-size: 10pt;
+        font-weight: 600;
+        color: var(--text-color);
+      }
+    
+      .actions {
+        -webkit-app-region: drag;
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+      }
+    }
+
+    main {
+
+      flex: 1;
+      border-right: 1px solid var(--sidebar-border-color);
+      padding-top: 1rem;
+      overflow-y: hidden;
+      display: flex;
+      flex-direction: column;
+
+      .sp-sidebar-title {
+        font-size: 110%;
+        font-weight: bold;
+        color: var(--sidebar-text-color);
+        margin-bottom: 1rem;
+      }
+
+    }
+
+    footer {
+
+      border-right: 1px solid var(--sidebar-border-color);
+      padding: 1rem;
+      font-size: 11pt;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+
+    }
+
+  }
+
+  .sp-main {
+    
+    flex: 1;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-color);
+    overflow: hidden;
+    min-width: 0;
+
+    header {
+      
+      flex: 0 0 var(--window-toolbar-height);
+      background-color: var(--window-decoration-color);
+      border-bottom: 1px solid var(--toolbar-border-color);
+      padding: 0px 1rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      -webkit-app-region: drag;
+      gap: 0.75rem;
+      
+      .title {
+        flex: 1;
+        font-size: 12pt;
+        font-weight: bold;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: var(--chatarea-toolbar-text-color);
+      }
+
+      .push {
+        flex: 1;
+      }
+
+      .icon {
+        -webkit-app-region: no-drag;
+        cursor: pointer;
+        text-align: right;
+        width: 16px;
+        height: 16px;
+        color: var(--chatarea-toolbar-icon-color);
+        fill: var(--chatarea-toolbar-icon-color);
+        margin-left: auto;
+
+        &.disabled {
+          opacity: 0.5;
+          pointer-events: none;
+        }
+
+        ~ .action {
+          margin-left: 0px;
+        }
+
+        &.back {
+          color: var(--text-color);
+          fill: var(--text-color);
+        }
+        
+      }
+    }
+
+    main {
+
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      background-color: var(--background-color);
+      transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1), opacity 0.3s;
+      box-sizing: border-box;
+
+      &.hidden {
+        display: none;
+      }
+
+      &.sliding-root {
+        display: none;
+        &.visible {
+          display: flex;
+        }
+      }
+
+      &.sliding-pane {
+      
+        position: absolute;
+        top: var(--window-toolbar-height);
+        z-index: 20;
+        display: flex;
+
+        opacity: 0;
+        width: 100%;
+        transform: translateX(100%);
+
+        &.visible {
+          opacity: 1;
+          transform: translateX(0%);
+        }
+      
+      }
+
+      &:has(.master-detail) {
+        padding: 0;
+        min-width: auto;
+        align-self: stretch;
+      }
+
+      &:has(.sticky-table-container) {
+
+        min-width: auto;
+        align-self: stretch;
+
+        .list-actions {
+          
+          padding: 0.875rem;
+          margin-bottom: 0px;
+          border: 1px solid var(--sidebar-border-color);
+          border-bottom: 0px;
+          background: color-mix(in srgb, var(--sidebar-border-color), transparent 80%);
+          
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 1.5rem;
+          
+          .push {
+            flex: 1;
+          }
+          
+          .list-action {
+            font-size: 10.5pt;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 0.25rem;
+            cursor: pointer;
+
+            &.menu {
+              flex-direction: column;
+              div {
+                width: 1rem;
+                border-top: 1px solid var(--text-color);
+              }
+            }
+          }
+        }
+
+        .sticky-table-container {
+          
+          th, td {
+            font-size: var(--settings-font-size);
+          }
+
+          th {
+            font-weight: 600;
+          }
+        
+          td button {
+            font-size: 6pt !important;
+            padding: 2px 8px;
+          }
+
+        }
+      }
+    
+    }
+
+  }
+
+  &:not(:has(.sp-sidebar)) {
+    .sp-main {
+      header {
+        padding-left: 2rem;
+      }
+    }
+  }
+
+}
+
+.macos {
+  .split-pane {
+    .sp-sidebar {
+      header {
+        padding-left: 1.5rem;
+      }
+    }
+  }
+}
+
+.macos {
+  .window {
+    .sp-sidebar {
+      header {
+        padding-left: 5rem;
+      }
+    }
+  }
+}
+
+.windows {
+  .split-pane {
+    .sp-main {
+      header {
+        padding-right: 148px;
+        .menu {
+          margin-top: 1px;
+        }
+      }
+    }
+  }
+}
+
+.linux {
+  .split-pane {
+    .sp-main {
+      header {
+        padding-right: 92px;
+        .menu {
+          margin-top: 0px;
+        }
+      }
+    }
+  }
+}
