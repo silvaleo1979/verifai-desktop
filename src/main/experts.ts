@@ -26,12 +26,17 @@ export const loadExperts = (source: App|string): Expert[] => {
   let experts: Expert[] = []
   const expertsFile = typeof source === 'string' ? source : expertsFilePath(source)
 
+  console.log('🔍 Backend: Loading experts from file:', expertsFile)
+
   // read
   try {
     experts = JSON.parse(fs.readFileSync(expertsFile, 'utf-8'))
+    console.log('✅ Backend: Loaded', experts.length, 'experts from file')
   } catch (error) {
     if (error.code !== 'ENOENT') {
-      console.log('Error retrieving experts', error)
+      console.log('❌ Backend: Error retrieving experts', error)
+    } else {
+      console.log('⚠️ Backend: Experts file not found, starting with empty array')
     }
   }
 
@@ -52,14 +57,15 @@ export const loadExperts = (source: App|string): Expert[] => {
     }
   }
   
-  // now add new experts
-  for (const prompt of defaultExperts) {
-    const p = experts.find((prt: Expert) => prt.id === prompt.id)
-    if (p == null) {
-      experts.push(prompt as Expert)
-      updated = true
-    }
-  }
+  // now add new experts (DISABLED - only load user-defined experts)
+  console.log('🔍 Backend: Skipping default experts addition (DISABLED)')
+  // for (const prompt of defaultExperts) {
+  //   const p = experts.find((prt: Expert) => prt.id === prompt.id)
+  //   if (p == null) {
+  //     experts.push(prompt as Expert)
+  //     updated = true
+  //   }
+  // }
 
   // delete deprecated experts
   const deprecated = [
@@ -84,6 +90,7 @@ export const loadExperts = (source: App|string): Expert[] => {
   }
 
   // done
+  console.log('✅ Backend: Returning', experts.length, 'experts total')
   return experts
 
 }
