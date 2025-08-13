@@ -22,7 +22,7 @@ const isDarwin = process.platform == 'darwin';
 const isMas = isDarwin && process.argv.includes('mas');
 const dmgOptions: MakerDMGConfig = {
   //appPath: 'actually_not_used',
-  icon: './assets/icon.icns',
+      icon: './assets/icon.icns',
   background: './assets/dmg_background.png',
   additionalDMGOptions: {
     window: {
@@ -74,9 +74,9 @@ if (isDarwin) {
 const config: ForgeConfig = {
   packagerConfig: {
     asar: true,
-    icon: 'assets/icon',
-    executableName: process.platform == 'linux' ? 'witsy' : 'Witsy',
-    appBundleId: 'com.nabocorp.witsy',
+    icon: 'assets/verifai-icon',
+          executableName: process.platform == 'linux' ? 'verifai' : 'VerifAI',
+          appBundleId: 'com.verifai.desktop',
     extendInfo: './build/Info.plist',
     buildVersion: process.env.BUILD_NUMBER || '1.0.0',
     extraResource: [
@@ -88,7 +88,7 @@ const config: ForgeConfig = {
       'assets/trayWhite@2x.png',
       'assets/trayUpdateWhite.png',
       'assets/trayUpdateWhite@2x.png',
-      'assets/icon.ico',
+      'assets/verifai-icon.ico',
       'assets/gladia.png',
       'assets/speechmatics.png',
     ],

@@ -5,7 +5,7 @@
       <div class="swal2-popup swal2-show form form-large" :class="{ 'form-vertical': form === 'vertical' }" :style="style">
         <div class="swal2-icon swal2-icon-show" v-if="icon && type === 'alert'">
           <div class="swal2-icon-content">
-            <img src="/assets/icon.png" />
+            <img src="/assets/verifai-icon.png" />
           </div>
         </div>
         <h2 class="swal2-title" ref="title">

@@ -42,7 +42,7 @@ export default class {
     let trayIcon = null;
     const assetsFolder = process.env.DEBUG ? path.resolve('./assets') : process.resourcesPath;
     if (process.platform === 'win32') {
-      const trayIconPath = path.join(assetsFolder, 'icon.ico');
+      const trayIconPath = path.join(assetsFolder, 'verifai-icon.ico');
       trayIcon = nativeImage.createFromPath(trayIconPath);
     } else {
       const iconColor = process.platform === 'linux' ? 'White' : 'Template';

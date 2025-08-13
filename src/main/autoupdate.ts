@@ -38,7 +38,7 @@ export default class AutoUpdater {
       console.error('Error while checking for updates', error)
       this.downloading = false
       if (this.manualUpdate) {
-        dialog.showErrorBox('Witsy', t('autoupdate.error'))
+        dialog.showErrorBox('VerifAI', t('autoupdate.error'))
       } 
     })
 
@@ -54,7 +54,7 @@ export default class AutoUpdater {
       if (this.manualUpdate) {
         dialog.showMessageBox({
           type: 'info',
-          message: 'Witsy',
+          message: 'VerifAI',
           detail: t('autoupdate.available'),
         })
       }
@@ -65,11 +65,11 @@ export default class AutoUpdater {
       if (!this.downloading) {
         console.log('Update not available')
         if (this.manualUpdate) {
-          dialog.showMessageBox({
-            type: 'info',
-            message: 'Witsy',
-            detail: t('autoupdate.uptodate'),
-          })
+                  dialog.showMessageBox({
+          type: 'info',
+          message: 'VerifAI',
+          detail: t('autoupdate.uptodate'),
+        })
         }
       }
     })
@@ -109,7 +109,7 @@ export default class AutoUpdater {
       const t = useI18n(this.app)
       dialog.showMessageBox({
         type: 'info',
-        message: 'Witsy',
+        message: 'VerifAI',
         detail: t('autoupdate.downloading'),
       })
     } else {
