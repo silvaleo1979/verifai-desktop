@@ -1481,9 +1481,9 @@
   },
   "menu": {
     "app": {
-      "about": "Sobre o Witsy",
+      "about": "Sobre o VerifAI",
       "checkForUpdates": "Verificar Atualizações…",
-      "quit": "Sair do Witsy",
+              "quit": "Sair do VerifAI",
       "settings": "@:{'common.settings'}…"
     },
     "edit": {
