@@ -34,7 +34,7 @@ import LogoOllama from '../../assets/ollama.svg?component'
 import LogoOpenAI from '../../assets/openai.svg?component'
 import LogoOpenRouter from '../../assets/openrouter.svg?component'
 import LogoReplicate from '../../assets/replicate.svg?component'
-const LogoVerifai = '/logoverifai.svg'
+import LogoVerifai from '../../assets/logoverifai.svg?component'
 import LogoXAI from '../../assets/xai.svg?component'
 
 const llmManager = LlmFactory.manager(store.config)
