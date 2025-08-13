@@ -33,10 +33,8 @@ export const preparePromptAnywhere = (queryParams?: anyDict): void => {
     //movable: true,
   });
 
-  // // open the DevTools
-  // if (process.env.DEBUG) {
-  //   promptAnywhereWindow.webContents.openDevTools({ mode: 'right' });
-  // }
+  // open the DevTools
+  promptAnywhereWindow.webContents.openDevTools({ mode: 'right' });
 
   // get focus
   // opacity trick is to avoid flickering on Windows

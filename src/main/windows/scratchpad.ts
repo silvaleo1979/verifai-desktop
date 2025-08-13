@@ -31,9 +31,7 @@ export const openScratchPad = (text?: string|null): void => {
   });
 
   // open the DevTools
-  if (process.env.DEBUG) {
-    scratchpadWindow.webContents.openDevTools({ mode: 'right' });
-  }
+  scratchpadWindow.webContents.openDevTools({ mode: 'right' });
 
   // focus
   scratchpadWindow.focus();
