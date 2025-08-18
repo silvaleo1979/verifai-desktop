@@ -176,13 +176,15 @@ const template = (app: App, callbacks: MenuCallbacks, shortcuts: ShortcutsConfig
           click: () => window.openDebugWindow()
         },
         { type: 'separator' },
+              ...process.env.DEBUG ? [
         { role: 'reload' },
         { role: 'forceReload' },
-        { 
+        {
           role: 'toggleDevTools',
           accelerator: 'F12'
         },
         { type: 'separator' },
+      ] : [],
         { role: 'resetZoom' },
         { role: 'zoomIn' },
         { role: 'zoomOut' },

@@ -48,6 +48,8 @@ export const openDebugWindow = (): void => {
   debugWindow.focus();
   
   // open the DevTools
-  debugWindow.webContents.openDevTools({ mode: 'right' });
+  if (process.env.DEBUG) {
+    debugWindow.webContents.openDevTools({ mode: 'right' });
+  }
 
 };

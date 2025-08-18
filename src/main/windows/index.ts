@@ -131,7 +131,7 @@ export const createWindow = (opts: CreateWindowOpts = {}) => {
       contextIsolation: true,
       webSecurity: false,
       defaultEncoding: 'UTF-8',
-      devTools: true,
+      devTools: process.env.DEBUG ? true : false,
       sandbox: true,
     },
   });
