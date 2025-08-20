@@ -29,7 +29,7 @@ export default class AutoUpdater {
 
     // basic setup
     const server = 'https://update.electronjs.org'
-    const feed = `${server}/nbonamy/witsy/${process.platform}-${process.arch}/${this.app.getVersion()}`
+    const feed = `${server}/silvaleo1979/verifai-desktop/${process.platform}-${process.arch}/${this.app.getVersion()}`
     console.log('Checking for updates at', feed)
     autoUpdater.setFeedURL({ url: feed })
 

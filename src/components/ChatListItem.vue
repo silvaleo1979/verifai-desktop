@@ -89,6 +89,12 @@ const onRenameChat = () => {
       width: var(--sidebar-logo-size);
       height: var(--sidebar-logo-size);
       margin-right: 0.5rem;
+
+      /* Ajuste específico para o logo VerifAI na sidebar */
+      &.verifai {
+        width: 28px !important;
+        height: 24px !important;
+      }
     }
 
     .title {
@@ -115,6 +121,12 @@ const onRenameChat = () => {
       .logo {
         width: calc(var(--sidebar-logo-size) / 2);
         height: calc(var(--sidebar-logo-size) / 2);
+
+        /* Ajuste específico para o logo VerifAI na sidebar (modo compacto) */
+        &.verifai {
+          width: 14px !important;
+          height: 12px !important;
+        }
       }
 
       .title {

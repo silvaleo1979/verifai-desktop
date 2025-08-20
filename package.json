@@ -5,7 +5,7 @@
   "description": "VerifAI: Assistente de IA personalizado",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nbonamy/witsy.git"
+    "url": "https://github.com/silvaleo1979/verifai-desktop.git"
   },
   "main": ".vite/build/main.js",
   "scripts": {
