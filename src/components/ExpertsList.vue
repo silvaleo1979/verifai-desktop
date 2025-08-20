@@ -57,8 +57,8 @@ const reorderExperts = useReorderTable((ids: string[]) => {
 const emit = defineEmits([ 'create', 'edit' ])
 
 const contextMenuActions = [
-  { label: t('settings.experts.export'), action: 'export' },
-  { label: t('settings.experts.import'), action: 'import' },
+  // { label: t('settings.experts.export'), action: 'export' },
+  // { label: t('settings.experts.import'), action: 'import' },
   { label: t('settings.experts.selectAll'), action: 'select' },
   { label: t('settings.experts.unselectAll'), action: 'unselect' },
   { label: t('settings.experts.sortAlpha'), action: 'sortAlpha' },
