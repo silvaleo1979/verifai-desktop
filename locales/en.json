@@ -279,7 +279,7 @@
     "available": "A new version is available. Downloading now…",
     "downloading": "An update is in progress. Please wait for it to complete.",
     "error": "Error while checking for updates. Please try again later.",
-    "uptodate": "You are already using the latest version of Witsy."
+    "uptodate": "You are already using the latest version of VerifAI."
   },
   "backup": {
     "restore": {
