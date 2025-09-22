@@ -49,7 +49,12 @@ type PluginUI = {
 
 const plugins = computed((): PluginUI[] => {
 
-  let res = Object.keys(availablePlugins).filter(plugin => plugin != 'mcp').map(plugin => {
+  // Plugins disabled for VerifAI Desktop
+  const disabledPlugins = ['image', 'video', 'youtube', 'python']
+
+  let res = Object.keys(availablePlugins).filter(plugin => 
+    plugin != 'mcp' && !disabledPlugins.includes(plugin)
+  ).map(plugin => {
     return {
       id: plugin,
       label: t(`settings.plugins.${plugin}.title`),
@@ -72,11 +77,12 @@ const plugins = computed((): PluginUI[] => {
 
 const currentView = computed(() => {
   if (currentPlugin.value == 'browse') return SettingsBrowse
-  if (currentPlugin.value == 'python') return SettingsPython
+  // Plugins disabled for VerifAI Desktop: python, image, video, youtube
+  // if (currentPlugin.value == 'python') return SettingsPython
   if (currentPlugin.value == 'search') return SettingsSearch
-  if (currentPlugin.value == 'image') return SettingsImage
-  if (currentPlugin.value == 'video') return SettingsVideo
-  if (currentPlugin.value == 'youtube') return SettingsYouTube
+  // if (currentPlugin.value == 'image') return SettingsImage
+  // if (currentPlugin.value == 'video') return SettingsVideo
+  // if (currentPlugin.value == 'youtube') return SettingsYouTube
   if (currentPlugin.value == 'memory') return SettingsMemory
   if (currentPlugin.value == 'vega') return SettingsVega
   if (currentPlugin.value == 'filesystem') return SettingsFilesystem

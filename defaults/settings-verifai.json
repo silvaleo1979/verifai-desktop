@@ -151,6 +151,7 @@
   },
   "plugins": {
     "search": {
+      "enabled": false,
       "tavily": {
         "apiKey": ""
       },
@@ -162,6 +163,7 @@
       }
     },
     "image": {
+      "enabled": false,
       "openai": {
         "apiKey": ""
       },
@@ -176,12 +178,19 @@
       }
     },
     "video": {
+      "enabled": false,
       "replicate": {
         "apiKey": ""
       },
       "falai": {
         "apiKey": ""
       }
+    },
+    "youtube": {
+      "enabled": false
+    },
+    "python": {
+      "enabled": false
     },
     "tts": {
       "openai": {

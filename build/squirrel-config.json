@@ -1,0 +1,29 @@
+{
+  "appName": "VerifAI Desktop",
+  "appDescription": "Assistente de IA Personalizado",
+  "authors": "VerifAI",
+  "copyright": "© 2024 VerifAI - Todos os direitos reservados",
+  "iconUrl": "https://raw.githubusercontent.com/silvaleo1979/verifai-desktop/main/assets/verifai-icon.ico",
+  "setupIcon": "./assets/verifai-icon.ico",
+  "loadingGif": "./assets/installer-loading.gif",
+  "exe": "VerifAI.exe",
+  "name": "VerifAI Desktop",
+  "title": "VerifAI Desktop",
+  "setupExe": "VerifAI Desktop Setup.exe",
+  "noMsi": true,
+  "remoteReleases": "https://github.com/silvaleo1979/verifai-desktop/releases/latest/download",
+  "colors": {
+    "primary": "#0066CC",
+    "secondary": "#FFFFFF",
+    "accent": "#003366",
+    "text": "#333333",
+    "background": "#FFFFFF"
+  },
+  "branding": {
+    "companyName": "VerifAI",
+    "productName": "VerifAI Desktop",
+    "copyright": "© 2024 VerifAI - Todos os direitos reservados",
+    "website": "https://verifai.com",
+    "supportUrl": "https://github.com/silvaleo1979/verifai-desktop/issues"
+  }
+}

@@ -37,7 +37,8 @@ const routes: { [key: string]: any } = {
   '/transcribe': Transcribe,
   '/scratchpad': ScratchPad,
   '/computer': ComputerStatus,
-  '/debug': Debug,
+  // Debug functionality disabled for VerifAI Desktop
+  // '/debug': Debug,
 }
 
 const theme = ref('light')

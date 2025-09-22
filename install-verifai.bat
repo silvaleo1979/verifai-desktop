@@ -51,3 +51,4 @@ echo.
 echo ✅ Instalação concluída!
 echo.
 pause
+

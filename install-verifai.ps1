@@ -171,3 +171,4 @@ Write-Host "2. Configure suas chaves de API" -ForegroundColor White
 Write-Host "3. O sistema de atualização automática está ativo" -ForegroundColor White
 Write-Host ""
 Write-Host "🌐 Para mais informações: https://github.com/$RepoOwner/$RepoName" -ForegroundColor Blue
+

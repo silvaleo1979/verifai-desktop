@@ -58,10 +58,11 @@
 
       <div class="push"></div>
 
-      <MenuBarItem action="debug" :active="mode === 'debug'" @click="emit('change', 'debug')">
+      <!-- Debug functionality disabled for VerifAI Desktop -->
+      <!-- <MenuBarItem action="debug" :active="mode === 'debug'" @click="emit('change', 'debug')">
         <BIconActivity />
         <span>{{ t('debugConsole.title') }}</span>
-      </MenuBarItem>
+      </MenuBarItem> -->
 
       <MenuBarItem action="settings" :active="mode === 'settings'" @click="emit('change', 'settings')">
         <BIconGear />
@@ -87,10 +88,12 @@ import useAppearanceTheme from '../composables/appearance_theme'
 import ContextMenu from '@imengyu/vue3-context-menu'
 import '@imengyu/vue3-context-menu/lib/vue3-context-menu.css'
 
-export type MenuBarMode = MainWindowMode | 'scratchpad' | 'computer-use' | 'debug' | 'agents'
+export type MenuBarMode = MainWindowMode | 'scratchpad' | 'computer-use' | 'agents'
 
 const hasComputerUse = computed(() => {
-  return store.config.engines.anthropic.apiKey && store.config.engines.anthropic.models?.chat?.find(m => m.id === 'computer-use')
+  // Computer Use functionality disabled for VerifAI Desktop
+  return false
+  // return store.config.engines.anthropic.apiKey && store.config.engines.anthropic.models?.chat?.find(m => m.id === 'computer-use')
 })
 
 const emit = defineEmits(['change', 'run-onboarding'])
@@ -138,7 +141,8 @@ const onAppMenu = (event: Event) => {
         label: t('menu.help.title'),
         children: [
           { label: t('menu.help.runOnboarding'), onClick: () => emit('run-onboarding') },
-          { label: t('menu.view.debug'), divided: 'up', onClick: () => window.api.debug.showConsole() },
+          // Debug functionality disabled for VerifAI Desktop
+          // { label: t('menu.view.debug'), divided: 'up', onClick: () => window.api.debug.showConsole() },
           { label: t('menu.help.goToDataFolder'), divided: 'up', onClick: () => window.api.debug.openFolder('userData') },
           { label: t('menu.help.goToLogFolder'), onClick: () => window.api.debug.openFolder('logs') },
         ]

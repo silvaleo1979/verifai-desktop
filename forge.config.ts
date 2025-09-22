@@ -129,7 +129,20 @@ const config: ForgeConfig = {
   makers: process.env.TEST ? [ new MakerZIP() ] : [
     /* xplat  */ new MakerZIP({}, ['linux', 'win32', 'darwin']),
     /* darwin */ new MakerDMG(dmgOptions, ['darwin']), new MakerPKG({ identity: process.env.IDENTITY_MAS_PKG, }, ['mas']),
-    /* win32  */ new MakerSquirrel({}),
+    /* win32  */ new MakerSquirrel({
+      iconUrl: 'https://raw.githubusercontent.com/silvaleo1979/verifai-desktop/main/assets/verifai-icon.ico',
+      setupIcon: './assets/verifai-icon.ico',
+      authors: 'VerifAI',
+      description: 'VerifAI Desktop - Assistente de IA Personalizado',
+      exe: 'VerifAI.exe',
+      name: 'VerifAI-Desktop',
+      title: 'VerifAI Desktop',
+      setupExe: 'VerifAI Desktop Setup.exe',
+      noMsi: true,
+      remoteReleases: 'https://github.com/silvaleo1979/verifai-desktop/releases/latest/download',
+      certificateFile: process.env.CERTIFICATE_FILE,
+      certificatePassword: process.env.CERTIFICATE_PASSWORD,
+    }),
     /* linux  */ new MakerRpm({}), new MakerDeb({})
   ],
   plugins: [

@@ -108,8 +108,9 @@ const onMode = async (next: MenuBarMode) => {
     window.api.scratchpad.open()
   } else if (next === 'computer-use') {
     mode.value = 'chat'
-  } else if (next === 'debug') {
-    window.api.debug.showConsole()
+  // Debug functionality disabled for VerifAI Desktop
+  // } else if (next === 'debug') {
+  //   window.api.debug.showConsole()
   } else {
     mode.value = next
   }
@@ -119,7 +120,7 @@ const onMode = async (next: MenuBarMode) => {
   emitEvent('main-view-changed', next)
 
   // for menu update
-  if (mode.value !== 'computer-use' && mode.value !== 'scratchpad' && mode.value !== 'debug') {
+  if (mode.value !== 'computer-use' && mode.value !== 'scratchpad') {
     window.api.main.setMode(mode.value)
   }
 

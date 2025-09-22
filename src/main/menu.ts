@@ -171,11 +171,12 @@ const template = (app: App, callbacks: MenuCallbacks, shortcuts: ShortcutsConfig
     {
       label: t('menu.view.title'),
       submenu: [
-        {
-          label: t('menu.view.debug'),
-          click: () => window.openDebugWindow()
-        },
-        { type: 'separator' },
+        // Debug functionality disabled for VerifAI Desktop
+        // {
+        //   label: t('menu.view.debug'),
+        //   click: () => window.openDebugWindow()
+        // },
+        // { type: 'separator' },
               ...process.env.DEBUG ? [
         { role: 'reload' },
         { role: 'forceReload' },

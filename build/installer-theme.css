@@ -1,0 +1,70 @@
+/* Tema Personalizado do Instalador VerifAI Desktop */
+
+/* Cores da marca VerifAI */
+:root {
+  --verifai-primary: #0066CC;
+  --verifai-secondary: #FFFFFF;
+  --verifai-accent: #003366;
+  --verifai-text: #333333;
+  --verifai-background: #FFFFFF;
+  --verifai-border: #E0E0E0;
+}
+
+/* Estilos do instalador */
+.installer-header {
+  background: linear-gradient(135deg, var(--verifai-primary), var(--verifai-accent));
+  color: var(--verifai-secondary);
+  padding: 20px;
+  text-align: center;
+}
+
+.installer-logo {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 10px;
+}
+
+.installer-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.installer-subtitle {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.progress-bar {
+  background-color: var(--verifai-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  background: linear-gradient(90deg, var(--verifai-primary), var(--verifai-accent));
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.installer-button {
+  background-color: var(--verifai-primary);
+  color: var(--verifai-secondary);
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.installer-button:hover {
+  background-color: var(--verifai-accent);
+}
+
+.installer-button:disabled {
+  background-color: var(--verifai-border);
+  cursor: not-allowed;
+}
+
+
+

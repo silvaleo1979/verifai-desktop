@@ -188,3 +188,4 @@ Invoke-WebRequest "https://update.electronjs.org/silvaleo1979/verifai-desktop/wi
 5. **Use**: O sistema de atualização automática
 
 **Pronto! O VerifAI Desktop está instalado e pronto para uso!** 🎉
+
