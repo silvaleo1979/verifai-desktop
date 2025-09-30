@@ -47,13 +47,7 @@ const template = (app: App, callbacks: MenuCallbacks, shortcuts: ShortcutsConfig
         label: app.name,
         submenu: [
           { role: 'about' },
-          ...(!isMas ? [
-            {
-              label: t('menu.app.checkForUpdates'),
-              click: async () => callbacks.checkForUpdates()
-            },
-            { type: 'separator' },
-          ] : []),
+          // Bayer build: esconder opção de atualização no menu
           {
             label: t('menu.app.settings'),
             accelerator: 'CmdOrCtrl+,',

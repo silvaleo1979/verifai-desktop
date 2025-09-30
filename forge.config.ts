@@ -75,8 +75,8 @@ const config: ForgeConfig = {
   packagerConfig: {
     asar: true,
     icon: 'assets/verifai-icon',
-          executableName: process.platform == 'linux' ? 'verifai' : 'VerifAI',
-          appBundleId: 'com.verifai.desktop',
+          executableName: process.platform == 'linux' ? 'verifai-bayer' : 'VerifAI-Bayer',
+          appBundleId: 'com.verifai.desktop.bayer',
     extendInfo: './build/Info.plist',
     buildVersion: process.env.BUILD_NUMBER || '1.0.0',
     extraResource: [
@@ -134,12 +134,12 @@ const config: ForgeConfig = {
       setupIcon: './assets/verifai-icon.ico',
       authors: 'VerifAI',
       description: 'VerifAI Desktop - Assistente de IA Personalizado',
-      exe: 'VerifAI.exe',
-      name: 'VerifAI-Desktop',
-      title: 'VerifAI Desktop',
-      setupExe: 'VerifAI Desktop Setup.exe',
+      exe: 'VerifAI-Bayer.exe',
+      name: 'VerifAI-Bayer',
+      title: 'VerifAI Bayer',
+      setupExe: 'VerifAI-Bayer Setup.exe',
       noMsi: true,
-      remoteReleases: 'https://github.com/silvaleo1979/verifai-desktop/releases/latest/download',
+      // Bayer build: sem auto-update/publicação
       certificateFile: process.env.CERTIFICATE_FILE,
       certificatePassword: process.env.CERTIFICATE_PASSWORD,
     }),

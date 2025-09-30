@@ -92,10 +92,7 @@ export default class {
       menuItems = [
         ...menuItems,
         { role: 'about' },
-        { 
-          label: t('menu.app.checkForUpdates'),
-          click: () => this.autoUpdater.check()
-        },
+        // Bayer build: esconder opção de atualização no tray
         { type: 'separator' },
       ]
     }
