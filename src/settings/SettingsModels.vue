@@ -6,12 +6,8 @@
     </header>
     <main>
       <div class="master-detail">
-        <div class="md-master">
+        <div class="md-master" v-if="showMaster">
           <div class="md-master-list">
-            <div class="md-master-list-item" @click="showCreateCustom()">
-              <BIconPlusCircle class="logo create" />
-              {{ t('settings.engines.custom.create') }}
-            </div>
             <div class="md-master-list-item" v-for="engine in engines" :key="engine.id" :class="{ selected: currentEngine == engine.id }" @click="selectEngine(engine)">
               <EngineLogo :engine="engine.id" :grayscale="true" />
               {{ engine.label }}
@@ -34,20 +30,6 @@ import { t } from '../services/i18n'
 import Dialog from '../composables/dialog'
 import EngineLogo from '../components/EngineLogo.vue'
 import CreateEngine from '../screens/CreateEngine.vue'
-import SettingsAnthropic from './SettingsAnthropic.vue'
-import SettingsAzure from './SettingsAzure.vue'
-import SettingsCerebras from './SettingsCerebras.vue'
-import SettingsDeepSeek from './SettingsDeepSeek.vue'
-import SettingsGoogle from './SettingsGoogle.vue'
-import SettingsGroq from './SettingsGroq.vue'
-import SettingsLMStudio from './SettingsLMStudio.vue'
-import SettingsMeta from './SettingsMeta.vue'
-import SettingsMistralAI from './SettingsMistralAI.vue'
-import SettingsOllama from './SettingsOllama.vue'
-import SettingsOpenAI from './SettingsOpenAI.vue'
-import SettingsOpenRouter from './SettingsOpenRouter.vue'
-import SettingsVerifai from './SettingsVerifai.vue'
-import SettingsXAI from './SettingsXAI.vue'
 import SettingsCustomLLM from './SettingsCustomLLM.vue'
 import LlmFactory, { ILlmManager } from '../llms/llm'
 
@@ -59,67 +41,38 @@ type Engine = {
 const llmManager: ILlmManager = LlmFactory.manager(store.config)
 
 const createEngine = ref(null)
-const currentEngine= ref<string>(llmManager.getChatEngines({ favorites: false })[0])
+
+// Garantir um único engine custom OpenAI para Bayer
+const ensureCustomEngine = (): string => {
+  const customIds = Object.keys(store.config.engines).filter(id => llmManager.isCustomEngine(id))
+  if (customIds.length) return customIds[0]
+  const id = 'bayer'
+  store.config.engines[id] = {
+    label: 'Bayer',
+    api: 'openai',
+    baseURL: 'https://chat.int.bayer.com/api/v2',
+    apiKey: '',
+    models: { chat: [], image: [] },
+    model: { chat: '', image: '' }
+  } as unknown as CustomEngineConfig
+  store.saveSettings()
+  return id
+}
+
+const currentEngine= ref<string>(ensureCustomEngine())
 const engineSettings = ref(null)
 
 const isCustom = computed(() => llmManager.isCustomEngine(currentEngine.value))
 
 const engines = computed(() => {
-  const engines = llmManager.getChatEngines({ favorites: false }).map(id => {
-    if (llmManager.isCustomEngine(id)) {
-      return {
-        id: id,
-        label: (store.config.engines[id] as CustomEngineConfig).label
-      }
-    } else {
-      return {
-        id: id,
-        label: {
-          anthropic: 'Anthropic',
-          azure: 'Azure',
-          cerebras: 'Cerebras',
-          deepseek: 'DeepSeek',
-          google: 'Google',
-          groq: 'Groq',
-          lmstudio: 'LM Studio',
-          meta: 'Meta',
-          mistralai: 'Mistral AI',
-          ollama: 'Ollama',
-          openai: 'OpenAI',
-          openrouter: 'OpenRouter',
-          verifai: 'VerifAI',
-          xai: 'xAI',
-        }[id]
-      }
-    }
-  })
-
-  // add azure after mistralai
-  const idx = engines.findIndex(e => e.id == 'mistralai')
-  engines.splice(idx + 1, 0, {
-    id: 'azure',
-    label: 'Azure'
-  })
-
-  // done
-  return engines
+  const id = ensureCustomEngine()
+  return [{ id, label: (store.config.engines[id] as CustomEngineConfig).label }]
 })
 
+// Exibir somente o detalhe (um engine)
+const showMaster = computed(() => false)
+
 const currentView = computed(() => {
-  if (currentEngine.value == 'anthropic') return SettingsAnthropic
-  if (currentEngine.value == 'azure') return SettingsAzure
-  if (currentEngine.value == 'cerebras') return SettingsCerebras
-  if (currentEngine.value == 'deepseek') return SettingsDeepSeek
-  if (currentEngine.value == 'google') return SettingsGoogle
-  if (currentEngine.value == 'groq') return SettingsGroq
-  if (currentEngine.value == 'lmstudio') return SettingsLMStudio
-  if (currentEngine.value == 'meta') return SettingsMeta
-  if (currentEngine.value == 'mistralai') return SettingsMistralAI
-  if (currentEngine.value == 'ollama') return SettingsOllama
-  if (currentEngine.value == 'openai') return SettingsOpenAI
-  if (currentEngine.value == 'openrouter') return SettingsOpenRouter
-  if (currentEngine.value == 'verifai') return SettingsVerifai
-  if (currentEngine.value == 'xai') return SettingsXAI
   return SettingsCustomLLM
 })
 

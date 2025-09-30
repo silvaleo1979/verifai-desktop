@@ -14,7 +14,7 @@
     <template v-if="api === 'openai'">
       <div class="form-field">
         <label>{{ t('settings.engines.custom.apiBaseURL') }}</label>
-        <input name="baseURL" v-model="baseURL" :placeholder="defaults.engines.openai.baseURL" @keydown.enter.prevent="save" @change="save"/>
+        <input name="baseURL" v-model="baseURL" placeholder="https://chat.int.bayer.com/api/v2" @keydown.enter.prevent="save" @change="save"/>
       </div>
       <div class="form-field">
         <label>{{ t('settings.engines.apiKey') }}</label>
@@ -85,7 +85,7 @@ const props = defineProps({
 })
 
 const label = ref(null)
-const api = ref(null)
+const api = ref('openai')
 const apiKey = ref(null)
 const baseURL = ref(null)
 const deployment = ref(null)
@@ -104,15 +104,16 @@ const vision_models = computed(() => {
 })
 
 onMounted(() => {
+  load()
   watch(() => props.engine, () => load())
 })
 
 const load = () => {
   const engineConfig = store.config.engines[props.engine] as CustomEngineConfig
   label.value = engineConfig?.label || ''
-  api.value = engineConfig?.api || ''
+  api.value = engineConfig?.api || 'openai'
   apiKey.value = engineConfig?.apiKey || ''
-  baseURL.value = engineConfig?.baseURL || ''
+  baseURL.value = engineConfig?.baseURL || 'https://chat.int.bayer.com/api/v2'
   deployment.value = engineConfig?.deployment || ''
   apiVersion.value = engineConfig?.apiVersion || ''
   chat_models.value = engineConfig?.models?.chat || []

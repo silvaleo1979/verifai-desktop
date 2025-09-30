@@ -2,7 +2,7 @@
   <div class="empty">
     <div class="selector">
       <div class="engines">
-        <EngineLogo v-for="engine in visibleEngines" :engine="engine" :grayscale="true" :custom-label="true" @click="onEngine(engine)" />
+        <EngineLogo v-for="engine in visibleEngines" :engine="engine" :grayscale="true" @click="onEngine(engine)" />
         <div class="logo more" @click="onEngineMore"><BIconPlusCircleDotted /></div>
       </div>
       <div class="current">
@@ -10,7 +10,7 @@
           {{ t('emptyChat.tips.switchProvider') }}<br/>
           <img src="/assets/arrow_dashed.svg" @load="centerLogos()" />
         </div>
-        <EngineLogo :engine="engine" :grayscale="true" :custom-label="true" @click="onEngine(engine)" />
+        <EngineLogo :engine="engine" :grayscale="true" @click="onEngine(engine)" />
         <div class="models" v-if="models?.length">
           <BIconArrowRepeat class="for=symmetry" style="visibility: hidden; margin-right: 0.5rem;" v-if="!showAllEngines && engine != favoriteMockEngine" />
           <ModelSelectPlus v-if="models?.length" :models="models" :caps-hover-only="true" v-model="model" class="select-model" :class="{ hidden: showAllEngines }" @change="onSelectModel" @click="onClickModel" />

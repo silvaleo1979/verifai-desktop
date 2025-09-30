@@ -35,6 +35,7 @@ import LogoOpenAI from '../../assets/openai.svg?component'
 import LogoOpenRouter from '../../assets/openrouter.svg?component'
 import LogoReplicate from '../../assets/replicate.svg?component'
 import LogoVerifai from '../../assets/logoverifai.svg?component'
+import LogoBayer from '../../assets/Bayer-Logo.wine.svg?component'
 import LogoXAI from '../../assets/xai.svg?component'
 
 const llmManager = LlmFactory.manager(store.config)
@@ -60,6 +61,7 @@ const logos: { [key: string]: any } = {
   replicate: LogoReplicate,
   verifai: LogoVerifai,
   xai: LogoXAI,
+  bayer: LogoBayer,
 }
 
 const pngLogos: { [key: string]: string } = {
@@ -92,9 +94,10 @@ const logo = computed(() => {
   if (logos[props.engine]) return logos[props.engine]
   if (llmManager.isCustomEngine(props.engine)) {
     const engineConfig = store.config?.engines?.[props.engine] as CustomEngineConfig
+    if (engineConfig?.label?.toLowerCase?.() === 'bayer') return LogoBayer
     if (engineConfig?.api === 'azure') return LogoAzure
   }
-    return LogoCustom
+  return LogoCustom
 })
 
 const isComponent = computed(() => {
@@ -113,6 +116,7 @@ const klass = computed(() => {
   if (logos[props.engine]) return props.engine
   if (llmManager.isCustomEngine(props.engine)) {
     const engineConfig = store.config?.engines?.[props.engine] as CustomEngineConfig
+    if (engineConfig?.label?.toLowerCase?.() === 'bayer') return 'bayer'
     if (engineConfig?.api === 'azure') return 'azure'
   }
   return 'custom'
