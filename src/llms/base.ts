@@ -10,6 +10,7 @@ import { store } from '../services/store'
 import * as llm from 'multi-llm-ts'
 
 export const engineNames: Record<string, string> = {
+  'bayer': 'Bayer',
   'anthropic': 'Anthropic',
   'cerebras': 'Cerebras',
   'deepseek': 'DeepSeek',

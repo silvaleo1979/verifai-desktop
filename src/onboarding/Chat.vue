@@ -65,9 +65,7 @@ const loading = ref<Record<string, boolean>>({})
 const llmManager = new LlmManager(store.config)
 let timeouts: Record<string, NodeJS.Timeout> = {}
 
-const engines = computed(() => llmManager.getStandardEngines().filter(e => {
-  return e !== 'ollama' && e !== 'lmstudio'
-}))
+const engines = computed(() => ['bayer'])
 
 onMounted(() => {
   engines.value.forEach(engine => {

@@ -85,6 +85,8 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@a2a-js/sdk": "^0.2.4",
+    "@aws-sdk/client-bedrock": "^3.894.0",
+    "@aws-sdk/client-bedrock-runtime": "^3.894.0",
     "@breezystack/lamejs": "^1.2.7",
     "@el3um4s/run-vbs": "^1.1.2",
     "@excalidraw/markdown-to-text": "^0.1.2",
