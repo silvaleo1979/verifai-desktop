@@ -10,7 +10,7 @@
     </header>
     <main>
       <div class="chat-content">
-        <MessageList class="chat-content-main" :chat="chat" :conversation-mode="conversationMode" v-if="chat?.hasMessages()"/>
+        <MessageList class="chat-content-main" :chat="chat" :conversation-mode="conversationMode" @ui-action="onUIAction" v-if="chat?.hasMessages()"/>
         <EmptyChat class="chat-content-main" v-else />
         <div class="deep-research-usage" v-if="prompt?.isDeepResearchActive() && tipsManager.isTipAvailable('deepResearchUsage')">
           {{  t('deepResearch.usage') }}
@@ -115,7 +115,8 @@ const showChatMenu = ref(false)
 const menuX = ref(0)
 const menuY = ref(0)
 
-const emit = defineEmits(['prompt', 'stop'])
+const emit = defineEmits(['prompt', 'stop', 'ui-action'])
+const emits = emit
 
 onMounted(() => {
   onEvent('conversation-mode', (mode: string) => conversationMode.value = mode)
@@ -291,6 +292,10 @@ const onExportPdf = async () => {
 
 const onHideDeepResearchUsage = () => {
   tipsManager.setTipShown('deepResearchUsage')
+}
+
+const onUIAction = (actionData: any) => {
+  emits('ui-action', actionData)
 }
 
 defineExpose({

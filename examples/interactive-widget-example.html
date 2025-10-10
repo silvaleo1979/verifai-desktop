@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Widget Interativo - Exemplo MCP-UI</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            padding: 1rem;
+            margin: 0;
+            background: #f8f9fa;
+        }
+        
+        .widget-container {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .widget-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .widget-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #333;
+            margin: 0;
+        }
+        
+        .status-badge {
+            background: #28a745;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            margin-left: auto;
+        }
+        
+        .widget-content {
+            margin-bottom: 1.5rem;
+        }
+        
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .data-item {
+            background: #f8f9fa;
+            padding: 0.75rem;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .data-label {
+            font-size: 0.875rem;
+            color: #6c757d;
+            margin-bottom: 0.25rem;
+        }
+        
+        .data-value {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #0056b3;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+        
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #1e7e34;
+        }
+        
+        .btn-warning {
+            background: #ffc107;
+            color: #212529;
+        }
+        
+        .btn-warning:hover {
+            background: #e0a800;
+        }
+        
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #c82333;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 0.875rem;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        
+        .spinner {
+            display: inline-block;
+            width: 1rem;
+            height: 1rem;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="widget-container">
+        <div class="widget-header">
+            <h2 class="widget-title">Dashboard Interativo</h2>
+            <span class="status-badge" id="status">Online</span>
+        </div>
+        
+        <div class="widget-content">
+            <div class="data-grid">
+                <div class="data-item">
+                    <div class="data-label">Usuários Ativos</div>
+                    <div class="data-value" id="activeUsers">42</div>
+                </div>
+                <div class="data-item">
+                    <div class="data-label">Vendas Hoje</div>
+                    <div class="data-value" id="salesToday">R$ 12.450</div>
+                </div>
+                <div class="data-item">
+                    <div class="data-label">Pedidos</div>
+                    <div class="data-value" id="orders">156</div>
+                </div>
+                <div class="data-item">
+                    <div class="data-label">Taxa Conversão</div>
+                    <div class="data-value" id="conversionRate">3.2%</div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label" for="searchInput">Buscar por:</label>
+                <input type="text" id="searchInput" class="form-input" placeholder="Digite sua busca...">
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="sendAction('refresh')">
+                    🔄 Atualizar Dados
+                </button>
+                <button class="btn btn-success" onclick="sendAction('export', { format: 'csv' })">
+                    📊 Exportar CSV
+                </button>
+                <button class="btn btn-warning" onclick="sendAction('filter', { type: 'date', value: 'today' })">
+                    📅 Filtrar Hoje
+                </button>
+                <button class="btn btn-secondary" onclick="sendAction('settings')">
+                    ⚙️ Configurações
+                </button>
+                <button class="btn btn-danger" onclick="sendAction('reset')">
+                    🔄 Resetar
+                </button>
+            </div>
+            
+            <div class="action-buttons" style="margin-top: 1rem;">
+                <button class="btn btn-primary" onclick="sendMessage('Olá! Como posso ajudar?')">
+                    💬 Enviar Mensagem
+                </button>
+                <button class="btn btn-success" onclick="callTool('get_analytics', { period: '7d' })">
+                    📈 Análise 7 Dias
+                </button>
+                <button class="btn btn-warning" onclick="sendAction('navigate', { page: 'reports' })">
+                    📋 Ir para Relatórios
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Função principal para enviar ações
+        function sendAction(action, data = {}) {
+            const actionData = {
+                type: 'mcpui:action',
+                action: action,
+                data: data,
+                timestamp: new Date().toISOString()
+            };
+            
+            console.log('Enviando ação:', actionData);
+            
+            // Enviar para o parent (VerifAI)
+            window.parent.postMessage(actionData, '*');
+            
+            // Simular loading
+            showLoading();
+        }
+        
+        // Função para enviar mensagens
+        function sendMessage(message) {
+            sendAction('send_message', { 
+                message: message,
+                source: 'dashboard_widget'
+            });
+        }
+        
+        // Função para chamar ferramentas MCP
+        function callTool(toolName, parameters = {}) {
+            sendAction('call_tool', {
+                tool: toolName,
+                parameters: parameters
+            });
+        }
+        
+        // Função para mostrar loading
+        function showLoading() {
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(btn => {
+                btn.classList.add('loading');
+                btn.innerHTML = '<span class="spinner"></span> Processando...';
+            });
+            
+            // Simular processamento
+            setTimeout(() => {
+                buttons.forEach(btn => {
+                    btn.classList.remove('loading');
+                    // Restaurar texto original (simplificado)
+                    if (btn.textContent.includes('Atualizar')) {
+                        btn.innerHTML = '🔄 Atualizar Dados';
+                    } else if (btn.textContent.includes('Exportar')) {
+                        btn.innerHTML = '📊 Exportar CSV';
+                    } else if (btn.textContent.includes('Filtrar')) {
+                        btn.innerHTML = '📅 Filtrar Hoje';
+                    } else if (btn.textContent.includes('Configurações')) {
+                        btn.innerHTML = '⚙️ Configurações';
+                    } else if (btn.textContent.includes('Resetar')) {
+                        btn.innerHTML = '🔄 Resetar';
+                    } else if (btn.textContent.includes('Enviar')) {
+                        btn.innerHTML = '💬 Enviar Mensagem';
+                    } else if (btn.textContent.includes('Análise')) {
+                        btn.innerHTML = '📈 Análise 7 Dias';
+                    } else if (btn.textContent.includes('Relatórios')) {
+                        btn.innerHTML = '📋 Ir para Relatórios';
+                    }
+                });
+            }, 2000);
+        }
+        
+        // Listener para mensagens do parent
+        window.addEventListener('message', (event) => {
+            if (event.data?.type === 'mcpui:render') {
+                console.log('Dados iniciais recebidos:', event.data.data);
+                
+                // Atualizar dados do dashboard
+                const data = event.data.data;
+                if (data.activeUsers) {
+                    document.getElementById('activeUsers').textContent = data.activeUsers;
+                }
+                if (data.salesToday) {
+                    document.getElementById('salesToday').textContent = data.salesToday;
+                }
+                if (data.orders) {
+                    document.getElementById('orders').textContent = data.orders;
+                }
+                if (data.conversionRate) {
+                    document.getElementById('conversionRate').textContent = data.conversionRate;
+                }
+                if (data.status) {
+                    document.getElementById('status').textContent = data.status;
+                }
+            }
+        });
+        
+        // Listener para input de busca
+        document.getElementById('searchInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const searchTerm = e.target.value;
+                if (searchTerm.trim()) {
+                    sendAction('search', { 
+                        query: searchTerm,
+                        filters: ['users', 'sales', 'orders']
+                    });
+                }
+            }
+        });
+        
+        // Simular atualização de dados em tempo real
+        setInterval(() => {
+            const activeUsers = document.getElementById('activeUsers');
+            const currentUsers = parseInt(activeUsers.textContent);
+            const newUsers = currentUsers + Math.floor(Math.random() * 3) - 1;
+            activeUsers.textContent = Math.max(0, newUsers);
+        }, 10000);
+        
+        console.log('Widget interativo carregado!');
+    </script>
+</body>
+</html>

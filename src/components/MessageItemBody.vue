@@ -9,12 +9,12 @@
       </div>
       <div class="think" v-if="showReasoning">
         <div v-for="block in reasoningBlocks">
-          <MessageItemBodyBlock :block="block" @media-loaded="onMediaLoaded(message)" />
+          <MessageItemBodyBlock :block="block" @media-loaded="onMediaLoaded(message)" @ui-action="onUIAction" />
         </div>
       </div>
     </template>
     <div v-for="block in contentBlocks">
-      <MessageItemBodyBlock :block="block" @media-loaded="onMediaLoaded(message)" />
+      <MessageItemBodyBlock :block="block" @media-loaded="onMediaLoaded(message)" @ui-action="onUIAction" />
     </div>
   </div>
 </template>
@@ -78,10 +78,14 @@ onMounted(() => {
   })  
 })
 
-const emits = defineEmits(['media-loaded'])
+const emits = defineEmits(['media-loaded', 'ui-action'])
 
 const onMediaLoaded = (message: Message) => {
   emits('media-loaded', message)
+}
+
+const onUIAction = (actionData: any) => {
+  emits('ui-action', actionData)
 }
 
 const computeBlocks = (content: string|null): Block[] => {

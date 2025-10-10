@@ -2,7 +2,7 @@
   <div class="messages-list" :style="fontStyle">
     <div class="messages" :class="[ chatTheme, 'size' + store.config.appearance.chat.fontSize ]" ref="divScroller" @scroll="onScroll">
       <div v-for="message in chat?.messages" :key="message.uuid">
-        <MessageItem v-if="message.role != 'system'" :chat="chat" :message="message" class="message" @media-loaded="onMediaLoaded" ref="items" />
+        <MessageItem v-if="message.role != 'system'" :chat="chat" :message="message" class="message" @media-loaded="onMediaLoaded" @ui-action="onUIAction" ref="items" />
       </div>
     </div>
     <div v-if="overflown" class="overflow" @click="scrollDown">
@@ -46,6 +46,8 @@ const props = defineProps({
   }
 })
 
+const emits = defineEmits(['ui-action'])
+
 onMounted(() => {
   onEvent('new-llm-chunk', onNewChunk)
   window.api.on('read-aloud-selection', onReadAloudSelection)
@@ -70,6 +72,10 @@ const onMediaLoaded = () => {
   if (!overflown.value) {
     scrollDown()
   }
+}
+
+const onUIAction = (actionData: any) => {
+  emits('ui-action', actionData)
 }
 
 const scrollDown = async () => {

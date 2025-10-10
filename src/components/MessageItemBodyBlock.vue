@@ -5,7 +5,7 @@
     <MessageItemMediaBlock v-else-if="block.type == 'media'" :url="block.url!" :desc="block.desc" :prompt="block.prompt" @media-loaded="onMediaLoaded()" />
     <MessageItemToolBlock v-else-if="block.type == 'tool'" :tool-call="block.toolCall!" />
     <MessageItemSearchResultBlock v-else-if="block.type == 'search'" :tool-call="block.toolCall!" />
-    <MessageItemUIResourceBlock v-else-if="block.type == 'ui-resource'" :resource="block.uiResource!" />
+    <MessageItemUIResourceBlock v-else-if="block.type == 'ui-resource'" :resource="block.uiResource!" @ui-action="handleUIAction" />
   </div>
 </template>
 
@@ -38,10 +38,14 @@ defineProps({
   },
 })
 
-const emits = defineEmits(['media-loaded'])
+const emits = defineEmits(['media-loaded', 'ui-action'])
 
 const onMediaLoaded = () => {
   emits('media-loaded')
+}
+
+const handleUIAction = (actionData: any) => {
+  emits('ui-action', actionData)
 }
 
 const messageItemBodyBlock= ref<HTMLElement>(null)

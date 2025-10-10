@@ -24,7 +24,7 @@
 
       <!-- content -->
       <div class="message-content" v-if="message.type == 'text' && message.content !== null">
-        <MessageItemBody :message="message" :show-tool-calls="showToolCalls" @media-loaded="onMediaLoaded" />
+        <MessageItemBody :message="message" :show-tool-calls="showToolCalls" @media-loaded="onMediaLoaded" @ui-action="onUIAction" />
       </div>
 
       <!-- transient information -->
@@ -81,7 +81,7 @@ const props = defineProps({
   showActions: { type: Boolean, default: true },
 })
 
-const emits = defineEmits(['media-loaded'])
+const emits = defineEmits(['media-loaded', 'ui-action'])
 
 const theme = ref('light')
 const hovered = ref(false)
@@ -203,6 +203,10 @@ const onShowTools = () => {
 
 const onContextMenu = (event: MouseEvent) => {
   window.api.main.setContextMenuContext(props.message.uuid)
+}
+
+const onUIAction = (actionData: any) => {
+  emits('ui-action', actionData)
 }
 
 defineExpose({

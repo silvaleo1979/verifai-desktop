@@ -1,7 +1,7 @@
 <template>
   <div class="chat split-pane">
     <ChatSidebar :chat="assistant.chat" ref="sidebar" />
-    <ChatArea :chat="assistant.chat" :is-left-most="!sidebar?.isVisible()" ref="chatArea" @prompt="onSendPrompt" @stop="onStopGeneration" />
+    <ChatArea :chat="assistant.chat" :is-left-most="!sidebar?.isVisible()" ref="chatArea" @prompt="onSendPrompt" @stop="onStopGeneration" @ui-action="onUIAction" />
     <ChatEditor :chat="assistant.chat" :dialog-title="chatEditorTitle" :confirm-button-text="chatEditorConfirmButtonText" :on-confirm="chatEditorCallback" ref="chatEditor" />
   </div>
 </template>
@@ -644,6 +644,48 @@ const onMainViewChanged = (mode: MenuBarMode) => {
     emitEvent('new-llm-chunk', null)
   })
 
+}
+
+const onUIAction = async (actionData: any) => {
+  console.log('UI Action received in Chat:', actionData)
+  
+  // Process different types of UI actions
+  if (actionData.action === 'send_message') {
+    // Send a new message to the chat
+    const message = actionData.data?.message || actionData.data?.text
+    if (message) {
+      await onSendPrompt({
+        prompt: message,
+        attachments: [],
+        deepResearch: false
+      })
+    }
+  } else if (actionData.action === 'call_tool') {
+    // Call a specific MCP tool
+    const toolName = actionData.data?.tool
+    const parameters = actionData.data?.parameters || {}
+    if (toolName) {
+      // Create a message that will trigger the tool call
+      const toolMessage = `Call tool: ${toolName} with parameters: ${JSON.stringify(parameters)}`
+      await onSendPrompt({
+        prompt: toolMessage,
+        attachments: [],
+        deepResearch: false
+      })
+    }
+  } else if (actionData.action === 'refresh') {
+    // Refresh or reload data
+    console.log('Refresh action triggered')
+    // You can implement specific refresh logic here
+  } else {
+    // Generic action - could be handled by the assistant
+    const actionMessage = `UI Action: ${actionData.action}${actionData.data ? ` with data: ${JSON.stringify(actionData.data)}` : ''}`
+    await onSendPrompt({
+      prompt: actionMessage,
+      attachments: [],
+      deepResearch: false
+    })
+  }
 }
 
 defineExpose({
