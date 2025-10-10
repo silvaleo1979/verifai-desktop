@@ -5,6 +5,7 @@
     <MessageItemMediaBlock v-else-if="block.type == 'media'" :url="block.url!" :desc="block.desc" :prompt="block.prompt" @media-loaded="onMediaLoaded()" />
     <MessageItemToolBlock v-else-if="block.type == 'tool'" :tool-call="block.toolCall!" />
     <MessageItemSearchResultBlock v-else-if="block.type == 'search'" :tool-call="block.toolCall!" />
+    <MessageItemUIResourceBlock v-else-if="block.type == 'ui-resource'" :resource="block.uiResource!" />
   </div>
 </template>
 
@@ -15,17 +16,19 @@ import { nextTick, PropType, ref, h, render } from 'vue'
 import MessageItemMermaidBlock from './MessageItemMermaidBlock.vue'
 import MessageItemMediaBlock from './MessageItemMediaBlock.vue'
 import MessageItemToolBlock from './MessageItemToolBlock.vue'
-import MessageItemSearchResultBlock from './MessageItemSearchResultBlock.vue' 
+import MessageItemSearchResultBlock from './MessageItemSearchResultBlock.vue'
+import MessageItemUIResourceBlock from './MessageItemUIResourceBlock.vue'
 import { store } from '../services/store'
 import { t } from '../services/i18n'
 
 export type Block = {
-  type: 'empty'|'text'|'media'|'tool'|'search'
+  type: 'empty'|'text'|'media'|'tool'|'search'|'ui-resource'
   content?: string
   url?: string
   desc?: string
   prompt?: string
   toolCall?: ToolCall
+  uiResource?: any
 }
 
 defineProps({

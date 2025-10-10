@@ -203,13 +203,13 @@ addToolCall(toolCall: LlmChunkTool): void {
 
 ---
 
-### **5. MessageItemBodyBlock.vue** 🔄 PREPARADO PARA EXTENSÃO
+### **5. MessageItemBodyBlock.vue** ✅ INTEGRADO
 
 **Localização:** `src/components/MessageItemBodyBlock.vue`
 
-Preparado para integração futura com `MessageItemUIResourceBlock`.
+Integrado com `MessageItemUIResourceBlock` para renderização automática de recursos UI.
 
-**Estrutura atual:**
+**Estrutura implementada:**
 
 ```vue
 <template>
@@ -219,9 +219,23 @@ Preparado para integração futura com `MessageItemUIResourceBlock`.
     <MessageItemMediaBlock v-else-if="block.type == 'media'" .../>
     <MessageItemToolBlock v-else-if="block.type == 'tool'" .../>
     <MessageItemSearchResultBlock v-else-if="block.type == 'search'" .../>
-    <!-- Futuro: MessageItemUIResourceBlock aqui -->
+    <MessageItemUIResourceBlock v-else-if="block.type == 'ui-resource'" :resource="block.uiResource!" />
   </div>
 </template>
+```
+
+**Tipo Block estendido:**
+
+```typescript
+export type Block = {
+  type: 'empty'|'text'|'media'|'tool'|'search'|'ui-resource'
+  content?: string
+  url?: string
+  desc?: string
+  prompt?: string
+  toolCall?: ToolCall
+  uiResource?: any  // ⬅️ NOVO: Recurso UI para renderização
+}
 ```
 
 ---
@@ -444,9 +458,9 @@ Por segurança, os iframes usam:
 
 ### **Implementações Futuras:**
 
-1. **Integração Completa no MessageItemBodyBlock**
-   - Detectar `block.type == 'ui-resource'`
-   - Renderizar `MessageItemUIResourceBlock` automaticamente
+1. ~~**Integração Completa no MessageItemBodyBlock**~~ ✅ **CONCLUÍDO**
+   - ~~Detectar `block.type == 'ui-resource'`~~
+   - ~~Renderizar `MessageItemUIResourceBlock` automaticamente~~
 
 2. **Galeria de Widgets**
    - Visualizar todos os widgets disponíveis
@@ -483,13 +497,16 @@ Implementado em: Outubro 2025
 
 ## 📝 Notas de Versão
 
-### **v1.0.0** - Implementação Inicial
+### **v1.0.0** - Implementação Completa ✅
 - ✅ Componente `MessageItemUIResourceBlock` criado
 - ✅ Plugin MCP atualizado para extrair recursos UI
 - ✅ Tipos TypeScript estendidos
 - ✅ Suporte a dimensionamento e metadados
 - ✅ Sandbox de segurança implementado
 - ✅ Comunicação postMessage funcional
+- ✅ Integração completa no fluxo de renderização
+- ✅ Detecção automática de recursos UI em toolCalls
+- ✅ Renderização automática de widgets nas conversas
 
 ---
 
