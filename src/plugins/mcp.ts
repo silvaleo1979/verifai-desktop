@@ -74,11 +74,33 @@ export default class extends MultiToolPlugin {
 
     try {
       const result = await window.api.mcp.callTool(parameters.tool, parameters.parameters)
-      if (Array.isArray(result.content) && result.content.length == 1 && result.content[0].text) {
-        return { result: result.content[0].text }
-      } else {
-        return result
+      
+      // Check for UI resources in the content array
+      const uiResources: any[] = []
+      let textContent = ''
+      
+      if (Array.isArray(result.content)) {
+        result.content.forEach((item: any) => {
+          if (item.type === 'resource' && item.resource?.uri?.startsWith('ui://')) {
+            uiResources.push(item.resource)
+          } else if (item.type === 'text' && item.text) {
+            textContent += (textContent ? '\n' : '') + item.text
+          }
+        })
       }
+      
+      // Return simplified result for single text content
+      if (Array.isArray(result.content) && result.content.length == 1 && result.content[0].text && uiResources.length === 0) {
+        return { result: result.content[0].text }
+      }
+      
+      // Return enhanced result with UI resources
+      const response: anyDict = uiResources.length > 0 ? { uiResources } : {}
+      if (textContent) {
+        response.result = textContent
+      }
+      
+      return Object.keys(response).length > 0 ? response : result
     } catch (error) {
       console.error(error)
       return { error: error.message }

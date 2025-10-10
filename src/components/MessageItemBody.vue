@@ -164,6 +164,14 @@ const computeBlocks = (content: string|null): Block[] => {
           match[1] === 'id' ? props.message.toolCalls.find(call => call.id === match[2]) :
           match[1] === 'index' ? props.message.toolCalls[parseInt(match[2])] : null
         if (toolCall && toolCall.done) {
+          // Check if tool call has UI resources
+          if (toolCall.uiResources && toolCall.uiResources.length > 0) {
+            // Add each UI resource as a separate block
+            for (const uiResource of toolCall.uiResources) {
+              blocks.push({ type: 'ui-resource', uiResource })
+            }
+          }
+          
           if (props.showToolCalls === 'always') {
             blocks.push({ type: 'tool', toolCall: toolCall })
           } else if (toolCall.name === 'search_internet') {
