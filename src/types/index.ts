@@ -33,6 +33,7 @@ export type ToolCall = {
   name: string
   params: any
   result: any
+  uiResources?: any[]
 }
 
 export type ToolCallInfo = {

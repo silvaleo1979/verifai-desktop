@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Widget Sem Título - Teste</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            padding: 1rem;
+            margin: 0;
+            background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+            color: white;
+        }
+        
+        .widget-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .widget-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .widget-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 0 0.5rem 0;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .widget-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+        
+        .test-info {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #ffd93d;
+        }
+        
+        .test-info h3 {
+            margin: 0 0 1rem 0;
+            color: #ffd93d;
+        }
+        
+        .test-info p {
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+        
+        .status-online {
+            background: #28a745;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="widget-container">
+        <div class="widget-header">
+            <h1 class="widget-title">🧪 Widget de Teste</h1>
+            <p class="widget-subtitle">Testando botões sem título definido</p>
+        </div>
+        
+        <div class="test-info">
+            <h3>📋 Informações do Teste</h3>
+            <p><span class="status-indicator status-online"></span><strong>Status:</strong> Widget sem _meta.title</p>
+            <p><strong>Objetivo:</strong> Verificar se botões de download e fullscreen aparecem</p>
+            <p><strong>Esperado:</strong> Header deve mostrar "Widget MCP-UI" como título padrão</p>
+            <p><strong>Botões:</strong> 📥 Download e ⤢ Fullscreen devem estar visíveis</p>
+        </div>
+        
+        <div class="action-buttons">
+            <button class="btn btn-primary" onclick="sendAction('test_buttons')">
+                🔍 Testar Botões
+            </button>
+            <button class="btn btn-primary" onclick="sendAction('test_fullscreen')">
+                ⤢ Testar Fullscreen
+            </button>
+            <button class="btn btn-success" onclick="sendMessage('Widget funcionando! Botões devem estar visíveis no header.')">
+                ✅ Confirmar Funcionamento
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Função para enviar ações
+        function sendAction(action, data = {}) {
+            const actionData = {
+                type: 'mcpui:action',
+                action: action,
+                data: data,
+                timestamp: new Date().toISOString()
+            };
+            
+            console.log('Enviando ação:', actionData);
+            
+            // Enviar para o parent (VerifAI)
+            window.parent.postMessage(actionData, '*');
+        }
+        
+        // Função para enviar mensagens
+        function sendMessage(message) {
+            sendAction('send_message', { 
+                message: message,
+                source: 'test_widget_no_title'
+            });
+        }
+        
+        // Listener para mensagens do parent
+        window.addEventListener('message', (event) => {
+            if (event.data?.type === 'mcpui:render') {
+                console.log('Dados iniciais recebidos:', event.data.data);
+                
+                // Atualizar interface se necessário
+                const data = event.data.data;
+                if (data && data.customMessage) {
+                    document.querySelector('.widget-subtitle').textContent = data.customMessage;
+                }
+            }
+        });
+        
+        console.log('Widget de teste (sem título) carregado com sucesso!');
+        console.log('Verifique se os botões 📥 e ⤢ aparecem no header do widget.');
+    </script>
+</body>
+</html>

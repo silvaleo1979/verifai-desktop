@@ -128,6 +128,10 @@ export default class Message extends MessageBase implements IMessage {
       call.status = toolCall.status
       call.params = toolCall.call?.params || null
       call.result = toolCall.call?.result || null
+      // Preserve UI resources if present
+      if (toolCall.call?.result?.uiResources) {
+        call.uiResources = toolCall.call.result.uiResources
+      }
     } else {
       this.toolCalls.push({
         id: toolCall.id,
@@ -136,6 +140,7 @@ export default class Message extends MessageBase implements IMessage {
         done: toolCall.done,
         params: toolCall.call?.params || null,
         result: toolCall.call?.result || null,
+        uiResources: toolCall.call?.result?.uiResources || undefined,
       })
       if (addToContent) {
         this.appendText({

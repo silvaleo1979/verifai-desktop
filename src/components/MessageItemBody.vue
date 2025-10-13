@@ -9,12 +9,12 @@
       </div>
       <div class="think" v-if="showReasoning">
         <div v-for="block in reasoningBlocks">
-          <MessageItemBodyBlock :block="block" @media-loaded="onMediaLoaded(message)" />
+          <MessageItemBodyBlock :block="block" @media-loaded="onMediaLoaded(message)" @ui-action="onUIAction" />
         </div>
       </div>
     </template>
     <div v-for="block in contentBlocks">
-      <MessageItemBodyBlock :block="block" @media-loaded="onMediaLoaded(message)" />
+      <MessageItemBodyBlock :block="block" @media-loaded="onMediaLoaded(message)" @ui-action="onUIAction" />
     </div>
   </div>
 </template>
@@ -78,10 +78,14 @@ onMounted(() => {
   })  
 })
 
-const emits = defineEmits(['media-loaded'])
+const emits = defineEmits(['media-loaded', 'ui-action'])
 
 const onMediaLoaded = (message: Message) => {
   emits('media-loaded', message)
+}
+
+const onUIAction = (actionData: any) => {
+  emits('ui-action', actionData)
 }
 
 const computeBlocks = (content: string|null): Block[] => {
@@ -164,6 +168,14 @@ const computeBlocks = (content: string|null): Block[] => {
           match[1] === 'id' ? props.message.toolCalls.find(call => call.id === match[2]) :
           match[1] === 'index' ? props.message.toolCalls[parseInt(match[2])] : null
         if (toolCall && toolCall.done) {
+          // Check if tool call has UI resources
+          if (toolCall.uiResources && toolCall.uiResources.length > 0) {
+            // Add each UI resource as a separate block
+            for (const uiResource of toolCall.uiResources) {
+              blocks.push({ type: 'ui-resource', uiResource })
+            }
+          }
+          
           if (props.showToolCalls === 'always') {
             blocks.push({ type: 'tool', toolCall: toolCall })
           } else if (toolCall.name === 'search_internet') {
