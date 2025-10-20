@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.0] - 2025-01-20
+
+### Added
+- ✨ Sistema completo de Widgets MCP-UI interativos
+- 🎨 Visualização em tela cheia (Fullscreen modal) para widgets
+- 📥 Download de widgets como HTML standalone
+- 🔄 Interatividade total com callbacks (send_message, call_tool, etc)
+- 📱 Botões de fullscreen e download sempre visíveis em widgets
+- 🎯 Comunicação bidirecional via postMessage
+- 🔒 Sandbox de segurança para iframes
+- 📐 Dimensionamento dinâmico de widgets via metadados
+
+### Changed
+- 🔧 Melhorias no processamento de recursos MCP
+- 📦 Atualização de dependências do sistema
+- 🎨 Aprimoramentos na renderização de conteúdo
+
+### Fixed
+- 🐛 Correção de botões não aparecendo em widgets sem título
+- 🔒 Melhorias de segurança em iframes sandboxed
+- 🎨 Correções de UI em modo dark/light
+- ⚙️ Ajustes em scripts de build para nomenclatura correta
+
+### Documentation
+- 📚 Documentação completa de MCP-UI (IMPLEMENTACAO-MCP-UI.md)
+- 📖 Guias de interatividade (MCP-UI-INTERACTIVITY.md)
+- 🎯 Guia de fullscreen e download (MCP-UI-FULLSCREEN-DOWNLOAD.md)
+- 🔧 Documentação de correções (MCP-UI-BUTTONS-FIX.md)
+
 ## [2.12.3] - 2025-07-28
 
 ### Added

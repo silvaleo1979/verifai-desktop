@@ -32,12 +32,12 @@ $env:PREBUILDS_ONLY = "1"
 # Run the electron-forge package command with architecture
 npx electron-forge make -p win32 -a $architecture
 
-# Rename the installer file
-Rename-Item -Path "out\make\squirrel.windows\$architecture\Witsy-$version Setup.exe" -NewName "Witsy-$version-win32-$architecture.Setup.exe"
-Rename-Item -Path "out\make\squirrel.windows\$architecture\witsy-$version-full.nupkg" -NewName "witsy-$version-win32-$architecture-full.nupkg"
+# Rename the installer file (VerifAI Desktop Setup.exe → VerifAI-$version-win32-$architecture.Setup.exe)
+Rename-Item -Path "out\make\squirrel.windows\$architecture\VerifAI Desktop Setup.exe" -NewName "VerifAI-$version-win32-$architecture.Setup.exe"
+Rename-Item -Path "out\make\squirrel.windows\$architecture\VerifAI-Desktop-$version-full.nupkg" -NewName "verifai-$version-win32-$architecture-full.nupkg"
 
 # Replace name in RELEASES too
-(Get-Content "out\make\squirrel.windows\$architecture\RELEASES").Replace("$version", "$version-win32-$architecture") | Set-Content "out\make\squirrel.windows\$architecture\RELEASES"
+(Get-Content "out\make\squirrel.windows\$architecture\RELEASES").Replace("VerifAI-Desktop-$version-full.nupkg", "verifai-$version-win32-$architecture-full.nupkg") | Set-Content "out\make\squirrel.windows\$architecture\RELEASES"
 
 # Rename the zip file
-Rename-Item -Path "out\make\zip\win32\$architecture\Witsy-win32-$architecture-$version.zip" -NewName "Witsy-$version-win32-$architecture.zip"
+Rename-Item -Path "out\make\zip\win32\$architecture\VerifAI-win32-$architecture-$version.zip" -NewName "VerifAI-$version-win32-$architecture.zip"

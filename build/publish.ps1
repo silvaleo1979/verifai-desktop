@@ -10,5 +10,5 @@ $version = ($packageJsonContent | ConvertFrom-Json).version
 Write-Host "Version: $version"
 
 # Upload
-gh release upload v$version "out\make\squirrel.windows\$architecture\RELEASES" "out\make\squirrel.windows\$architecture\Witsy-$version-win32-$architecture Setup.exe" "out\make\squirrel.windows\$architecture\witsy-$version-win32-$architecture-full.nupkg"
-gh release upload v$version "out\make\zip\win32/$architecture\Witsy-$version-win32-$architecture.zip"
+gh release upload v$version "out\make\squirrel.windows\$architecture\RELEASES" "out\make\squirrel.windows\$architecture\VerifAI-$version-win32-$architecture.Setup.exe" "out\make\squirrel.windows\$architecture\verifai-$version-win32-$architecture-full.nupkg"
+gh release upload v$version "out\make\zip\win32/$architecture\VerifAI-$version-win32-$architecture.zip"
