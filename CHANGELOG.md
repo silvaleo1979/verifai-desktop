@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.1.0] - 2025-01-20
+## [1.1.0] - 2025-10-20
 
 ### Added
 - ✨ Sistema completo de Widgets MCP-UI interativos
