@@ -2,6 +2,7 @@
 export type PromptInput = {
   name: string
   description?: string
+  defaultValue?: string
 }
 
 export const extractPromptInputs = (prompt: string): PromptInput[] => {

@@ -194,7 +194,7 @@
     "forge": {
       "confirmDelete": "このエージェントを削除してもよろしいですか？",
       "create": "エージェント作成",
-      "empty": "最初のエージェントを作成してWitsyのエージェント機能を解放しましょう！ロボットのアイコンをクリックして始めてください。",
+      "empty": "最初のエージェントを作成してVerifAIのエージェント機能を解放しましょう！ロボットのアイコンをクリックして始めてください。",
       "list": {
         "runnable": "実行可能エージェント",
         "support": "サポートエージェント"
@@ -668,7 +668,7 @@
     }
   },
   "embedding": {
-    "apiKeyReminder": "Witsyの設定のモデルペインにAPIキーを入力してください。",
+    "apiKeyReminder": "VerifAIの設定のモデルペインにAPIキーを入力してください。",
     "browse": "モデルを閲覧",
     "model": "埋め込みモデル",
     "provider": "埋め込みプロバイダー"
@@ -1481,9 +1481,9 @@
   },
   "menu": {
     "app": {
-      "about": "Witsyについて",
+      "about": "VerifAIについて",
       "checkForUpdates": "アップデートを確認…",
-      "quit": "Witsyを終了",
+      "quit": "VerifAIを終了",
       "settings": "@:{'common.settings'}…"
     },
     "edit": {
@@ -1499,7 +1499,7 @@
       "backupImport": "バックアップを復元…",
       "closeWindow": "ウィンドウを閉じる",
       "designStudio": "@:{'designStudio.title'}",
-      "mainWindow": "Witsyを開く",
+      "mainWindow": "VerifAIを開く",
       "newChat": "新しいチャット",
       "quickPrompt": "クイックプロンプト",
       "scratchpad": "@:{'scratchpad.title'}",
@@ -1604,12 +1604,12 @@
       "count": "モデルが見つかりません。|1つのモデルがあります！|{count} 個のモデルがあります！",
       "error": "APIキーを確認して再試行してください。",
       "showMore": "もっと見る",
-      "subtitle": "Witsyは主要なプロバイダーの言語モデルを使ってチャットができます。下にAPIキーを入力して始めてください。APIキーがなくても心配いりません：次の画面でOllamaを使ってローカルモデルを設定できます！",
+      "subtitle": "VerifAIは主要なプロバイダーの言語モデルを使ってチャットができます。下にAPIキーを入力して始めてください。APIキーがなくても心配いりません：次の画面でOllamaを使ってローカルモデルを設定できます！",
       "success": "{engine}のキーが検証されました。<br/>{count}個のモデルが見つかりました！",
       "title": "あなたのチャットモデルプロバイダー"
     },
     "done": {
-      "subtitle": "設定が完了し、すぐに使えます！<br/>Witsyとチャットを始めて、その機能を体験しましょう！",
+      "subtitle": "設定が完了し、すぐに使えます！<br/>VerifAIとチャットを始めて、その機能を体験しましょう！",
       "title": "すべて完了！"
     },
     "instructions": {
@@ -1623,8 +1623,8 @@
         "title": "パーソナライズを完了していません。"
       },
       "selectStyle": "次に、アシスタントの応答スタイルを選択してください。<br/>これに個人情報が組み合わされて、最適な指示が作成されます。",
-      "subtitle": "いくつかの質問に答えることで、Witsyがあなたの体験をパーソナライズし、より良い回答を提供できるようになります。このステップはスキップできますが、Witsyをより個人的なものにするために強くおすすめします。",
-      "title": "Witsyにあなたのことを教えましょう！"
+      "subtitle": "いくつかの質問に答えることで、VerifAIがあなたの体験をパーソナライズし、より良い回答を提供できるようになります。このステップはスキップできますが、VerifAIをより個人的なものにするために強くおすすめします。",
+      "title": "VerifAIにあなたのことを教えましょう！"
     },
     "ollama": {
       "browseModels": "https://ollama.com/search でさらに多くのモデルを発見",
@@ -1648,22 +1648,22 @@
     },
     "permissions": {
       "accessibility": {
-        "description": "Witsyが他のアプリケーションのテキストを読み取り、ワークフローにシームレスに統合するために必要です。",
+        "description": "VerifAIが他のアプリケーションのテキストを読み取り、ワークフローにシームレスに統合するために必要です。",
         "title": "アクセシビリティ"
       },
       "automation": {
-        "description": "自動化設定画面でWitsyに「システムイベント」の権限を必ず付与してください。",
+        "description": "自動化設定画面でVerifAIに「システムイベント」の権限を必ず付与してください。",
         "title": "自動化"
       },
       "denied": "未許可",
       "granted": "許可済み",
-      "info": "これらの権限により、Witsyは全機能を提供できます。今すぐまたは後でシステム環境設定から許可できます。",
+      "info": "これらの権限により、VerifAIは全機能を提供できます。今すぐまたは後でシステム環境設定から許可できます。",
       "leave": {
         "message": "すべての権限を付与せずに続行してもよろしいですか？一部の機能が正常に動作しない場合があります。",
         "title": "権限が完全に付与されていません"
       },
       "openSettings": "設定を開く",
-      "subtitle": "macOSでは、Witsyが最高の体験を提供するために特定の権限が必要です。",
+      "subtitle": "macOSでは、VerifAIが最高の体験を提供するために特定の権限が必要です。",
       "title": "システムの権限"
     },
     "studio": {
@@ -1678,13 +1678,13 @@
       "already": "@:{'onboarding.chat.already'}",
       "count": "@:{'onboarding.chat.count'}",
       "error": "@:{'onboarding.chat.error'}",
-      "subtitle": "声を使ってWitsyとやり取りしましょう！ Witsyは言語モデルとのチャットの応答だけでなく、他のアプリケーションに表示されるテキストも読み上げることができます！",
+      "subtitle": "声を使ってVerifAIとやり取りしましょう！ VerifAIは言語モデルとのチャットの応答だけでなく、他のアプリケーションに表示されるテキストも読み上げることができます！",
       "success": "@:{'onboarding.chat.success'}",
       "title": "音声インタラクション"
     },
     "welcome": {
-      "subtitle": "Witsyは幅広いタスクを助ける強力なAIアシスタントです。会話をしたり、ドキュメントを書かせたり、パソコンでコードを実行させたりできます。さあ始めましょう！",
-      "title": "Witsyへようこそ！"
+      "subtitle": "VerifAIは幅広いタスクを助ける強力なAIアシスタントです。会話をしたり、ドキュメントを書かせたり、パソコンでコードを実行させたりできます。さあ始めましょう！",
+      "title": "VerifAIへようこそ！"
     }
   },
   "plugins": {
@@ -1853,7 +1853,7 @@
     },
     "generationError": "テキスト生成中にエラーが発生しました",
     "loadingError": "スクラッチパッドファイルの読み込み中にエラーが発生しました",
-    "placeholder": "ドキュメントの入力を開始するか、\nWitsyに何か書くように依頼してください！\n\n一度開始したら、Witsyに\nドキュメントの変更を依頼できます。\n\nテキストの一部をハイライトすると、\nWitsyはその部分のみを更新します。\n\n右下のアクションバーにあるライティングアシスタントも\nチェックしてください！\n\n試してみてください！",
+    "placeholder": "ドキュメントの入力を開始するか、\nVerifAIに何か書くように依頼してください！\n\n一度開始したら、VerifAIに\nドキュメントの変更を依頼できます。\n\nテキストの一部をハイライトすると、\nVerifAIはその部分のみを更新します。\n\n右下のアクションバーにあるライティングアシスタントも\nチェックしてください！\n\n試してみてください！",
     "title": "スクラッチパッド"
   },
   "settings": {
@@ -1950,7 +1950,7 @@
       "runtime": "詳細リサーチタイプ",
       "runtimes": {
         "ma": "マルチエージェント（完全なエージェント、LLM駆動）",
-        "ms": "マルチステップ（ハイブリッドコード/エージェント、Witsy駆動）"
+        "ms": "マルチステップ（ハイブリッドコード/エージェント、VerifAI駆動）"
       }
     },
     "engines": {
@@ -2154,7 +2154,7 @@
         "title": "ファイルシステム"
       },
       "image": {
-        "apiKeyReminder": "Witsy設定のモデルペインにAPIキーを入力していることを確認してください。",
+        "apiKeyReminder": "VerifAI設定のモデルペインにAPIキーを入力していることを確認してください。",
         "description": "このプラグインを使用すると、LLMエンジンはテキスト記述から画像を生成できます。",
         "falai": {
           "aboutModels": "fal.aiモデルについてさらに詳しく"
@@ -2292,7 +2292,7 @@
       "tts": {
         "groqAcceptTermsReminder": "Groqモデルを使用するには、<a href=\"https://console.groq.com/playground?model=playai-tts\" target=\"_blank\">利用規約に同意する</a>必要があります。",
         "kokoroReminder": "提供元",
-        "sampleText": "究極のAIデスクトップアシスタント、Witsyへようこそ。",
+        "sampleText": "究極のAIデスクトップアシスタント、VerifAIへようこそ。",
         "serviceDisclaimer": "このサービスはいつでも停止する可能性があります。",
         "voice": "@:{'common.voice'}"
       },
@@ -2393,9 +2393,9 @@
       "voiceMode": "@:{'realtimeChat.title'}"
     },
     "notification": {
-      "darwin": "メニューバーの万年筆アイコンからWitsyをアクティブにできます。",
-      "linux": "メニューバーの万年筆アイコンからWitsyをアクティブにできます。",
-      "windows": "システムトレイの万年筆アイコンからWitsyをアクティブにできます。"
+      "darwin": "メニューバーの万年筆アイコンからVerifAIをアクティブにできます。",
+      "linux": "メニューバーの万年筆アイコンからVerifAIをアクティブにできます。",
+      "windows": "システムトレイの万年筆アイコンからVerifAIをアクティブにできます。"
     }
   }
 }

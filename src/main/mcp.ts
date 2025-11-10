@@ -202,7 +202,7 @@ export default class {
 
   getInstallCommand = (registry: string, server: string, apiKey: string): string|null => {  
     if (registry === 'smithery') {
-      let command = `npx -y @smithery/cli@latest install ${server} --client witsy`
+      let command = `npx -y @smithery/cli@latest install ${server} --client verifai`
       if (apiKey) {
         command += ` --key ${apiKey}`
       }
@@ -432,7 +432,7 @@ export default class {
 
       // build the client
       const client = new Client({
-        name: 'witsy-mcp-client',
+        name: 'verifai-mcp-client',
         version: '1.0.0'
       }, {
         capabilities: { tools: {} }
@@ -458,10 +458,10 @@ export default class {
         if (words.length >= 2) {
           const cmd = e.message.split(' ')[1]
           this.logs[server.uuid].push(`Command not found: ${cmd}. Please install it and/or add it to your PATH.\n`)
-          this.logs[server.uuid].push('Check https://github.com/nbonamy/witsy/wiki/MCP-Server-not-starting-on-macOS-and-Linux for more information.')
+          this.logs[server.uuid].push('Check https://verifai.com.br/docs/mcp-server-troubleshooting for more information.')
         } else {
           this.logs[server.uuid].push('Command not found. Please install it and/or add it to your PATH.\n')
-          this.logs[server.uuid].push('Check https://github.com/nbonamy/witsy/wiki/MCP-Server-not-starting-on-macOS-and-Linux for more information.')
+          this.logs[server.uuid].push('Check https://verifai.com.br/docs/mcp-server-troubleshooting for more information.')
         }
       }
     }
@@ -485,7 +485,7 @@ export default class {
 
       // build the client
       const client = new Client({
-        name: 'witsy-mcp-client',
+        name: 'verifai-mcp-client',
         version: '1.0.0'
       }, {
         capabilities: { tools: {} }
@@ -528,7 +528,7 @@ export default class {
 
       // build the client
       const client = new Client({
-        name: 'witsy-mcp-client',
+        name: 'verifai-mcp-client',
         version: '1.0.0'
       }, {
         capabilities: { tools: {} }

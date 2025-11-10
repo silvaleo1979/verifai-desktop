@@ -1,11 +1,11 @@
 
-import { WitsyEngineCreateOpts } from '../types/config'
+import { VerifAIEngineCreateOpts } from '../types/config'
 import { ChatModel, LlmCompletionOpts,  OpenRouter } from 'multi-llm-ts'
 import { ChatCompletionCreateParamsBase } from 'openai/resources/chat/completions'
 
 export default class OpenRouterEngine extends OpenRouter {
 
-  declare config: WitsyEngineCreateOpts
+  declare config: VerifAIEngineCreateOpts
 
   getCompletionOpts(model: ChatModel, opts?: LlmCompletionOpts): Omit<ChatCompletionCreateParamsBase, 'model' | 'messages' | 'stream'> {
     

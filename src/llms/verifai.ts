@@ -1,4 +1,4 @@
-import { WitsyEngineCreateOpts } from '../types/config'
+import { VerifAIEngineCreateOpts } from '../types/config'
 import { ChatModel, LlmCompletionOpts, LLmCompletionPayload, ModelOllama, Ollama } from 'multi-llm-ts'
 import { ChatRequest, } from 'ollama/dist/browser.cjs'
 
@@ -30,7 +30,7 @@ export { getChatModels, getEmbeddingModels }
 
 export default class VerifaiEngine extends Ollama {
 
-  declare config: WitsyEngineCreateOpts
+  declare config: VerifAIEngineCreateOpts
 
   buildChatOptions({ model, messages, opts }: { model: string, messages: LLmCompletionPayload[], opts: LlmCompletionOpts|null }): ChatRequest {
     const options = super.buildChatOptions({ model, messages, opts })

@@ -18,12 +18,12 @@ export const showMasLimitsDialog = () => {
 
   const version = process.arch === 'arm64' ? 'Apple Silicon (M1, M2, M3, M4)' : 'Mac Intel architecture';
   const response = dialog.showMessageBoxSync(null, {
-    message: 'This feature (and many others) are not available on the Mac App Store version of Witsy. You may want to check the version from the website.',
-    detail: `You will need to download the "${version}" version.`,
-    buttons: ['Close', 'Check website'],
+    message: 'Este recurso (e muitos outros) não estão disponíveis na versão da Mac App Store do VerifAI. Você pode verificar a versão do site.',
+    detail: `Você precisará baixar a versão "${version}".`,
+    buttons: ['Fechar', 'Verificar site'],
     defaultId: 1,
   })
   if (response === 1) {
-    shell.openExternal(`https://witsyai.com/${process.arch}`)
+    shell.openExternal(`https://verifai.com.br/${process.arch}`)
   }
 }

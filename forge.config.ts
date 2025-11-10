@@ -37,7 +37,7 @@ if (isDarwin) {
     osxPackagerConfig = {
       osxSign: {
         identity: process.env.IDENTIFY_DARWIN_CODE,
-        provisioningProfile: './build/Witsy_Darwin.provisionprofile',
+        provisioningProfile: './build/VerifAI_Darwin.provisionprofile',
         optionsForFile: () => { return {
           hardenedRuntime: true,
           entitlements: './build/Entitlements.darwin.plist'
@@ -55,10 +55,10 @@ if (isDarwin) {
       },
       osxSign: {
         identity: process.env.IDENTITY_MAS_CODE,
-        provisioningProfile: './build/Witsy_MAS.provisionprofile',
+        provisioningProfile: './build/VerifAI_MAS.provisionprofile',
         optionsForFile: (filePath: string) => { 
           let entitlements = './build/Entitlements.mas.child.plist'
-          if (filePath.endsWith('Witsy.app')) {
+          if (filePath.endsWith('VerifAI.app')) {
             entitlements = './build/Entitlements.mas.main.plist'
           }
           return {

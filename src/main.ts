@@ -39,8 +39,8 @@ if (process.platform !== 'darwin' && !process.env.TEST) {
 }
 
 // changes path
-if (process.env.WITSY_HOME) {
-  app.getPath = (name: string) => `${process.env.WITSY_HOME}/${name}`;
+if (process.env.VERIFAI_HOME) {
+  app.getPath = (name: string) => `${process.env.VERIFAI_HOME}/${name}`;
 }
 
 // set up logging
@@ -124,8 +124,8 @@ app.whenReady().then(async () => {
   if (process.platform === 'darwin' && !process.env.DEBUG && !process.env.TEST && !app.isInApplicationsFolder()) {
     dialog.showMessageBox({
       type: 'error',
-      message: 'You need to run Witsy from the Applications folder. Move the app icon there and try again.',
-      detail: 'If you already moved the app icon there, make sure you run Witsy from the Applications folder.',
+      message: 'Você precisa executar o VerifAI a partir da pasta Aplicativos. Mova o ícone do aplicativo para lá e tente novamente.',
+      detail: 'Se você já moveu o ícone do aplicativo para lá, certifique-se de executar o VerifAI a partir da pasta Aplicativos.',
       buttons: ['OK'],
     });
     quitApp();

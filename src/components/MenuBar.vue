@@ -34,11 +34,11 @@
         <span>{{ t('transcribe.title') }}</span>
       </MenuBarItem> -->
 
-      <!-- Funções desabilitadas - Forja do Agente -->
-      <!-- <MenuBarItem action="agents" :active="mode === 'agents'" @click="emit('change', 'agents')" v-if="store.config.features?.agents">
+      <!-- Forja do Agente -->
+      <MenuBarItem action="agents" :active="mode === 'agents'" @click="emit('change', 'agents')" v-if="store.config.features?.agents">
         <BIconRobot />
         <span>{{ t('agent.forge.title') }}</span>
-      </MenuBarItem> -->
+      </MenuBarItem>
 
       <!-- Funções desabilitadas - Chat em Tempo Real -->
       <!-- <MenuBarItem action="voice-mode" :active="mode === 'voice-mode'" @click="emit('change', 'voice-mode')">

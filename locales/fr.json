@@ -649,7 +649,7 @@
     }
   },
   "embedding": {
-    "apiKeyReminder": "Assurez-vous d'entrer votre clé API dans l'onglet Modèles des paramètres de Witsy.",
+    "apiKeyReminder": "Assurez-vous d'entrer votre clé API dans l'onglet Modèles des paramètres de VerifAI.",
     "browse": "Parcourir les modèles",
     "model": "Modèle",
     "provider": "Fournisseur"
@@ -1462,9 +1462,9 @@
   },
   "menu": {
     "app": {
-      "about": "À propos de Witsy",
+      "about": "À propos de VerifAI",
       "checkForUpdates": "Rechercher des mises à jour…",
-      "quit": "Quitter Witsy",
+      "quit": "Quitter VerifAI",
       "settings": "@:{'common.settings'}…"
     },
     "edit": {
@@ -1480,7 +1480,7 @@
       "backupImport": "Restaurer la sauvegarde…",
       "closeWindow": "Fermer la fenêtre",
       "designStudio": "@:{'designStudio.title'}",
-      "mainWindow": "Ouvrir Witsy",
+      "mainWindow": "Ouvrir VerifAI",
       "newChat": "Nouvelle conversation",
       "quickPrompt": "Nouvelle requête",
       "scratchpad": "@:{'scratchpad.title'}",
@@ -1585,12 +1585,12 @@
       "count": "Aucun modèle trouvé.|1 modèle disponible !|{count} modèles disponibles !",
       "error": "Veuillez vérifier votre clé API et réessayer.",
       "showMore": "Afficher plus",
-      "subtitle": "Vous pouvez discuter avec Witsy en utilisant les modèles de langage de tous les principaux fournisseurs. Entrez vos clés API ci-dessous pour commencer. Si vous n'avez pas de clés API, pas de souci : dans l'écran suivant, vous pourrez configurer Witsy pour utiliser des modèles locaux via Ollama !",
+      "subtitle": "Vous pouvez discuter avec VerifAI en utilisant les modèles de langage de tous les principaux fournisseurs. Entrez vos clés API ci-dessous pour commencer. Si vous n'avez pas de clés API, pas de souci : dans l'écran suivant, vous pourrez configurer VerifAI pour utiliser des modèles locaux via Ollama !",
       "success": "Clé {engine} validée.<br/>{count} modèles trouvés !",
       "title": "Vos fournisseurs de modèles de chat"
     },
     "done": {
-      "subtitle": "Vous êtes prêt à partir !<br/>Commencez à discuter avec Witsy et explorez ses capacités !",
+      "subtitle": "Vous êtes prêt à partir !<br/>Commencez à discuter avec VerifAI et explorez ses capacités !",
       "title": "Tout est prêt !"
     },
     "instructions": {
@@ -1604,8 +1604,8 @@
         "title": "Vous n'avez pas terminé votre personnalisation."
       },
       "selectStyle": "Choisissez maintenant comment vous souhaitez que votre assistant réponde.<br/>Cela sera combiné avec vos informations personnelles pour créer les instructions parfaites.",
-      "subtitle": "En répondant à quelques questions, Witsy pourra personnaliser votre expérience et fournir de meilleures réponses. Vous pouvez passer cette étape si vous le souhaitez, mais il est fortement recommandé pour que Witsy soit plus personnel.",
-      "title": "Faites connaître Witsy à votre sujet !"
+      "subtitle": "En répondant à quelques questions, VerifAI pourra personnaliser votre expérience et fournir de meilleures réponses. Vous pouvez passer cette étape si vous le souhaitez, mais il est fortement recommandé pour que VerifAI soit plus personnel.",
+      "title": "Faites connaître VerifAI à votre sujet !"
     },
     "ollama": {
       "browseModels": "Découvrez plus de modèles sur https://ollama.com/search",
@@ -1629,22 +1629,22 @@
     },
     "permissions": {
       "accessibility": {
-        "description": "Nécessaire pour que Witsy puisse lire le texte d'autres applications et s'intégrer parfaitement à votre flux de travail.",
+        "description": "Nécessaire pour que VerifAI puisse lire le texte d'autres applications et s'intégrer parfaitement à votre flux de travail.",
         "title": "Accessibilité"
       },
       "automation": {
-        "description": "Assurez-vous d'accorder la permission \"Événements système\" à Witsy dans l'écran des paramètres d'automatisation.",
+        "description": "Assurez-vous d'accorder la permission \"Événements système\" à VerifAI dans l'écran des paramètres d'automatisation.",
         "title": "Automatisation"
       },
       "denied": "Non accordé",
       "granted": "Accordé",
-      "info": "Ces autorisations permettent à Witsy d'offrir toutes ses fonctionnalités. Vous pouvez les accorder maintenant ou plus tard dans les Préférences Système.",
+      "info": "Ces autorisations permettent à VerifAI d'offrir toutes ses fonctionnalités. Vous pouvez les accorder maintenant ou plus tard dans les Préférences Système.",
       "leave": {
         "message": "Êtes-vous sûr de vouloir continuer sans accorder toutes les autorisations ? Certaines fonctionnalités pourraient ne pas fonctionner correctement.",
         "title": "Autorisations non entièrement accordées"
       },
       "openSettings": "Ouvrir les réglages",
-      "subtitle": "Sur macOS, Witsy nécessite certaines autorisations pour offrir la meilleure expérience.",
+      "subtitle": "Sur macOS, VerifAI nécessite certaines autorisations pour offrir la meilleure expérience.",
       "title": "Autorisations du système"
     },
     "studio": {
@@ -1659,13 +1659,13 @@
       "already": "@:{'onboarding.chat.already'}",
       "count": "@:{'onboarding.chat.count'}",
       "error": "@:{'onboarding.chat.error'}",
-      "subtitle": "Interagissez avec Witsy en utilisant votre voix ! Witsy peut lire à voix haute non seulement les réponses de vos sessions de chat avec des modèles de langage, mais aussi tout texte affiché à l'écran dans d'autres applications !",
+      "subtitle": "Interagissez avec VerifAI en utilisant votre voix ! VerifAI peut lire à voix haute non seulement les réponses de vos sessions de chat avec des modèles de langage, mais aussi tout texte affiché à l'écran dans d'autres applications !",
       "success": "@:{'onboarding.chat.success'}",
       "title": "Interaction vocale"
     },
     "welcome": {
-      "subtitle": "Witsy est un assistant IA puissant qui peut vous aider dans un large éventail de tâches. Vous pouvez discuter avec lui, lui demander d'écrire des documents, et même exécuter du code sur votre ordinateur. Commençons !",
-      "title": "Bienvenue chez Witsy !"
+      "subtitle": "VerifAI est un assistant IA puissant qui peut vous aider dans un large éventail de tâches. Vous pouvez discuter avec lui, lui demander d'écrire des documents, et même exécuter du code sur votre ordinateur. Commençons !",
+      "title": "Bienvenue chez VerifAI !"
     }
   },
   "plugins": {
@@ -1831,7 +1831,7 @@
     },
     "generationError": "Erreur lors de la génération du texte",
     "loadingError": "Erreur lors du chargement du fichier de bloc-notes",
-    "placeholder": "Commencez à taper votre document ou\ndemandez à Witsy d'écrire quelque chose pour vous !\n\nUne fois que vous avez commencé, vous pouvez demander à Witsy\nde faire des modifications sur votre document.\n\nSi vous surlignez une partie de votre texte,\nWitsy ne mettra à jour que cette partie.\n\nJetez également un coup d'œil à l'Assistant d'Écriture\ndans la barre d'action en bas à droite !\n\nEssayez-le !",
+    "placeholder": "Commencez à taper votre document ou\ndemandez à VerifAI d'écrire quelque chose pour vous !\n\nUne fois que vous avez commencé, vous pouvez demander à VerifAI\nde faire des modifications sur votre document.\n\nSi vous surlignez une partie de votre texte,\nVerifAI ne mettra à jour que cette partie.\n\nJetez également un coup d'œil à l'Assistant d'Écriture\ndans la barre d'action en bas à droite !\n\nEssayez-le !",
     "title": "Scratchpad"
   },
   "settings": {
@@ -1928,7 +1928,7 @@
       "runtime": "Type de Recherche Approfondie",
       "runtimes": {
         "ma": "Multi-agent (agent complet, dirigé par LLM)",
-        "ms": "Multi-étapes (hybride code/agent, dirigé par Witsy)"
+        "ms": "Multi-étapes (hybride code/agent, dirigé par VerifAI)"
       }
     },
     "engines": {
@@ -2126,7 +2126,7 @@
         "title": "Système de fichiers"
       },
       "image": {
-        "apiKeyReminder": "Assurez-vous d'entrer votre clé API dans l'onglet Modèles des paramètres de Witsy.",
+        "apiKeyReminder": "Assurez-vous d'entrer votre clé API dans l'onglet Modèles des paramètres de VerifAI.",
         "description": "Ce plugin permet aux moteurs LLM de créer des images à partir d'une description textuelle.",
         "falai": {
           "aboutModels": "A propos des modèles fal.ai"
@@ -2264,7 +2264,7 @@
       "tts": {
         "groqAcceptTermsReminder": "Vous devez <a href=\"https://console.groq.com/playground?model=playai-tts\" target=\"_blank\">accepter les termes et conditions</a> pour utiliser le modèle Groq.",
         "kokoroReminder": "Fourni par",
-        "sampleText": "Bienvenue dans Witsy, l'assistant AI ultime pour votre bureau.",
+        "sampleText": "Bienvenue dans VerifAI, l'assistant AI ultime pour votre bureau.",
         "serviceDisclaimer": "Le service peut cesser de fonctionner à tout moment.",
         "voice": "@:{'common.voice'}"
       },
@@ -2365,9 +2365,9 @@
       "voiceMode": "@:{'realtimeChat.title'}"
     },
     "notification": {
-      "darwin": "Vous pouvez activer Witsy depuis l'icône de la plume dans la barre de menu.",
-      "linux": "Vous pouvez activer Witsy depuis l'icône de la plume dans la barre de menu.",
-      "windows": "Vous pouvez activer Witsy depuis l'icône de la plume dans la zone de notification."
+      "darwin": "Vous pouvez activer VerifAI depuis l'icône de la plume dans la barre de menu.",
+      "linux": "Vous pouvez activer VerifAI depuis l'icône de la plume dans la barre de menu.",
+      "windows": "Vous pouvez activer VerifAI depuis l'icône de la plume dans la zone de notification."
     }
   }
 }

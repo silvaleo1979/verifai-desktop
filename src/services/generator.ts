@@ -268,7 +268,7 @@ export type GenerationResult =
     }
 
     // make sure the message is terminated correctly
-    // https://github.com/nbonamy/witsy/issues/104
+    // GitHub issue #104 - response termination fix
     if (response.transient) {
       console.warn('Response is still transient. Appending empty text.')
       response.appendText({ type: 'content', text: '', done: true })
