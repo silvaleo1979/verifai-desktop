@@ -178,16 +178,50 @@
   },
   "agent": {
     "create": {
-      "information": "Informações Gerais",
-      "invocation": "Gatilhos do Agente",
-      "lastOneUsed": "@:{'settings.general.lastOneUsed'}",
-      "llm": "Configuração do Modelo",
-      "settings": "Configurações do Modelo",
+      "agents": {
+        "title": "Agentes de Suporte",
+        "help": "Agentes podem delegar tarefas para outros agentes. Selecione um ou mais agentes para lidar com tarefas específicas."
+      },
+      "goal": {
+        "title": "Objetivo do Agente"
+      },
+      "information": {
+        "help": {
+          "name": "Nome descritivo para o seu agente.",
+          "description": "Breve descrição do propósito do seu agente. Quando este agente for usado dentro de um workflow, isso será compartilhado com o LLM para ajudá-lo a entender o agente e eventualmente decidir chamá-lo.",
+          "goal": "O objetivo do agente. Isso será usado como as instruções do sistema enviadas ao LLM. Não inclua informações específicas de execução aqui, pois elas serão definidas no prompt.",
+          "prompt": "Template de prompt que será usado para executar o agente. Você pode incluir \"variáveis\" que serão substituídas pelos valores fornecidos pelo usuário quando o agente for executado. Use o formato {'{'}{'{'}nome:descrição{'}'}{'}'} para definir uma variável (a descrição irá orientar o usuário quando solicitado um valor)."
+        },
+        "title": "Informações Gerais"
+      },
+      "invocation": {
+        "title": "Gatilhos do Agente",
+        "promptRequired": "Um prompt é obrigatório ao configurar agendamento ou webhook"
+      },
+      "llm": {
+        "help": {
+          "warning": "A execução do agente depende muito das capacidades de cada modelo. Certifique-se de selecionar um modelo que suporte capacidades agênticas."
+        },
+        "lastOneUsed": "@:{'settings.general.lastOneUsed'}",
+        "title": "Configuração do Modelo",
+        "showModelSettings": "Configurações Avançadas"
+      },
+      "settings": {
+        "title": "Configurações do Modelo"
+      },
       "tools": {
+        "help": "Reduzir o número de ferramentas expostas ao LLM ajudará ele a se concentrar na tarefa em questão. Você sempre pode permitir todas as ferramentas depois, se necessário.",
+        "allowAll": "Permitir acesso a todos os plugins e servidores MCP",
         "custom": "Restringir acesso a ferramentas específicas",
         "selectAll": "@:{'common.selectAll'}",
         "selectNone": "@:{'common.selectNone'}",
         "title": "Acesso às Ferramentas"
+      },
+      "workflow": {
+        "title": "Workflow",
+        "help": {
+          "singleOnly": "O Witsy atualmente suporta apenas workflows de passo único. Você poderá adicionar múltiplos passos no futuro."
+        }
       }
     },
     "description": "@:{'common.description'}",
