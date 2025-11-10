@@ -1,7 +1,6 @@
 
 import { Expert } from 'types/index'
 import { store } from './store'
-import defaultExperts from '../../defaults/experts.json'
 
 export const newExpert = (): Expert => {
   return {
@@ -31,22 +30,26 @@ export const loadExperts = (): void => {
         {
           "id": "4521cd8a-74da-47b1-87b4-c7f611314f34",
           "type": "system",
-          "state": "enabled"
+          "state": "enabled",
+          "triggerApps": []
         },
         {
           "id": "e70b0fc1-2fcc-4adb-b5c4-06fe3fb66695",
           "type": "system",
-          "state": "enabled"
+          "state": "enabled",
+          "triggerApps": []
         },
         {
           "id": "6657124f-7323-4dc4-9fd3-20d47a2286bb",
           "type": "system",
-          "state": "enabled"
+          "state": "enabled",
+          "triggerApps": []
         },
         {
           "id": "ceva-export-analyst-2025",
           "type": "system",
-          "state": "enabled"
+          "state": "enabled",
+          "triggerApps": []
         }
       ]
       console.log('✅ Experts loaded from hardcoded fallback:', store.experts.length, 'experts')
