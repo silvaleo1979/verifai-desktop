@@ -97,6 +97,7 @@ export interface Chat {
 export type AgentType = 'runnable' | 'support'
 
 export type AgentStep = {
+  name?: string
   prompt: string|null
   tools: string[]|null
   agents: string[]|null

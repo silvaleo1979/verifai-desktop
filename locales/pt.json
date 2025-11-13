@@ -1,5 +1,6 @@
 {
   "common": {
+    "actions": "Ações",
     "add": "Adicionar",
     "arguments": "Parâmetros",
     "askMeAnything": "Pergunte-me qualquer coisa",
@@ -263,7 +264,10 @@
       "neverRun": "Nunca",
       "prompt": "@:{'common.prompt'}",
       "status": "Status",
-      "trigger": "Acionador"
+      "trigger": "Acionador",
+      "viewLog": "Ver log completo",
+      "analyzeInChat": "Analisar no Chat",
+      "analyzeInChatInstructions": "O resumo da execução foi copiado para a área de transferência.<br/><br/>Vá até o <strong>Chat</strong> e cole (Ctrl+V) para analisar com o assistente."
     },
     "lastRun": "Última execução",
     "name": "@:{'common.name'}",

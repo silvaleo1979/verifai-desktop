@@ -159,7 +159,17 @@
                 <div class="panel-header" @click="toggleStepExpansion(index)">
                   <BIconCaretDownFill v-if="expandedStep === index" class="icon caret" />
                   <BIconCaretRightFill v-else class="icon caret" />
-                  <label>{{ t('agent.create.workflow.step', { step: index + 1 }) }}</label>
+                  <input 
+                    v-if="expandedStep === index" 
+                    type="text" 
+                    class="step-name-input"
+                    v-model="agent.steps[index].name" 
+                    :placeholder="t('agent.create.workflow.step', { step: index + 1 })"
+                    @click.stop
+                  />
+                  <label v-else>
+                    {{ agent.steps[index].name || t('agent.create.workflow.step', { step: index + 1 }) }}
+                  </label>
                   <BIconTrash class="icon delete" @click.stop="onDeleteStep(index)" v-if="index > 0 && expandedStep === index"/>
                 </div>
                 <div class="panel-body" v-if="expandedStep === index">
@@ -761,6 +771,29 @@ const save = async () => {
         }
       }
 
+    }
+
+    .step-name-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      border-bottom: 1px dashed var(--border-color);
+      font-weight: 600;
+      font-size: inherit;
+      padding: 2px 4px;
+      color: inherit;
+      outline: none;
+      font-family: inherit;
+    }
+
+    .step-name-input:focus {
+      border-bottom-color: var(--primary-color);
+      border-bottom-style: solid;
+    }
+
+    .step-name-input::placeholder {
+      color: var(--faded-text-color);
+      font-weight: 500;
     }
 
   }

@@ -248,9 +248,7 @@ export type GenerationResult =
 
         // final error: depends if we already have some content and if plugins are enabled
         } else {
-          console.error('❌ [GENERATOR ERROR] Status:', status, 'Message:', message)
-          console.error('❌ [GENERATOR ERROR] Plugins ativos:', llm.plugins.length)
-          console.error('❌ [GENERATOR ERROR] Opts completas:', JSON.stringify(opts, null, 2))
+          console.error('Error while generating text:', status, message)
           if (response.content === '') {
             if (opts?.contextWindowSize || opts?.maxTokens || opts?.temperature || opts?.top_k || opts?.top_p || Object.keys(opts?.customOpts || {}).length > 0) {
               response.setText(t('generator.errors.tryWithoutParams'))

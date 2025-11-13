@@ -1,5 +1,6 @@
 {
   "common": {
+    "actions": "Actions",
     "add": "Add",
     "arguments": "Arguments",
     "askMeAnything": "Ask me anything",
@@ -251,7 +252,10 @@
       "neverRun": "Never",
       "prompt": "@:{'common.prompt'}",
       "status": "Status",
-      "trigger": "Trigger"
+      "trigger": "Trigger",
+      "viewLog": "View full log",
+      "analyzeInChat": "Analyze in Chat",
+      "analyzeInChatInstructions": "The execution summary has been copied to your clipboard.<br/><br/>Go to <strong>Chat</strong> and paste (Ctrl+V) to analyze with the assistant."
     },
     "lastRun": "Last executed",
     "name": "@:{'common.name'}",

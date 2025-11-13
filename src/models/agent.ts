@@ -44,6 +44,7 @@ export default class Agent implements AgentBase {
     this.instructions = ''
     this.parameters = []
     this.steps = [{
+      name: undefined,
       prompt: null,
       tools: null,
       agents: [],
@@ -77,6 +78,7 @@ export default class Agent implements AgentBase {
     agent.parameters = obj.parameters ?? []
     // Migração: converter prompt antigo para steps
     agent.steps = obj.steps ?? [{
+      name: undefined,
       prompt: obj.prompt ?? null,
       tools: obj.tools ?? null,
       agents: obj.agents ?? [],

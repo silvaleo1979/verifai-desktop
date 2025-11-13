@@ -38,7 +38,7 @@
           <BIconCalendarX class="icon clear" v-if="agent.schedule" @click="onClearHistory" />
         </div>
         <div class="list">
-          <History :agent="agent" :runs="runs" v-if="runs.length"/>
+          <History :agent="agent" :runs="runs" @analyze-log="onAnalyzeLog" v-if="runs.length"/>
           <div class="empty" v-else>
             {{ t('agent.history.empty') }}
           </div>
@@ -68,7 +68,7 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['run', 'edit', 'clearHistory', 'delete'])
+const emit = defineEmits(['run', 'edit', 'clearHistory', 'delete', 'analyze-log'])
 
 const lastRun = computed(() => {
   if (runs.value.length === 0) return t('agent.history.neverRun')
@@ -102,6 +102,9 @@ const onDelete = () => {
   emit('delete', props.agent)
 }
 
+const onAnalyzeLog = (summary: string) => {
+  emit('analyze-log', summary)
+}
 
 </script>
 
