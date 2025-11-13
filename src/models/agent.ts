@@ -39,7 +39,7 @@ export default class Agent implements AgentBase {
     this.engine = ''
     this.model = ''
     this.modelOpts = {}
-    this.disableStreaming = true
+    this.disableStreaming = false
     this.locale = ''
     this.instructions = ''
     this.parameters = []
@@ -71,7 +71,7 @@ export default class Agent implements AgentBase {
     agent.engine = obj.engine ?? ''
     agent.model = obj.model ?? ''
     agent.modelOpts = obj.modelOpts ?? null
-    agent.disableStreaming = obj.disableStreaming ?? true
+    agent.disableStreaming = obj.disableStreaming ?? false
     agent.locale = obj.locale ?? ''
     agent.instructions = obj.instructions ?? ''
     agent.parameters = obj.parameters ?? []

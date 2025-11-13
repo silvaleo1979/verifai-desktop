@@ -118,13 +118,13 @@
             <label>{{ t('agent.create.settings.title') }}</label>
           </template>
           <template #content>
-            <!-- <div class="form-field">
+            <div class="form-field">
               <label>{{ t('modelSettings.streaming') }}</label>
               <select name="streaming" v-model="agent.disableStreaming">
-            <option :value="false">{{ t('common.enabled') }}</option>
-            <option :value="true">{{ t('common.disabled') }}</option>
+                <option :value="false">{{ t('common.enabled') }}</option>
+                <option :value="true">{{ t('common.disabled') }}</option>
               </select>
-            </div> -->
+            </div>
             <div class="form-field">
               <label>{{ t('modelSettings.contextWindowSize') }}</label>
               <input type="text" name="contextWindowSize" v-model="agent.modelOpts.contextWindowSize" :placeholder="t('modelSettings.defaultModelValue')" />

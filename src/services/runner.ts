@@ -129,6 +129,8 @@ export default class extends Generator {
         // make sure llm has latest tools
         this.llm.clearPlugins()
         const multiPluginsAdded: Record<string, MultiToolPlugin> = {}
+        console.log('🔧 [RUNNER DEBUG] Iniciando carregamento de plugins para agente:', this.agent.name)
+        console.log('🔧 [RUNNER DEBUG] step.tools:', step.tools)
         for (const pluginName in availablePlugins) {
           
           const pluginClass = availablePlugins[pluginName]
@@ -150,9 +152,11 @@ export default class extends Generator {
 
           // multi-tool plugins are more complex
           const pluginTools = await plugin.getTools()
+          console.log(`🔧 [RUNNER DEBUG] Plugin ${pluginName} retornou ${pluginTools.length} tools`)
           for (const pluginTool of pluginTools) {
             if (step.tools.includes(pluginTool.function.name)) {
 
+              console.log(`✅ [RUNNER DEBUG] Tool encontrada e habilitada: ${pluginTool.function.name}`)
               let instance = multiPluginsAdded[pluginName]
               if (!instance) {
                 instance = plugin
@@ -180,6 +184,9 @@ export default class extends Generator {
             this.llm.addPlugin(plugin)
           }
         }
+        
+        console.log(`🔧 [RUNNER DEBUG] Total de plugins adicionados ao LLM: ${this.llm.plugins.length}`)
+        console.log(`🔧 [RUNNER DEBUG] Plugins:`, this.llm.plugins.map((p: any) => p.getName ? p.getName() : 'unknown'))
 
         // add user message
         const userMessage = new Message('user', stepPrompt)
