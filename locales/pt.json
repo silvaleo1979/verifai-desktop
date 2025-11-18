@@ -235,8 +235,8 @@
         "customAgents": "Agentes Personalizados",
         "confirmDeleteStep": "Tem certeza que deseja excluir esta etapa?",
         "help": {
-          "title": "Defina múltiplas etapas para seu agente. Cada etapa pode usar o resultado da etapa anterior através de variáveis {{output.1}}, {{output.2}}, etc.",
-          "connect": "Use {{output.1}}, {{output.2}}, etc. para referenciar resultados de etapas anteriores.",
+          "title": "Defina múltiplas etapas para seu agente. Cada etapa pode usar o resultado da etapa anterior através de variáveis {output.1}, {output.2}, etc.",
+          "connect": "Use {output.1}, {output.2}, etc. para referenciar resultados de etapas anteriores.",
           "outputVarDesc": "Resultado da etapa {step}"
         },
         "error": {

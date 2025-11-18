@@ -58,3 +58,5 @@ git show eb27b918:src/services/llm_utils.ts | Set-Content -Path "src\services\ll
 
 **Nota:** Este problema é comum ao usar redirecionamento `>` no PowerShell com arquivos de texto. O uso de `Set-Content -Encoding UTF8` garante o encoding correto sem BOM.
 
+
+
