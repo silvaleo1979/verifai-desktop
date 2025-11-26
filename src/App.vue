@@ -17,6 +17,7 @@ import Transcribe from './screens/Transcribe.vue'
 import ScratchPad from './screens/ScratchPad.vue'
 import ComputerStatus from './screens/ComputerStatus.vue'
 import Debug from './screens/Debug.vue'
+import LicenseActivation from './screens/LicenseActivation.vue'
 import i18n, { i18nLlm, t } from './services/i18n'
 
 // events
@@ -37,6 +38,7 @@ const routes: { [key: string]: any } = {
   '/transcribe': Transcribe,
   '/scratchpad': ScratchPad,
   '/computer': ComputerStatus,
+  '/license': LicenseActivation,
   // Debug functionality disabled for VerifAI Desktop
   // '/debug': Debug,
 }
