@@ -237,6 +237,26 @@ contextBridge.exposeInMainWorld(
       downloadMedia: (url: string, mimeType: string): Promise<string> => { 
         return ipcRenderer.invoke(IPC.GOOGLE.DOWNLOAD_MEDIA, { url, mimeType }) 
       },
+    },
+    license: {
+      activate: (serialKey: string): Promise<{ success: boolean; message: string; data?: any }> => {
+        return ipcRenderer.invoke(IPC.LICENSE.ACTIVATE, serialKey);
+      },
+      validate: (): Promise<{ valid: boolean; message?: string }> => {
+        return ipcRenderer.invoke(IPC.LICENSE.VALIDATE);
+      },
+      deactivate: (): Promise<{ success: boolean; message: string }> => {
+        return ipcRenderer.invoke(IPC.LICENSE.DEACTIVATE);
+      },
+      getInfo: (): Promise<any> => {
+        return ipcRenderer.invoke(IPC.LICENSE.GET_INFO);
+      },
+      isAuthenticated: (): boolean => {
+        return ipcRenderer.sendSync(IPC.LICENSE.IS_AUTHENTICATED);
+      },
+      closeActivationWindow: (): void => {
+        ipcRenderer.send(IPC.LICENSE.CLOSE_ACTIVATION_WINDOW);
+      },
     }
   },
 );

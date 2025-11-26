@@ -1,7 +1,6 @@
 
 
 import { History, Command, Expert } from '../types/index';
-import { Configuration } from '../types/config';
 import { Application, RunCommandParams } from '../types/automation';
 import { McpInstallStatus, McpTool } from '../types/mcp';
 import { LlmTool } from 'multi-llm-ts';
@@ -44,6 +43,106 @@ import * as backup from './backup';
 import * as ollama from './ollama';
 import * as google from './google';
 
+// Install minimal IPC handlers early (needed before main app initialization for license window)
+export const installLicenseIpc = (appEvents?: any): void => {
+  
+  // Config handlers (needed for app to load properly)
+  ipcMain.on(IPC.CONFIG.GET_LOCALE_UI, (event) => {
+    event.returnValue = i18n.getLocaleUI(app);
+  });
+
+  ipcMain.on(IPC.CONFIG.GET_LOCALE_LLM, (event) => {
+    event.returnValue = i18n.getLocaleLLM(app);
+  });
+
+  ipcMain.on(IPC.CONFIG.GET_I18N_MESSAGES, (event) => {
+    event.returnValue = i18n.getLocaleMessages(app);
+  });
+
+  ipcMain.on(IPC.CONFIG.LOAD, (event) => {
+    event.returnValue = JSON.stringify(config.loadSettings(app));
+  });
+
+  ipcMain.on(IPC.CONFIG.SAVE, (event, payload) => {
+    config.saveSettings(app, JSON.parse(payload));
+  });
+
+  // App handlers
+  ipcMain.on(IPC.APP.GET_APP_PATH, (event) => {
+    event.returnValue = app.getPath('userData');
+  });
+
+  ipcMain.on(IPC.APP.SET_APPEARANCE_THEME, (event, theme) => {
+    nativeTheme.themeSource = theme;
+    event.returnValue = theme;
+  });
+
+  // License handlers
+  ipcMain.handle(IPC.LICENSE.ACTIVATE, async (event, serialKey: string) => {
+    try {
+      const LicenseManager = (await import('./license')).default;
+      const result = await LicenseManager.activate(serialKey);
+      console.log('License activation result:', result);
+      return result;
+    } catch (error: any) {
+      console.error('Error activating license:', error);
+      return { success: false, message: error.message || 'Erro ao ativar licença' };
+    }
+  });
+
+  ipcMain.handle(IPC.LICENSE.VALIDATE, async () => {
+    try {
+      const LicenseManager = (await import('./license')).default;
+      const isValid = await LicenseManager.validate();
+      return { valid: isValid };
+    } catch (error: any) {
+      console.error('Error validating license:', error);
+      return { valid: false, message: error.message };
+    }
+  });
+
+  ipcMain.handle(IPC.LICENSE.DEACTIVATE, async () => {
+    try {
+      const LicenseManager = (await import('./license')).default;
+      const result = await LicenseManager.deactivate();
+      return result;
+    } catch (error: any) {
+      console.error('Error deactivating license:', error);
+      return { success: false, message: error.message || 'Erro ao desativar licença' };
+    }
+  });
+
+  ipcMain.handle(IPC.LICENSE.GET_INFO, async () => {
+    try {
+      const LicenseManager = (await import('./license')).default;
+      const info = LicenseManager.getLicenseInfo();
+      return info;
+    } catch (error: any) {
+      console.error('Error getting license info:', error);
+      return null;
+    }
+  });
+
+  ipcMain.on(IPC.LICENSE.IS_AUTHENTICATED, (event) => {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const LicenseManager = require('./license').default;
+      event.returnValue = LicenseManager.isAuthenticated();
+    } catch {
+      event.returnValue = false;
+    }
+  });
+
+  ipcMain.on(IPC.LICENSE.CLOSE_ACTIVATION_WINDOW, () => {
+    console.log('Closing license activation window and continuing app initialization');
+    window.closeLicenseActivationWindow();
+    // Trigger app initialization to continue
+    if (appEvents) {
+      appEvents.emit('license-activated');
+    }
+  });
+};
+
 export const installIpc = (
   store: Store,
   autoUpdater: AutoUpdater,
@@ -53,6 +152,7 @@ export const installIpc = (
   installMenu: () => void,
   registerShortcuts: () => void,
   quitApp: () => void,
+  appEvents?: any,
 ): void => {
 
   ipcMain.on(IPC.MAIN_WINDOW.SET_MODE, (event, mode) => {
@@ -85,10 +185,7 @@ export const installIpc = (
     autoUpdater.install();
   });
 
-  ipcMain.on(IPC.APP.SET_APPEARANCE_THEME, (event, theme) => {
-    nativeTheme.themeSource = theme;
-    event.returnValue = theme;
-  });
+  // APP IPC handlers already installed in installLicenseIpc()
 
   // ipcMain.handle(IPC.APP.SHOW_DIALOG, (event, payload): Promise<Electron.MessageBoxReturnValue> => {
   //   return dialog.showMessageBox(payload);
@@ -109,10 +206,6 @@ export const installIpc = (
   ipcMain.on(IPC.DEBUG.OPEN_APP_FOLDER, (event, name) => {
     shell.openPath(app.getPath(name))
   })
-
-  ipcMain.on(IPC.APP.GET_APP_PATH, (event) => {
-    event.returnValue = app.getPath('userData');
-  });
 
   ipcMain.on(IPC.APP.GET_ASSET_PATH, (event, assetPath) => {
     const assetsFolder = process.env.DEBUG ? 'assets' : process.resourcesPath;
@@ -146,25 +239,7 @@ export const installIpc = (
     event.returnValue = true;
   });
 
-  ipcMain.on(IPC.CONFIG.GET_LOCALE_UI, (event) => {
-    event.returnValue = i18n.getLocaleUI(app);
-  });
-
-  ipcMain.on(IPC.CONFIG.GET_LOCALE_LLM, (event) => {
-    event.returnValue = i18n.getLocaleLLM(app);
-  });
-
-  ipcMain.on(IPC.CONFIG.GET_I18N_MESSAGES, (event) => {
-    event.returnValue = i18n.getLocaleMessages(app);
-  });
-
-  ipcMain.on(IPC.CONFIG.LOAD, (event) => {
-    event.returnValue = JSON.stringify(config.loadSettings(app));
-  });
-
-  ipcMain.on(IPC.CONFIG.SAVE, (event, payload) => {
-    config.saveSettings(app, JSON.parse(payload) as Configuration);
-  });
+  // Config IPC handlers already installed in installLicenseIpc()
 
   ipcMain.on(IPC.HISTORY.LOAD, async (event) => {
     event.returnValue = JSON.stringify(await history.loadHistory(app));
@@ -726,7 +801,9 @@ export const installIpc = (
       console.error('Error downloading Google media:', error);
       return null;
     }
-  })
+  });
+
+  // License IPC handlers already installed in installLicenseIpc()
 
 }
 
