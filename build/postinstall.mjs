@@ -1,4 +1,12 @@
+import { execSync } from "child_process";
 
-import { execSync } from 'child_process'
+const isCI =
+  process.env.CI === "true" ||
+  process.env.GITHUB_ACTIONS === "true" ||
+  process.env.RUNNER_OS === "Windows";
 
-execSync('npx patch-package')
+if (isCI) {
+  console.log("Skipping patch-package in CI environment");
+} else {
+  execSync("npx patch-package", { stdio: "inherit" });
+}
