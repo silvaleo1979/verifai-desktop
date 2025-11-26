@@ -2446,5 +2446,39 @@
       "linux": "You can activate VerifAI from the fountain pen icon in the menu bar.",
       "windows": "You can activate VerifAI from the fountain pen icon in the system tray."
     }
+  },
+  "license": {
+    "activation": {
+      "title": "Activate Your License",
+      "subtitle": "Enter your serial key to activate VerifAI",
+      "serialKey": "Serial Key",
+      "serialKeyPlaceholder": "XXXXX-XXXXX-XXXXX-XXXXX-XXXXX",
+      "activate": "Activate License",
+      "activating": "Activating your license...",
+      "success": "License Activated Successfully!",
+      "error": "Failed to activate license. Please check your serial key and try again.",
+      "help": "Need help? Contact support@verifai.com",
+      "product": "Product",
+      "company": "Company",
+      "validUntil": "Valid Until",
+      "device": "Device",
+      "continue": "Continue to VerifAI"
+    },
+    "settings": {
+      "title": "License Management",
+      "status": "License Status",
+      "active": "Active",
+      "expired": "Expired",
+      "notActivated": "Not Activated",
+      "serialKey": "Serial Key",
+      "validUntil": "Valid Until",
+      "lastValidated": "Last Validated",
+      "deviceName": "Device Name",
+      "deactivate": "Deactivate License",
+      "activate": "Activate License",
+      "deactivateConfirm": "Are you sure you want to deactivate this license? You can activate it again on another device.",
+      "deactivateSuccess": "License deactivated successfully",
+      "deactivateError": "Failed to deactivate license"
+    }
   }
 }
