@@ -13,6 +13,7 @@ export * from './windows/scratchpad';
 export * from './windows/computer';
 export * from './windows/studio';
 export * from './windows/debug';
+export * from './windows/license';
 
 export const showMasLimitsDialog = () => {
 
