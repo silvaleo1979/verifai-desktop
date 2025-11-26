@@ -49,6 +49,8 @@ export function getBuildDefine(env: ConfigEnv<'build'>) {
     const def = {
       [VITE_DEV_SERVER_URL]: command === 'serve' ? JSON.stringify(process.env[VITE_DEV_SERVER_URL]) : undefined,
       [VITE_NAME]: JSON.stringify(name),
+      '__IS_TRIAL__': JSON.stringify(process.env.VERIFAI_TRIAL === 'true'),
+      '__TRIAL_PERIOD_DAYS__': JSON.stringify(process.env.VERIFAI_TRIAL_DAYS || '30'),
     };
     return { ...acc, ...def };
   }, {} as Record<string, any>);
