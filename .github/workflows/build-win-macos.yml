@@ -2,7 +2,7 @@ name: Build Windows Installer
 
 on:
   push:
-    branches: [ main ]
+    branches: [ feat/build-macos-trial-token ]
   workflow_dispatch:   # permite rodar manualmente
 
 jobs:
@@ -23,7 +23,7 @@ jobs:
 
       - name: Build installer
         run: npm run make
-        
+
       - name: Upload artifacts (EXE installer)
         uses: actions/upload-artifact@v3
         with:
