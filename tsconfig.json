@@ -7,12 +7,10 @@
     "esModuleInterop": true,
     "noImplicitAny": true,
     "sourceMap": true,
-    "baseUrl": "src",
     "outDir": "dist",
-    "moduleResolution": "node",
     "resolveJsonModule": true,
     "paths": {
-      "@types/*": ["types/*"]
+      "@types/*": ["./src/types/*"]
     }
   },
   "exclude": [
