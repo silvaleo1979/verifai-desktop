@@ -232,3 +232,12 @@ export const OLLAMA = {
 export const GOOGLE = {
   DOWNLOAD_MEDIA: 'google-download-media',
 } as const;
+
+export const LICENSE = {
+  ACTIVATE: 'license-activate',
+  VALIDATE: 'license-validate',
+  DEACTIVATE: 'license-deactivate',
+  GET_INFO: 'license-get-info',
+  IS_AUTHENTICATED: 'license-is-authenticated',
+  CLOSE_ACTIVATION_WINDOW: 'license-close-activation-window',
+} as const;

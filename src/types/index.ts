@@ -499,6 +499,14 @@ declare global {
       google: {
         downloadMedia(url: string, mimeType: string): Promise<string>
       }
+      license: {
+        activate(serialKey: string): Promise<{ success: boolean; message: string; data?: any }>
+        validate(): Promise<{ valid: boolean; message?: string }>
+        deactivate(): Promise<{ success: boolean; message: string }>
+        getInfo(): Promise<any>
+        isAuthenticated(): boolean
+        closeActivationWindow(): void
+      }
     }
   }
 }
