@@ -341,8 +341,15 @@ export default class LlmManagerBase implements ILlmManager {
           continue
         }
 
+        console.log('Checking model lists version for engine', engine)
+        console.log('\n\n\n\n')
+
         const llm = this.igniteEngine(engine)
         for (const model of this.getChatModels(engine)) {
+          console.log(`[${engine}] Checking model ${model.id}`
+          )
+          console.log('\n\n\n\n\n')
+          console.log(model)
           if (!model.capabilities) {
             try {
               model.capabilities = llm.getModelCapabilities(model.meta)

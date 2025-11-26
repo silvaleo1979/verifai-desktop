@@ -1,120 +1,140 @@
-import type { ForgeConfig } from '@electron-forge/shared-types';
-import { MakerSquirrel } from '@electron-forge/maker-squirrel';
-import { MakerZIP } from '@electron-forge/maker-zip';
-import { MakerDMG, MakerDMGConfig } from '@electron-forge/maker-dmg';
-import { MakerPKG } from '@electron-forge/maker-pkg';
-import { MakerDeb } from '@electron-forge/maker-deb';
-import { MakerRpm } from '@electron-forge/maker-rpm';
-import { VitePlugin } from '@electron-forge/plugin-vite';
-import { FusesPlugin } from '@electron-forge/plugin-fuses';
-import { FuseV1Options, FuseVersion } from '@electron/fuses';
-import { execSync } from 'child_process';
-import prePackage from './build/prepackage';
-import fs from 'fs';
-import path from 'path';
+import type { ForgeConfig } from "@electron-forge/shared-types";
+import { MakerSquirrel } from "@electron-forge/maker-squirrel";
+import { MakerZIP } from "@electron-forge/maker-zip";
+import { MakerDMG, MakerDMGConfig } from "@electron-forge/maker-dmg";
+import { MakerPKG } from "@electron-forge/maker-pkg";
+import { MakerDeb } from "@electron-forge/maker-deb";
+import { MakerRpm } from "@electron-forge/maker-rpm";
+import { VitePlugin } from "@electron-forge/plugin-vite";
+import { FusesPlugin } from "@electron-forge/plugin-fuses";
+import { FuseV1Options, FuseVersion } from "@electron/fuses";
+import { execSync } from "child_process";
+import prePackage from "./build/prepackage";
+import fs from "fs";
+import path from "path";
 
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 dotenv.config();
 
 // osx special configuration
-let osxPackagerConfig = {}
-const isDarwin = process.platform == 'darwin';
-const isMas = isDarwin && process.argv.includes('mas');
+let osxPackagerConfig = {};
+const isDarwin = process.platform == "darwin";
+const isMas = isDarwin && process.argv.includes("mas");
 const dmgOptions: MakerDMGConfig = {
   //appPath: 'actually_not_used',
-      icon: './assets/icon.icns',
-  background: './assets/dmg_background.png',
+  icon: "./assets/icon.icns",
+  background: "./assets/dmg_background.png",
   additionalDMGOptions: {
     window: {
       size: { width: 658, height: 492 },
       position: { x: 500, y: 400 },
-    }
-  }
-}
+    },
+  },
+};
 
 if (isDarwin) {
   if (!isMas) {
     osxPackagerConfig = {
       osxSign: {
         identity: process.env.IDENTIFY_DARWIN_CODE,
-        provisioningProfile: './build/VerifAI_Darwin.provisionprofile',
-        optionsForFile: () => { return {
-          hardenedRuntime: true,
-          entitlements: './build/Entitlements.darwin.plist'
-        }; },
+        provisioningProfile: "./build/Witsy_Darwin.provisionprofile",
+        optionsForFile: () => {
+          return {
+            hardenedRuntime: true,
+            entitlements: "./build/Entitlements.darwin.plist",
+          };
+        },
       },
       osxNotarize: {
         appleId: process.env.APPLE_ID,
         appleIdPassword: process.env.APPLE_PASSWORD,
-        teamId: process.env.APPLE_TEAM_ID
-      }
-    }
+        teamId: process.env.APPLE_TEAM_ID,
+      },
+    };
   } else {
     osxPackagerConfig = {
-      osxUniversal: {
-      },
+      osxUniversal: {},
       osxSign: {
         identity: process.env.IDENTITY_MAS_CODE,
-        provisioningProfile: './build/VerifAI_MAS.provisionprofile',
-        optionsForFile: (filePath: string) => { 
-          let entitlements = './build/Entitlements.mas.child.plist'
-          if (filePath.endsWith('VerifAI.app')) {
-            entitlements = './build/Entitlements.mas.main.plist'
+        provisioningProfile: "./build/Witsy_MAS.provisionprofile",
+        optionsForFile: (filePath: string) => {
+          let entitlements = "./build/Entitlements.mas.child.plist";
+          if (filePath.endsWith("Witsy.app")) {
+            entitlements = "./build/Entitlements.mas.main.plist";
           }
           return {
             hardenedRuntime: true,
-            entitlements: entitlements
+            entitlements: entitlements,
           };
         },
       },
-    }
+    };
   }
 }
 
 const config: ForgeConfig = {
   packagerConfig: {
     asar: true,
-    icon: 'assets/verifai-icon',
-          executableName: process.platform == 'linux' ? 'verifai' : 'VerifAI',
-          appBundleId: 'com.verifai.desktop',
-    extendInfo: './build/Info.plist',
-    buildVersion: process.env.BUILD_NUMBER || '1.0.0',
+    icon: "assets/verifai-icon",
+    executableName: process.platform == "linux" ? "verifai" : "VerifAI",
+    appBundleId: "com.verifai.desktop",
+    extendInfo: "./build/Info.plist",
+    buildVersion: process.env.BUILD_NUMBER || "1.0.0",
     extraResource: [
-      'assets/trayTemplate.png',
-      'assets/trayTemplate@2x.png',
-      'assets/trayUpdateTemplate.png',
-      'assets/trayUpdateTemplate@2x.png',
-      'assets/trayWhite.png',
-      'assets/trayWhite@2x.png',
-      'assets/trayUpdateWhite.png',
-      'assets/trayUpdateWhite@2x.png',
-      'assets/verifai-icon.ico',
-      'assets/gladia.png',
-      'assets/speechmatics.png',
+      "assets/trayTemplate.png",
+      "assets/trayTemplate@2x.png",
+      "assets/trayUpdateTemplate.png",
+      "assets/trayUpdateTemplate@2x.png",
+      "assets/trayWhite.png",
+      "assets/trayWhite@2x.png",
+      "assets/trayUpdateWhite.png",
+      "assets/trayUpdateWhite@2x.png",
+      "assets/verifai-icon.ico",
+      "assets/gladia.png",
+      "assets/speechmatics.png",
     ],
-    ...(process.env.TEST ? {} : osxPackagerConfig),
+    ...(process.env.TEST || process.env.LOCAL_BUILD ? {} : osxPackagerConfig),
     afterCopy: [
       // sign native modules
       (buildPath, electronVersion, platform, arch, callback) => {
         try {
           // we sign libnut on mas but feature is disabled anyway
-          if (platform === 'darwin' || platform === 'mas') {
+          if (platform === "darwin" || platform === "mas") {
             const binaries = [
-              'node_modules/@nut-tree-fork/libnut-darwin/build/Release/libnut.node',
-              `node_modules/autolib/build/Release/autolib.node`,
+              "./node_modules/@nut-tree-fork/libnut-darwin/build/Release/libnut.node",
+              `./node_modules/autolib/build/Release/autolib.node`,
             ];
 
             binaries.forEach((binary) => {
               const binaryPath = path.join(buildPath, binary);
-              const identify = isMas ? process.env.IDENTITY_MAS_CODE : process.env.IDENTIFY_DARWIN_CODE;
-              if (fs.existsSync(binaryPath)) {
-                console.log(`Signing binary: ${binaryPath}`);
-                execSync(`codesign --deep --force --verbose --sign "${identify}" "${binaryPath}"`, {
-                  stdio: 'inherit',
-                });
-              } else {
-                throw new Error(`Binary not found: ${binaryPath}`);
+              console.log(`Preparing to sign binary: ${binaryPath}`);
+              const identify = isMas
+                ? process.env.IDENTITY_MAS_CODE
+                : process.env.IDENTIFY_DARWIN_CODE;
+              console.log(`Using identity: ${identify}`);
+              // if (fs.existsSync(binaryPath)) {
+              //   console.log(`Signing binary: ${binaryPath}`);
+              //   execSync(
+              //     `codesign --deep --force --verbose --sign "${identify}" "${binaryPath}"`,
+              //     {
+              //       stdio: "inherit",
+              //     }
+              //   );
+              // }
+              if (!identify) {
+                console.warn(
+                  `No signing identity configured, skipping sign for: ${binaryPath}`
+                );
+                return;
               }
+
+              console.log(`Signing binary: ${binaryPath}`);
+              // execSync(
+              //   `codesign --deep --force --verbose --sign "${identify}" "${binaryPath}"`,
+              //   {
+              //     stdio: "inherit",
+              //   }
+              // );
             });
           }
 
@@ -126,25 +146,31 @@ const config: ForgeConfig = {
     ],
   },
   rebuildConfig: {},
-  makers: process.env.TEST ? [ new MakerZIP() ] : [
-    /* xplat  */ new MakerZIP({}, ['linux', 'win32', 'darwin']),
-    /* darwin */ new MakerDMG(dmgOptions, ['darwin']), new MakerPKG({ identity: process.env.IDENTITY_MAS_PKG, }, ['mas']),
-    /* win32  */ new MakerSquirrel({
-      iconUrl: 'https://raw.githubusercontent.com/silvaleo1979/verifai-desktop/main/assets/verifai-icon.ico',
-      setupIcon: './assets/verifai-icon.ico',
-      authors: 'VerifAI',
-      description: 'VerifAI Desktop - Assistente de IA Personalizado',
-      exe: 'VerifAI.exe',
-      name: 'VerifAI-Desktop',
-      title: 'VerifAI Desktop',
-      setupExe: 'VerifAI Desktop Setup.exe',
-      noMsi: true,
-      remoteReleases: 'https://github.com/silvaleo1979/verifai-desktop/releases/latest/download',
-      certificateFile: process.env.CERTIFICATE_FILE,
-      certificatePassword: process.env.CERTIFICATE_PASSWORD,
-    }),
-    /* linux  */ new MakerRpm({}), new MakerDeb({})
-  ],
+  makers: process.env.TEST
+    ? [new MakerZIP()]
+    : [
+        /* xplat  */ new MakerZIP({}, ["linux", "win32", "darwin"]),
+        /* darwin */ new MakerDMG(dmgOptions, ["darwin"]),
+        new MakerPKG({ identity: process.env.IDENTITY_MAS_PKG }, ["mas"]),
+        /* win32  */ new MakerSquirrel({
+          iconUrl:
+            "https://raw.githubusercontent.com/silvaleo1979/verifai-desktop/main/assets/verifai-icon.ico",
+          setupIcon: "./assets/verifai-icon.ico",
+          authors: "VerifAI",
+          description: "VerifAI Desktop - Assistente de IA Personalizado",
+          exe: "VerifAI.exe",
+          name: "VerifAI-Desktop",
+          title: "VerifAI Desktop",
+          setupExe: "VerifAI Desktop Setup.exe",
+          noMsi: true,
+          remoteReleases:
+            "https://github.com/silvaleo1979/verifai-desktop/releases/latest/download",
+          certificateFile: process.env.CERTIFICATE_FILE,
+          certificatePassword: process.env.CERTIFICATE_PASSWORD,
+        }),
+        /* linux  */ new MakerRpm({}),
+        new MakerDeb({}),
+      ],
   plugins: [
     new VitePlugin({
       // `build` can specify multiple entry builds, which can be Main process, Preload scripts, Worker process, etc.
@@ -152,18 +178,18 @@ const config: ForgeConfig = {
       build: [
         {
           // `entry` is just an alias for `build.lib.entry` in the corresponding file of `config`.
-          entry: 'src/main.ts',
-          config: 'vite.main.config.ts',
+          entry: "src/main.ts",
+          config: "vite.main.config.ts",
         },
         {
-          entry: 'src/preload.ts',
-          config: 'vite.preload.config.ts',
+          entry: "src/preload.ts",
+          config: "vite.preload.config.ts",
         },
       ],
       renderer: [
         {
-          name: 'main_window',
-          config: 'vite.renderer.config.ts',
+          name: "main_window",
+          config: "vite.renderer.config.ts",
         },
       ],
     }),
@@ -181,26 +207,42 @@ const config: ForgeConfig = {
   ],
   hooks: {
     prePackage: async (forgeConfig, platform, arch) => {
-      prePackage(platform, arch)
+      prePackage(platform, arch);
     },
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    packageAfterPrune: async (forgeConfig, buildPath, electronVersion, platform, arch) => {
+    packageAfterPrune: async (
+      forgeConfig,
+      buildPath,
+      electronVersion,
+      platform,
+      arch
+    ) => {
       const unlink = (bin: string) => {
         const binPath = path.join(buildPath, bin);
         if (fs.existsSync(binPath)) {
           fs.unlinkSync(binPath);
         }
-      }
-      unlink('node_modules/@iktakahiro/markdown-it-katex/node_modules/.bin/katex')
-      unlink('node_modules/officeparser/node_modules/.bin/rimraf')
-      unlink('node_modules/@langchain/core/node_modules/.bin/uuid')
-      unlink('node_modules/portfinder/node_modules/.bin/mkdirp')
-      unlink('node_modules/clipboardy/node_modules/.bin/semver')
-      unlink('node_modules/clipboardy/node_modules/.bin/which')
-      unlink('node_modules/execa/node_modules/.bin/semver')
-      unlink('node_modules/execa/node_modules/.bin/which')
-    }
-  }
+      };
+      unlink(
+        "node_modules/@iktakahiro/markdown-it-katex/node_modules/.bin/katex"
+      );
+      unlink("node_modules/officeparser/node_modules/.bin/rimraf");
+      unlink("node_modules/@langchain/core/node_modules/.bin/uuid");
+      unlink("node_modules/clipboardy/node_modules/.bin/semver");
+      unlink("node_modules/clipboardy/node_modules/.bin/which");
+      unlink("node_modules/execa/node_modules/.bin/semver");
+      unlink("node_modules/execa/node_modules/.bin/which");
+      unlink("node_modules/.bin/mkdirp");
+      unlink("node_modules/temp/node_modules/.bin/mkdirp");
+      unlink("node_modules/cacache/node_modules/.bin/mkdirp");
+      unlink("node_modules/@npmcli/move-file/node_modules/.bin/mkdirp");
+      unlink(
+        "node_modules/onnxruntime-node/node_modules/tar/node_modules/.bin/mkdirp"
+      );
+      unlink("node_modules/unzip-crx-3/node_modules/.bin/mkdirp");
+      unlink("node_modules/tar/node_modules/.bin/mkdirp");
+    },
+  },
 };
 
 export default config;

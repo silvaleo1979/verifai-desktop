@@ -364,6 +364,7 @@ const forkChat = (chat: Chat, message: Message, title: string, engine: string, m
 
   // now send prompt
   if (messageIsFromUser) {
+    console.log('Forking chat on user message, sending prompt:', message.content)
     //emitEvent('set-prompt', message)
     onSendPrompt({
       instructions: chat.instructions,

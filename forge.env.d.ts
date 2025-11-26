@@ -6,6 +6,8 @@ declare global {
   // whether you're running in development or production).
   const MAIN_WINDOW_VITE_DEV_SERVER_URL: string;
   const MAIN_WINDOW_VITE_NAME: string;
+  const __IS_TRIAL__: boolean;
+  const __TRIAL_PERIOD_DAYS__: number;
 
   namespace NodeJS {
     interface Process {

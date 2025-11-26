@@ -22,7 +22,7 @@
     "teste2e": "WITSY_HOME=/tmp vitest --config ./vitest.config.e2e.mjs './tests/e2e/**' ./tests/e2e/**",
     "build:verifai": "node build-verifai.js",
     "build:verifai:win": "npm run make -- --platform=win32",
-    "build:verifai:mac": "npm run make -- --platform=darwin",
+    "build:verifai:mac": "npm run make -- --platform=darwin --arch=arm64",
     "build:verifai:linux": "npm run make -- --platform=linux"
   },
   "devDependencies": {
@@ -131,8 +131,8 @@
     "mermaid": "^11.6.0",
     "minimatch": "^10.0.1",
     "mitt": "^3.0.1",
-    "multi-llm-ts": "^4.2.2",
-    "number-flip-animation": "github:nbonamy/number-flip-animation",
+    "multi-llm-ts": "^4.5.1",
+    "number-flip-animation": "^2.1.1",
     "officeparser": "^5.1.1",
     "ollama": "^0.5.15",
     "openai": "^4.104.0",
