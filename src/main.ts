@@ -4,6 +4,7 @@ import { app, BrowserWindow, dialog, nativeTheme, systemPreferences, Menu, Notif
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer';
 import Store from 'electron-store';
 import log from 'electron-log/main';
+import { EventEmitter } from 'events';
 
 import AutoUpdater from './main/autoupdate';
 import Automator from './automations/automator';
@@ -18,7 +19,7 @@ import TrayIconManager from './main/tray';
 
 import { fixPath } from './main/utils';
 import { useI18n } from './main/i18n';
-import { installIpc } from 'main/ipc';
+import { installIpc, installLicenseIpc } from './main/ipc';
 
 import * as config from './main/config';
 import * as shortcuts from './main/shortcuts';
@@ -27,6 +28,7 @@ import * as menu from './main/menu';
 import * as backup from './main/backup';
 
 let mcp: Mcp = null
+const appEvents = new EventEmitter()
 
 // first-thing: single instance
 // on darwin/mas this is done through Info.plist (LSMultipleInstancesProhibited)
@@ -132,7 +134,34 @@ app.whenReady().then(async () => {
     return;
   }
 
-  // we need settings
+  // trial period
+  if (__IS_TRIAL__) {
+    const trialStore = new Store({ name: 'trial' });
+    const trialStartDate = trialStore.get('startDate') as number;
+    
+    if (!trialStartDate) {
+      trialStore.set('startDate', Date.now());
+    } else {
+      const days = __TRIAL_PERIOD_DAYS__;
+      const msPerDay = 1000 * 60 * 60 * 24;
+      const elapsed = Date.now() - trialStartDate;
+      if (elapsed > days * msPerDay) {
+        await dialog.showMessageBox({
+          type: 'error',
+          message: 'Período de teste expirado',
+          detail: `Seu período de teste de ${days} dias expirou. Por favor, adquira a versão completa para continuar usando o VerifAI.`,
+          buttons: ['OK'],
+        });
+        quitApp();
+        return;
+      }
+    }
+  }
+
+  // install license IPC handlers early (needed for license activation window)
+  installLicenseIpc(appEvents);
+
+  // we need settings loaded first for any window
   const settings = config.loadSettings(app);
 
   // error
@@ -173,6 +202,35 @@ app.whenReady().then(async () => {
 
   // register shortcuts
   registerShortcuts();
+
+  // license check - now that basic setup is done
+  if (!__IS_TRIAL__) {
+    // Only check license if NOT in trial mode
+    console.log('Checking license...');
+    const LicenseManager = (await import('./main/license')).default;
+    const licenseValid = await LicenseManager.checkLicenseBlocking();
+    
+    console.log('License check result:', licenseValid);
+    
+    if (licenseValid === false) {
+      console.log('License invalid or missing - opening activation window');
+      // License check failed and user wants to activate
+      // Show activation window
+      const { openLicenseActivationWindow } = await import('./main/window');
+      const activationWindow = openLicenseActivationWindow();
+      console.log('Activation window opened:', activationWindow?.id);
+      
+      // Wait for license activation before continuing
+      await new Promise<void>((resolve) => {
+        appEvents.once('license-activated', () => {
+          console.log('License activated, continuing app initialization');
+          resolve();
+        });
+      });
+    } else {
+      console.log('License valid, continuing with app initialization');
+    }
+  }
 
   // start mcp
   if (!process.mas) {
@@ -229,7 +287,7 @@ app.whenReady().then(async () => {
   new Automator();
 
   // install IPC handlers
-  installIpc(store, autoUpdater, docRepo, memoryManager, mcp, installMenu, registerShortcuts, quitApp);
+  installIpc(store, autoUpdater, docRepo, memoryManager, mcp, installMenu, registerShortcuts, quitApp, appEvents);
 
   // we want some windows to be as fast as possible
   if (!process.env.TEST) {
