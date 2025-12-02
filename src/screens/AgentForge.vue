@@ -21,7 +21,7 @@
       </main>
       <main class="sliding-pane" :class="{ visible: mode !== 'list' }" @transitionend="onTransitionEnd">
         <Editor :style="{ display: isPaneVisible('create') || isPaneVisible('edit') ? 'flex' : 'none' }" :mode="mode as 'create' | 'edit'" :agent="selected" @cancel="closeCreate" @save="onSaved" />
-        <View :style="{ display: isPaneVisible('view') ? 'flex' : 'none' }" :agent="selected" @run="runAgent" @delete="deleteAgent" />
+        <View :style="{ display: isPaneVisible('view') ? 'flex' : 'none' }" :agent="selected" @run="runAgent" @delete="deleteAgent" @analyze-log="analyzeLogInChat" />
       </main>
     </div>
     <PromptBuilder :title="running?.name" ref="builder" />
@@ -102,7 +102,7 @@ const editAgent = (agent: Agent) => {
 
 const runAgent = (agent: Agent, opts?: Record<string, string>) => {
   running.value = agent
-  builder.value.show(agent.prompt, opts || {}, async (prompt: string) => {
+  builder.value.show(agent.steps[0]?.prompt, opts || {}, async (prompt: string) => {
     const runner = new AgentRunner(store.config, agent)
     await runner.run('manual', prompt)
     running.value = null
@@ -120,6 +120,31 @@ const deleteAgent = (agent: Agent) => {
       window.api.agents.delete(agent.id)
       store.loadAgents()
     }
+  })
+}
+
+const analyzeLogInChat = (summary: string) => {
+  // Criar prompt de análise
+  const analysisPrompt = `Analise este log de execução do agente e forneça:
+
+1. **Resumo geral** da execução
+2. **Problemas identificados** (se houver)
+3. **Performance e eficiência**
+4. **Sugestões de melhoria** para o agente
+5. **Uso correto de ferramentas**
+
+---
+
+${summary}`
+
+  // Copiar para clipboard e notificar usuário
+  window.api.clipboard.writeText(analysisPrompt)
+  
+  // Mostrar dialog informativo
+  Dialog.show({
+    title: t('agent.history.analyzeInChat'),
+    html: `<p>${t('agent.history.analyzeInChatInstructions')}</p>`,
+    confirmButtonText: t('common.ok'),
   })
 }
 

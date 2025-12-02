@@ -120,7 +120,7 @@ Este projeto está licenciado sob a Licença Apache 2.0 - veja o arquivo [LICENS
 
 ## 🙏 Agradecimentos
 
-- Baseado no projeto [Witsy](https://github.com/nbonamy/witsy) por Nicolas Bonamy
+- Baseado no projeto [Witsy](https://github.com/nbonamy/verifai) por Nicolas Bonamy
 - Comunidade open source que contribuiu para este projeto
 
 ---

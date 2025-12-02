@@ -20,34 +20,40 @@
       </div>
     </div>
     <div class="actions">
-    <BIconTerminal v-if="enableInstructions"
+      <BIconTerminal
+        v-if="enableInstructions"
         v-tooltip="{ text: t('prompt.instructions.title'), position: 'top-right' }"
-        :class="{ icon: true, instructions: true }" 
-        @click="onClickInstructions" 
+        :class="{ icon: true, instructions: true }"
+        @click="onClickInstructions"
       />
-      <BIconDatabase v-if="enableDocRepo"
+      <BIconDatabase
+        v-if="enableDocRepo"
         v-tooltip="{ text: t('prompt.docRepos.tooltip'), position: 'top-right' }"
-        :class="{ icon: true, docrepo: true, active: docRepoActive }" 
-        @click="onDocRepo" 
+        :class="{ icon: true, docrepo: true, active: docRepoActive }"
+        @click="onDocRepo"
       />
-      <BIconMortarboard v-if="enableExperts"
+      <BIconMortarboard
+        v-if="enableExperts"
         v-tooltip="{ text: t('prompt.experts.tooltip'), position: 'top' }"
-        class="icon experts" 
-        @click="onClickExperts" 
+        class="icon experts"
+        @click="onClickExperts"
       />
-      <BIconPaperclip v-if="enableAttachments"
+      <BIconPaperclip
+        v-if="enableAttachments"
         v-tooltip="{ text: t('prompt.attachment.tooltip'), position: 'top' }"
-        class="icon attach" 
-        @click="onAttach" 
+        class="icon attach"
+        @click="onAttach"
       />
-      <BIconMic v-if="hasDictation"
+      <BIconMic
+        v-if="hasDictation"
         v-tooltip="{ text: t('prompt.conversation.tooltip'), position: 'top' }"
-        :class="{ icon: true, dictate: true, active: dictating }" 
-        @click="onDictate" 
-        @contextmenu="onConversationMenu" 
+        :class="{ icon: true, dictate: true, active: dictating }"
+        @click="onDictate"
+        @contextmenu="onConversationMenu"
       />
       <Waveform v-if="enableWaveform && dictating" :width="64" :height="16" foreground-color-inactive="var(--background-color)" foreground-color-active="red" :audio-recorder="audioRecorder" :is-recording="true"/>
-      <BIconBinoculars v-if="enableDeepResearch"
+      <BIconBinoculars
+        v-if="enableDeepResearch"
         v-tooltip="{ text: t('common.deepResearch'), position: 'top' }"
         class="icon research" :class="{ active: deepResearchActive }"
         @click="onDeepResearch"
@@ -87,10 +93,10 @@ import useTipsManager from '../composables/tips_manager'
 import useTranscriber from '../composables/transcriber'
 import LogoA2A from '../../assets/a2a.svg?component'
 import ImageUtils from '../composables/image_utils'
+import Dialog from '../composables/dialog'
 import Waveform from '../components/Waveform.vue'
 import AttachmentView from './Attachment.vue'
 import Attachment from '../models/attachment'
-import Dialog from '../composables/dialog'
 import Message from '../models/message'
 import Loader from './Loader.vue'
 import Chat from '../models/chat'

@@ -123,9 +123,9 @@ const load = () => {
 
 const getModels = async (): Promise<boolean> => {
 
-  // // save witsy models
+  // // save verifai models
   // const engineConfig = store.config.engines[props.engine] as CustomEngineConfig
-  // const witsyModels = engineConfig.models.chat.filter(m => m.meta?.owned_by === 'witsy')
+  // const verifaiModels = engineConfig.models.chat.filter(m => m.meta?.owned_by === 'verifai')
   // const model = engineConfig.model.chat
 
   // load
@@ -139,9 +139,9 @@ const getModels = async (): Promise<boolean> => {
   // reload
   load()
 
-  // // prepend witsy models
-  // if (witsyModels.length) {
-  //   chat_models.value = [...witsyModels, ...chat_models.value]
+  // // prepend verifai models
+  // if (verifaiModels.length) {
+  //   chat_models.value = [...verifaiModels, ...chat_models.value]
   //   chat_model.value = model
   //   engineConfig.models.chat = chat_models.value
   //   engineConfig.model.chat = model

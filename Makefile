@@ -25,14 +25,14 @@ clean:
 mac-arm64:
 	-rm -rf out/*darwin-arm64* out/make/zip/darwin/arm64/*
 	BUILD_NUMBER=$(shell cat $(BUILD_NUMBER_FILE)) npx electron-forge make -p darwin -a arm64
-	cd out/make/zip/darwin/arm64/ ; mv Witsy-darwin-arm64-$(VERSION).zip Witsy-$(VERSION)-darwin-arm64.zip
-	cd out/make ; mv Witsy-$(VERSION)-arm64.dmg Witsy-$(VERSION)-darwin-arm64.dmg
+	cd out/make/zip/darwin/arm64/ ; mv VerifAI-darwin-arm64-$(VERSION).zip VerifAI-$(VERSION)-darwin-arm64.zip
+	cd out/make ; mv VerifAI-$(VERSION)-arm64.dmg VerifAI-$(VERSION)-darwin-arm64.dmg
 
 mac-x64:
 	-rm -rf out/*darwin-x64* out/make/zip/darwin/x64/*
 	BUILD_NUMBER=$(shell cat $(BUILD_NUMBER_FILE)) npx electron-forge make -p darwin -a x64
-	cd out/make/zip/darwin/x64/ ; mv Witsy-darwin-x64-$(VERSION).zip Witsy-$(VERSION)-darwin-x64.zip
-	cd out/make ; mv Witsy-$(VERSION)-x64.dmg Witsy-$(VERSION)-darwin-x64.dmg
+	cd out/make/zip/darwin/x64/ ; mv VerifAI-darwin-x64-$(VERSION).zip VerifAI-$(VERSION)-darwin-x64.zip
+	cd out/make ; mv VerifAI-$(VERSION)-x64.dmg VerifAI-$(VERSION)-darwin-x64.dmg
 
 mac-mas:
 	-rm -rf out/*mas-universal* out/make/*.pkg
@@ -44,25 +44,25 @@ win-x64:
 	-rm -rf out/*win32-x64* out/make/zip/win32/x64/*
 	BUILD_NUMBER=$(shell cat $(BUILD_NUMBER_FILE)) npx electron-forge package -p win32 -a x64
 	mkdir -p out/make/zip/win32/x64
-	cd out ; zip -r make/zip/win32/x64/Witsy-$(VERSION)-win32-x64.zip "Witsy-win32-x64"
+	cd out ; zip -r make/zip/win32/x64/VerifAI-$(VERSION)-win32-x64.zip "VerifAI-win32-x64"
 
 win-arm64:
 	-rm -rf out/*win32-arm64* out/make/zip/win32/arm64/*
 	BUILD_NUMBER=$(shell cat $(BUILD_NUMBER_FILE)) npx electron-forge package -p win32 -a arm64
 	mkdir -p out/make/zip/win32/arm64
-	cd out ; zip -r make/zip/win32/arm64/Witsy-$(VERSION)-win32-arm64.zip "Witsy-win32-arm64"
+	cd out ; zip -r make/zip/win32/arm64/VerifAI-$(VERSION)-win32-arm64.zip "VerifAI-win32-arm64"
 
 win: win-x64 win-arm64
 
 linux-x64:
 	-rm -rf out/*linux-x64* out/make/zip/linux/x64/*
 	BUILD_NUMBER=$(shell cat $(BUILD_NUMBER_FILE)) npx electron-forge make -p linux -a x64
-	cd out/make/zip/linux/x64 ; mv Witsy-linux-x64-$(VERSION).zip Witsy-$(VERSION)-linux-x64.zip
+	cd out/make/zip/linux/x64 ; mv VerifAI-linux-x64-$(VERSION).zip VerifAI-$(VERSION)-linux-x64.zip
 
 linux-arm64:
 	-rm -rf out/*linux-arm64* out/make/zip/linux/arm64/*
 	BUILD_NUMBER=$(shell cat $(BUILD_NUMBER_FILE)) npx electron-forge make -p linux -a arm64
-	cd out/make/zip/linux/arm64 ; mv Witsy-linux-arm64-$(VERSION).zip Witsy-$(VERSION)-linux-arm64.zip
+	cd out/make/zip/linux/arm64 ; mv VerifAI-linux-arm64-$(VERSION).zip VerifAI-$(VERSION)-linux-arm64.zip
 
 linux: linux-x64
 

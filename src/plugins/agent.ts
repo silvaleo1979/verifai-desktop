@@ -96,7 +96,7 @@ export default class extends Plugin {
 
   getParameters(): PluginParameter[] {
     
-    if (this.agent.prompt) {
+    if (this.agent.steps[0]?.prompt) {
 
       return this.agent.parameters ?? []
 
@@ -139,7 +139,7 @@ export default class extends Plugin {
       }
 
       // we need to build the prompt
-      const prompt = this.agent.buildPrompt(parameters) || parameters.prompt
+      const prompt = this.agent.buildPrompt(0, parameters) || parameters.prompt
 
       // now call the agent through the runner
       const runner = new Runner(this.config, this.agent)

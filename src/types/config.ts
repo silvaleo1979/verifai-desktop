@@ -28,12 +28,12 @@ export type Configuration = {
   features?: Record<string, any>
 }
 
-export type WitsyEngineCreateOpts = EngineCreateOpts & {
+export type VerifAIEngineCreateOpts = EngineCreateOpts & {
   keepAlive?: string
   providerOrder?: string
 }
 
-export type EngineConfig = WitsyEngineCreateOpts & {
+export type EngineConfig = VerifAIEngineCreateOpts & {
   models: ModelsConfig
   model: ModelConfig
   realtime?: EngineRealtimeConfig
@@ -175,8 +175,8 @@ export type ChatListAppearance = {
 }
 
 export type ShortcutsConfig = {
+  main: Shortcut
   prompt: Shortcut
-  chat: Shortcut
   scratchpad: Shortcut
   command: Shortcut
   readaloud: Shortcut

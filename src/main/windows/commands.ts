@@ -25,7 +25,7 @@ export const prepareCommandPicker = (queryParams?: anyDict): void => {
   // open a new one
   commandPicker = createWindow({
     hash: '/commands',
-    title: 'WitsyCommandPicker',
+    title: 'VerifAICommandPicker',
     x: 0, y: 0,
     width: width,
     height: height,
@@ -158,8 +158,8 @@ const activateCommandPicker = async () => {
     // if (process.platform === 'darwin') {
     //   const automator = new MacosAutomator();
     //   await automator.focusApp({
-    //     id: process.env.DEBUG ? 'com.github.Electron' : 'com.nabocorp.witsy',
-    //     name: 'Witsy',
+    //     id: process.env.DEBUG ? 'com.github.Electron' : 'com.nabocorp.verifai',
+    //     name: 'VerifAI',
     //     path: '',
     //     window: null//commandPicker.getTitle(),
     //   })

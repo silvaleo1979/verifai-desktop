@@ -649,7 +649,7 @@
     }
   },
   "embedding": {
-    "apiKeyReminder": "Asegúrate de ingresar tu clave API en el panel Modelos de la configuración de Witsy.",
+    "apiKeyReminder": "Asegúrate de ingresar tu clave API en el panel Modelos de la configuración de VerifAI.",
     "browse": "Explorar modelos",
     "model": "Modelo de incrustación",
     "provider": "Proveedor de incrustación"
@@ -1462,9 +1462,9 @@
   },
   "menu": {
     "app": {
-      "about": "Acerca de Witsy",
+      "about": "Acerca de VerifAI",
       "checkForUpdates": "Buscar actualizaciones…",
-      "quit": "Salir de Witsy",
+      "quit": "Salir de VerifAI",
       "settings": "@:{'common.settings'}…"
     },
     "edit": {
@@ -1480,6 +1480,7 @@
       "backupImport": "Restaurar copia de seguridad…",
       "closeWindow": "Cerrar ventana",
       "designStudio": "@:{'designStudio.title'}",
+      "mainWindow": "Abrir VerifAI",
       "newChat": "Nueva conversación",
       "quickPrompt": "Nueva solicitud",
       "scratchpad": "@:{'scratchpad.title'}",
@@ -1584,12 +1585,12 @@
       "count": "No se encontró ningún modelo.|¡1 modelo disponible!|¡{count} modelos disponibles!",
       "error": "Por favor revisa tu clave API y vuelve a intentarlo.",
       "showMore": "Mostrar más",
-      "subtitle": "Puedes chatear con Witsy usando modelos de lenguaje de todos los proveedores principales. Ingresa tus claves API abajo para comenzar. Si no tienes claves API, no te preocupes: en la siguiente pantalla podrás configurar Witsy para usar modelos locales a través de Ollama.",
+      "subtitle": "Puedes chatear con VerifAI usando modelos de lenguaje de todos los proveedores principales. Ingresa tus claves API abajo para comenzar. Si no tienes claves API, no te preocupes: en la siguiente pantalla podrás configurar VerifAI para usar modelos locales a través de Ollama.",
       "success": "Clave de {engine} validada.<br/>{count} modelos encontrados!",
       "title": "Tus proveedores de modelos de chat"
     },
     "done": {
-      "subtitle": "¡Estás todo configurado y listo para empezar!<br/>¡Comienza a chatear con Witsy y explora sus capacidades!",
+      "subtitle": "¡Estás todo configurado y listo para empezar!<br/>¡Comienza a chatear con VerifAI y explora sus capacidades!",
       "title": "¡Todo listo!"
     },
     "instructions": {
@@ -1603,8 +1604,8 @@
         "title": "No completaste tu personalización."
       },
       "selectStyle": "Ahora elige cómo te gustaría que tu asistente responda.<br/>Esto se combinará con tu información personal para crear las instrucciones perfectas.",
-      "subtitle": "Al responder unas pocas preguntas, Witsy podrá personalizar tu experiencia y ofrecer mejores respuestas. Puedes saltarte este paso si quieres, pero se recomienda mucho para que Witsy se sienta más personal.",
-      "title": "¡Que Witsy sepa sobre ti!"
+      "subtitle": "Al responder unas pocas preguntas, VerifAI podrá personalizar tu experiencia y ofrecer mejores respuestas. Puedes saltarte este paso si quieres, pero se recomienda mucho para que VerifAI se sienta más personal.",
+      "title": "¡Que VerifAI sepa sobre ti!"
     },
     "ollama": {
       "browseModels": "Descubre más modelos en https://ollama.com/search",
@@ -1628,22 +1629,22 @@
     },
     "permissions": {
       "accessibility": {
-        "description": "Requerido para que Witsy lea texto de otras aplicaciones e integre perfectamente con tu flujo de trabajo.",
+        "description": "Requerido para que VerifAI lea texto de otras aplicaciones e integre perfectamente con tu flujo de trabajo.",
         "title": "Accesibilidad"
       },
       "automation": {
-        "description": "Asegúrate de conceder el permiso \"Eventos del sistema\" a Witsy en la pantalla de configuración de Automatización.",
+        "description": "Asegúrate de conceder el permiso \"Eventos del sistema\" a VerifAI en la pantalla de configuración de Automatización.",
         "title": "Automatización"
       },
       "denied": "No concedido",
       "granted": "Concedido",
-      "info": "Estos permisos permiten que Witsy ofrezca toda su gama de funciones. Puedes concederlos ahora o más tarde en Preferencias del Sistema.",
+      "info": "Estos permisos permiten que VerifAI ofrezca toda su gama de funciones. Puedes concederlos ahora o más tarde en Preferencias del Sistema.",
       "leave": {
         "message": "¿Seguro que quieres continuar sin conceder todos los permisos? Algunas funciones pueden no funcionar correctamente.",
         "title": "Permisos no concedidos completamente"
       },
       "openSettings": "Abrir configuración",
-      "subtitle": "En macOS, Witsy necesita ciertos permisos para brindar la mejor experiencia.",
+      "subtitle": "En macOS, VerifAI necesita ciertos permisos para brindar la mejor experiencia.",
       "title": "Permisos del sistema"
     },
     "studio": {
@@ -1658,13 +1659,13 @@
       "already": "@:{'onboarding.chat.already'}",
       "count": "@:{'onboarding.chat.count'}",
       "error": "@:{'onboarding.chat.error'}",
-      "subtitle": "¡Interactúa con Witsy usando tu voz! Witsy puede leer en voz alta no solo las respuestas de tus sesiones de chat con modelos de lenguaje, sino también cualquier texto mostrado en pantalla en otras aplicaciones.",
+      "subtitle": "¡Interactúa con VerifAI usando tu voz! VerifAI puede leer en voz alta no solo las respuestas de tus sesiones de chat con modelos de lenguaje, sino también cualquier texto mostrado en pantalla en otras aplicaciones.",
       "success": "@:{'onboarding.chat.success'}",
       "title": "Interacción por Voz"
     },
     "welcome": {
-      "subtitle": "Witsy es un asistente de IA poderoso que puede ayudarte con una amplia variedad de tareas. Puedes chatear con él, pedirle que escriba documentos e incluso ejecutar código en tu computadora. ¡Comencemos!",
-      "title": "¡Bienvenido a Witsy!"
+      "subtitle": "VerifAI es un asistente de IA poderoso que puede ayudarte con una amplia variedad de tareas. Puedes chatear con él, pedirle que escriba documentos e incluso ejecutar código en tu computadora. ¡Comencemos!",
+      "title": "¡Bienvenido a VerifAI!"
     }
   },
   "plugins": {
@@ -1830,7 +1831,7 @@
     },
     "generationError": "Error al generar texto",
     "loadingError": "Error al cargar el archivo de bloc de notas",
-    "placeholder": "Comience a escribir su documento o\ndemande a Witsy que escriba algo por usted!\n\nUna vez que haya comenzado, puede pedir a Witsy\nde realizar modificaciones en su documento.\n\nSi resalta una parte de su texto,\nWitsy solo actualizará esa parte.\n\n¡También eche un vistazo al Asistente de Escritura\nen la barra de acciones en la esquina inferior derecha!\n\n¡Pruébelo!",
+    "placeholder": "Comience a escribir su documento o\ndemande a VerifAI que escriba algo por usted!\n\nUna vez que haya comenzado, puede pedir a VerifAI\nde realizar modificaciones en su documento.\n\nSi resalta una parte de su texto,\nVerifAI solo actualizará esa parte.\n\n¡También eche un vistazo al Asistente de Escritura\nen la barra de acciones en la esquina inferior derecha!\n\n¡Pruébelo!",
     "title": "Scratchpad"
   },
   "settings": {
@@ -1927,7 +1928,7 @@
       "runtime": "Tipo de investigación profunda",
       "runtimes": {
         "ma": "Multi-agente (completo, dirigido por LLM)",
-        "ms": "Multi-paso (híbrido código/agente, dirigido por Witsy)"
+        "ms": "Multi-paso (híbrido código/agente, dirigido por VerifAI)"
       }
     },
     "engines": {
@@ -2125,7 +2126,7 @@
         "title": "Sistema de Archivos"
       },
       "image": {
-        "apiKeyReminder": "Asegúrese de ingresar su clave API en el panel de Modelos de la configuración de Witsy.",
+        "apiKeyReminder": "Asegúrese de ingresar su clave API en el panel de Modelos de la configuración de VerifAI.",
         "description": "Este complemento permite que los motores LLM creen imágenes a partir de una descripción de texto.",
         "falai": {
           "aboutModels": "Más sobre los modelos de fal.ai"
@@ -2201,7 +2202,7 @@
       "aiCommandsUsage": "Uso: Resalte su texto, presione el atajo de teclado y luego elija un comando de IA",
       "designStudio": "@:{'tray.menu.designStudio'}",
       "dictation": "@:{'tray.menu.startDictation'}",
-      "newChat": "@:{'tray.menu.newChat'}",
+      "mainWindow": "@:{'tray.menu.mainWindow'}",
       "quickPrompt": "@:{'tray.menu.quickPrompt'}",
       "readAloud": "@:{'tray.menu.readAloud'}",
       "readAloudUsage": "Uso: Resalte su texto, presione el atajo de teclado",
@@ -2263,7 +2264,7 @@
       "tts": {
         "groqAcceptTermsReminder": "Necesitas <a href=\"https://console.groq.com/playground?model=playai-tts\" target=\"_blank\">aceptar los términos y condiciones</a> para usar el modelo Groq.",
         "kokoroReminder": "Proporcionado",
-        "sampleText": "Bienvenido a Witsy, el asistente AI definitivo para su escritorio.",
+        "sampleText": "Bienvenido a VerifAI, el asistente AI definitivo para su escritorio.",
         "serviceDisclaimer": "El servicio puede dejar de funcionar en cualquier momento.",
         "voice": "@:{'common.voice'}"
       },
@@ -2353,7 +2354,7 @@
       "agentForge": "@:{'menu.file.agentForge'}",
       "designStudio": "@:{'menu.file.designStudio'}",
       "installUpdate": "Instalar actualización y reiniciar…",
-      "newChat": "@:{'menu.file.newChat'}",
+      "mainWindow": "@:{'menu.file.mainWindow'}",
       "quickPrompt": "@:{'menu.file.quickPrompt'}",
       "quit": "Salir",
       "readAloud": "Leer en voz alta",
@@ -2364,9 +2365,9 @@
       "voiceMode": "@:{'realtimeChat.title'}"
     },
     "notification": {
-      "darwin": "Puedes activar Witsy desde el icono de la pluma en la barra de menú.",
-      "linux": "Puedes activar Witsy desde el icono de la pluma en la barra de menú.",
-      "windows": "Puedes activar Witsy desde el icono de la pluma en la bandeja del sistema."
+      "darwin": "Puedes activar VerifAI desde el icono de la pluma en la barra de menú.",
+      "linux": "Puedes activar VerifAI desde el icono de la pluma en la barra de menú.",
+      "windows": "Puedes activar VerifAI desde el icono de la pluma en la bandeja del sistema."
     }
   }
 }

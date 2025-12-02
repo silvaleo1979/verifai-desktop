@@ -514,7 +514,7 @@ Este software mantém conformidade com a licença Apache 2.0 original, incluindo
 
 **VerifAI Desktop v1.0.1**  
 *Desenvolvido pela T2C Group*  
-*Baseado no Witsy Desktop*
+*Baseado no VerifAI Desktop*
 
 **© 2025 T2C Group. Todos os direitos reservados.**
 

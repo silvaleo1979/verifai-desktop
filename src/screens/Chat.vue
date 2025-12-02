@@ -68,6 +68,7 @@ onMounted(() => {
   onEvent('main-view-changed', onMainViewChanged)
 
   // main events
+  window.api.on('new-chat', onNewChat)
   window.api.on('delete-chat', () => {
     if (assistant.value.chat) {
       onDeleteChat(assistant.value.chat.uuid)
@@ -689,6 +690,7 @@ const onUIAction = async (actionData: any) => {
 }
 
 defineExpose({
+  newChat: onNewChat,
   startDictation: () => chatArea.value?.startDictation(),
 })
 

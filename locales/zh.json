@@ -668,7 +668,7 @@
     }
   },
   "embedding": {
-    "apiKeyReminder": "请在 Witsy 设置的模型面板中输入您的 API 密钥。",
+    "apiKeyReminder": "请在 VerifAI 设置的模型面板中输入您的 API 密钥。",
     "browse": "浏览模型",
     "model": "嵌入模型",
     "provider": "嵌入提供商"
@@ -1481,9 +1481,9 @@
   },
   "menu": {
     "app": {
-      "about": "关于Witsy",
+      "about": "关于VerifAI",
       "checkForUpdates": "检查更新…",
-      "quit": "退出 Witsy",
+      "quit": "退出 VerifAI",
       "settings": "@:{'common.settings'}…"
     },
     "edit": {
@@ -1499,6 +1499,7 @@
       "backupImport": "恢复备份…",
       "closeWindow": "关闭窗口",
       "designStudio": "@:{'designStudio.title'}",
+      "mainWindow": "打开VerifAI",
       "newChat": "新建聊天",
       "quickPrompt": "新建提示",
       "scratchpad": "@:{'scratchpad.title'}",
@@ -1603,12 +1604,12 @@
       "count": "未找到模型。|1 个模型可用！|{count} 个模型可用！",
       "error": "请检查您的API密钥并重试。",
       "showMore": "显示更多",
-      "subtitle": "您可以使用所有主要提供商的语言模型与Witsy聊天。在下面输入您的API密钥以开始。如果您没有任何API密钥，不用担心：在下一屏中，您将能够设置Witsy通过Ollama使用本地模型！",
+      "subtitle": "您可以使用所有主要提供商的语言模型与VerifAI聊天。在下面输入您的API密钥以开始。如果您没有任何API密钥，不用担心：在下一屏中，您将能够设置VerifAI通过Ollama使用本地模型！",
       "success": "{engine} 密钥验证成功。<br/>{count} 个模型已找到！",
       "title": "您的聊天模型提供商"
     },
     "done": {
-      "subtitle": "您已完成所有设置，准备开始！<br/>开始与Witsy聊天，探索其功能吧！",
+      "subtitle": "您已完成所有设置，准备开始！<br/>开始与VerifAI聊天，探索其功能吧！",
       "title": "全部完成！"
     },
     "instructions": {
@@ -1622,8 +1623,8 @@
         "title": "您尚未完成个性化设置。"
       },
       "selectStyle": "现在选择您希望助手如何响应。<br/>这将与您的个人信息结合，创建完美的指令。",
-      "subtitle": "通过回答几个问题，Witsy将能够个性化您的体验并提供更好的回答。您可以跳过此步骤，但强烈建议这样做，以使Witsy更加贴近您个人。",
-      "title": "让Witsy了解您！"
+      "subtitle": "通过回答几个问题，VerifAI将能够个性化您的体验并提供更好的回答。您可以跳过此步骤，但强烈建议这样做，以使VerifAI更加贴近您个人。",
+      "title": "让VerifAI了解您！"
     },
     "ollama": {
       "browseModels": "在 https://ollama.com/search 发现更多模型",
@@ -1647,22 +1648,22 @@
     },
     "permissions": {
       "accessibility": {
-        "description": "Witsy 需要此权限以读取其他应用程序中的文本，并无缝集成您的工作流程。",
+        "description": "VerifAI 需要此权限以读取其他应用程序中的文本，并无缝集成您的工作流程。",
         "title": "辅助功能"
       },
       "automation": {
-        "description": "请确保在自动化设置界面中授予 Witsy “系统事件” 权限。",
+        "description": "请确保在自动化设置界面中授予 VerifAI \"系统事件\" 权限。",
         "title": "自动化"
       },
       "denied": "未授权",
       "granted": "已授权",
-      "info": "这些权限使 Witsy 能够提供全功能。您可以现在或稍后在系统偏好设置中授权。",
+      "info": "这些权限使 VerifAI 能够提供全功能。您可以现在或稍后在系统偏好设置中授权。",
       "leave": {
         "message": "您确定要在未授权所有权限的情况下继续吗？部分功能可能无法正常使用。",
         "title": "权限未完全授权"
       },
       "openSettings": "打开设置",
-      "subtitle": "在 macOS 上，Witsy 需要某些权限以提供最佳体验。",
+      "subtitle": "在 macOS 上，VerifAI 需要某些权限以提供最佳体验。",
       "title": "系统权限"
     },
     "studio": {
@@ -1677,13 +1678,13 @@
       "already": "@:{'onboarding.chat.already'}",
       "count": "@:{'onboarding.chat.count'}",
       "error": "@:{'onboarding.chat.error'}",
-      "subtitle": "使用您的声音与Witsy互动！Witsy不仅可以朗读您与语言模型聊天会话中的回复，还可以朗读其他应用程序中屏幕上显示的任何文本！",
+      "subtitle": "使用您的声音与VerifAI互动！VerifAI不仅可以朗读您与语言模型聊天会话中的回复，还可以朗读其他应用程序中屏幕上显示的任何文本！",
       "success": "@:{'onboarding.chat.success'}",
       "title": "语音互动"
     },
     "welcome": {
-      "subtitle": "Witsy是一个强大的AI助手，可以帮助您完成各种任务。您可以与它聊天，要求它撰写文档，甚至在您的电脑上运行代码。让我们开始吧！",
-      "title": "欢迎使用Witsy！"
+      "subtitle": "VerifAI是一个强大的AI助手，可以帮助您完成各种任务。您可以与它聊天，要求它撰写文档，甚至在您的电脑上运行代码。让我们开始吧！",
+      "title": "欢迎使用VerifAI！"
     }
   },
   "plugins": {
@@ -1852,7 +1853,7 @@
     },
     "generationError": "生成文本时出错",
     "loadingError": "加载便签文件时出错",
-    "placeholder": "开始输入你的文档，或者\n让 Witsy 为你写点什么！\n\n一旦开始，你可以让 Witsy\n对你的文档进行修改。\n\n如果你突出显示了一部分文本，\nWitsy 只会更新这一部分。\n\n还可以查看右下角的写作助手！\n\n试试吧！",
+    "placeholder": "开始输入你的文档，或者\n让 VerifAI 为你写点什么！\n\n一旦开始，你可以让 VerifAI\n对你的文档进行修改。\n\n如果你突出显示了一部分文本，\nVerifAI 只会更新这一部分。\n\n还可以查看右下角的写作助手！\n\n试试吧！",
     "title": "Scratchpad"
   },
   "settings": {
@@ -1949,7 +1950,7 @@
       "runtime": "深度研究类型",
       "runtimes": {
         "ma": "多代理（完全代理驱动，基于 LLM）",
-        "ms": "多步（混合代码/代理，基于 Witsy）"
+        "ms": "多步（混合代码/代理，基于 VerifAI）"
       }
     },
     "engines": {
@@ -2223,7 +2224,7 @@
       "aiCommandsUsage": "使用方法：突出显示你的文本，按下键盘快捷键，然后选择一个 AI 命令",
       "designStudio": "@:{'tray.menu.designStudio'}",
       "dictation": "@:{'tray.menu.startDictation'}",
-      "newChat": "@:{'tray.menu.newChat'}",
+      "mainWindow": "@:{'tray.menu.mainWindow'}",
       "quickPrompt": "@:{'tray.menu.quickPrompt'}",
       "readAloud": "@:{'tray.menu.readAloud'}",
       "readAloudUsage": "使用方法：突出显示你的文本，按下键盘快捷键",
@@ -2285,7 +2286,7 @@
       "tts": {
         "groqAcceptTermsReminder": "您需要<a href=\"https://console.groq.com/playground?model=playai-tts\" target=\"_blank\">接受条款和条件</a>以使用 Groq 模型。",
         "kokoroReminder": "已提供",
-        "sampleText": "欢迎使用 Witsy，终极 AI 桌面助手。",
+        "sampleText": "欢迎使用 VerifAI，终极 AI 桌面助手。",
         "serviceDisclaimer": "该服务可能随时停止工作。",
         "voice": "@:{'common.voice'}"
       },
@@ -2375,7 +2376,7 @@
       "agentForge": "@:{'menu.file.agentForge'}",
       "designStudio": "@:{'menu.file.designStudio'}",
       "installUpdate": "安装更新并重启…",
-      "newChat": "@:{'menu.file.newChat'}",
+      "mainWindow": "@:{'menu.file.mainWindow'}",
       "quickPrompt": "@:{'menu.file.quickPrompt'}",
       "quit": "退出",
       "readAloud": "朗读",
@@ -2386,9 +2387,9 @@
       "voiceMode": "@:{'realtimeChat.title'}"
     },
     "notification": {
-      "darwin": "您可以从菜单栏中的钢笔图标激活 Witsy。",
-      "linux": "您可以从菜单栏中的钢笔图标激活 Witsy。",
-      "windows": "您可以从系统托盘中的钢笔图标激活 Witsy。"
+      "darwin": "您可以从菜单栏中的钢笔图标激活 VerifAI。",
+      "linux": "您可以从菜单栏中的钢笔图标激活 VerifAI。",
+      "windows": "您可以从系统托盘中的钢笔图标激活 VerifAI。"
     }
   }
 }

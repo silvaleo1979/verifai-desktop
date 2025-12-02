@@ -1,5 +1,6 @@
 
 import { LlmModelOpts, LlmChunkTool, Message as IMessageBase, Attachment as IAttachmentBase, LlmTool, LlmChunk, PluginParameter, LlmUsage } from 'multi-llm-ts'
+import { ZodType } from 'zod'
 import { Configuration } from './config'
 import { Size } from 'electron'
 import { Application, RunCommandParams } from './automation'
@@ -95,6 +96,18 @@ export interface Chat {
 
 export type AgentType = 'runnable' | 'support'
 
+export type AgentStep = {
+  name?: string
+  prompt: string|null
+  tools: string[]|null
+  agents: string[]|null
+  docrepo: string|null
+  structuredOutput?: {
+    name: string
+    structure: ZodType
+  }
+}
+
 export interface Agent {
   id: string
   createdAt: number
@@ -107,14 +120,12 @@ export interface Agent {
   modelOpts: LlmModelOpts|null
   disableStreaming: boolean
   locale: string|null
-  tools: string[]|null
-  agents: string[]|null
-  docrepo: string|null
   instructions: string
-  prompt: string|null
   parameters: PluginParameter[]
+  steps: AgentStep[]
   schedule: string|null
-  buildPrompt: (parameters: anyDict) => string|null
+  invocationValues: Record<string, string>
+  buildPrompt: (step: number, parameters: anyDict) => string|null
   getPreparationDescription?: () => string
   getRunningDescription?: (args: any) => string
   getCompletedDescription?: (args: any, results: any) => string

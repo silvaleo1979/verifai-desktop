@@ -1,5 +1,6 @@
 {
   "common": {
+    "actions": "Actions",
     "add": "Add",
     "arguments": "Arguments",
     "askMeAnything": "Ask me anything",
@@ -176,11 +177,18 @@
     "write": "Write",
     "yes": "Yes"
   },
+  "agentSelector": {
+    "title": "Select Support Agents"
+  },
   "agent": {
     "create": {
+      "header": {
+        "title": "Welcome to the Create Agent assistant",
+        "description": "Agents are autonomous entities used to automate workflows, answer questions, or interact with other systems."
+      },
       "agents": {
-        "title": "Support Agents",
-        "help": "Agents can delegate tasks to other agents. Select one or more agents to handle specific tasks."
+        "title": "Helper Agents",
+        "help": "Agents can delegate tasks to other agents. Select one or more helper agents to handle specific tasks."
       },
       "goal": {
         "title": "Agent Goal"
@@ -190,9 +198,11 @@
           "name": "Descriptive name for your agent.",
           "description": "Short description of your agent purpose. When this agent is used inside a workflow, this will be shared with the LLM to help it understand the agent and eventually decide to call it.",
           "goal": "The goal of the agent. This will be used as the system instructions sent to the LLM. Do not include execution specific information here as these wil be set in the prompt.",
-          "prompt": "Prompt template that will be used to execute the agent. You can include \"variables\" that will be substituted with the values provided by the user when the agent is executed. Use the format {'{'}{'{'}name:descripton{'}'}{'}'} to define a variable (the description will guide the user when prompted for a value)."
+          "prompt": "Prompt template that will be used to execute the agent. You can include \"variables\" that will be substituted with the values provided by the user when the agent is executed. Use the format {'{'}{'{'}name:descripton{'}'}{'}'} to define a variable (the description will guide the user when prompted for a value).",
+          "type": "Choose whether this agent will be executed directly (Main) or used as a tool by other agents (Helper)."
         },
-        "title": "General Information"
+        "title": "General Information",
+        "type": "Agent Type"
       },
       "invocation": {
         "title": "Agent Triggers"
@@ -218,7 +228,7 @@
       "workflow": {
         "title": "Workflow",
         "help": {
-          "singleOnly": "Witsy currently only supports single step workflows. You can add multiple steps in the future."
+          "singleOnly": "VerifAI currently only supports single step workflows. You can add multiple steps in the future."
         }
       }
     },
@@ -226,10 +236,10 @@
     "forge": {
       "confirmDelete": "Are you sure you want to delete this agent?",
       "create": "Create Agent",
-      "empty": "Unlock the agentic power of Witsy by creating your first agent! Click the robot head to get started.",
+      "empty": "Unlock the agentic power of VerifAI by creating your first agent! Click the robot head to get started.",
       "list": {
-        "runnable": "Executable agents",
-        "support": "Support agents"
+        "runnable": "Main Agents",
+        "support": "Helper Agents"
       },
       "title": "Agent Forge"
     },
@@ -242,7 +252,10 @@
       "neverRun": "Never",
       "prompt": "@:{'common.prompt'}",
       "status": "Status",
-      "trigger": "Trigger"
+      "trigger": "Trigger",
+      "viewLog": "View full log",
+      "analyzeInChat": "Analyze in Chat",
+      "analyzeInChatInstructions": "The execution summary has been copied to your clipboard.<br/><br/>Go to <strong>Chat</strong> and paste (Ctrl+V) to analyze with the assistant."
     },
     "lastRun": "Last executed",
     "name": "@:{'common.name'}",
@@ -260,6 +273,10 @@
       "nextRuns": "Next Runs",
       "schedule": "Schedule",
       "webhook": "Webhook URL"
+    },
+    "type": {
+      "runnable": "🎯 Main (Executable)",
+      "support": "🔧 Helper (Tool)"
     },
     "view": {
       "header": "Agent Summary",
@@ -700,7 +717,7 @@
     }
   },
   "embedding": {
-    "apiKeyReminder": "Make sure you enter your API key in the Models pane of Witsy Settings.",
+    "apiKeyReminder": "Make sure you enter your API key in the Models pane of VerifAI Settings.",
     "browse": "Browse models",
     "model": "Embedding Model",
     "provider": "Embedding Provider"
@@ -1513,9 +1530,9 @@
   },
   "menu": {
     "app": {
-      "about": "About Witsy",
+      "about": "About VerifAI",
       "checkForUpdates": "Check for Updates…",
-      "quit": "Quit Witsy",
+      "quit": "Quit VerifAI",
       "settings": "@:{'common.settings'}…"
     },
     "edit": {
@@ -1531,6 +1548,7 @@
       "backupImport": "Restore backup…",
       "closeWindow": "Close Window",
       "designStudio": "@:{'designStudio.title'}",
+      "mainWindow": "Open VerifAI",
       "newChat": "New Chat",
       "quickPrompt": "Quick Prompt",
       "scratchpad": "@:{'scratchpad.title'}",
@@ -1635,12 +1653,12 @@
       "count": "No model found.|1 model available!|{count} models available!",
       "error": "Please check your API key and try again.",
       "showMore": "Show more",
-      "subtitle": "You can chat with Witsy using language models from all major providers. Enter your API keys below to get started. If you don't have any API keys, no worries: in the next screen you'll be able to setup Witsy to use local models through Ollama!",
+      "subtitle": "You can chat with VerifAI using language models from all major providers. Enter your API keys below to get started. If you don't have any API keys, no worries: in the next screen you'll be able to setup VerifAI to use local models through Ollama!",
       "success": "{engine} key validated.",
       "title": "Your chat models providers"
     },
     "done": {
-      "subtitle": "You're all set up and ready to go!<br/>Start chatting with Witsy and explore its capabilities!",
+      "subtitle": "You're all set up and ready to go!<br/>Start chatting with VerifAI and explore its capabilities!",
       "title": "All Done!"
     },
     "instructions": {
@@ -1654,8 +1672,8 @@
         "title": "You did not complete your personalization."
       },
       "selectStyle": "Now choose how you'd like your assistant to respond.<br/>This will be combined with your personal information to create the perfect instructions.",
-      "subtitle": "By answering a few questions, Witsy will be able to personalize your experience and provide better answers. You can skip this step if you want, but it is highly recommended to make Witsy feel more personal.",
-      "title": "Let Witsy know about you!"
+      "subtitle": "By answering a few questions, VerifAI will be able to personalize your experience and provide better answers. You can skip this step if you want, but it is highly recommended to make VerifAI feel more personal.",
+      "title": "Let VerifAI know about you!"
     },
     "ollama": {
       "browseModels": "Discover more models at https://ollama.com/search",
@@ -1679,22 +1697,22 @@
     },
     "permissions": {
       "accessibility": {
-        "description": "Required for Witsy to read text from other applications and integrate seamlessly with your workflow.",
+        "description": "Required for VerifAI to read text from other applications and integrate seamlessly with your workflow.",
         "title": "Accessibility"
       },
       "automation": {
-        "description": "Make sure you grant the \"System Events\" permission to Witsy in the Automation settings screen.",
+        "description": "Make sure you grant the \"System Events\" permission to VerifAI in the Automation settings screen.",
         "title": "Automation"
       },
       "denied": "Not Granted",
       "granted": "Granted",
-      "info": "These permissions allow Witsy to provide its full range of features. You can grant them now or later in System Preferences.",
+      "info": "These permissions allow VerifAI to provide its full range of features. You can grant them now or later in System Preferences.",
       "leave": {
         "message": "Are you sure you want to continue without granting all permissions? Some features may not work properly.",
         "title": "Permissions not fully granted"
       },
       "openSettings": "Open Settings",
-      "subtitle": "On macOS, Witsy needs certain permissions to provide the best experience.",
+      "subtitle": "On macOS, VerifAI needs certain permissions to provide the best experience.",
       "title": "System Permissions"
     },
     "studio": {
@@ -1709,13 +1727,13 @@
       "already": "@:{'onboarding.chat.already'}",
       "count": "@:{'onboarding.chat.count'}",
       "error": "@:{'onboarding.chat.error'}",
-      "subtitle": "Interact with Witsy using your voice! Witsy can read aloud not only responses from your chat sessions with language models but also any text displayed on screen in other applications!",
+      "subtitle": "Interact with VerifAI using your voice! VerifAI can read aloud not only responses from your chat sessions with language models but also any text displayed on screen in other applications!",
       "success": "@:{'onboarding.chat.success'}",
       "title": "Voice Interaction"
     },
     "welcome": {
-      "subtitle": "Witsy is a powerful AI assistant that can help you with a wide range of tasks. You can chat with it, ask it to write documents, and even run code on your computer. Let's get started!",
-      "title": "Welcome to Witsy!"
+      "subtitle": "VerifAI is a powerful AI assistant that can help you with a wide range of tasks. You can chat with it, ask it to write documents, and even run code on your computer. Let's get started!",
+      "title": "Welcome to VerifAI!"
     }
   },
   "plugins": {
@@ -1884,7 +1902,7 @@
     },
     "generationError": "Error while generating text",
     "loadingError": "Error while loading scratchpad file",
-    "placeholder": "Start typing your document or\nask Witsy to write something for you!\n\nOnce you started you can ask Witsy\nto make modification on your document.\n\nIf you highligh a portion of your text,\nWitsy will only update this portion.\n\nAlso check out the Writing Assistant\nin the action bar in the lower right corner!\n\nGive it a go!",
+    "placeholder": "Start typing your document or\nask VerifAI to write something for you!\n\nOnce you started you can ask VerifAI\nto make modification on your document.\n\nIf you highligh a portion of your text,\nVerifAI will only update this portion.\n\nAlso check out the Writing Assistant\nin the action bar in the lower right corner!\n\nGive it a go!",
     "title": "Scratchpad"
   },
   "settings": {
@@ -1981,7 +1999,7 @@
       "runtime": "Deep Research type",
       "runtimes": {
         "ma": "Multi-agent (full agentic, LLM-driven)",
-        "ms": "Multi-step (hybrid code/agent, Witsy-driven)"
+        "ms": "Multi-step (hybrid code/agent, VerifAI-driven)"
       }
     },
     "engines": {
@@ -2185,7 +2203,7 @@
         "title": "Filesystem"
       },
       "image": {
-        "apiKeyReminder": "Make sure you enter your API key in the Models pane of Witsy Settings.",
+        "apiKeyReminder": "Make sure you enter your API key in the Models pane of VerifAI Settings.",
         "description": "This plugin allows LLM engines to create images from a text description.",
         "falai": {
           "aboutModels": "More about fal.ai models"
@@ -2261,7 +2279,7 @@
       "aiCommandsUsage": "Usage: Highlight your text, press keyboard shortcut then choose an Al command",
       "designStudio": "@:{'tray.menu.designStudio'}",
       "dictation": "@:{'tray.menu.startDictation'}",
-      "newChat": "@:{'tray.menu.newChat'}",
+      "mainWindow": "@:{'tray.menu.mainWindow'}",
       "quickPrompt": "@:{'tray.menu.quickPrompt'}",
       "readAloud": "@:{'tray.menu.readAloud'}",
       "readAloudUsage": "Usage: Highlight your text, press keyboard shortcut",
@@ -2323,7 +2341,7 @@
       "tts": {
         "groqAcceptTermsReminder": "You need to <a href=\"https://console.groq.com/playground?model=playai-tts\" target=\"_blank\">accept the terms and conditions</a> to use the Groq model.",
         "kokoroReminder": "Provided",
-        "sampleText": "Welcome to Witsy, the ultimate AI desktop assistant.",
+        "sampleText": "Welcome to VerifAI, the ultimate AI desktop assistant.",
         "serviceDisclaimer": "The service may stop working at any point in time.",
         "voice": "@:{'common.voice'}"
       },
@@ -2413,7 +2431,7 @@
       "agentForge": "@:{'menu.file.agentForge'}",
       "designStudio": "@:{'menu.file.designStudio'}",
       "installUpdate": "Install update and restart…",
-      "newChat": "@:{'menu.file.newChat'}",
+      "mainWindow": "@:{'menu.file.mainWindow'}",
       "quickPrompt": "@:{'menu.file.quickPrompt'}",
       "quit": "Quit",
       "readAloud": "Read Aloud",
@@ -2424,9 +2442,9 @@
       "voiceMode": "@:{'realtimeChat.title'}"
     },
     "notification": {
-      "darwin": "You can activate Witsy from the fountain pen icon in the menu bar.",
-      "linux": "You can activate Witsy from the fountain pen icon in the menu bar.",
-      "windows": "You can activate Witsy from the fountain pen icon in the system tray."
+      "darwin": "You can activate VerifAI from the fountain pen icon in the menu bar.",
+      "linux": "You can activate VerifAI from the fountain pen icon in the menu bar.",
+      "windows": "You can activate VerifAI from the fountain pen icon in the system tray."
     }
   }
 }

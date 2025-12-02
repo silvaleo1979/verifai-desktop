@@ -12,6 +12,8 @@ export default class Message extends MessageBase implements IMessage {
   createdAt: number
   type: MessageType
   expert?: Expert
+  agentId?: string
+  agentRunId?: string
   deepResearch?: boolean
   toolCalls?: ToolCall[]
   usage?: LlmUsage
@@ -27,6 +29,8 @@ export default class Message extends MessageBase implements IMessage {
     this.createdAt = Date.now()
     this.type = 'text'
     this.expert = null
+    this.agentId = null
+    this.agentRunId = null
     this.deepResearch = false
     this.toolCalls = []
     this.attachments = []
@@ -53,6 +57,8 @@ export default class Message extends MessageBase implements IMessage {
     message.reasoning = obj.reasoning || null
     message.transient = false
     message.expert = obj.expert ? Expert.fromJson(obj.expert) : null
+    message.agentId = obj.agentId || null
+    message.agentRunId = obj.agentRunId || null
     message.deepResearch = obj.deepResearch || false
     message.toolCalls = obj.toolCalls || obj.toolCall?.calls?.map((tc: any, idx: number) => ({
       ...tc,

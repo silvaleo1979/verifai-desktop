@@ -36,7 +36,7 @@ export const exportBackup = async (app: App): Promise<boolean> => {
 
     // Create backup filename with timestamp
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-').split('T')[0]
-    const backupFilename = `witsy-backup-${timestamp}.zip`
+    const backupFilename = `verifai-backup-${timestamp}.zip`
     const backupPath = path.join(targetDir, backupFilename)
 
     // Create a file to stream archive data to
@@ -131,7 +131,7 @@ export const importBackup = async (app: App, quitApp: () => void): Promise<boole
     }
 
     // Create temporary directory for extraction
-    const tempDir = path.join(os.tmpdir(), `witsy-restore-${Date.now()}`)
+    const tempDir = path.join(os.tmpdir(), `verifai-restore-${Date.now()}`)
     fs.mkdirSync(tempDir, { recursive: true })
 
     try {

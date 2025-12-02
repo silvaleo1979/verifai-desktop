@@ -1,11 +1,13 @@
 
 import { LlmModelOpts, PluginParameter } from 'multi-llm-ts'
-import { AgentType, anyDict, type Agent as AgentBase } from '../types/index'
+import { AgentType, AgentStep, anyDict, type Agent as AgentBase } from '../types/index'
+import { extractPromptInputs, replacePromptInputs } from '../services/prompt'
 import { ZodType } from 'zod'
 
 export default class Agent implements AgentBase {
 
   id: string
+  source: 'verifai' | 'a2a'
   createdAt: number
   updatedAt: number
   name: string
@@ -20,16 +22,15 @@ export default class Agent implements AgentBase {
     structure: ZodType
   }
   disableStreaming: boolean
-  tools: string[]|null
-  agents: string[]|null
-  docrepo: string|null
   instructions: string
-  prompt: string|null
   parameters: PluginParameter[]
+  steps: AgentStep[]
   schedule: string|null
+  invocationValues: Record<string, string>
 
   constructor() {
     this.id = crypto.randomUUID()
+    this.source = 'verifai'
     this.createdAt = Date.now()
     this.updatedAt = Date.now()
     this.name = ''
@@ -38,15 +39,19 @@ export default class Agent implements AgentBase {
     this.engine = ''
     this.model = ''
     this.modelOpts = {}
-    this.disableStreaming = true
+    this.disableStreaming = false
     this.locale = ''
-    this.tools = null
-    this.agents = []
-    this.docrepo = null
     this.instructions = ''
-    this.prompt = null
     this.parameters = []
+    this.steps = [{
+      name: undefined,
+      prompt: null,
+      tools: null,
+      agents: [],
+      docrepo: null
+    }]
     this.schedule = null
+    this.invocationValues = {}
   }
 
   static fromJson(
@@ -58,6 +63,7 @@ export default class Agent implements AgentBase {
   ): Agent {
     const agent = new Agent()
     agent.id = obj.id || crypto.randomUUID()
+    agent.source = obj.source ?? 'verifai'
     agent.createdAt = obj.createdAt ?? Date.now()
     agent.updatedAt = obj.updatedAt ?? Date.now()
     agent.name = obj.name
@@ -66,15 +72,20 @@ export default class Agent implements AgentBase {
     agent.engine = obj.engine ?? ''
     agent.model = obj.model ?? ''
     agent.modelOpts = obj.modelOpts ?? null
-    agent.disableStreaming = obj.disableStreaming ?? true
+    agent.disableStreaming = obj.disableStreaming ?? false
     agent.locale = obj.locale ?? ''
-    agent.tools = obj.tools ?? null
-    agent.agents = obj.agents ?? []
-    agent.docrepo = obj.docrepo ?? null
     agent.instructions = obj.instructions ?? ''
-    agent.prompt = obj.prompt ?? null
     agent.parameters = obj.parameters ?? []
+    // Migração: converter prompt antigo para steps
+    agent.steps = obj.steps ?? [{
+      name: undefined,
+      prompt: obj.prompt ?? null,
+      tools: obj.tools ?? null,
+      agents: obj.agents ?? [],
+      docrepo: obj.docrepo ?? null
+    }]
     agent.schedule = obj.schedule ?? null
+    agent.invocationValues = obj.invocationValues ?? {}
     agent.getPreparationDescription = preparationDescription
     agent.getRunningDescription = runningDescription
     agent.getCompletedDescription = completedDescription
@@ -82,17 +93,23 @@ export default class Agent implements AgentBase {
     return agent
   }
 
-  buildPrompt(parameters: anyDict): string|null {
-    if (!this.prompt) return null
-    let prompt = this.prompt
-    for (const param of Object.keys(parameters)) {
-      let value = parameters[param]
-      if (Array.isArray(value)) {
-        value = value.join(', ')
+  buildPrompt(step: number, parameters: anyDict): string|null {
+    
+    // Verificar se o step existe e tem prompt
+    if (!this.steps[step] || !this.steps[step].prompt) return null
+
+    // Extrair variáveis do prompt
+    const promptInputs = extractPromptInputs(this.steps[step].prompt)
+    
+    // Garantir que temos valor para cada variável
+    for (const promptInput of promptInputs) {
+      if (!parameters[promptInput.name]) {
+        parameters[promptInput.name] = promptInput.defaultValue ?? ''
       }
-      prompt = prompt.replace(new RegExp(`{{${param}}}`, 'g'), value)
     }
-    return prompt
+
+    // Substituir variáveis no prompt
+    return replacePromptInputs(this.steps[step].prompt, parameters)
   }
   
   getPreparationDescription?: () => string

@@ -1,5 +1,6 @@
 {
   "common": {
+    "actions": "Ações",
     "add": "Adicionar",
     "arguments": "Parâmetros",
     "askMeAnything": "Pergunte-me qualquer coisa",
@@ -176,28 +177,81 @@
     "write": "Escrever",
     "yes": "Sim"
   },
+  "agentSelector": {
+    "title": "Selecionar Agentes de Suporte"
+  },
   "agent": {
     "create": {
-      "information": "Informações Gerais",
-      "invocation": "Gatilhos do Agente",
-      "lastOneUsed": "@:{'settings.general.lastOneUsed'}",
-      "llm": "Configuração do Modelo",
-      "settings": "Configurações do Modelo",
+      "header": {
+        "title": "Bem-vindo ao assistente de criação de agentes",
+        "description": "Agentes são entidades autônomas usadas para automatizar fluxos de trabalho, responder perguntas ou interagir com outros sistemas."
+      },
+      "agents": {
+        "title": "Agentes Auxiliares",
+        "help": "Agentes podem delegar tarefas para outros agentes. Selecione um ou mais agentes auxiliares para lidar com tarefas específicas."
+      },
+      "goal": {
+        "title": "Objetivo do Agente"
+      },
+      "information": {
+        "help": {
+          "name": "Nome descritivo para o seu agente.",
+          "description": "Breve descrição do propósito do seu agente. Quando este agente for usado em um fluxo de trabalho, isso será compartilhado com o LLM para ajudá-lo a entender o agente e eventualmente decidir chamá-lo.",
+          "goal": "O objetivo do agente. Isso será usado como instruções do sistema enviadas ao LLM. Não inclua informações específicas de execução aqui, pois elas serão definidas no prompt.",
+          "prompt": "Modelo de prompt que será usado para executar o agente. Você pode incluir \"variáveis\" que serão substituídas pelos valores fornecidos pelo usuário quando o agente for executado. Use o formato {{nome:descrição}} para definir uma variável (a descrição guiará o usuário quando solicitado um valor).",
+          "type": "Escolha se este agente será executado diretamente (Principal) ou será usado como ferramenta por outros agentes (Auxiliar)."
+        },
+        "title": "Informações Gerais",
+        "type": "Tipo de Agente"
+      },
+      "invocation": {
+        "title": "Gatilhos do Agente",
+        "promptRequired": "Um prompt é obrigatório ao configurar agendamento ou webhook"
+      },
+      "llm": {
+        "help": {
+          "warning": "A execução do agente depende muito das capacidades de cada modelo. Certifique-se de selecionar um modelo que suporte capacidades agênticas."
+        },
+        "lastOneUsed": "@:{'settings.general.lastOneUsed'}",
+        "title": "Configuração do Modelo",
+        "showModelSettings": "Configurações Avançadas"
+      },
+      "settings": {
+        "title": "Configurações do Modelo"
+      },
       "tools": {
+        "help": "Reduzir o número de ferramentas expostas ao LLM ajudará a focar na tarefa em questão. Você sempre pode permitir todas as ferramentas mais tarde, se necessário.",
+        "allowAll": "Permitir acesso a todos os plugins e servidores MCP",
         "custom": "Restringir acesso a ferramentas específicas",
         "selectAll": "@:{'common.selectAll'}",
         "selectNone": "@:{'common.selectNone'}",
-        "title": "Acesso às Ferramentas"
+        "title": "Acesso a Ferramentas"
+      },
+      "workflow": {
+        "title": "Fluxo de Trabalho",
+        "step": "Etapa {step}",
+        "addStep": "Adicionar Etapa",
+        "customTools": "Ferramentas Personalizadas",
+        "customAgents": "Agentes Personalizados",
+        "confirmDeleteStep": "Tem certeza que deseja excluir esta etapa?",
+        "help": {
+          "title": "Defina múltiplas etapas para seu agente. Cada etapa pode usar o resultado da etapa anterior através de variáveis {output.1}, {output.2}, etc.",
+          "connect": "Use {output.1}, {output.2}, etc. para referenciar resultados de etapas anteriores.",
+          "outputVarDesc": "Resultado da etapa {step}"
+        },
+        "error": {
+          "emptyStepPrompt": "A etapa {step} precisa ter um prompt"
+        }
       }
     },
     "description": "@:{'common.description'}",
     "forge": {
       "confirmDelete": "Tem certeza de que deseja excluir este agente?",
       "create": "Criar Agente",
-      "empty": "Selecione um agente existente ou crie um novo.",
+      "empty": "Desbloqueie o poder agêntico do VerifAI criando seu primeiro agente! Clique no robô para começar.",
       "list": {
-        "runnable": "Agentes executáveis",
-        "support": "Agentes de suporte"
+        "runnable": "Agentes Principais",
+        "support": "Agentes Auxiliares"
       },
       "title": "Forja do Agente"
     },
@@ -210,7 +264,10 @@
       "neverRun": "Nunca",
       "prompt": "@:{'common.prompt'}",
       "status": "Status",
-      "trigger": "Acionador"
+      "trigger": "Acionador",
+      "viewLog": "Ver log completo",
+      "analyzeInChat": "Analisar no Chat",
+      "analyzeInChatInstructions": "O resumo da execução foi copiado para a área de transferência.<br/><br/>Vá até o <strong>Chat</strong> e cole (Ctrl+V) para analisar com o assistente."
     },
     "lastRun": "Última execução",
     "name": "@:{'common.name'}",
@@ -228,6 +285,10 @@
       "nextRuns": "Próximas Execuções",
       "schedule": "Agendamento",
       "webhook": "URL do Webhook"
+    },
+    "type": {
+      "runnable": "🎯 Principal (Executável)",
+      "support": "🔧 Auxiliar (Ferramenta)"
     },
     "view": {
       "header": "Resumo do Agente",
@@ -1503,6 +1564,7 @@
       "backupImport": "Restaurar backup…",
       "closeWindow": "Fechar Janela",
       "designStudio": "@:{'designStudio.title'}",
+      "mainWindow": "Abrir VerifAI",
       "newChat": "Novo Chat",
       "quickPrompt": "Novo Prompt",
       "scratchpad": "@:{'scratchpad.title'}",
@@ -2233,7 +2295,7 @@
       "aiCommandsUsage": "Uso: Destaque seu texto, pressione o atalho de teclado e escolha um comando de IA",
       "designStudio": "@:{'tray.menu.designStudio'}",
       "dictation": "@:{'tray.menu.startDictation'}",
-      "newChat": "@:{'tray.menu.newChat'}",
+      "mainWindow": "@:{'tray.menu.mainWindow'}",
       "quickPrompt": "@:{'tray.menu.quickPrompt'}",
       "readAloud": "@:{'tray.menu.readAloud'}",
       "readAloudUsage": "Uso: Destaque seu texto, pressione o atalho de teclado",
@@ -2385,7 +2447,7 @@
       "agentForge": "@:{'menu.file.agentForge'}",
       "designStudio": "@:{'menu.file.designStudio'}",
       "installUpdate": "Instalar atualização e reiniciar…",
-      "newChat": "@:{'menu.file.newChat'}",
+      "mainWindow": "@:{'menu.file.mainWindow'}",
       "quickPrompt": "@:{'menu.file.quickPrompt'}",
       "quit": "Sair",
       "readAloud": "Ler em Voz Alta",
