@@ -49,7 +49,7 @@ export class LicenseManager {
 
   constructor() {
     this.store = new Store({ name: 'license' });
-    this.apiUrl = process.env.VERIFAI_API_URL || 'https://api.verifai.com.br';
+    this.apiUrl = process.env.VERIFAI_API_URL || 'https://api.t2verification.com.br';
     this.machineName = os.hostname();
     
     this.axiosInstance = axios.create({
