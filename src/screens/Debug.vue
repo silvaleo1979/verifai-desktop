@@ -99,6 +99,8 @@
 <script setup lang="ts">
 
 import { NetworkRequest, WebSocketFrame } from '../types'
+import { BIconTrash } from 'bootstrap-icons-vue'
+
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { store } from '../services/store'
 import { t } from '../services/i18n'

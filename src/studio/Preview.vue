@@ -50,6 +50,8 @@
 <script setup lang="ts">
 
 import { ref, watch, onMounted, nextTick } from 'vue'
+import { BIconArrowClockwise, BIconArrowCounterclockwise, BIconClipboard, BIconClipboardCheck, BIconDownload, BIconFullscreen, BIconInfoCircle, BIconTrash } from 'bootstrap-icons-vue'
+
 import { t } from '../services/i18n'
 import Message from '../models/message'
 import Dialog from '../composables/dialog'

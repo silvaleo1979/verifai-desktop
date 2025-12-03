@@ -7,6 +7,8 @@
 <script setup lang="ts">
 
 import { ref } from 'vue'
+import { BIconClipboard } from 'bootstrap-icons-vue'
+
 import { t } from '../services/i18n'
 import { removeMarkdown } from '@excalidraw/markdown-to-text'
 import Message from '../models/message'

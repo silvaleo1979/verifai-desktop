@@ -50,6 +50,8 @@
 <script setup lang="ts">
 
 import { t } from '../services/i18n'
+import { BIconBinoculars, BIconChatSquareQuote, BIconJournalText, BIconMic, BIconPalette, BIconRobot } from 'bootstrap-icons-vue'
+
 import { store } from '../services/store'
 
 </script>

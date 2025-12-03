@@ -14,6 +14,8 @@
 <script setup lang="ts">
 
 import { ref } from 'vue'
+import { BIconClipboard, BIconClipboardCheck, BIconDownload, BIconInfoCircle } from 'bootstrap-icons-vue'
+
 import Dialog from '../composables/dialog'
 import useEventBus from '../composables/event_bus'
 import Message from '../models/message'

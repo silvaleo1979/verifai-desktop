@@ -40,6 +40,8 @@
 <script setup lang="ts">
 
 import { ref, watch, onMounted } from 'vue'
+import { BIconFileArrowDown, BIconFileArrowUp, BIconFileEarmark } from 'bootstrap-icons-vue'
+
 import { store } from '../services/store'
 import { t } from '../services/i18n'
 import LlmFactory, { ILlmManager } from '../llms/llm'

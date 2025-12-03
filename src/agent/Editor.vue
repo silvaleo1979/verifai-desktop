@@ -303,7 +303,7 @@ import ToolSelector from '../screens/ToolSelector.vue'
 import AgentSelector from '../screens/AgentSelector.vue'
 import LlmFactory, { ILlmManager } from '../llms/llm'
 import Agent from '../models/agent'
-import { BIconChevronCompactDown, BIconChevronDown, BIconThreeDotsVertical } from 'bootstrap-icons-vue'
+import { BIconBullseye, BIconCardHeading, BIconCaretDownFill, BIconCaretRightFill, BIconChevronCompactDown, BIconChevronDown, BIconCpu, BIconDiagram2, BIconLightningCharge, BIconSliders, BIconThreeDotsVertical, BIconTrash } from 'bootstrap-icons-vue'
 
 const props = defineProps({
   agent: {

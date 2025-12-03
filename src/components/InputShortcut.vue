@@ -9,6 +9,8 @@
 <script setup lang="ts">
 
 import { ModelRef, computed } from 'vue'
+import { BIconXCircleFill } from 'bootstrap-icons-vue'
+
 import { Shortcut, disabledShortcutKey } from '../types/index'
 
 const value: ModelRef<Shortcut|undefined> = defineModel()

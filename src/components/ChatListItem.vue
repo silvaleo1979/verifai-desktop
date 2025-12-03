@@ -17,6 +17,8 @@
 <script setup lang="ts">
 
 import { computed } from 'vue'
+import { BIconCheckCircleFill, BIconCircle } from 'bootstrap-icons-vue'
+
 import { store } from '../services/store'
 import EngineLogo from './EngineLogo.vue'
 import Chat from '../models/chat'

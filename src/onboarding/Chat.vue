@@ -44,6 +44,8 @@
 <script setup lang="ts">
 
 import { computed, onMounted, ref } from 'vue'
+import { BIconCaretDownFill } from 'bootstrap-icons-vue'
+
 import { t } from '../services/i18n'
 import { store } from '../services/store'
 import { engineNames } from '../llms/base'

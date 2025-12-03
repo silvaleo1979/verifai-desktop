@@ -29,6 +29,8 @@
 <script setup lang="ts">
 
 import { ref, onMounted, onUnmounted } from 'vue'
+import { BIconChevronLeft } from 'bootstrap-icons-vue'
+
 import { DocumentBase } from '../types/rag'
 import { t } from '../services/i18n'
 import Dialog from '../composables/dialog'

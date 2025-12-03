@@ -13,6 +13,8 @@
 <script setup lang="ts">
 
 import { computed } from 'vue'
+import { BIconFileBarGraph, BIconFilePdf, BIconFileRichtext, BIconFileText, BIconFiletypeCsv, BIconFiletypeHtml, BIconFiletypeJson } from 'bootstrap-icons-vue'
+
 import Attachment from '../models/attachment'
 
 const emit = defineEmits(['image-click'])

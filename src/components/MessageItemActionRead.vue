@@ -9,6 +9,8 @@
 <script setup lang="ts">
 
 import { t } from '../services/i18n'
+import { BIconPlayCircle, BIconStopCircle, BIconXCircle } from 'bootstrap-icons-vue'
+
 import Message from '../models/message'
 
 const props = defineProps({

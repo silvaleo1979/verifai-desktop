@@ -8,6 +8,8 @@
 <script setup lang="ts">
 
 import { strDict } from '../types/index'
+import { BIconXLg } from 'bootstrap-icons-vue'
+
 import { ref, onMounted } from 'vue'
 
 import useEventBus from '../composables/event_bus'

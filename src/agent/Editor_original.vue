@@ -270,7 +270,7 @@ import WizardStep from '../components/WizardStep.vue'
 import ToolTable from '../components/ToolTable.vue'
 import LlmFactory, { ILlmManager } from '../llms/llm'
 import Agent from '../models/agent'
-import { BIconBullseye } from 'bootstrap-icons-vue'
+import { BIconBullseye, BIconCardHeading, BIconCpu, BIconDiagram2, BIconLightningCharge, BIconRobot, BIconSliders, BIconTools } from 'bootstrap-icons-vue'
 
 const props = defineProps({
   agent: {

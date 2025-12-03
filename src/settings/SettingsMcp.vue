@@ -19,6 +19,8 @@
 <script setup lang="ts">
 
 import { McpInstallStatus, McpServer } from '../types/mcp'
+import { BIconChevronLeft } from 'bootstrap-icons-vue'
+
 import { ref, nextTick } from 'vue'
 import { t } from '../services/i18n'
 import { store } from '../services/store'

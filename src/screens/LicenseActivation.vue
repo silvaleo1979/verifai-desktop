@@ -2,7 +2,7 @@
   <div class="license-activation">
     <div class="license-container">
       <div class="license-header">
-        <img src="/logoverifai.svg" alt="VerifAI" class="logo" />
+        <img src="/assets/logoverifai.svg" alt="VerifAI" class="logo" />
         <h1>{{ t('license.activation.title') }}</h1>
         <p class="subtitle">{{ t('license.activation.subtitle') }}</p>
       </div>
@@ -139,8 +139,7 @@ const closeWindow = () => {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  /* background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%); */
-  background: "#000000";
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
   padding: 2rem;
 }
 

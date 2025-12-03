@@ -15,6 +15,8 @@
 <script setup lang="ts">
 
 import { ref, PropType } from 'vue'
+import { BIconX, BIconXLg } from 'bootstrap-icons-vue'
+
 
 export type MovableType = 'none' | 'drag' | 'position'
 

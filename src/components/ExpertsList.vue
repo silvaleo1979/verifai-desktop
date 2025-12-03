@@ -2,7 +2,7 @@
   <div class="list-actions">
     <div class="list-action new" @click.prevent="onNew"><BIconPlusLg />{{ t('settings.experts.new') }}</div>
     <div class="list-action edit" @click.prevent="onEdit(selected)" v-if="selected"><BIconPencil />{{ t('common.edit') }}</div>
-    <div class="list-action copy" @click.prevent="onCopy(selected)" v-if="selected"><BIconCopy />{{ t('settings.experts.copy') }}</div>
+    <div class="list-action copy" @click.prevent="onCopy(selected)" v-if="selected"><BIconFiles />{{ t('settings.experts.copy') }}</div>
     <div class="list-action delete" @click.prevent="onDelete" v-if="selected"><BIconTrash />{{ t('common.delete') }}</div>
     <div class="push" /> 
     <div class="list-action menu" @click.prevent.stop="onMore" ref="moreButton"><div></div><div></div><div></div></div>
@@ -33,6 +33,8 @@
 <script setup lang="ts">
 
 import { Expert } from '../types/index'
+import { BIconFiles, BIconPencil, BIconPlusLg, BIconTrash } from 'bootstrap-icons-vue'
+
 import { ref, computed } from 'vue'
 import { v4 as uuidv4 } from 'uuid'
 import { store } from '../services/store'

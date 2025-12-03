@@ -19,6 +19,8 @@
 <script setup lang="ts">
 
 import { Command } from '../types'
+import { BIconChevronLeft } from 'bootstrap-icons-vue'
+
 import { ref } from 'vue'
 import { store } from '../services/store'
 import { t, commandI18n } from '../services/i18n'

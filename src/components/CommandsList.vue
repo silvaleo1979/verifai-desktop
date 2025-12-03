@@ -37,6 +37,8 @@
 <script setup lang="ts">
 
 import { Command } from '../types'
+import { BIconPencil, BIconPlusLg, BIconSliders, BIconTrash } from 'bootstrap-icons-vue'
+
 import { ref, computed } from 'vue'
 import { store } from '../services/store'
 import { t, commandI18n } from '../services/i18n'

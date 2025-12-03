@@ -60,6 +60,8 @@
   </main>
 </template><script setup lang="ts">
 import { computed, ref, onMounted, onUnmounted, watch } from 'vue'
+import { BIconFilePlus, BIconFolderPlus, BIconPatchExclamation, BIconTrash } from 'bootstrap-icons-vue'
+
 import { DocumentBase, DocumentSource, DocRepoAddDocResponse } from '../types/rag'
 import { extensionToMimeType } from 'multi-llm-ts'
 import { store } from '../services/store'

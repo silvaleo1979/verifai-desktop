@@ -154,7 +154,7 @@ import promptsLibrary from './prompts.json'
 
 import useEventBus from '../composables/event_bus'
 import { Model } from 'multi-llm-ts'
-import { BIconMagic } from 'bootstrap-icons-vue'
+import { BIconMagic, BIconStar, BIconStarFill } from 'bootstrap-icons-vue'
 const { onEvent } = useEventBus()
 
 type Parameter = {

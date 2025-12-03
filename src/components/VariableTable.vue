@@ -25,6 +25,8 @@
 
 <script setup lang="ts">
 import { t } from '../services/i18n'
+import { BIconDash, BIconPlus } from 'bootstrap-icons-vue'
+
 import Dialog from '../composables/dialog'
 
 const props = defineProps({

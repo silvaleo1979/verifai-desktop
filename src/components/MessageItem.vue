@@ -42,6 +42,8 @@
 <script setup lang="ts">
 
 import { ChatToolMode } from '../types/config'
+import { BIconStars } from 'bootstrap-icons-vue'
+
 import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { t } from '../services/i18n'
 import { store } from '../services/store'

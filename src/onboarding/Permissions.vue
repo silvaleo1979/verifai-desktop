@@ -66,6 +66,8 @@
 <script setup lang="ts">
 
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { BIconCheckCircleFill, BIconGearFill, BIconInfoCircle, BIconUniversalAccessCircle, BIconXCircleFill } from 'bootstrap-icons-vue'
+
 import { t } from '../services/i18n'
 import Dialog from '../composables/dialog'
 

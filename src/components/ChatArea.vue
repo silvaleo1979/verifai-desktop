@@ -29,6 +29,8 @@
 <script setup lang="ts">
 
 import { Expert, Message } from '../types/index'
+import { BIconSliders, BIconXLg } from 'bootstrap-icons-vue'
+
 import { ref, computed, onMounted } from 'vue'
 import { kMediaChatId, store } from '../services/store'
 import { t } from '../services/i18n'

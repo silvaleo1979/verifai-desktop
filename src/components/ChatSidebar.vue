@@ -32,6 +32,8 @@
 <script setup lang="ts">
 
 import { ChatListMode } from '../types/config'
+import { BIconCheck2Square, BIconFolderPlus, BIconXCircleFill } from 'bootstrap-icons-vue'
+
 import { ref, onMounted, nextTick } from 'vue'
 import { store } from '../services/store'
 import { t } from '../services/i18n'

@@ -43,6 +43,8 @@
 <script setup lang="ts">
 
 import { ToolCall } from '../types/index'
+import { BIconChevronDown, BIconChevronUp } from 'bootstrap-icons-vue'
+
 import { ref, onMounted, computed } from 'vue'
 import { t } from '../services/i18n'
 import MessageItemSearchToolBlock from './MessageItemSearchToolBlock.vue'

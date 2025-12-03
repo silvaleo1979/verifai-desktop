@@ -40,6 +40,8 @@
 
 <script setup lang="ts">
 import { expertI18n, i18nInstructions, t } from '../services/i18n'
+import { BIconGlobe } from 'bootstrap-icons-vue'
+
 import { anyDict, ExternalApp } from '../types'
 import { ref, computed, onMounted, onUnmounted, provide } from 'vue'
 import { store } from '../services/store'

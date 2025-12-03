@@ -54,6 +54,8 @@
 <script setup lang="ts">
 
 import { Agent, AgentRun } from '../types/index'
+import { BIconCalendarX, BIconPlayCircle, BIconTrash } from 'bootstrap-icons-vue'
+
 import { ref, PropType, onMounted, watch, computed } from 'vue'
 import { t } from '../services/i18n'
 import { CronExpressionParser } from 'cron-parser'

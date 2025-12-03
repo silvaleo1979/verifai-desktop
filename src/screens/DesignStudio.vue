@@ -33,6 +33,8 @@
 
 <script setup lang="ts">
 import { FileContents } from '../types/file'
+import { BIconArrowCounterclockwise, BIconImageFill } from 'bootstrap-icons-vue'
+
 import { ref, onMounted, onUnmounted, computed, nextTick } from 'vue'
 import { t } from '../services/i18n'
 import { store, kMediaChatId, kReferenceParamValue } from '../services/store'

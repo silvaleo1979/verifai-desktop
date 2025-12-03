@@ -17,6 +17,8 @@
 <script setup lang="ts">
 
 import { ToolCall } from '../types/index'
+import { BIconXLg } from 'bootstrap-icons-vue'
+
 import { ref } from 'vue'
 import { t } from '../services/i18n'
 import MessageItemSearchToolBlock from './MessageItemSearchToolBlock.vue' 

@@ -41,6 +41,8 @@
 <script setup lang="ts">
 
 import { OpenSettingsPayload } from '../types/index'
+import { BIconBinoculars, BIconBox, BIconCommand, BIconCpu, BIconGear, BIconLayoutTextWindowReverse, BIconMagic, BIconMegaphone, BIconMortarboard, BIconTools } from 'bootstrap-icons-vue'
+
 import { MenuBarMode } from '../components/MenuBar.vue'
 import { ref, onMounted, watch, nextTick, PropType, computed } from 'vue'
 import { t } from '../services/i18n'

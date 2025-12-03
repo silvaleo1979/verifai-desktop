@@ -43,6 +43,8 @@
 <script setup lang="ts">
 
 import { Expert, ExternalApp } from '../types/index'
+import { BIconDash, BIconExclamationCircle, BIconPlus } from 'bootstrap-icons-vue'
+
 import { FileContents } from '../types/file'
 import { onMounted, ref, computed, watch } from 'vue'
 import { expertI18n, expertI18nDefault, t } from '../services/i18n'

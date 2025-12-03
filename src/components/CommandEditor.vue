@@ -47,6 +47,8 @@
 <script setup lang="ts">
 
 import { Command } from '../types/index'
+import { BIconExclamationCircle } from 'bootstrap-icons-vue'
+
 import { onMounted, ref, computed, watch, PropType } from 'vue'
 import { store } from '../services/store'
 import { t, commandI18n, commandI18nDefault } from '../services/i18n'

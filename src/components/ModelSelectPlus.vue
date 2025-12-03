@@ -37,6 +37,8 @@
 <script setup lang="ts">
 
 import { ChatModel, defaultCapabilities } from 'multi-llm-ts'
+import { BIconImage, BIconLightningChargeFill, BIconTools } from 'bootstrap-icons-vue'
+
 import { ref, computed, ComputedRef, nextTick } from 'vue'
 import { store } from '../services/store'
 import VueSelect from 'vue3-select-component'

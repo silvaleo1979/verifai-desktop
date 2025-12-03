@@ -18,6 +18,8 @@
 <script setup lang="ts">
 
 import { Folder } from '../types/index'
+import { BIconThreeDots } from 'bootstrap-icons-vue'
+
 import { ref, onMounted, computed } from 'vue'
 import { store } from '../services/store'
 import { t } from '../services/i18n'

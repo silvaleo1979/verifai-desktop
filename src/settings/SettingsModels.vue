@@ -28,6 +28,8 @@
 <script setup lang="ts">
 
 import { CustomEngineConfig } from '../types/config'
+import { BIconPlusCircle, BIconTrash } from 'bootstrap-icons-vue'
+
 import { ref, computed, nextTick } from 'vue'
 import { store } from '../services/store'
 import { t } from '../services/i18n'

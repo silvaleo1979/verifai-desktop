@@ -113,6 +113,8 @@
 <script setup lang="ts">
 
 import { StreamingChunk } from '../voice/stt'
+import { BIconChevronBarContract, BIconGlobe, BIconMagic, BIconMic, BIconRecordCircle, BIconSoundwave, BIconUpload } from 'bootstrap-icons-vue'
+
 import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { store } from '../services/store'
 import { commandI18n, t } from '../services/i18n'

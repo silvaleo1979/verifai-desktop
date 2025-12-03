@@ -86,6 +86,8 @@
 <script setup lang="ts">
 
 import { ref, nextTick } from 'vue'
+import { BIconArrowClockwise, BIconArrowRepeat, BIconJournalText, BIconPencil, BIconPlayCircle, BIconPlusLg, BIconSearch, BIconStopCircle, BIconTrash } from 'bootstrap-icons-vue'
+
 import { t } from '../services/i18n'
 import { McpServer, McpServerStatus } from '../types/mcp'
 import ContextMenu from '../components/ContextMenu.vue'

@@ -26,6 +26,8 @@
 <script setup lang="ts">
 
 import { anyDict, Command, ExternalApp } from '../types'
+import { BIconInfoCircle } from 'bootstrap-icons-vue'
+
 import { CommandAction } from '../types/automation'
 import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
 import { store } from '../services/store'

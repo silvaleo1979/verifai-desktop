@@ -38,6 +38,8 @@
 <script setup lang="ts">
 
 import { ref, computed, onMounted } from 'vue'
+import { BIconXLg } from 'bootstrap-icons-vue'
+
 import { t } from '../services/i18n'
 import { store } from '../services/store'
 import LangSelect from '../components/LangSelect.vue'

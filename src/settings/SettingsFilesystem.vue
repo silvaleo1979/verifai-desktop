@@ -44,6 +44,8 @@
 <script setup lang="ts">
 
 import { ref } from 'vue'
+import { BIconDash, BIconPlus } from 'bootstrap-icons-vue'
+
 import { store } from '../services/store'
 import { t } from '../services/i18n'
 import Dialog from '../composables/dialog'

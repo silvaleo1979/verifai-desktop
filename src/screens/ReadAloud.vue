@@ -11,6 +11,8 @@
 <script setup lang="ts">
 
 import { RecursiveCharacterTextSplitter } from '@langchain/textsplitters'
+import { BIconPauseCircle, BIconPlayCircle, BIconXCircle } from 'bootstrap-icons-vue'
+
 import { ref, onMounted, onUnmounted } from 'vue'
 import { store } from '../services/store'
 import useAudioPlayer, { AudioStatus, textMaxLength} from '../composables/audio_player'

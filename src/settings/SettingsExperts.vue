@@ -19,6 +19,8 @@
 <script setup lang="ts">
 
 import { Expert } from '../types/index'
+import { BIconChevronLeft } from 'bootstrap-icons-vue'
+
 import { ref } from 'vue'
 import { store } from '../services/store'
 import { expertI18n, t } from '../services/i18n'

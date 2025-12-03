@@ -34,6 +34,8 @@
 <script setup lang="ts">
 
 import { computed, ref } from 'vue'
+import { BIconTrash } from 'bootstrap-icons-vue'
+
 import { store } from '../services/store'
 import { t } from '../services/i18n'
 import { getChatModels } from '../llms/ollama'

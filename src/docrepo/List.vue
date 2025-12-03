@@ -46,6 +46,8 @@
 
 <script setup lang="ts">
 import { DocumentBase, DocumentSource } from '../types/rag'
+import { BIconArchive, BIconPencil, BIconPlusLg, BIconSliders, BIconTrash } from 'bootstrap-icons-vue'
+
 import { t } from '../services/i18n'
 
 // props

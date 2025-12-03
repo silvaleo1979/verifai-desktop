@@ -31,6 +31,8 @@
 <script setup lang="ts">
 
 import { Agent } from '../types/index'
+import { BIconPencil, BIconPlayCircle, BIconPlusLg, BIconSearch, BIconTrash } from 'bootstrap-icons-vue'
+
 import { computed, PropType } from 'vue'
 import { t } from '../services/i18n'
 

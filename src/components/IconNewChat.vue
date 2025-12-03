@@ -6,7 +6,9 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts">import { BIconChatLeft, BIconPlus } from 'bootstrap-icons-vue'
+
+
 </script>
 
 <style scoped>

@@ -14,6 +14,8 @@
 <script setup lang="ts">
 
 import { ref, computed, onMounted, useTemplateRef, nextTick, onUnmounted } from 'vue'
+import { BIconArrowDown } from 'bootstrap-icons-vue'
+
 import { store } from '../services/store'
 import { LlmChunk } from 'multi-llm-ts'
 import MessageItem from './MessageItem.vue'

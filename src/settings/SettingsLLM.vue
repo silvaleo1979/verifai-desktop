@@ -55,6 +55,8 @@
 <script setup lang="ts">
 
 import { InstructionsType, CustomInstruction } from '../types/config'
+import { BIconChevronLeft } from 'bootstrap-icons-vue'
+
 import { ref, computed } from 'vue'
 import { store } from '../services/store'
 import { hasLocalization, t, i18nInstructions } from '../services/i18n'

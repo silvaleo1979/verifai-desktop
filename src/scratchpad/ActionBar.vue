@@ -70,6 +70,8 @@
 <script setup lang="ts">
 
 import { ref, onMounted } from 'vue'
+import { BIconArrowLeft, BIconChevronBarContract, BIconChevronBarExpand, BIconClipboard, BIconClipboardCheck, BIconFonts, BIconListUl, BIconMortarboard, BIconPen, BIconReplyFill, BIconSpellcheck, BIconStars, BIconStopCircle, BIconVolumeUp, BIconXCircle } from 'bootstrap-icons-vue'
+
 import FloatingVue, { vTooltip } from 'floating-vue'
 import { t } from '../services/i18n'
 

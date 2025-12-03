@@ -79,6 +79,8 @@
 <script setup lang="ts">
 
 import { MainWindowMode } from '../types/index'
+import { BIconActivity, BIconChatSquareDots, BIconChatSquareQuote, BIconDatabase, BIconGear, BIconJournalText, BIconMic, BIconMouse2, BIconPalette, BIconRobot } from 'bootstrap-icons-vue'
+
 import { onMounted, ref, computed, watch } from 'vue'
 import { t } from '../services/i18n'
 import { store } from '../services/store'

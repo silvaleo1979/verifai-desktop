@@ -113,6 +113,8 @@
 <script setup lang="ts">
 
 import { ref, onMounted, onUnmounted } from 'vue'
+import { BIconCpu, BIconDownload, BIconImage, BIconLightningChargeFill, BIconTools } from 'bootstrap-icons-vue'
+
 import { t } from '../services/i18n'
 import { store } from '../services/store'
 import { Ollama, } from 'ollama/dist/browser.cjs'

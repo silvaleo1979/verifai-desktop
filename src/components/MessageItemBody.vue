@@ -22,6 +22,8 @@
 <script setup lang="ts">
 
 import { ChatToolMode } from '../types/config'
+import { BIconChevronDown, BIconChevronRight } from 'bootstrap-icons-vue'
+
 import { ref, inject, computed, onMounted, PropType } from 'vue'
 import { store } from '../services/store'
 import { t } from '../services/i18n'

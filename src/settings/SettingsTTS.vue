@@ -64,6 +64,8 @@
 <script setup lang="ts">
 
 import { ref, onMounted, onUnmounted, computed } from 'vue'
+import { BIconPlayFill, BIconStopFill } from 'bootstrap-icons-vue'
+
 import { store } from '../services/store'
 import { t } from '../services/i18n'
 import useAudioPlayer, { AudioStatus } from '../composables/audio_player'

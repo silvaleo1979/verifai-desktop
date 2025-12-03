@@ -28,6 +28,8 @@
 <script setup lang="ts">
 
 import { store } from '../services/store'
+import { BIconArrowCounterclockwise, BIconBarChartFill, BIconPencil, BIconTools, BIconTrash } from 'bootstrap-icons-vue'
+
 import { t } from '../services/i18n'
 import Message from '../models/message'
 import Dialog from '../composables/dialog'

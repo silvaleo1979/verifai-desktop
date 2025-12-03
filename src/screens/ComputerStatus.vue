@@ -9,6 +9,8 @@
 <script setup lang="ts">
 
 import { LlmChunk } from 'multi-llm-ts'
+import { BIconXCircle } from 'bootstrap-icons-vue'
+
 import { ref, onMounted, onUnmounted } from 'vue'
 import { store } from '../services/store'
 import { t } from '../services/i18n'

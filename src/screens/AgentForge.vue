@@ -30,6 +30,8 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { BIconChevronLeft, BIconRobot } from 'bootstrap-icons-vue'
+
 import { t } from '../services/i18n'
 import { store } from '../services/store'
 import Dialog from '../composables/dialog'

@@ -40,6 +40,8 @@
 <script setup lang="ts">
 
 import { Agent, AgentRun } from '../types/index';
+import { BIconChatDots, BIconFileText } from 'bootstrap-icons-vue'
+
 import { PropType } from 'vue'
 import { t } from '../services/i18n'
 import { buildLogSummary } from '../services/agent-log-formatter'
