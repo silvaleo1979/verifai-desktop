@@ -141,6 +141,10 @@ export const createWindow = (opts: CreateWindowOpts = {}) => {
     if (!opts.keepHidden) {
       window.show();
     }
+    // Open DevTools in development mode
+    if (process.env.DEBUG) {
+      window.webContents.openDevTools();
+    }
   });
 
   // notify listeners
