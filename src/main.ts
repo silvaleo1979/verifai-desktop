@@ -48,13 +48,29 @@ if (process.env.VERIFAI_HOME) {
 // set up logging
 Object.assign(console, log.functions);
 log.eventLogger.startLogging();
+console.log('=== VERIFAI STARTING ===');
 console.log('Log file:',log.transports.file.getFile().path);
+console.log('Platform:', process.platform);
+console.log('Environment DEBUG:', process.env.DEBUG);
+console.log('Environment VERIFAI_TRIAL:', process.env.VERIFAI_TRIAL);
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 if (require('electron-squirrel-startup')) {
+  console.log('Squirrel startup detected, quitting');
   app.quit();
 }
+
+// Catch unhandled errors
+process.on('uncaughtException', (error) => {
+  console.error('UNCAUGHT EXCEPTION:', error);
+  log.error('UNCAUGHT EXCEPTION:', error);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('UNHANDLED REJECTION at:', promise, 'reason:', reason);
+  log.error('UNHANDLED REJECTION:', reason);
+});
 
 // auto-update
 const autoUpdater = new AutoUpdater(app, {
@@ -65,9 +81,8 @@ const autoUpdater = new AutoUpdater(app, {
   },
 });
 
-// open store
-const store = new Store({ name: 'window' });
-window.setStore(store);
+// store will be initialized in whenReady
+let store: Store | null = null;
 
 // this is going to be called later
 const installMenu = () => {
@@ -121,6 +136,17 @@ if (process.platform === 'darwin') {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(async () => {
+
+  console.log('=== APP READY ===');
+  console.log('Platform:', process.platform);
+  console.log('DEBUG:', process.env.DEBUG);
+  console.log('__IS_TRIAL__:', __IS_TRIAL__);
+  console.log('__TRIAL_PERIOD_DAYS__:', __TRIAL_PERIOD_DAYS__);
+
+  // Initialize store now that app is ready
+  store = new Store({ name: 'window' });
+  window.setStore(store);
+  console.log('Store initialized');
 
   // check if run from app folder
   if (process.platform === 'darwin' && !process.env.DEBUG && !process.env.TEST && !app.isInApplicationsFolder()) {
@@ -204,10 +230,12 @@ app.whenReady().then(async () => {
   registerShortcuts();
 
   // license check - now that basic setup is done
+  console.log('Starting license check, __IS_TRIAL__:', __IS_TRIAL__);
   if (!__IS_TRIAL__) {
     // Only check license if NOT in trial mode
     console.log('Checking license...');
     const LicenseManager = (await import('./main/license')).default;
+    console.log('LicenseManager imported');
     const licenseValid = await LicenseManager.checkLicenseBlocking();
     
     console.log('License check result:', licenseValid);
@@ -217,11 +245,13 @@ app.whenReady().then(async () => {
       // License check failed and user wants to activate
       // Show activation window
       const { openLicenseActivationWindow } = await import('./main/window');
+      console.log('openLicenseActivationWindow imported');
       const activationWindow = openLicenseActivationWindow();
       console.log('Activation window opened:', activationWindow?.id);
       
       // Wait for license activation before continuing
       await new Promise<void>((resolve) => {
+        console.log('Waiting for license-activated event...');
         appEvents.once('license-activated', () => {
           console.log('License activated, continuing app initialization');
           resolve();
@@ -230,6 +260,8 @@ app.whenReady().then(async () => {
     } else {
       console.log('License valid, continuing with app initialization');
     }
+  } else {
+    console.log('Trial mode enabled, skipping license check');
   }
 
   // start mcp
