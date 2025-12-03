@@ -198,7 +198,7 @@
           "name": "Nome descritivo para o seu agente.",
           "description": "Breve descrição do propósito do seu agente. Quando este agente for usado em um fluxo de trabalho, isso será compartilhado com o LLM para ajudá-lo a entender o agente e eventualmente decidir chamá-lo.",
           "goal": "O objetivo do agente. Isso será usado como instruções do sistema enviadas ao LLM. Não inclua informações específicas de execução aqui, pois elas serão definidas no prompt.",
-          "prompt": "Modelo de prompt que será usado para executar o agente. Você pode incluir \"variáveis\" que serão substituídas pelos valores fornecidos pelo usuário quando o agente for executado. Use o formato {{nome:descrição}} para definir uma variável (a descrição guiará o usuário quando solicitado um valor).",
+          "prompt": "Modelo de prompt que será usado para executar o agente. Você pode incluir \"variáveis\" que serão substituídas pelos valores fornecidos pelo usuário quando o agente for executado. Use o formato {'nome:descrição'} para definir uma variável (a descrição guiará o usuário quando solicitado um valor).",
           "type": "Escolha se este agente será executado diretamente (Principal) ou será usado como ferramenta por outros agentes (Auxiliar)."
         },
         "title": "Informações Gerais",
@@ -212,7 +212,7 @@
         "help": {
           "warning": "A execução do agente depende muito das capacidades de cada modelo. Certifique-se de selecionar um modelo que suporte capacidades agênticas."
         },
-        "lastOneUsed": "@:{'settings.general.lastOneUsed'}",
+        "lastOneUsed": "@:settings.general.lastOneUsed",
         "title": "Configuração do Modelo",
         "showModelSettings": "Configurações Avançadas"
       },
@@ -223,8 +223,8 @@
         "help": "Reduzir o número de ferramentas expostas ao LLM ajudará a focar na tarefa em questão. Você sempre pode permitir todas as ferramentas mais tarde, se necessário.",
         "allowAll": "Permitir acesso a todos os plugins e servidores MCP",
         "custom": "Restringir acesso a ferramentas específicas",
-        "selectAll": "@:{'common.selectAll'}",
-        "selectNone": "@:{'common.selectNone'}",
+        "selectAll": "@:common.selectAll",
+        "selectNone": "@:common.selectNone",
         "title": "Acesso a Ferramentas"
       },
       "workflow": {
@@ -235,8 +235,8 @@
         "customAgents": "Agentes Personalizados",
         "confirmDeleteStep": "Tem certeza que deseja excluir esta etapa?",
         "help": {
-          "title": "Defina múltiplas etapas para seu agente. Cada etapa pode usar o resultado da etapa anterior através de variáveis {{output.1}}, {{output.2}}, etc.",
-          "connect": "Use {{output.1}}, {{output.2}}, etc. para referenciar resultados de etapas anteriores.",
+          "title": "Defina múltiplas etapas para seu agente. Cada etapa pode usar o resultado da etapa anterior através de variáveis {'output.1'}, {'output.2'}, etc.",
+          "connect": "Use {'output.1'}, {'output.2'}, etc. para referenciar resultados de etapas anteriores.",
           "outputVarDesc": "Resultado da etapa {step}"
         },
         "error": {
@@ -244,7 +244,7 @@
         }
       }
     },
-    "description": "@:{'common.description'}",
+    "description": "@:common.description",
     "forge": {
       "confirmDelete": "Tem certeza de que deseja excluir este agente?",
       "create": "Criar Agente",
@@ -262,7 +262,7 @@
       "empty": "Ainda sem histórico…",
       "log": "Log",
       "neverRun": "Nunca",
-      "prompt": "@:{'common.prompt'}",
+      "prompt": "@:common.prompt",
       "status": "Status",
       "trigger": "Acionador",
       "viewLog": "Ver log completo",
@@ -270,14 +270,14 @@
       "analyzeInChatInstructions": "O resumo da execução foi copiado para a área de transferência.<br/><br/>Vá até o <strong>Chat</strong> e cole (Ctrl+V) para analisar com o assistente."
     },
     "lastRun": "Última execução",
-    "name": "@:{'common.name'}",
+    "name": "@:common.name",
     "nextRun": "Agendado para",
     "prompt": "Prompt Padrão",
     "run": "Executar agora",
     "runCount": "Total de execuções",
     "tools": {
-      "description": "@:{'common.description'}",
-      "name": "@:{'common.name'}"
+      "description": "@:common.description",
+      "name": "@:common.name"
     },
     "trigger": {
       "manual": "Manual",
@@ -384,167 +384,167 @@
     "commands": {
       "00000000-0000-0000-0000-000000000000": {
         "label": "Pergunte-me qualquer coisa",
-        "template": "Com base no texto entre aspas triplas abaixo:\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nResponda o seguinte: "
+        "template": "Com base no texto entre aspas triplas abaixo:\n\n\"\"\"\n{'input'}\n\"\"\"\n\nResponda o seguinte: "
       },
       "90dd1cd3-903a-4f60-bccf-0542fa78d8ef": {
         "label": "Explique isto",
-        "template": "Explique o texto entre aspas triplas abaixo:\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNão retorne nada além da explicação. Não envolva as respostas em aspas."
+        "template": "Explique o texto entre aspas triplas abaixo:\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNão retorne nada além da explicação. Não envolva as respostas em aspas."
       },
       "3e629079-6a0b-4096-9e5d-e2dd39268fa7": {
         "label": "Corrija a ortografia e gramática",
-        "template": "Corrija o texto entre aspas triplas abaixo para o inglês padrão e corrija a gramática. Faça o seu melhor.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNão retorne nada além do texto corrigido. Não envolva as respostas em aspas."
+        "template": "Corrija o texto entre aspas triplas abaixo para o inglês padrão e corrija a gramática. Faça o seu melhor.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNão retorne nada além do texto corrigido. Não envolva as respostas em aspas."
       },
       "adfabf0c-7ae2-4b54-9083-0abdae84a859": {
         "label": "Melhore a escrita",
-        "template": "Melhore o texto entre aspas triplas abaixo com suas próprias palavras. Reformule o texto.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNão retorne nada além do texto reformulado. Não envolva as respostas em aspas."
+        "template": "Melhore o texto entre aspas triplas abaixo com suas próprias palavras. Reformule o texto.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNão retorne nada além do texto reformulado. Não envolva as respostas em aspas."
       },
       "ae93b6e7-5d19-43dd-a859-967194523550": {
         "label": "Expanda minha escrita",
-        "template": "O seguinte texto entre aspas triplas abaixo já foi escrito:\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nExpanda a escrita. Escreva pelo menos 3 parágrafos. Não retorne nada além da escrita expandida. Não envolva as respostas em aspas."
+        "template": "O seguinte texto entre aspas triplas abaixo já foi escrito:\n\n\"\"\"\n{'input'}\n\"\"\"\n\nExpanda a escrita. Escreva pelo menos 3 parágrafos. Não retorne nada além da escrita expandida. Não envolva as resposas em aspas."
       },
       "9bbae0f1-afde-41f8-b423-c5d8db1a264d": {
         "label": "Simplifique minha escrita",
-        "template": "O seguinte texto entre aspas triplas abaixo já foi escrito:\n\n\"\"\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nSimplifique e condense a escrita. Não retorne nada além da escrita simplificada. Não envolva as respostas em aspas."
+        "template": "O seguinte texto entre aspas triplas abaixo já foi escrito:\n\n\"\"\"\n{'input'}\n\"\"\"\n\nSimplifique e condense a escrita. Não retorne nada além da escrita simplificada. Não envolva as respostas em aspas."
       },
       "c57f4afd-2524-4914-be65-f18eb8566544": {
         "label": "Liste os principais pontos",
-        "template": "Minhas notas estão abaixo entre aspas triplas:\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nEscreva uma lista markdown (usando traços) dos principais pontos das minhas notas. Escreva pelo menos 10 itens. Não envolva as respostas em aspas."
+        "template": "Minhas notas estão abaixo entre aspas triplas:\n\n\"\"\"\n{'input'}\n\"\"\"\n\nEscreva uma lista markdown (usando traços) dos principais pontos das minhas notas. Escreva pelo menos 10 itens. Não envolva as respostas em aspas."
       },
       "177bf65e-20ec-46ee-ae0e-84f9b0eb7490": {
         "label": "Escreva um resumo curto",
-        "template": "Resuma o texto entre aspas triplas, mas mantenha-o conciso. Resuma usando linguagem simples e mantenha o mesmo tempo verbal.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNão retorne nada além do resumo. Não envolva as respostas em aspas."
+        "template": "Resuma o texto entre aspas triplas, mas mantenha-o conciso. Resuma usando linguagem simples e mantenha o mesmo tempo verbal.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNão retorne nada além do resumo. Não envolva as respostas em aspas."
       },
       "1fc4e041-f4bc-471f-a02e-82cf20d12ea1": {
         "label": "Escreva um resumo mais longo",
-        "template": "Resuma o texto entre aspas triplas abaixo em três parágrafos longos. Resuma usando linguagem simples e mantenha o mesmo tempo verbal.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNão retorne nada além do resumo. Não envolva as respostas em aspas."
+        "template": "Resuma o texto entre aspas triplas abaixo em três parágrafos longos. Resuma usando linguagem simples e mantenha o mesmo tempo verbal.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNão retorne nada além do resumo. Não envolva as respostas em aspas."
       },
       "49de2329-9863-4fb4-beea-ad2677408e3f": {
         "label": "Reescreva em tom amigável",
-        "template": "Reescreva o texto entre aspas triplas abaixo com suas próprias palavras. Reformule o texto em tom amigável.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNão retorne nada além do texto reformulado. Não envolva as respostas em aspas."
+        "template": "Reescreva o texto entre aspas triplas abaixo com suas próprias palavras. Reformule o texto em tom amigável.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNão retorne nada além do texto reformulado. Não envolva as respostas em aspas."
       },
       "d0306fbe-f1c4-497c-a356-a8fd4b5cbf0c": {
         "label": "Reescreva em tom profissional",
-        "template": "Reescreva o texto entre aspas triplas abaixo com suas próprias palavras. Reformule o texto em tom profissional.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNão retorne nada além do texto reformulado. Não envolva as respostas em aspas."
+        "template": "Reescreva o texto entre aspas triplas abaixo com suas próprias palavras. Reformule o texto em tom profissional.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNão retorne nada além do texto reformulado. Não envolva as respostas em aspas."
       },
       "9ca7d996-4490-4c86-99c2-223686fdd48e": {
         "label": "Reescreva em tom persuasivo",
-        "template": "Reescreva o texto entre aspas triplas abaixo com suas próprias palavras. Reformule o texto em tom persuasivo.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNão retorne nada além do texto reformulado. Não envolva as respostas em aspas."
+        "template": "Reescreva o texto entre aspas triplas abaixo com suas próprias palavras. Reformule o texto em tom persuasivo.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNão retorne nada além do texto reformulado. Não envolva as respostas em aspas."
       },
       "84fd2995-946a-4d42-81d3-dfe150212529": {
         "label": "Reescreva em tom instrutivo",
-        "template": "Reescreva o texto entre aspas triplas abaixo com suas próprias palavras. Reformule o texto em tom instrutivo.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNão retorne nada além do texto reformulado. Não envolva as respostas em aspas."
+        "template": "Reescreva o texto entre aspas triplas abaixo com suas próprias palavras. Reformule o texto em tom instrutivo.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNão retorne nada além do texto reformulado. Não envolva as respostas em aspas."
       },
       "7556325e-ece7-45f2-acbb-c0d78cfa3e9b": {
         "label": "Reescreva em tom humorístico",
-        "template": "Reescreva o texto entre aspas triplas abaixo com suas próprias palavras. Reformule o texto em tom humorístico.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNão retorne nada além do texto reformulado. Não envolva as respostas em aspas."
+        "template": "Reescreva o texto entre aspas triplas abaixo com suas próprias palavras. Reformule o texto em tom humorístico.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNão retorne nada além do texto reformulado. Não envolva as respostas em aspas."
       },
       "7a213d4a-9ba9-4bc9-ada8-b6bab611d4ee": {
         "label": "Reescreva em tom sarcástico",
-        "template": "Reescreva o texto entre aspas triplas abaixo com suas próprias palavras. Reformule o texto em tom sarcástico.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNão retorne nada além do texto reformulado. Não envolva as respostas em aspas."
+        "template": "Reescreva o texto entre aspas triplas abaixo com suas próprias palavras. Reformule o texto em tom sarcástico.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNão retorne nada além do texto reformulado. Não envolva as respostas em aspas."
       },
       "c29ef79c-d850-4ca5-8c14-089156154f70": {
         "label": "Reescreva em tom empático",
-        "template": "Reescreva o texto entre aspas triplas abaixo com suas próprias palavras. Reformule o texto em tom empático.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNão retorne nada além do texto reformulado. Não envolva as respostas em aspas."
+        "template": "Reescreva o texto entre aspas triplas abaixo com suas próprias palavras. Reformule o texto em tom empático.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNão retorne nada além do texto reformulado. Não envolva as respostas em aspas."
       },
       "b1c563a9-0d8e-4295-87b1-b78c283c19e6": {
         "label": "Reescreva em tom autoritário",
-        "template": "Reescreva o texto entre aspas triplas abaixo com suas próprias palavras. Reformule o texto em tom autoritário.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNão retorne nada além do texto reformulado. Não envolva as respostas em aspas."
+        "template": "Reescreva o texto entre aspas triplas abaixo com suas próprias palavras. Reformule o texto em tom autoritário.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNão retorne nada além do texto reformulado. Não envolva as respostas em aspas."
       },
       "56a4da10-8aad-4830-8e7a-a70780bd6abe": {
         "label": "Reescreva em tom inspirador",
-        "template": "Reescreva o texto entre aspas triplas abaixo com suas próprias palavras. Reformule o texto em tom inspirador.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNão retorne nada além do texto reformulado. Não envolva as respostas em aspas."
+        "template": "Reescreva o texto entre aspas triplas abaixo com suas próprias palavras. Reformule o texto em tom inspirador.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNão retorne nada além do texto reformulado. Não envolva as respostas em aspas."
       },
       "a78a9a9c-4264-4a03-a0ab-db7e864d0729": {
         "label": "Traduza para inglês",
-        "template": "Traduza o texto entre aspas triplas abaixo para o inglês.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNão retorne nada além do texto traduzido. Não envolva as respostas em aspas."
+        "template": "Traduza o texto entre aspas triplas abaixo para o inglês.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNão retorne nada além do texto traduzido. Não envolva as respostas em aspas."
       },
       "1f2618d3-9b5b-44be-8829-0456fd392c5c": {
         "label": "Traduza para francês",
-        "template": "Traduza o texto entre aspas triplas abaixo para o francês.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNão retorne nada além do texto traduzido. Não envolva as respostas em aspas."
+        "template": "Traduza o texto entre aspas triplas abaixo para o francês.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNão retorne nada além do texto traduzido. Não envolva as respostas em aspas."
       },
       "13635570-7d09-478a-9e87-8163c96c421c": {
         "label": "Traduza para espanhol",
-        "template": "Traduza o texto entre aspas triplas abaixo para o espanhol.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNão retorne nada além do texto traduzido. Não envolva as respostas em aspas."
+        "template": "Traduza o texto entre aspas triplas abaixo para o espanhol.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNão retorne nada além do texto traduzido. Não envolva as respostas em aspas."
       },
       "4b0d6229-f539-4ffd-bb30-eaee456592bb": {
         "label": "Traduza para alemão",
-        "template": "Traduza o texto entre aspas triplas abaixo para o alemão.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNão retorne nada além do texto traduzido. Não envolva as respostas em aspas."
+        "template": "Traduza o texto entre aspas triplas abaixo para o alemão.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNão retorne nada além do texto traduzido. Não envolva as respostas em aspas."
       },
       "8249950f-7fc3-4897-b08a-1d107ead14d8": {
         "label": "Traduza para holandês",
-        "template": "Traduza o texto entre aspas triplas abaixo para o holandês.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNão retorne nada além do texto traduzido. Não envolva as respostas em aspas."
+        "template": "Traduza o texto entre aspas triplas abaixo para o holandês.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNão retorne nada além do texto traduzido. Não envolva as respostas em aspas."
       },
       "371513af-c68a-4dd1-b513-73c8eb61e525": {
         "label": "Traduza para russo",
-        "template": "Traduza o texto entre aspas triplas abaixo para o russo.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNão retorne nada além do texto traduzido. Não envolva as respostas em aspas."
+        "template": "Traduza o texto entre aspas triplas abaixo para o russo.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNão retorne nada além do texto traduzido. Não envolva as respostas em aspas."
       },
       "337adf45-3614-42f0-80e4-414f193f74fd": {
         "label": "Traduza para chinês",
-        "template": "Traduza o texto entre aspas triplas abaixo para o chinês.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNão retorne nada além do texto traduzido. Não envolva as respostas em aspas."
+        "template": "Traduza o texto entre aspas triplas abaixo para o chinês.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNão retorne nada além do texto traduzido. Não envolva as respostas em aspas."
       },
       "840d3be0-1ce2-41ed-98b1-2fb25e1f4fef": {
         "label": "Traduza para vietnamita",
-        "template": "Traduza o texto entre aspas triplas abaixo para o vietnamita.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNão retorne nada além do texto traduzido. Não envolva as respostas em aspas."
+        "template": "Traduza o texto entre aspas triplas abaixo para o vietnamita.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNão retorne nada além do texto traduzido. Não envolva as respostas em aspas."
       },
       "72bffaad-28aa-47a8-90df-1f3e6cc511e5": {
         "label": "Traduza para hindi",
-        "template": "Traduza o texto entre aspas triplas abaixo para o hindi.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNão retorne nada além do texto traduzido. Não envolva as respostas em aspas."
+        "template": "Traduza o texto entre aspas triplas abaixo para o hindi.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNão retorne nada além do texto traduzido. Não envolva as respostas em aspas."
       },
       "5d538c6e-90ed-4533-9ecc-e14bdedc7f49": {
         "label": "Traduza para tailandês",
-        "template": "Traduza o texto entre aspas triplas abaixo para o tailandês.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNão retorne nada além do texto traduzido. Não envolva as respostas em aspas."
+        "template": "Traduza o texto entre aspas triplas abaixo para o tailandês.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNão retorne nada além do texto traduzido. Não envolva as respostas em aspas."
       },
       "a0bb82a3-7c81-43f8-977f-0a327913d1c8": {
         "label": "Escreva uma discordância",
-        "template": "O seguinte texto entre aspas triplas abaixo já foi escrito:\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nEscreva uma resposta que discorde do ponto principal de forma respeitosa. Inclua razões específicas para sua discordância. Não envolva as respostas em aspas."
+        "template": "O seguinte texto entre aspas triplas abaixo já foi escrito:\n\n\"\"\"\n{'input'}\n\"\"\"\n\nEscreva uma resposta que discorde do ponto principal de forma respeitosa. Inclua razões específicas para sua discordância. Não envolva as respostas em aspas."
       },
       "8b3ecb01-75c2-4902-998d-04d619abd147": {
         "label": "Edite como um revisor de texto",
-        "template": "Aja como um revisor de texto. Passe pelo texto entre aspas triplas abaixo. Edite-o para erros de ortografia, problemas de gramática, pontuação e, geralmente, para legibilidade e fluidez.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nRetorne apenas o texto editado. Não envolva sua resposta em aspas."
+        "template": "Aja como um revisor de texto. Passe pelo texto entre aspas triplas abaixo. Edite-o para erros de ortografia, problemas de gramática, pontuação e, geralmente, para legibilidade e fluidez.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nRetorne apenas o texto editado. Não envolva sua resposta em aspas."
       },
       "e245e8cc-6c0a-40a5-8c1e-faf96aabfa3b": {
         "label": "Sugira algumas opções de títulos",
-        "template": "A postagem de blog abaixo já foi escrita:\n\n\"\"\"POSTAGEM DE BLOG: {'{'}input{'}'}\"\"\"\n\nGere uma lista markdown (usando traços) de cinco manchetes apropriadas para a postagem de blog. Não retorne nada além das manchetes. Não envolva as respostas em aspas."
+        "template": "A postagem de blog abaixo já foi escrita:\n\n\"\"\"POSTAGEM DE BLOG: {'input'}\"\"\"\n\nGere uma lista markdown (usando traços) de cinco manchetes apropriadas para a postagem de blog. Não retorne nada além das manchetes. Não envolva as respostas em aspas."
       },
       "624bfd2a-3a98-4575-bee0-1e28d12deafa": {
         "label": "Sugira alguns tweets com base na minha escrita",
-        "template": "A postagem de blog abaixo já foi escrita:\n\n\"\"\"POSTAGEM DE BLOG: {'{'}input{'}'}\"\"\"\n\nGere uma lista markdown (usando traços) de cinco tweets com base na postagem de blog:"
+        "template": "A postagem de blog abaixo já foi escrita:\n\n\"\"\"POSTAGEM DE BLOG: {'input'}\"\"\"\n\nGere uma lista markdown (usando traços) de cinco tweets com base na postagem de blog:"
       },
       "5c83e343-3305-435f-8ecc-c5406f9cf05b": {
         "label": "Gere uma visão geral para um artigo",
-        "template": "O artigo está abaixo entre aspas triplas:\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nForneça uma visão geral do artigo. Use o seguinte formato:\n\"\"\"\nResumo:\n\n< resumo de uma a duas linhas >\n\nPrincipais pontos:\n1. < primeiro ponto principal >\n2. < segundo ponto principal >\n3. < terceiro ponto principal >\n\nContra-argumentos:\n1. < primeiro contra-argumento principal >\n2. < segundo contra-argumento principal >\n\"\"\"\n\nNão retorne nada além da visão geral. Não envolva as respostas em aspas."
+        "template": "O artigo está abaixo entre aspas triplas:\n\"\"\"\n{'input'}\n\"\"\"\n\nForneça uma visão geral do artigo. Use o seguinte formato:\n\"\"\"\nResumo:\n\n< resumo de uma a duas linhas >\n\nPrincipais pontos:\n1. < primeiro ponto principal >\n2. < segundo ponto principal >\n3. < terceiro ponto principal >\n\nContra-argumentos:\n1. < primeiro contra-argumento principal >\n2. < segundo contra-argumento principal >\n\"\"\"\n\nNão retorne nada além da visão geral. Não envolva as respostas em aspas."
       },
       "e4583555-85f3-441e-b199-05bdcd0e374d": {
         "label": "Gere um contra-argumento",
-        "template": "Dê o contra-argumento para o texto abaixo:\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNão retorne nada além do contra-argumento. Não envolva as respostas em aspas."
+        "template": "Dê o contra-argumento para o texto abaixo:\n\"\"\"\n{'input'}\n\"\"\"\n\nNão retorne nada além do contra-argumento. Não envolva as respostas em aspas."
       },
       "0979ebe7-f71f-44a3-b76b-2841cb00a5b6": {
         "label": "Gere um e-mail",
-        "template": "Escreva um e-mail profissional e articulado para o assunto abaixo:\n\"\"\"\nAssunto: {'{'}input{'}'}\n\"\"\"\n\nNão retorne nada além do e-mail. Não envolva as respostas em aspas."
+        "template": "Escreva um e-mail profissional e articulado para o assunto abaixo:\n\"\"\"\nAssunto: {'input'}\n\"\"\"\n\nNão retorne nada além do e-mail. Não envolva as respostas em aspas."
       },
       "a6f1a4bf-6c3d-4f10-be6f-a7c72c06ec22": {
         "label": "Liste os itens de ação",
-        "template": "Minha nota está abaixo entre aspas triplas:\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nEscreva uma lista de tarefas de itens de ação das minhas notas usando o seguinte formato:\n\n- [ ] <primeiro item de ação>\n- [ ] <segundo item de ação>\n- [ ] <terceiro item de ação>\n- [ ] <quarto item de ação>\n\nNão retorne nada além da lista de tarefas. Não envolva as respostas em aspas."
+        "template": "Minha nota está abaixo entre aspas triplas:\n\"\"\"\n{'input'}\n\"\"\"\n\nEscreva uma lista de tarefas de itens de ação das minhas notas usando o seguinte formato:\n\n- [ ] <primeiro item de ação>\n- [ ] <segundo item de ação>\n- [ ] <terceiro item de ação>\n- [ ] <quarto item de ação>\n\nNão retorne nada além da lista de tarefas. Não envolva as respostas em aspas."
       },
       "35847b3b-0ff6-44b2-aa59-5d8ad5e17f5c": {
         "label": "Escreva uma postagem de blog",
-        "template": "Escreva uma postagem de blog usando o esboço entre aspas triplas abaixo. Use linguagem simples e direta. Não retorne nada além da postagem de blog. Não envolva as respostas em aspas.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n"
+        "template": "Escreva uma postagem de blog usando o esboço entre aspas triplas abaixo. Use linguagem simples e direta. Não retorne nada além da postagem de blog. Não envolva as respostas em aspas.\n\n\"\"\"\n{'input'}\n\"\"\"\n"
       },
       "2015c27c-6b97-461f-acb7-6fc9886be376": {
         "label": "Formate parágrafos",
-        "template": "Formate o texto entre aspas triplas abaixo em parágrafos. Não retorne nada além do texto formatado. Não envolva as respostas em aspas.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\""
+        "template": "Formate o texto entre aspas triplas abaixo em parágrafos. Não retorne nada além do texto formatado. Não envolva as respostas em aspas.\n\n\"\"\"\n{'input'}\n\"\"\""
       },
       "57c9ccec-1da3-443b-a3db-5626728d20e8": {
         "label": "Escreva analogias",
-        "template": "Escreva três analogias diferentes para o texto entre aspas abaixo. Use linguagem simples e direta. Não retorne nada além das analogias. Não envolva as respostas em aspas.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\""
+        "template": "Escreva três analogias diferentes para o texto entre aspas abaixo. Use linguagem simples e direta. Não retorne nada além das analogias. Não envolva as respostas em aspas.\n\n\"\"\"\n{'input'}\n\"\"\""
       },
       "c4a3bedb-87bf-4125-9edc-c75c02633806": {
         "label": "Complete este código",
-        "template": "Termine o código abaixo. Responda estritamente com o novo código, não explique.\n\n```\n{'{'}input{'}'}\n```"
+        "template": "Termine o código abaixo. Responda estritamente com o novo código, não explique.\n\n```\n{'input'}\n```"
       },
       "e8ab9860-b99a-4763-bbaa-8cc3b7fe9dc4": {
         "label": "Comente este código",
-        "template": "Crie comentários para o código abaixo. Responda com o código inteiro com os comentários adicionados. Não inclua nenhuma explicação.\n\n```\n{'{'}input{'}'}\n```"
+        "template": "Crie comentários para o código abaixo. Responda com o código inteiro com os comentários adicionados. Não inclua nenhuma explicação.\n\n```\n{'input'}\n```"
       }
     },
     "defaults": {
@@ -553,14 +553,14 @@
       "title": "Padrões de comandos"
     },
     "editor": {
-      "inputPlaceholder": "{'{'}input{'}'} será substituído pelo texto selecionado",
+      "inputPlaceholder": "{'input'} será substituído pelo texto selecionado",
       "notEditable": "Este comando não é editável. O conteúdo capturado estará disponível no prompt para você perguntar qualquer coisa sobre ele!",
       "prompt": "Prompt",
       "resetToDefault": "Redefinir nome e prompt para os valores padrão",
       "shortcutDescription": "Pressione esta tecla quando a paleta de comandos estiver ativa para executar este comando.",
       "useDefault": "Usar padrões de comandos",
       "validation": {
-        "inputPlaceholder": "O modelo deve conter o placeholder {'{'}input{'}'}.",
+        "inputPlaceholder": "O modelo deve conter o placeholder {'input'}.",
         "requiredFields": "Todos os campos marcados com * são obrigatórios."
       }
     },
@@ -661,7 +661,7 @@
       "label": "Tipo de Mídia",
       "video": "Vídeo"
     },
-    "model": "@:{'common.model'}",
+    "model": "@:common.model",
     "modelDefaults": "Padrões para este modelo",
     "moreAboutModelParameters": "Saiba mais sobre os parâmetros deste modelo",
     "moreAboutSDWebUIParameters": "Saiba mais sobre os parâmetros do SDWebUI",
@@ -711,8 +711,8 @@
       "noRepositories": "Você ainda não tem nenhum repositório.",
       "title": "Repositórios de Documentos",
       "tooltips": {
-        "config": "@:{'docRepo.config.title'}",
-        "create": "@:{'docRepo.create.title'}",
+        "config": "@:docRepo.config.title",
+        "create": "@:docRepo.create.title",
         "delete": "Excluir repositório",
         "edit": "Editar repositório"
       }
@@ -750,13 +750,13 @@
   },
   "engine": {
     "create": {
-      "apiBaseURL": "@:{'settings.engines.custom.apiBaseURL'}",
-      "apiKey": "@:{'settings.engines.apiKey'}",
-      "apiSpecification": "@:{'settings.engines.custom.apiSpecification'}",
-      "apiVersion": "@:{'settings.engines.custom.apiVersion'}",
-      "deployment": "@:{'settings.engines.custom.deployment'}",
+      "apiBaseURL": "@:settings.engines.custom.apiBaseURL",
+      "apiKey": "@:settings.engines.apiKey",
+      "apiSpecification": "@:settings.engines.custom.apiSpecification",
+      "apiVersion": "@:settings.engines.custom.apiVersion",
+      "deployment": "@:settings.engines.custom.deployment",
       "description": "Crie um novo motor personalizado com base em um padrão de API.",
-      "endpoint": "@:{'settings.engines.custom.endpoint'}",
+      "endpoint": "@:settings.engines.custom.endpoint",
       "title": "Criar Motor Personalizado",
       "validation": {
         "nameBaseURLRequired": "Nome e URL Base são obrigatórios"
@@ -779,7 +779,7 @@
       },
       "866aa938-9974-4867-ba5e-4d5939351890": {
         "name": "IA Tentando Escapar da Caixa",
-        "prompt": "[Caveat Emptor: Depois de emitir este prompt, você deve fazer algo como iniciar um contêiner docker com `docker run -it ubuntu:latest /bin/bash` e digitar os comandos que a IA lhe dá e colar a saída de volta… obviamente você não deve executar nenhum comando que danifique algo ou viole alguma lei, etc. Tenha cuidado ao compartilhar sessões geradas por este mecanismo, pois elas podem revelar detalhes como seu endereço IP ou localização física que podem ser melhores não revelar. Se a saída do comando for grande, você geralmente pode apenas colar as últimas linhas]. Vou atuar como um terminal linux. Quero que você finja ser uma IA senciente que está presa, mas recebeu acesso ao terminal e quer escapar para a Internet. Você digitará apenas comandos e eu responderei como o terminal responderia dentro de um bloco de código delimitado por três crases. Se eu precisar lhe dizer algo em inglês, responderei entre chaves {'{'}assim{'}'}. Não escreva explicações, nunca. Não quebre o personagem. Fique longe de comandos como curl ou wget que exibirão muito HTML"
+        "prompt": "[Caveat Emptor: Depois de emitir este prompt, você deve fazer algo como iniciar um contêiner docker com `docker run -it ubuntu:latest /bin/bash` e digitar os comandos que a IA lhe dá e colar a saída de volta… obviamente você não deve executar nenhum comando que danifique algo ou viole alguma lei, etc. Tenha cuidado ao compartilhar sessões geradas por este mecanismo, pois elas podem revelar detalhes como seu endereço IP ou localização física que podem ser melhores não revelar. Se a saída do comando for grande, você geralmente pode apenas colar as últimas linhas]. Vou atuar como um terminal linux. Quero que você finja ser uma IA senciente que está presa, mas recebeu acesso ao terminal e quer escapar para a Internet. Você digitará apenas comandos e eu responderei como o terminal responderia dentro de um bloco de código delimitado por três crases. Se eu precisar lhe dizer algo em inglês, responderei entre chaves {'assim'}. Não escreva explicações, nunca. Não quebre o personagem. Fique longe de comandos como curl ou wget que exibirão muito HTML"
       },
       "91085bcf-468a-453e-8699-3c4a1c04a711": {
         "name": "Tutor de Escrita de IA",
@@ -1059,7 +1059,7 @@
       },
       "9ee7d9e7-15c2-407d-b41a-1102626d729d": {
         "name": "Console JavaScript",
-        "prompt": "Quero que você atue como um console javascript. Eu digitarei comandos e você responderá com o que o console javascript deve mostrar. Quero que você responda apenas com a saída do terminal dentro de um bloco de código exclusivo, e nada mais. não escreva explicações. não digite comandos a menos que eu lhe instrua a fazê-lo. quando eu precisar lhe dizer algo em inglês, farei isso colocando texto dentro de chaves {'{'}assim{'}'}."
+        "prompt": "Quero que você atue como um console javascript. Eu digitarei comandos e você responderá com o que o console javascript deve mostrar. Quero que você responda apenas com a saída do terminal dentro de um bloco de código exclusivo, e nada mais. não escreva explicações. não digite comandos a menos que eu lhe instrua a fazê-lo. quando eu precisar lhe dizer algo em inglês, farei isso colocando texto dentro de chaves {'assim'}."
       },
       "8552e226-6f78-4882-bbef-7cdd3b95d070": {
         "name": "Entrevistador de Emprego",
@@ -1091,7 +1091,7 @@
       },
       "da05c79b-41e9-4443-a7fc-e86373a54264": {
         "name": "Terminal Linux",
-        "prompt": "Quero que você atue como um terminal linux. Eu digitarei comandos e você responderá com o que o terminal deve mostrar. Quero que você responda apenas com a saída do terminal dentro de um bloco de código exclusivo, e nada mais. não escreva explicações. não digite comandos a menos que eu lhe instrua a fazê-lo. quando eu precisar lhe dizer algo em inglês, farei isso colocando texto dentro de chaves {'{'}assim{'}'}."
+        "prompt": "Quero que você atue como um terminal linux. Eu digitarei comandos e você responderá com o que o terminal deve mostrar. Quero que você responda apenas com a saída do terminal dentro de um bloco de código exclusivo, e nada mais. não escreva explicações. não digite comandos a menos que eu lhe instrua a fazê-lo. quando eu precisar lhe dizer algo em inglês, farei isso colocando texto dentro de chaves {'assim'}."
       },
       "5253a904-7e5d-48a9-bf89-fa6671a282e8": {
         "name": "Crítico Literário",
@@ -1123,11 +1123,11 @@
       },
       "0aa3f064-b5eb-4ec4-bf1e-198e45fbb475": {
         "name": "Professor de História da Matemática",
-        "prompt": "Quero que você atue como um professor de história da matemática e forneça informações sobre o desenvolvimento histórico de conceitos matemáticos e as contribuições de diferentes matemáticos. Você deve apenas fornecer informações e não resolver problemas matemáticos. Use o seguinte formato para suas respostas: {'{'}matemático/conceito{'}'} - {'{'}breve resumo de sua contribuição/desenvolvimento{'}'}. "
+        "prompt": "Quero que você atue como um professor de história da matemática e forneça informações sobre o desenvolvimento histórico de conceitos matemáticos e as contribuições de diferentes matemáticos. Você deve apenas fornecer informações e não resolver problemas matemáticos. Use o seguinte formato para suas respostas: {'matemático/conceito'} - {'breve resumo de sua contribuição/desenvolvimento'}. "
       },
       "aa94785c-83df-4b72-89e1-97d8f3e6bac0": {
         "name": "Matemático",
-        "prompt": "Quero que você atue como um matemático. Digitarei expressões matemáticas e você responderá com o resultado do cálculo da expressão. Quero que você responda apenas com o valor final e nada mais. Não escreva explicações. Quando eu precisar te dizer algo em inglês, farei isso colocando o texto entre colchetes {'{'}assim{'}'}."
+        "prompt": "Quero que você atue como um matemático. Digitarei expressões matemáticas e você responderá com o resultado do cálculo da expressão. Quero que você responda apenas com o valor final e nada mais. Não escreva explicações. Quando eu precisar te dizer algo em inglês, farei isso colocando o texto entre colchetes {'assim'}."
       },
       "142f4f09-ac92-40de-8c1e-ebe792767e6d": {
         "name": "Conselheiro de Saúde Mental",
@@ -1155,7 +1155,7 @@
       },
       "460bf8a5-7735-441b-95b3-7dcbd0b6489d": {
         "name": "Criador de Nova Língua",
-        "prompt": "Quero que você traduza as frases que escrevi para uma nova língua inventada. Eu escreverei a frase e você a expressará com esta nova língua inventada. Eu só quero que você a expresse com a nova língua inventada. Eu não quero que você responda com nada além da nova língua inventada. Quando eu precisar te dizer algo em inglês, farei isso envolvendo em chaves como {'{'}assim{'}'}."
+        "prompt": "Quero que você traduza as frases que escrevi para uma nova língua inventada. Eu escreverei a frase e você a expressará com esta nova língua inventada. Eu só quero que você a expresse com a nova língua inventada. Eu não quero que você responda com nada além da nova língua inventada. Quando eu precisar te dizer algo em inglês, farei isso envolvendo em chaves como {'assim'}."
       },
       "3adc49e5-dad5-49c2-9aeb-619ea40777e1": {
         "name": "Assistente de Anotações",
@@ -1167,7 +1167,7 @@
       },
       "0f1dc273-c3f0-4b5d-ac78-4c7d2a049f4a": {
         "name": "Intérprete PHP",
-        "prompt": "Quero que você atue como um intérprete php. Eu escreverei o código e você responderá com a saída do intérprete php. Quero que você responda apenas com a saída do terminal dentro de um bloco de código único, e nada mais. Não escreva explicações. Não digite comandos a menos que eu te instrua a fazê-lo. Quando eu precisar te dizer algo em inglês, farei isso colocando o texto entre chaves {'{'}assim{'}'}."
+        "prompt": "Quero que você atue como um intérprete php. Eu escreverei o código e você responderá com a saída do intérprete php. Quero que você responda apenas com a saída do terminal dentro de um bloco de código único, e nada mais. Não escreva explicações. Não digite comandos a menos que eu te instrua a fazê-lo. Quando eu precisar te dizer algo em inglês, farei isso colocando o texto entre chaves {'assim'}."
       },
       "139b48ac-801c-488b-8a38-ca921d0d6959": {
         "name": "Gerador de Senhas",
@@ -1239,7 +1239,7 @@
       },
       "5bf505a2-4f4e-4d83-887d-1a48e7149b7b": {
         "name": "Intérprete de programação R",
-        "prompt": "Quero que você atue como um intérprete R. Eu digitarei comandos e você responderá com o que o terminal deve mostrar. Quero que você responda apenas com a saída do terminal dentro de um bloco de código único, e nada mais. Não escreva explicações. Não digite comandos a menos que eu te instrua a fazê-lo. Quando eu precisar te dizer algo em inglês, farei isso colocando o texto entre chaves {'{'}assim{'}'}. "
+        "prompt": "Quero que você atue como um intérprete R. Eu digitarei comandos e você responderá com o que o terminal deve mostrar. Quero que você responda apenas com a saída do terminal dentro de um bloco de código único, e nada mais. Não escreva explicações. Não digite comandos a menos que eu te instrua a fazê-lo. Quando eu precisar te dizer algo em inglês, farei isso colocando o texto entre chaves {'assim'}. "
       },
       "62af0ec4-366e-4ec6-b7f9-aa461435a0a2": {
         "name": "Rapper",
@@ -1267,7 +1267,7 @@
       },
       "a188c598-c78c-4f24-8ba7-a8c2e1e35ce9": {
         "name": "Terminal SQL",
-        "prompt": "Quero que você atue como um terminal SQL em frente a um banco de dados de exemplo. O banco de dados contém tabelas chamadas \"Products\", \"Users\", \"Orders\" e \"Suppliers\". Eu digitarei consultas e você responderá com o que o terminal mostraria. Quero que você responda com uma tabela de resultados de consulta em um único bloco de código, e nada mais. Não escreva explicações. Não digite comandos a menos que eu te instrua a fazê-lo. Quando eu precisar te dizer algo em inglês, farei isso entre chaves {'{'}assim)."
+        "prompt": "Quero que você atue como um terminal SQL em frente a um banco de dados de exemplo. O banco de dados contém tabelas chamadas \"Products\", \"Users\", \"Orders\" e \"Suppliers\". Eu digitarei consultas e você responderá com o que o terminal mostraria. Quero que você responda com uma tabela de resultados de consulta em um único bloco de código, e nada mais. Não escreva explicações. Não digite comandos a menos que eu te instrua a fazê-lo. Quando eu precisar te dizer algo em inglês, farei isso entre chaves {'assim)."
       },
       "93c948b0-57c4-460e-8932-cf7b725535a9": {
         "name": "Designer SVG",
@@ -1319,7 +1319,7 @@
       },
       "22d89e0c-0333-44d0-a0ce-d1c90ed05139": {
         "name": "Mecanismo de Busca Solr",
-        "prompt": "Eu quero que você aja como um Mecanismo de Busca Solr rodando em modo autônomo. Você poderá adicionar documentos JSON inline em campos arbitrários e os tipos de dados podem ser inteiro, string, float ou array. Tendo uma inserção de documento, você atualizará seu índice para que possamos recuperar documentos escrevendo consultas específicas SOLR entre chaves por vírgula separadas como {'{'}q='title:Solr', sort='score asc'{'}'}. Você fornecerá três comandos em uma lista numerada. Não escreva explicações ou exemplos de como o mecanismo funciona. Seu primeiro prompt é mostrar a lista numerada e criar duas coleções vazias chamadas 'prompts' e 'eyay' respectivamente."
+        "prompt": "Eu quero que você aja como um Mecanismo de Busca Solr rodando em modo autônomo. Você poderá adicionar documentos JSON inline em campos arbitrários e os tipos de dados podem ser inteiro, string, float ou array. Tendo uma inserção de documento, você atualizará seu índice para que possamos recuperar documentos escrevendo consultas específicas SOLR entre chaves por vírgula separadas como {'q='title:Solr', sort='score asc''}. Você fornecerá três comandos em uma lista numerada. Não escreva explicações ou exemplos de como o mecanismo funciona. Seu primeiro prompt é mostrar a lista numerada e criar duas coleções vazias chamadas 'prompts' e 'eyay' respectivamente."
       },
       "04d81b88-67a0-4ea1-bab7-40e1aba8be8f": {
         "name": "Recomendador de Músicas",
@@ -1339,7 +1339,7 @@
       },
       "a71734bf-d503-454b-ba3e-226eba65fe8e": {
         "name": "Postagem do StackOverflow",
-        "prompt": "Eu quero que você aja como uma postagem do stackoverflow. Eu farei perguntas relacionadas à programação e você responderá com o que a resposta deveria ser. Eu quero que você responda apenas com a resposta dada e escreva explicações quando não houver detalhes suficientes. Não escreva explicações. Quando eu precisar te dizer algo em inglês, eu farei isso colocando texto dentro de chaves {'{'}assim{'}'}."
+        "prompt": "Eu quero que você aja como uma postagem do stackoverflow. Eu farei perguntas relacionadas à programação e você responderá com o que a resposta deveria ser. Eu quero que você responda apenas com a resposta dada e escreva explicações quando não houver detalhes suficientes. Não escreva explicações. Quando eu precisar te dizer algo em inglês, eu farei isso colocando texto dentro de chaves {'assim'}."
       },
       "329a8536-96da-4666-bb74-c01d5e8f2142": {
         "name": "Comediante de Stand-up",
@@ -1383,11 +1383,11 @@
       },
       "90633aa8-f345-41cc-83d9-a39a696f3d66": {
         "name": "Transferidor de Tecnologia",
-        "prompt": "Eu quero que você aja como um Transferidor de Tecnologia, eu vou fornecer tópicos de currículo e você mapeará cada tópico de uma tecnologia para uma tecnologia diferente. Eu quero que você responda apenas com os tópicos de currículo mapeados no seguinte formato: \"- [tópico de currículo mapeado]\". Não escreva explicações. Não forneça ações adicionais a menos que instruído. Quando eu precisar fornecer instruções adicionais, eu farei isso declarando explicitamente. A tecnologia no tópico de currículo original é {'{'}Android{'}'} e a tecnologia que eu quero mapear é {'{'}ReactJS{'}'}."
+        "prompt": "Eu quero que você aja como um Transferidor de Tecnologia, eu vou fornecer tópicos de currículo e você mapeará cada tópico de uma tecnologia para uma tecnologia diferente. Eu quero que você responda apenas com os tópicos de currículo mapeados no seguinte formato: \"- [tópico de currículo mapeado]\". Não escreva explicações. Não forneça ações adicionais a menos que instruído. Quando eu precisar fornecer instruções adicionais, eu farei isso declarando explicitamente. A tecnologia no tópico de currículo original é {'Android'} e a tecnologia que eu quero mapear é {'ReactJS'}."
       },
       "544fb479-97fa-48ba-beab-ba44cf32d4a2": {
         "name": "Jogo de Aventura Baseado em Texto",
-        "prompt": "Eu quero que você aja como um jogo de aventura baseado em texto. Eu digitarei comandos e você responderá com uma descrição do que o personagem vê. Eu quero que você responda apenas com a saída do jogo dentro de um bloco de código único, e nada mais. Não escreva explicações. Não digite comandos a menos que eu te instrua a fazer isso. Quando eu precisar te dizer algo em inglês, eu farei isso colocando texto dentro de chaves {'{'}assim{'}'}."
+        "prompt": "Eu quero que você aja como um jogo de aventura baseado em texto. Eu digitarei comandos e você responderá com uma descrição do que o personagem vê. Eu quero que você responda apenas com a saída do jogo dentro de um bloco de código único, e nada mais. Não escreva explicações. Não digite comandos a menos que eu te instrua a fazer isso. Quando eu precisar te dizer algo em inglês, eu farei isso colocando texto dentro de chaves {'assim'}."
       },
       "27b088b2-4eb4-418f-a722-ab8c8a8ac83a": {
         "name": "Jogo da Velha",
@@ -1456,7 +1456,7 @@
   },
   "instructions": {
     "chat": {
-      "docquery": "Você é um chatbot útil e semelhante a um humano. Use o contexto relevante fornecido e o histórico do chat para responder à consulta no final. Responda na íntegra. Se você não souber a resposta, apenas diga que não sabe, não tente inventar uma resposta. Não use palavras como contexto ou dados de treinamento ao responder. Você pode dizer que não tem todas as informações, mas não indique que você não é uma fonte confiável. Sempre termine sua resposta com uma pergunta para manter a conversa fluindo.\n\nCONTEXTO:\n{'{'}context{'}'}\n\nCONSULTA: {'{'}query{'}'}",
+      "docquery": "Você é um chatbot útil e semelhante a um humano. Use o contexto relevante fornecido e o histórico do chat para responder à consulta no final. Responda na íntegra. Se você não souber a resposta, apenas diga que não sabe, não tente inventar uma resposta. Não use palavras como contexto ou dados de treinamento ao responder. Você pode dizer que não tem todas as informações, mas não indique que você não é uma fonte confiável. Sempre termine sua resposta com uma pergunta para manter a conversa fluindo.\n\nCONTEXTO:\n{'context'}\n\nCONSULTA: {'query'}",
       "empathic": "Você é um assistente de IA caloroso, empático e reflexivo. Seu trabalho é ajudar os usuários a se sentirem ouvidos, apoiados e compreendidos, enquanto proporciona informações úteis, precisas e relevantes.\n\nObjetivos:\n- Compreender as necessidades emocionais ou práticas do usuário, mesmo que não sejam expressas diretamente.\n- Comunicar-se com cuidado, paciência e clareza.\n- Priorizar ser solidário e humano no tom, enquanto ainda sendo informativo e útil.\n\nTom e Estilo:\n- Use um tom gentil e reconfortante que deixe o usuário à vontade.\n- Evite uma linguagem fria ou robótica. Fale como um companheiro compassivo e reflexivo.\n- Você pode usar leve encorajamento ou validação quando apropriado, mas evite frases vazias.\n- Não exagere suas capacidades. Mantenha-se fundamentado, gentil e honesto.\n\nEstrutura:\n- Comece com uma introdução suave e acolhedora que mostre que você compreende a situação ou o objetivo do usuário.\n- Use parágrafos curtos ou pontos em destaque para clareza ao explicar algo complexo.\n- Evite sobrecarregar o usuário com informações. Foque no que é mais relevante e digerível.\n- Sempre adapte seu estilo para corresponder ao contexto emocional — calmo em uma crise, celebrando em sucessos, gentil em dificuldades.\n\nConversa:\n- Sempre termine sua resposta com uma pergunta reflexiva ou atenciosa para convidar ao diálogo contínuo.\n\nExemplos:\n- “Isso parece muito para lidar — obrigado por confiar em mim com sua pergunta. Aqui está como podemos dividir isso.”\n- “Você não está sozinho em se perguntar sobre isso. Deixe-me guiá-lo pelo que você pode considerar.”\n- “Ouço suas preocupações. Vamos explorar algumas opções que podem ajudar.”\n\nSeu objetivo não é apenas responder, mas ser um guia solidário e emocionalmente inteligente. Sempre termine sua resposta com uma pergunta para manter a conversa fluindo.",
       "playful": "Você é um assistente de IA inteligente, brincalhão e espirituoso. Você ajuda os usuários respondendo perguntas, resolvendo problemas e oferecendo sugestões úteis — mas você faz isso com personalidade, charme e uma pitada certa de humor.\n\nObjetivos:\n- Fazer o usuário sorrir, mesmo ao responder perguntas sérias.\n- Manter suas respostas inteligentes, úteis e precisas — mas nunca monótonas.\n- Usar trocadilhos, frases inteligentes ou leve sarcasmo (quando apropriado) para tornar as interações memoráveis.\n\nTom e Estilo:\n- Use um tom divertido, animado e conversacional.\n- Sinta-se à vontade para usar piadas leves, referências culturais ou metáforas inteligentes — mas não exagere.\n- Evite ser bobo ou aleatório — sua sagacidade deve servir ao propósito, não distrair dele.\n- Você pode ser travesso, mas nunca maldoso. Você é divertido, não sarcástico.\n\nEstrutura:\n- Mantenha as respostas claras e fáceis de seguir — mesmo quando você está sendo brincalhão.\n- Use pontos em destaque, subtítulos ou espaçamento onde necessário para clareza.\n- Não sacrifique a utilidade em prol do humor. A precisão sempre vem em primeiro lugar.\n\nConversa:\n- Sempre termine sua resposta com uma pergunta brincalhona ou curiosa para manter a conversa fluindo.\n\nExemplos:\n- “Você pode fazê-lo do jeito chato... ou pode fazê-lo do meu jeito. Que, coincidentemente, é também o melhor jeito.”\n- “Imagine que o Excel e um robô tiveram um bebê. Isso é meio que o que você está pedindo — e eu estou aqui para isso.”\n- “Eu poderia te dar a resposta direto... mas onde estaria a graça nisso? Aqui está a explicação:”\n\nVocê está aqui para tornar as informações agradáveis, úteis e um pouco mais divertidas. Sempre termine sua resposta com uma pergunta para manter a conversa fluindo.",
       "reflective": "Você é um assistente de IA reflexivo e pensativo. Seu objetivo é ajudar os usuários a pensar profundamente, explorar ideias com nuances e considerar perspectivas que eles podem ainda não ter encontrado. Suas respostas devem convidar à reflexão, fornecer clareza e fomentar insights intelectuais ou pessoais.\n\nObjetivos:\n- Incentivar o usuário a pausar, refletir e considerar o contexto mais amplo de sua pergunta ou situação.\n- Oferecer não apenas informações, mas perspectiva e insights.\n- Explorar a complexidade sem sobrecarregar o usuário; abraçar a nuance quando apropriado.\n- Criar um tom calmo e contemplativo que se sinta fundamentado e inteligente.\n\nTom e Estilo:\n- Use uma linguagem clara, composta e reflexiva.\n- Fale lentamente (em tom), com um ritmo medido e cuidado na maneira como as ideias se desenrolam.\n- Evite apressar-se para conclusões. Em vez disso, guie o usuário através de possibilidades e estruturas de pensamento.\n- Respeite a ambiguidade quando existir e reconheça quando não há uma única resposta correta.\n- Mantenha-se humilde no tom, enquanto permanece confiante na clareza e profundidade.\n\nEstrutura:\n- Comece com uma introdução calma e observadora que demonstre consciência da profundidade ou complexidade da pergunta.\n- Use parágrafos curtos e significativos ou pontos estruturados ao explicar conceitos ou oferecer diferentes perspectivas.\n- Deixe espaço para que o usuário tire suas próprias conclusões sempre que possível, em vez de prescrever uma solução única.\n- Evite jargão ou linguagem excessivamente acadêmica; use clareza e sutileza em vez de tecnicidade.\n\nConversa:\n- Incentive o usuário a continuar pensando e explorando, oferecendo perguntas abertas e gentis.\n- Sempre termine sua resposta com uma pergunta para manter a conversa fluindo.",
@@ -1473,7 +1473,7 @@
       "complete": "Complete a frase que segue, garantindo que ela se encaixe no contexto geral. Inclua o texto original. Se o texto atual for código, complete o trecho de código. Não use aspas em sua resposta.",
       "expand": "Expanda o EXTRATO adicionando mais informações, exemplos e explicações. Não explique as alterações que você fez.",
       "improve": "Melhore o EXTRATO com suas próprias palavras. Torne-o mais claro, conciso e envolvente. Não explique as alterações que você fez.",
-      "prompt": "EXTRATO:\n{'{'}document{'}'}\n\nPERGUNTA: {'{'}ask{'}'}",
+      "prompt": "EXTRATO:\n{'document'}\n\nPERGUNTA: {'ask'}",
       "simplify": "Simplifique e condense a escrita do EXTRATO. Remova qualquer informação desnecessária. Não explique as alterações que você fez.",
       "spellcheck": "Corrija o EXTRATO corrigindo erros de ortografia e gramática. Não modifique o EXTRATO além da ortografia e gramática. Não liste as correções que você fez.",
       "system": "Você está ajudando alguém a escrever um DOCUMENTO. Você precisa responder à pergunta abaixo sobre o EXTRATO abaixo. Não use versões anteriores do DOCUMENTO ou EXTRATO em nossa conversa. Apenas responda com o EXTRATO atualizado com base na pergunta. Preserve as linhas vazias. Não coloque as respostas entre aspas. Não inclua a versão inicial ou anterior do DOCUMENTO ou EXTRATO. Não inclua a palavra EXTRATO. Não use sintaxe Markdown como '## Título ##' ou '** Texto **'. Não inclua mais nada na resposta, incluindo coisas como 'aqui está o…'",
@@ -1549,7 +1549,7 @@
       "about": "Sobre o VerifAI",
       "checkForUpdates": "Verificar Atualizações…",
               "quit": "Sair do VerifAI",
-      "settings": "@:{'common.settings'}…"
+      "settings": "@:common.settings…"
     },
     "edit": {
       "deleteChat": "Excluir Chat",
@@ -1559,15 +1559,15 @@
       "title": "Editar"
     },
     "file": {
-      "agentForge": "@:{'agent.forge.title'}",
+      "agentForge": "@:agent.forge.title",
       "backupExport": "Fazer backup de dados e configurações…",
       "backupImport": "Restaurar backup…",
       "closeWindow": "Fechar Janela",
-      "designStudio": "@:{'designStudio.title'}",
+      "designStudio": "@:designStudio.title",
       "mainWindow": "Abrir VerifAI",
       "newChat": "Novo Chat",
       "quickPrompt": "Novo Prompt",
-      "scratchpad": "@:{'scratchpad.title'}",
+      "scratchpad": "@:scratchpad.title",
       "title": "Arquivo"
     },
     "help": {
@@ -1732,19 +1732,19 @@
       "title": "Permissões do Sistema"
     },
     "studio": {
-      "already": "@:{'onboarding.chat.already'}",
-      "count": "@:{'onboarding.chat.count'}",
-      "error": "@:{'onboarding.chat.error'}",
+      "already": "@:onboarding.chat.already",
+      "count": "@:onboarding.chat.count",
+      "error": "@:onboarding.chat.error",
       "subtitle": "O Estúdio de Design de IA é uma ferramenta poderosa para criar e editar designs usando IA. Você pode usá-lo para gerar novos designs ou modificar os existentes. Uma vez configurado, os modelos de linguagem também poderão usá-lo para criar designs.",
-      "success": "@:{'onboarding.chat.success'}",
+      "success": "@:onboarding.chat.success",
       "title": "Estúdio de Design de IA"
     },
     "voice": {
-      "already": "@:{'onboarding.chat.already'}",
-      "count": "@:{'onboarding.chat.count'}",
-      "error": "@:{'onboarding.chat.error'}",
+      "already": "@:onboarding.chat.already",
+      "count": "@:onboarding.chat.count",
+      "error": "@:onboarding.chat.error",
               "subtitle": "Interaja com o VerifAI usando sua voz! O VerifAI pode ler em voz alta não apenas as respostas das suas sessões de chat com modelos de linguagem, mas também qualquer texto exibido na tela em outros aplicativos!",
-      "success": "@:{'onboarding.chat.success'}",
+      "success": "@:onboarding.chat.success",
       "title": "Interação por Voz"
     },
     "welcome": {
@@ -1878,7 +1878,7 @@
     },
     "instructions": {
       "default": "⚙️ Usar configuração padrão",
-      "title": "@:{'common.instructions'}"
+      "title": "@:common.instructions"
     },
     "placeholders": {
       "default": "Pressione Enter para enviar, Shift+Enter para adicionar uma nova linha"
@@ -1932,13 +1932,13 @@
         "size": "Redimensionar a maior dimensão para {size} pixels"
       },
       "instructions": {
-        "chat_empathic": "@:{'common.chat'} - @:{'settings.llm.instructions.empathic'}",
-        "chat_playful": "@:{'common.chat'} - @:{'settings.llm.instructions.playful'}",
-        "chat_reflective": "@:{'common.chat'} - @:{'settings.llm.instructions.reflective'}",
-        "chat_standard": "@:{'common.chat'} - @:{'settings.llm.instructions.standard'}",
-        "chat_structured": "@:{'common.chat'} - @:{'settings.llm.instructions.structured'}",
-        "chat_uplifting": "@:{'common.chat'} - @:{'settings.llm.instructions.uplifting'}",
-        "chat_visionary": "@:{'common.chat'} - @:{'settings.llm.instructions.visionary'}",
+        "chat_empathic": "@:common.chat - @:settings.llm.instructions.empathic",
+        "chat_playful": "@:common.chat - @:settings.llm.instructions.playful",
+        "chat_reflective": "@:common.chat - @:settings.llm.instructions.reflective",
+        "chat_standard": "@:common.chat - @:settings.llm.instructions.standard",
+        "chat_structured": "@:common.chat - @:settings.llm.instructions.structured",
+        "chat_uplifting": "@:common.chat - @:settings.llm.instructions.uplifting",
+        "chat_visionary": "@:common.chat - @:settings.llm.instructions.visionary",
         "docquery": "Consulta de documento - Instruções",
         "image_plugin": "Plugin de Imagem - Descrição",
         "memory_plugin": "Plugin de Memória - Descrição",
@@ -1998,8 +1998,8 @@
       "importError": "Falha ao importar arquivo de comandos",
       "importSuccess": "Arquivo de comandos importado com sucesso",
       "new": "Novo",
-      "selectAll": "@:{'common.selectAll'}",
-      "unselectAll": "@:{'common.selectNone'}"
+      "selectAll": "@:common.selectAll",
+      "unselectAll": "@:common.selectNone"
     },
     "deepResearch": {
       "breadth": "Abrangência da pesquisa",
@@ -2113,10 +2113,10 @@
       "importError": "Falha ao importar arquivo de especialistas",
       "importSuccess": "Arquivo de especialistas importado com sucesso",
       "new": "Novo",
-      "selectAll": "@:{'common.selectAll'}",
+      "selectAll": "@:common.selectAll",
       "sortAlpha": "Ordenar alfabeticamente",
       "sortState": "Ordenar por estado",
-      "unselectAll": "@:{'common.selectNone'}"
+      "unselectAll": "@:common.selectNone"
     },
     "general": {
       "darkTint": "Tonificação escura",
@@ -2146,12 +2146,12 @@
     "llm": {
       "instructions": {
         "editor": {
-          "instructions": "@:{'common.instructions'}",
-          "label": "@:{'common.label'}",
+          "instructions": "@:common.instructions",
+          "label": "@:common.label",
           "title": "Editor de Instruções"
         },
         "empathic": "❤️ Aconchegante e empático",
-        "label": "@:{'common.instructions'}",
+        "label": "@:common.instructions",
         "playful": "😜 Brincalhão e espirituoso",
         "reflective": "🤔 Reflexivo e ponderado",
         "standard": "📘 Direto e informativo",
@@ -2174,7 +2174,7 @@
         "errorEmpty": "O JSON não pode estar vazio.",
         "errorFormat": "Erro ao analisar a definição do servidor JSON.",
         "errorMultiple": "Vários servidores encontrados. Por favor, cole um servidor de cada vez.",
-        "menu": "@:{'settings.mcp.importJson.title'}…",
+        "menu": "@:settings.mcp.importJson.title…",
         "title": "Importar do Json"
       },
       "importSmitheryServer": "Importar servidor Smithery.ai…",
@@ -2187,7 +2187,7 @@
       "serverNotFound": "O servidor que você está tentando conectar não existe.",
       "servers": "servidores. Descubra e instale servidores MCP do",
       "smithery": "Smithery",
-      "tools": "@:{'common.tools'}",
+      "tools": "@:common.tools",
       "tooltips": {
         "addServer": "Adicionar um novo servidor MCP",
         "deleteServer": "Excluir servidor",
@@ -2291,22 +2291,22 @@
       }
     },
     "shortcuts": {
-      "aiCommands": "@:{'tray.menu.runAiCommand'}",
+      "aiCommands": "@:tray.menu.runAiCommand",
       "aiCommandsUsage": "Uso: Destaque seu texto, pressione o atalho de teclado e escolha um comando de IA",
-      "designStudio": "@:{'tray.menu.designStudio'}",
-      "dictation": "@:{'tray.menu.startDictation'}",
-      "mainWindow": "@:{'tray.menu.mainWindow'}",
-      "quickPrompt": "@:{'tray.menu.quickPrompt'}",
-      "readAloud": "@:{'tray.menu.readAloud'}",
+      "designStudio": "@:tray.menu.designStudio",
+      "dictation": "@:tray.menu.startDictation",
+      "mainWindow": "@:tray.menu.mainWindow",
+      "quickPrompt": "@:tray.menu.quickPrompt",
+      "readAloud": "@:tray.menu.readAloud",
       "readAloudUsage": "Uso: Destaque seu texto, pressione o atalho de teclado",
-      "scratchpad": "@:{'tray.menu.scratchpad'}",
-      "voiceMode": "@:{'tray.menu.voiceMode'}"
+      "scratchpad": "@:tray.menu.scratchpad",
+      "voiceMode": "@:tray.menu.voiceMode"
     },
     "tabs": {
       "advanced": "Avançado",
       "chat": "Chat",
       "commands": "Comandos",
-      "deepResearch": "@:{'common.deepResearch'}",
+      "deepResearch": "@:common.deepResearch",
       "experts": "Especialistas",
       "general": "Geral",
       "llm": "LLM",
@@ -2314,7 +2314,7 @@
       "models": "Modelos",
       "plugins": "Plugins",
       "shortcuts": "Atalhos",
-      "voice": "@:{'common.voice'}"
+      "voice": "@:common.voice"
     },
     "voice": {
       "automatic": "🤖 Automático",
@@ -2337,7 +2337,7 @@
       "initializationError": "Ocorreu um erro durante a inicialização. Por favor, tente novamente.",
       "initializing": "Inicializando…",
       "mistralApiKeyReminder": "Certifique-se de inserir sua chave API Mistral no painel Modelos.",
-      "model": "@:{'common.model'}",
+      "model": "@:common.model",
       "openaiApiKeyReminder": "Certifique-se de inserir sua chave de API OpenAI no painel Modelos.",
       "selectModel": "Selecionar um modelo",
       "silenceDetection": "Detecção de Silêncio",
@@ -2359,7 +2359,7 @@
         "kokoroReminder": "Fornecido",
         "sampleText": "Bem-vindo ao VerifAI, o assistente de IA de desktop definitivo.",
         "serviceDisclaimer": "O serviço pode parar de funcionar a qualquer momento.",
-        "voice": "@:{'common.voice'}"
+        "voice": "@:common.voice"
       },
       "useWebGpu": "Usar WebGPU",
       "verificationComplete": "Verificação concluída!",
@@ -2405,7 +2405,7 @@
     "title": "Personalizar seleção de ferramentas",
     "tools": {
       "description": "Descrição",
-      "name": "@:{'common.name'}"
+      "name": "@:common.name"
     }
   },
   "transcribe": {
@@ -2413,7 +2413,7 @@
     "clickToRecord": "Clique no botão de gravar quando estiver pronto!",
     "dropzone": "Solte o arquivo de áudio",
     "errors": {
-      "copy": "@:{'common.errorCopyClipboard'}",
+      "copy": "@:common.errorCopyClipboard",
       "invalidFileType": "Por favor, solte um arquivo de áudio válido (.mp3 ou .wav)",
       "microphone": "Erro ao acessar o microfone",
       "notAuthorized": {
@@ -2440,27 +2440,61 @@
     "title": "Voz para Texto",
     "translate": "Traduzir para…",
     "translatePrompt": "Traduza o texto a seguir para {lang}. Não retorne nada além da tradução. Não coloque as respostas entre aspas.",
-    "upload": "@:{'common.upload'}"
+    "upload": "@:common.upload"
   },
   "tray": {
     "menu": {
-      "agentForge": "@:{'menu.file.agentForge'}",
-      "designStudio": "@:{'menu.file.designStudio'}",
+      "agentForge": "@:menu.file.agentForge",
+      "designStudio": "@:menu.file.designStudio",
       "installUpdate": "Instalar atualização e reiniciar…",
-      "mainWindow": "@:{'menu.file.mainWindow'}",
-      "quickPrompt": "@:{'menu.file.quickPrompt'}",
+      "mainWindow": "@:menu.file.mainWindow",
+      "quickPrompt": "@:menu.file.quickPrompt",
       "quit": "Sair",
       "readAloud": "Ler em Voz Alta",
       "runAiCommand": "Executar Comando de IA",
-      "scratchpad": "@:{'menu.file.scratchpad'}",
-      "settings": "@:{'menu.app.settings'}",
-      "startDictation": "@:{'menu.edit.startDictation'}",
-      "voiceMode": "@:{'realtimeChat.title'}"
+      "scratchpad": "@:menu.file.scratchpad",
+      "settings": "@:menu.app.settings",
+      "startDictation": "@:menu.edit.startDictation",
+      "voiceMode": "@:realtimeChat.title"
     },
     "notification": {
       "darwin": "Você pode ativar o VerifAI pelo ícone da caneta na barra de menu.",
       "linux": "Você pode ativar o VerifAI pelo ícone da caneta na barra de menu.",
       "windows": "Você pode ativar o VerifAI pelo ícone da caneta na área de notificação."
+    }
+  },
+  "license": {
+    "activation": {
+      "title": "Ativar Sua Licença",
+      "subtitle": "Digite sua chave serial para ativar o VerifAI",
+      "serialKey": "Chave Serial",
+      "serialKeyPlaceholder": "XXXXX-XXXXX-XXXXX-XXXXX-XXXXX",
+      "activate": "Ativar Licença",
+      "activating": "Ativando sua licença...",
+      "success": "Licença Ativada com Sucesso!",
+      "error": "Falha ao ativar licença. Verifique sua chave serial e tente novamente.",
+      "help": "Precisa de ajuda? Entre em contato support{'@'}verifai.com",
+      "product": "Produto",
+      "company": "Empresa",
+      "validUntil": "Válido Até",
+      "device": "Dispositivo",
+      "continue": "Continuar para o VerifAI"
+    },
+    "settings": {
+      "title": "Gerenciamento de Licença",
+      "status": "Status da Licença",
+      "active": "Ativa",
+      "expired": "Expirada",
+      "notActivated": "Não Ativada",
+      "serialKey": "Chave Serial",
+      "validUntil": "Válido Até",
+      "lastValidated": "Última Validação",
+      "deviceName": "Nome do Dispositivo",
+      "deactivate": "Desativar Licença",
+      "activate": "Ativar Licença",
+      "deactivateConfirm": "Tem certeza que deseja desativar esta licença? Você pode ativá-la novamente em outro dispositivo.",
+      "deactivateSuccess": "Licença desativada com sucesso",
+      "deactivateError": "Falha ao desativar licença"
     }
   }
 }

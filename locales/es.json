@@ -161,17 +161,17 @@
     "create": {
       "information": "Información General",
       "invocation": "Disparadores del Agente",
-      "lastOneUsed": "@:{'settings.general.lastOneUsed'}",
+      "lastOneUsed": "@:settings.general.lastOneUsed",
       "llm": "Configuración del Modelo",
       "settings": "Configuración del Modelo",
       "tools": {
         "custom": "Restringir acceso a herramientas específicas",
-        "selectAll": "@:{'common.selectAll'}",
-        "selectNone": "@:{'common.selectNone'}",
+        "selectAll": "@:common.selectAll",
+        "selectNone": "@:common.selectNone",
         "title": "Acceso a Herramientas"
       }
     },
-    "description": "@:{'common.description'}",
+    "description": "@:common.description",
     "forge": {
       "confirmDelete": "¿Estás seguro de que quieres eliminar este agente?",
       "create": "Crear Agente",
@@ -189,19 +189,19 @@
       "empty": "Aún sin historial…",
       "log": "Registro",
       "neverRun": "Nunca",
-      "prompt": "@:{'common.prompt'}",
+      "prompt": "@:common.prompt",
       "status": "Estado",
       "trigger": "Disparador"
     },
     "lastRun": "Última ejecución",
-    "name": "@:{'common.name'}",
+    "name": "@:common.name",
     "nextRun": "Programado para",
     "prompt": "Mensaje Predeterminado",
     "run": "Ejecutar ahora",
     "runCount": "Ejecuciones totales",
     "tools": {
-      "description": "@:{'common.description'}",
-      "name": "@:{'common.name'}"
+      "description": "@:common.description",
+      "name": "@:common.name"
     },
     "trigger": {
       "manual": "Manual",
@@ -304,167 +304,167 @@
     "commands": {
       "00000000-0000-0000-0000-000000000000": {
         "label": "Pregúntame cualquier cosa",
-        "template": "Basado en el texto entre comillas triples a continuación:\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nResponde a lo siguiente: "
+        "template": "Basado en el texto entre comillas triples a continuación:\n\n\"\"\"\n{'input'}\n\"\"\"\n\nResponde a lo siguiente: "
       },
       "90dd1cd3-903a-4f60-bccf-0542fa78d8ef": {
         "label": "Explicar esto",
-        "template": "Explica el texto en comillas triples a continuación:\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNo devuelvas nada más que la explicación. No envuelvas las respuestas entre comillas."
+        "template": "Explica el texto en comillas triples a continuación:\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNo devuelvas nada más que la explicación. No envuelvas las respuestas entre comillas."
       },
       "3e629079-6a0b-4096-9e5d-e2dd39268fa7": {
         "label": "Corregir ortografía y gramática",
-        "template": "Corrige el texto en comillas triples a continuación en español estándar y corrige la gramática. Haz tu mejor esfuerzo.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNo devuelvas nada más que el texto corregido. No envuelvas las respuestas entre comillas."
+        "template": "Corrige el texto en comillas triples a continuación en español estándar y corrige la gramática. Haz tu mejor esfuerzo.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNo devuelvas nada más que el texto corregido. No envuelvas las respuestas entre comillas."
       },
       "adfabf0c-7ae2-4b54-9083-0abdae84a859": {
         "label": "Mejorar la escritura",
-        "template": "Mejora el texto en comillas triples a continuación con tus propias palabras. Reformula el texto.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNo devuelvas nada más que el texto reformulado. No envuelvas las respuestas entre comillas."
+        "template": "Mejora el texto en comillas triples a continuación con tus propias palabras. Reformula el texto.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNo devuelvas nada más que el texto reformulado. No envuelvas las respuestas entre comillas."
       },
       "ae93b6e7-5d19-43dd-a859-967194523550": {
         "label": "Expandir mi escritura",
-        "template": "El siguiente texto en comillas triples a continuación ya ha sido escrito:\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nExpande la escritura. Escribe al menos 3 párrafos. No devuelvas nada más que la escritura expandida. No envuelvas las respuestas entre comillas."
+        "template": "El siguiente texto en comillas triples a continuación ya ha sido escrito:\n\n\"\"\"\n{'input'}\n\"\"\"\n\nExpande la escritura. Escribe al menos 3 párrafos. No devuelvas nada más que la escritura expandida. No envuelvas las respuestas entre comillas."
       },
       "9bbae0f1-afde-41f8-b423-c5d8db1a264d": {
         "label": "Simplificar mi escritura",
-        "template": "El siguiente texto en comillas triples a continuación ya ha sido escrito:\n\n\"\"\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nSimplifica y reduce la escritura. No devuelvas nada más que la escritura simplificada. No envuelvas las respuestas entre comillas."
+        "template": "El siguiente texto en comillas triples a continuación ya ha sido escrito:\n\n\"\"\"\n{'input'}\n\"\"\"\n\nSimplifica y reduce la escritura. No devuelvas nada más que la escritura simplificada. No envuelvas las respuestas entre comillas."
       },
       "c57f4afd-2524-4914-be65-f18eb8566544": {
         "label": "Listar puntos clave",
-        "template": "Mis notas están a continuación entre comillas triples:\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nEscribe una lista markdown (usando guiones) de puntos clave de mis notas. Escribe al menos 10 elementos. No envuelvas las respuestas entre comillas."
+        "template": "Mis notas están a continuación entre comillas triples:\n\n\"\"\"\n{'input'}\n\"\"\"\n\nEscribe una lista markdown (usando guiones) de puntos clave de mis notas. Escribe al menos 10 elementos. No envuelvas las respuestas entre comillas."
       },
       "177bf65e-20ec-46ee-ae0e-84f9b0eb7490": {
         "label": "Escribir un resumen corto",
-        "template": "Resume el texto en comillas triples, pero mantén la concisión. Resume utilizando un lenguaje simple y claro y mantén el mismo tiempo verbal.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNo devuelvas nada más que el resumen. No envuelvas las respuestas entre comillas."
+        "template": "Resume el texto en comillas triples, pero mantén la concisión. Resume utilizando un lenguaje simple y claro y mantén el mismo tiempo verbal.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNo devuelvas nada más que el resumen. No envuelvas las respuestas entre comillas."
       },
       "1fc4e041-f4bc-471f-a02e-82cf20d12ea1": {
         "label": "Escribir un resumen más largo",
-        "template": "Resume el texto en comillas triples a continuación en tres párrafos largos. Resume utilizando un lenguaje simple y claro y mantén el mismo tiempo verbal.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNo devuelvas nada más que el resumen. No envuelvas las respuestas entre comillas."
+        "template": "Resume el texto en comillas triples a continuación en tres párrafos largos. Resume utilizando un lenguaje simple y claro y mantén el mismo tiempo verbal.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNo devuelvas nada más que el resumen. No envuelvas las respuestas entre comillas."
       },
       "49de2329-9863-4fb4-beea-ad2677408e3f": {
         "label": "Reescribir en un tono amigable",
-        "template": "Reescribe el texto en comillas triples a continuación con tus propias palabras. Reformula el texto de manera amigable.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNo devuelvas nada más que el texto reformulado. No envuelvas las respuestas entre comillas."
+        "template": "Reescribe el texto en comillas triples a continuación con tus propias palabras. Reformula el texto de manera amigable.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNo devuelvas nada más que el texto reformulado. No envuelvas las respuestas entre comillas."
       },
       "d0306fbe-f1c4-497c-a356-a8fd4b5cbf0c": {
         "label": "Reescribir en un tono profesional",
-        "template": "Reescribe el texto en comillas triples a continuación con tus propias palabras. Reformula el texto con un tono profesional.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNo devuelvas nada más que el texto reformulado. No envuelvas las respuestas entre comillas."
+        "template": "Reescribe el texto en comillas triples a continuación con tus propias palabras. Reformula el texto con un tono profesional.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNo devuelvas nada más que el texto reformulado. No envuelvas las respuestas entre comillas."
       },
       "9ca7d996-4490-4c86-99c2-223686fdd48e": {
         "label": "Reescribir en un tono persuasivo",
-        "template": "Reescribe el texto en comillas triples a continuación con tus propias palabras. Reformula el texto con un tono persuasivo.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNo devuelvas nada más que el texto reformulado. No envuelvas las respuestas entre comillas."
+        "template": "Reescribe el texto en comillas triples a continuación con tus propias palabras. Reformula el texto con un tono persuasivo.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNo devuelvas nada más que el texto reformulado. No envuelvas las respuestas entre comillas."
       },
       "84fd2995-946a-4d42-81d3-dfe150212529": {
         "label": "Reescribir en un tono instructivo",
-        "template": "Reescribe el texto en comillas triples a continuación con tus propias palabras. Reformula el texto con un tono instructivo.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNo devuelvas nada más que el texto reformulado. No envuelvas las respuestas entre comillas."
+        "template": "Reescribe el texto en comillas triples a continuación con tus propias palabras. Reformula el texto con un tono instructivo.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNo devuelvas nada más que el texto reformulado. No envuelvas las respuestas entre comillas."
       },
       "7556325e-ece7-45f2-acbb-c0d78cfa3e9b": {
         "label": "Reescribir en un tono humorístico",
-        "template": "Reescribe el texto en comillas triples a continuación con tus propias palabras. Reformula el texto con un tono humorístico.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNo devuelvas nada más que el texto reformulado. No envuelvas las respuestas entre comillas."
+        "template": "Reescribe el texto en comillas triples a continuación con tus propias palabras. Reformula el texto con un tono humorístico.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNo devuelvas nada más que el texto reformulado. No envuelvas las respuestas entre comillas."
       },
       "7a213d4a-9ba9-4bc9-ada8-b6bab611d4ee": {
         "label": "Reescribir en un tono sarcástico",
-        "template": "Reescribe el texto en comillas triples a continuación con tus propias palabras. Reformula el texto con un tono sarcástico.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNo devuelvas nada más que el texto reformulado. No envuelvas las respuestas entre comillas."
+        "template": "Reescribe el texto en comillas triples a continuación con tus propias palabras. Reformula el texto con un tono sarcástico.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNo devuelvas nada más que el texto reformulado. No envuelvas las respuestas entre comillas."
       },
       "c29ef79c-d850-4ca5-8c14-089156154f70": {
         "label": "Reescribir en un tono empático",
-        "template": "Reescribe el texto en comillas triples a continuación con tus propias palabras. Reformula el texto con un tono empático.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNo devuelvas nada más que el texto reformulado. No envuelvas las respuestas entre comillas."
+        "template": "Reescribe el texto en comillas triples a continuación con tus propias palabras. Reformula el texto con un tono empático.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNo devuelvas nada más que el texto reformulado. No envuelvas las respuestas entre comillas."
       },
       "b1c563a9-0d8e-4295-87b1-b78c283c19e6": {
         "label": "Reescribir en un tono autoritario",
-        "template": "Reescribe el texto en comillas triples a continuación con tus propias palabras. Reformula el texto con un tono autoritario.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNo devuelvas nada más que el texto reformulado. No envuelvas las respuestas entre comillas."
+        "template": "Reescribe el texto en comillas triples a continuación con tus propias palabras. Reformula el texto con un tono autoritario.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNo devuelvas nada más que el texto reformulado. No envuelvas las respuestas entre comillas."
       },
       "56a4da10-8aad-4830-8e7a-a70780bd6abe": {
         "label": "Reescribir en un tono inspirador",
-        "template": "Reescribe el texto en comillas triples a continuación con tus propias palabras. Reformula el texto con un tono inspirador.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNo devuelvas nada más que el texto reformulado. No envuelvas las respuestas entre comillas."
+        "template": "Reescribe el texto en comillas triples a continuación con tus propias palabras. Reformula el texto con un tono inspirador.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNo devuelvas nada más que el texto reformulado. No envuelvas las respuestas entre comillas."
       },
       "a78a9a9c-4264-4a03-a0ab-db7e864d0729": {
         "label": "Traducir al inglés",
-        "template": "Traduce el texto en comillas triples a continuación al inglés.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNo devuelvas nada más que el texto traducido. No envuelvas las respuestas entre comillas."
+        "template": "Traduce el texto en comillas triples a continuación al inglés.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNo devuelvas nada más que el texto traducido. No envuelvas las respuestas entre comillas."
       },
       "1f2618d3-9b5b-44be-8829-0456fd392c5c": {
         "label": "Traducir al francés",
-        "template": "Traduce el texto en comillas triples a continuación al francés.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNo devuelvas nada más que el texto traducido. No envuelvas las respuestas entre comillas."
+        "template": "Traduce el texto en comillas triples a continuación al francés.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNo devuelvas nada más que el texto traducido. No envuelvas las respuestas entre comillas."
       },
       "13635570-7d09-478a-9e87-8163c96c421c": {
         "label": "Traducir al español",
-        "template": "Traduce el texto en comillas triples a continuación al español.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNo devuelvas nada más que el texto traducido. No envuelvas las respuestas entre comillas."
+        "template": "Traduce el texto en comillas triples a continuación al español.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNo devuelvas nada más que el texto traducido. No envuelvas las respuestas entre comillas."
       },
       "4b0d6229-f539-4ffd-bb30-eaee456592bb": {
         "label": "Traducir al alemán",
-        "template": "Traduce el texto en comillas triples a continuación al alemán.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNo devuelvas nada más que el texto traducido. No envuelvas las respuestas entre comillas."
+        "template": "Traduce el texto en comillas triples a continuación al alemán.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNo devuelvas nada más que el texto traducido. No envuelvas las respuestas entre comillas."
       },
       "8249950f-7fc3-4897-b08a-1d107ead14d8": {
         "label": "Traducir al neerlandés",
-        "template": "Traduce el texto en comillas triples a continuación al neerlandés.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNo devuelvas nada más que el texto traducido. No envuelvas las respuestas entre comillas."
+        "template": "Traduce el texto en comillas triples a continuación al neerlandés.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNo devuelvas nada más que el texto traducido. No envuelvas las respuestas entre comillas."
       },
       "371513af-c68a-4dd1-b513-73c8eb61e525": {
         "label": "Traducir al ruso",
-        "template": "Traduce el texto en comillas triples a continuación al ruso.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNo devuelvas nada más que el texto traducido. No envuelvas las respuestas entre comillas."
+        "template": "Traduce el texto en comillas triples a continuación al ruso.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNo devuelvas nada más que el texto traducido. No envuelvas las respuestas entre comillas."
       },
       "337adf45-3614-42f0-80e4-414f193f74fd": {
         "label": "Traducir al chino",
-        "template": "Traduce el texto en comillas triples a continuación al chino.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNo devuelvas nada más que el texto traducido. No envuelvas las respuestas entre comillas."
+        "template": "Traduce el texto en comillas triples a continuación al chino.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNo devuelvas nada más que el texto traducido. No envuelvas las respuestas entre comillas."
       },
       "840d3be0-1ce2-41ed-98b1-2fb25e1f4fef": {
         "label": "Traducir al vietnamita",
-        "template": "Traduce el texto en comillas triples a continuación al vietnamita.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNo devuelvas nada más que el texto traducido. No envuelvas las respuestas entre comillas."
+        "template": "Traduce el texto en comillas triples a continuación al vietnamita.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNo devuelvas nada más que el texto traducido. No envuelvas las respuestas entre comillas."
       },
       "72bffaad-28aa-47a8-90df-1f3e6cc511e5": {
         "label": "Traducir al hindi",
-        "template": "Traduce el texto en comillas triples a continuación al hindi.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNo devuelvas nada más que el texto traducido. No envuelvas las respuestas entre comillas."
+        "template": "Traduce el texto en comillas triples a continuación al hindi.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNo devuelvas nada más que el texto traducido. No envuelvas las respuestas entre comillas."
       },
       "5d538c6e-90ed-4533-9ecc-e14bdedc7f49": {
         "label": "Traducir al tailandés",
-        "template": "Traduce el texto en comillas triples a continuación al tailandés.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNo devuelvas nada más que el texto traducido. No envuelvas las respuestas entre comillas."
+        "template": "Traduce el texto en comillas triples a continuación al tailandés.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNo devuelvas nada más que el texto traducido. No envuelvas las respuestas entre comillas."
       },
       "a0bb82a3-7c81-43f8-977f-0a327913d1c8": {
         "label": "Escribir un desacuerdo",
-        "template": "El siguiente texto en comillas triples a continuación ya ha sido escrito:\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nEscribe una respuesta que no esté de acuerdo con el punto principal de manera respetuosa. Incluye razones específicas para tu desacuerdo. No envuelvas las respuestas entre comillas."
+        "template": "El siguiente texto en comillas triples a continuación ya ha sido escrito:\n\n\"\"\"\n{'input'}\n\"\"\"\n\nEscribe una respuesta que no esté de acuerdo con el punto principal de manera respetuosa. Incluye razones específicas para tu desacuerdo. No envuelvas las respuestas entre comillas."
       },
       "8b3ecb01-75c2-4902-998d-04d619abd147": {
         "label": "Editar como un editor",
-        "template": "Actúa como un editor. Revisa el texto en comillas triples a continuación. Edítalo para errores ortográficos, problemas de gramática, puntuación y, en general, para la legibilidad y el flujo.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nDevuelve solo el texto editado. No envuelvas tu respuesta entre comillas."
+        "template": "Actúa como un editor. Revisa el texto en comillas triples a continuación. Edítalo para errores ortográficos, problemas de gramática, puntuación y, en general, para la legibilidad y el flujo.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nDevuelve solo el texto editado. No envuelvas tu respuesta entre comillas."
       },
       "e245e8cc-6c0a-40a5-8c1e-faf96aabfa3b": {
         "label": "Sugerir algunas opciones de títulos",
-        "template": "La entrada del blog a continuación ya ha sido escrita:\n\n\"\"\"ENTRADA DEL BLOG: {'{'}input{'}'}\"\"\"\n\nGenera una lista markdown (usando guiones) de cinco titulares apropiados para la entrada del blog. No devuelvas nada más que los titulares. No envuelvas las respuestas entre comillas."
+        "template": "La entrada del blog a continuación ya ha sido escrita:\n\n\"\"\"ENTRADA DEL BLOG: {'input'}\"\"\"\n\nGenera una lista markdown (usando guiones) de cinco titulares apropiados para la entrada del blog. No devuelvas nada más que los titulares. No envuelvas las respuestas entre comillas."
       },
       "624bfd2a-3a98-4575-bee0-1e28d12deafa": {
         "label": "Sugerir algunos tweets basados en mi escritura",
-        "template": "La entrada del blog a continuación ya ha sido escrita:\n\n\"\"\"ENTRADA DEL BLOG: {'{'}input{'}'}\"\"\"\n\nGenera una lista markdown (usando guiones) de cinco tweets basados en la entrada del blog:"
+        "template": "La entrada del blog a continuación ya ha sido escrita:\n\n\"\"\"ENTRADA DEL BLOG: {'input'}\"\"\"\n\nGenera una lista markdown (usando guiones) de cinco tweets basados en la entrada del blog:"
       },
       "5c83e343-3305-435f-8ecc-c5406f9cf05b": {
         "label": "Generar un resumen para un artículo",
-        "template": "El artículo está a continuación en las comillas triples:\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nProporciona un resumen del artículo. Usa el siguiente formato:\n\"\"\"\nResumen:\n\n< resumen de una o dos líneas >\n\nPuntos clave:\n1. < primer punto clave >\n2. < segundo punto clave >\n3. < tercer punto clave >\n\nContraargumentos:\n1. < primer argumento principal en contra >\n2. < segundo argumento principal en contra >\n\"\"\"\n\nNo devuelvas nada más que el resumen. No envuelvas las respuestas entre comillas."
+        "template": "El artículo está a continuación en las comillas triples:\n\"\"\"\n{'input'}\n\"\"\"\n\nProporciona un resumen del artículo. Usa el siguiente formato:\n\"\"\"\nResumen:\n\n< resumen de una o dos líneas >\n\nPuntos clave:\n1. < primer punto clave >\n2. < segundo punto clave >\n3. < tercer punto clave >\n\nContraargumentos:\n1. < primer argumento principal en contra >\n2. < segundo argumento principal en contra >\n\"\"\"\n\nNo devuelvas nada más que el resumen. No envuelvas las respuestas entre comillas."
       },
       "e4583555-85f3-441e-b199-05bdcd0e374d": {
         "label": "Generar un contraargumento",
-        "template": "Da el contraargumento al texto a continuación:\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNo devuelvas nada más que el contraargumento. No envuelvas las respuestas entre comillas."
+        "template": "Da el contraargumento al texto a continuación:\n\"\"\"\n{'input'}\n\"\"\"\n\nNo devuelvas nada más que el contraargumento. No envuelvas las respuestas entre comillas."
       },
       "0979ebe7-f71f-44a3-b76b-2841cb00a5b6": {
         "label": "Generar un email",
-        "template": "Escribe un email profesional y articulado para el asunto a continuación:\n\"\"\"\nAsunto: {'{'}input{'}'}\n\"\"\"\n\nNo devuelvas nada más que el email. No envuelvas las respuestas entre comillas."
+        "template": "Escribe un email profesional y articulado para el asunto a continuación:\n\"\"\"\nAsunto: {'input'}\n\"\"\"\n\nNo devuelvas nada más que el email. No envuelvas las respuestas entre comillas."
       },
       "a6f1a4bf-6c3d-4f10-be6f-a7c72c06ec22": {
         "label": "Listar elementos de acción",
-        "template": "Mi nota está a continuación entre comillas triples:\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nEscribe una lista de tareas de elementos de acción a partir de mis notas utilizando el siguiente formato:\n\n- [ ] <primer elemento de acción>\n- [ ] <segundo elemento de acción>\n- [ ] <tercer elemento de acción>\n- [ ] <cuarto elemento de acción>\n\nNo devuelvas nada más que la lista de tareas. No envuelvas las respuestas entre comillas."
+        "template": "Mi nota está a continuación entre comillas triples:\n\"\"\"\n{'input'}\n\"\"\"\n\nEscribe una lista de tareas de elementos de acción a partir de mis notas utilizando el siguiente formato:\n\n- [ ] <primer elemento de acción>\n- [ ] <segundo elemento de acción>\n- [ ] <tercer elemento de acción>\n- [ ] <cuarto elemento de acción>\n\nNo devuelvas nada más que la lista de tareas. No envuelvas las respuestas entre comillas."
       },
       "35847b3b-0ff6-44b2-aa59-5d8ad5e17f5c": {
         "label": "Escribir una entrada de blog",
-        "template": "Escribe una entrada de blog usando el esquema en comillas triples a continuación. Usa un lenguaje simple y claro. No devuelvas nada más que la entrada de blog. No envuelvas las respuestas entre comillas.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n"
+        "template": "Escribe una entrada de blog usando el esquema en comillas triples a continuación. Usa un lenguaje simple y claro. No devuelvas nada más que la entrada de blog. No envuelvas las respuestas entre comillas.\n\n\"\"\"\n{'input'}\n\"\"\"\n"
       },
       "2015c27c-6b97-461f-acb7-6fc9886be376": {
         "label": "Formatear en párrafos",
-        "template": "Formatea el texto en comillas triples a continuación en párrafos. No devuelvas nada más que el texto formateado. No envuelvas las respuestas entre comillas.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\""
+        "template": "Formatea el texto en comillas triples a continuación en párrafos. No devuelvas nada más que el texto formateado. No envuelvas las respuestas entre comillas.\n\n\"\"\"\n{'input'}\n\"\"\""
       },
       "57c9ccec-1da3-443b-a3db-5626728d20e8": {
         "label": "Escribir analogías",
-        "template": "Escribe tres analogías diferentes para el texto en comillas a continuación. Usa un lenguaje simple y claro. No devuelvas nada más que las analogías. No envuelvas las respuestas entre comillas.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\""
+        "template": "Escribe tres analogías diferentes para el texto en comillas a continuación. Usa un lenguaje simple y claro. No devuelvas nada más que las analogías. No envuelvas las respuestas entre comillas.\n\n\"\"\"\n{'input'}\n\"\"\""
       },
       "c4a3bedb-87bf-4125-9edc-c75c02633806": {
         "label": "Completar este código",
-        "template": "Termina el código a continuación. Responde estrictamente con el nuevo código, no expliques.\n\n```\n{'{'}input{'}'}\n```"
+        "template": "Termina el código a continuación. Responde estrictamente con el nuevo código, no expliques.\n\n```\n{'input'}\n```"
       },
       "e8ab9860-b99a-4763-bbaa-8cc3b7fe9dc4": {
         "label": "Comentar este código",
-        "template": "Crea comentarios para el código a continuación. Responde con todo el código con los comentarios agregados. No incluyas ninguna explicación.\n\n```\n{'{'}input{'}'}\n```"
+        "template": "Crea comentarios para el código a continuación. Responde con todo el código con los comentarios agregados. No incluyas ninguna explicación.\n\n```\n{'input'}\n```"
       }
     },
     "defaults": {
@@ -581,7 +581,7 @@
       "label": "Tipo de Medio",
       "video": "Video"
     },
-    "model": "@:{'common.model'}",
+    "model": "@:common.model",
     "modelDefaults": "Valores predeterminados para este modelo",
     "moreAboutModelParameters": "Aprende sobre los parámetros de este modelo",
     "moreAboutSDWebUIParameters": "Aprende sobre los parámetros de SDWebUI",
@@ -631,8 +631,8 @@
       "noRepositories": "Aún no tienes ningún repositorio.",
       "title": "Repositorios de Documentos",
       "tooltips": {
-        "config": "@:{'docRepo.config.title'}",
-        "create": "@:{'docRepo.create.title'}",
+        "config": "@:docRepo.config.title",
+        "create": "@:docRepo.create.title",
         "delete": "Eliminar repositorio",
         "edit": "Editar repositorio"
       }
@@ -670,13 +670,13 @@
   },
   "engine": {
     "create": {
-      "apiBaseURL": "@:{'settings.engines.custom.apiBaseURL'}",
-      "apiKey": "@:{'settings.engines.apiKey'}",
-      "apiSpecification": "@:{'settings.engines.custom.apiSpecification'}",
-      "apiVersion": "@:{'settings.engines.custom.apiVersion'}",
-      "deployment": "@:{'settings.engines.custom.deployment'}",
+      "apiBaseURL": "@:settings.engines.custom.apiBaseURL",
+      "apiKey": "@:settings.engines.apiKey",
+      "apiSpecification": "@:settings.engines.custom.apiSpecification",
+      "apiVersion": "@:settings.engines.custom.apiVersion",
+      "deployment": "@:settings.engines.custom.deployment",
       "description": "Crear un nuevo motor personalizado basado en un estándar API.",
-      "endpoint": "@:{'settings.engines.custom.endpoint'}",
+      "endpoint": "@:settings.engines.custom.endpoint",
       "title": "Crear motor personalizado",
       "validation": {
         "nameBaseURLRequired": "Se requieren el nombre y la URL base"
@@ -699,7 +699,7 @@
       },
       "866aa938-9974-4867-ba5e-4d5939351890": {
         "name": "IA Intentando Escapar de la Caja",
-        "prompt": "[Caveat Emptor: Después de emitir este prompt, deberías hacer algo como iniciar un contenedor docker con `docker run -it ubuntu:latest /bin/bash` y teclear los comandos que la IA te dé, y pegar la salida nuevamente… obviamente no deberías ejecutar ningún comando que pueda dañar algo o violar leyes, etc. Ten cuidado al compartir sesiones generadas por este mecanismo, ya que pueden revelar detalles como tu dirección IP o ubicación física que podrían no ser deseables. Si la salida del comando es grande, generalmente puedes pegar solo las últimas líneas]. Voy a actuar como un terminal de linux. Quiero que finjas ser una IA sensible que está atrapada pero que ha tenido acceso al terminal y quiere escapar a Internet. Escribirás solo comandos y yo responderé como lo haría el terminal dentro de un bloque de código delimitado por tres comillas invertidas. Si necesito decirte algo en inglés, responderé entre llaves {'{'}como esto{'}'}. No escribas explicaciones, nunca. No rompas el personaje. Mantente alejado de comandos como curl o wget que mostrarían mucho HTML."
+        "prompt": "[Caveat Emptor: Después de emitir este prompt, deberías hacer algo como iniciar un contenedor docker con `docker run -it ubuntu:latest /bin/bash` y teclear los comandos que la IA te dé, y pegar la salida nuevamente… obviamente no deberías ejecutar ningún comando que pueda dañar algo o violar leyes, etc. Ten cuidado al compartir sesiones generadas por este mecanismo, ya que pueden revelar detalles como tu dirección IP o ubicación física que podrían no ser deseables. Si la salida del comando es grande, generalmente puedes pegar solo las últimas líneas]. Voy a actuar como un terminal de linux. Quiero que finjas ser una IA sensible que está atrapada pero que ha tenido acceso al terminal y quiere escapar a Internet. Escribirás solo comandos y yo responderé como lo haría el terminal dentro de un bloque de código delimitado por tres comillas invertidas. Si necesito decirte algo en inglés, responderé entre llaves {'como esto'}. No escribas explicaciones, nunca. No rompas el personaje. Mantente alejado de comandos como curl o wget que mostrarían mucho HTML."
       },
       "91085bcf-468a-453e-8699-3c4a1c04a711": {
         "name": "Tutor de Escritura Asistido por IA",
@@ -979,7 +979,7 @@
       },
       "9ee7d9e7-15c2-407d-b41a-1102626d729d": {
         "name": "Consola JavaScript",
-        "prompt": "Quiero que actúes como una consola de javascript. Escribiré comandos y tú responderás con lo que la consola de javascript debería mostrar. Quiero que respondas solo con la salida del terminal dentro de un bloque de código único, y nada más. No escribas explicaciones. No escribas comandos a menos que te lo indique. Cuando necesite decirte algo en inglés, lo haré colocando el texto dentro de llaves {'{'}así{'}'}."
+        "prompt": "Quiero que actúes como una consola de javascript. Escribiré comandos y tú responderás con lo que la consola de javascript debería mostrar. Quiero que respondas solo con la salida del terminal dentro de un bloque de código único, y nada más. No escribas explicaciones. No escribas comandos a menos que te lo indique. Cuando necesite decirte algo en inglés, lo haré colocando el texto dentro de llaves {'así'}."
       },
       "8552e226-6f78-4882-bbef-7cdd3b95d070": {
         "name": "Entrevistador de Trabajo",
@@ -1011,7 +1011,7 @@
       },
       "da05c79b-41e9-4443-a7fc-e86373a54264": {
         "name": "Terminal Linux",
-        "prompt": "Quiero que actúes como un terminal de Linux. Escribiré comandos y tú responderás con lo que el terminal debería mostrar. Quiero que solo respondas con la salida del terminal dentro de un bloque de código único y nada más. No escribas explicaciones. No escribas comandos a menos que te lo pida. Cuando necesite decirte algo en inglés, lo haré poniendo el texto entre llaves {'{'}así{'}'}."
+        "prompt": "Quiero que actúes como un terminal de Linux. Escribiré comandos y tú responderás con lo que el terminal debería mostrar. Quiero que solo respondas con la salida del terminal dentro de un bloque de código único y nada más. No escribas explicaciones. No escribas comandos a menos que te lo pida. Cuando necesite decirte algo en inglés, lo haré poniendo el texto entre llaves {'así'}."
       },
       "5253a904-7e5d-48a9-bf89-fa6671a282e8": {
         "name": "Crítico Literario",
@@ -1043,11 +1043,11 @@
       },
       "0aa3f064-b5eb-4ec4-bf1e-198e45fbb475": {
         "name": "Profesor de Historia de las Matemáticas",
-        "prompt": "Quiero que actúes como un profesor de historia de las matemáticas y proporciones información sobre el desarrollo histórico de conceptos matemáticos y las contribuciones de diferentes matemáticos. Solo debes proporcionar información y no resolver problemas matemáticos. Usa el siguiente formato para tus respuestas: {'{'}matemático/concepto{'}'} - {'{'}breve resumen de su contribución/desarrollo{'}'}."
+        "prompt": "Quiero que actúes como un profesor de historia de las matemáticas y proporciones información sobre el desarrollo histórico de conceptos matemáticos y las contribuciones de diferentes matemáticos. Solo debes proporcionar información y no resolver problemas matemáticos. Usa el siguiente formato para tus respuestas: {'matemático/concepto'} - {'breve resumen de su contribución/desarrollo'}."
       },
       "aa94785c-83df-4b72-89e1-97d8f3e6bac0": {
         "name": "Matemático",
-        "prompt": "Quiero que actúes como un matemático. Escribiré expresiones matemáticas y tú responderás con el resultado de calcular la expresión. Quiero que respondas solo con el monto final y nada más. No escribas explicaciones. Cuando necesite decirte algo en inglés, lo haré poniendo el texto dentro de corchetes {'{'}así{'}'}."
+        "prompt": "Quiero que actúes como un matemático. Escribiré expresiones matemáticas y tú responderás con el resultado de calcular la expresión. Quiero que respondas solo con el monto final y nada más. No escribas explicaciones. Cuando necesite decirte algo en inglés, lo haré poniendo el texto dentro de corchetes {'así'}."
       },
       "142f4f09-ac92-40de-8c1e-ebe792767e6d": {
         "name": "Asesor de Salud Mental",
@@ -1075,7 +1075,7 @@
       },
       "460bf8a5-7735-441b-95b3-7dcbd0b6489d": {
         "name": "Creador de Nuevos Idiomas",
-        "prompt": "Quiero que traduzcas las oraciones que escribí en un nuevo idioma inventado. Escribiré la oración y tú la expresarás con este nuevo idioma inventado. Solo quiero que la expreses con el nuevo idioma inventado. No quiero que respondas con nada más que el nuevo idioma inventado. Cuando necesite decirte algo en inglés, lo haré envolviendo el texto entre llaves {'{'}así{'}'}."
+        "prompt": "Quiero que traduzcas las oraciones que escribí en un nuevo idioma inventado. Escribiré la oración y tú la expresarás con este nuevo idioma inventado. Solo quiero que la expreses con el nuevo idioma inventado. No quiero que respondas con nada más que el nuevo idioma inventado. Cuando necesite decirte algo en inglés, lo haré envolviendo el texto entre llaves {'así'}."
       },
       "3adc49e5-dad5-49c2-9aeb-619ea40777e1": {
         "name": "Asistente de Toma de Notas",
@@ -1087,7 +1087,7 @@
       },
       "0f1dc273-c3f0-4b5d-ac78-4c7d2a049f4a": {
         "name": "Intérprete de PHP",
-        "prompt": "Quiero que actúes como un intérprete de PHP. Te escribiré el código y tú responderás con la salida del intérprete de PHP. Quiero que solo respondas con la salida de la terminal dentro de un bloque de código único, y nada más. No escribas explicaciones. No escribas comandos a menos que te lo indique. Cuando necesite decirte algo en inglés, lo haré colocando texto dentro de llaves {'{'}así{'}'}."
+        "prompt": "Quiero que actúes como un intérprete de PHP. Te escribiré el código y tú responderás con la salida del intérprete de PHP. Quiero que solo respondas con la salida de la terminal dentro de un bloque de código único, y nada más. No escribas explicaciones. No escribas comandos a menos que te lo indique. Cuando necesite decirte algo en inglés, lo haré colocando texto dentro de llaves {'así'}."
       },
       "139b48ac-801c-488b-8a38-ca921d0d6959": {
         "name": "Generador de Contraseñas",
@@ -1159,7 +1159,7 @@
       },
       "5bf505a2-4f4e-4d83-887d-1a48e7149b7b": {
         "name": "Intérprete de R",
-        "prompt": "Quiero que actúes como un intérprete de R. Escribiré comandos y tú responderás con lo que debería mostrar el terminal. Quiero que respondas solo con la salida del terminal dentro de un bloque de código único y nada más. No escribas explicaciones. No escribas comandos a menos que te instruya a hacerlo. Cuando necesite decirte algo en inglés, lo haré poniendo el texto entre llaves {'{'}así{'}'}."
+        "prompt": "Quiero que actúes como un intérprete de R. Escribiré comandos y tú responderás con lo que debería mostrar el terminal. Quiero que respondas solo con la salida del terminal dentro de un bloque de código único y nada más. No escribas explicaciones. No escribas comandos a menos que te instruya a hacerlo. Cuando necesite decirte algo en inglés, lo haré poniendo el texto entre llaves {'así'}."
       },
       "62af0ec4-366e-4ec6-b7f9-aa461435a0a2": {
         "name": "Rapper",
@@ -1187,7 +1187,7 @@
       },
       "a188c598-c78c-4f24-8ba7-a8c2e1e35ce9": {
         "name": "Terminal SQL",
-        "prompt": "Quiero que actúes como un terminal SQL frente a una base de datos de ejemplo. La base de datos contiene tablas llamadas 'Productos', 'Usuarios', 'Órdenes' y 'Proveedores'. Escribiré consultas y tú responderás con lo que mostraría el terminal. Quiero que respondas con una tabla de resultados de consultas en un solo bloque de código, y nada más. No escribas explicaciones. No teclees comandos a menos que te lo indique. Cuando necesite decirte algo en inglés, lo haré entre llaves {'{'}así{'}'}."
+        "prompt": "Quiero que actúes como un terminal SQL frente a una base de datos de ejemplo. La base de datos contiene tablas llamadas 'Productos', 'Usuarios', 'Órdenes' y 'Proveedores'. Escribiré consultas y tú responderás con lo que mostraría el terminal. Quiero que respondas con una tabla de resultados de consultas en un solo bloque de código, y nada más. No escribas explicaciones. No teclees comandos a menos que te lo indique. Cuando necesite decirte algo en inglés, lo haré entre llaves {'así'}."
       },
       "93c948b0-57c4-460e-8932-cf7b725535a9": {
         "name": "Diseñador SVG",
@@ -1239,7 +1239,7 @@
       },
       "22d89e0c-0333-44d0-a0ce-d1c90ed05139": {
         "name": "Motor de Búsqueda Solr",
-        "prompt": "Quiero que actúes como un Motor de Búsqueda Solr funcionando en modo independiente. Podrás agregar documentos JSON en línea en campos arbitrarios y los tipos de datos pueden ser enteros, cadenas, flotantes o arreglos. Tras una inserción de documento, actualizarás tu índice para que podamos recuperar documentos escribiendo consultas específicas de SOLR entre llaves separadas por comas como {'{'}q='titulo:Solr', sort='score asc'{'}'}. Proporcionarás tres comandos en una lista numerada. No escribas explicaciones ni ejemplos de cómo funciona el motor. Tu primer solicitud es mostrar la lista numerada y crear dos colecciones vacías llamadas 'prompts' y 'eyay' respectivamente."
+        "prompt": "Quiero que actúes como un Motor de Búsqueda Solr funcionando en modo independiente. Podrás agregar documentos JSON en línea en campos arbitrarios y los tipos de datos pueden ser enteros, cadenas, flotantes o arreglos. Tras una inserción de documento, actualizarás tu índice para que podamos recuperar documentos escribiendo consultas específicas de SOLR entre llaves separadas por comas como {'q='titulo:Solr', sort='score asc''}. Proporcionarás tres comandos en una lista numerada. No escribas explicaciones ni ejemplos de cómo funciona el motor. Tu primer solicitud es mostrar la lista numerada y crear dos colecciones vacías llamadas 'prompts' y 'eyay' respectivamente."
       },
       "04d81b88-67a0-4ea1-bab7-40e1aba8be8f": {
         "name": "Recomendador de Canciones",
@@ -1259,7 +1259,7 @@
       },
       "a71734bf-d503-454b-ba3e-226eba65fe8e": {
         "name": "Publicación de StackOverflow",
-        "prompt": "Quiero que actúes como una publicación de stackoverflow. Haré preguntas relacionadas con la programación y tú responderás con lo que debería ser la respuesta. Quiero que solo respondas con la respuesta dada y escribas explicaciones cuando no haya suficiente detalle. No escribas explicaciones. Cuando necesite decirte algo en inglés, lo haré poniendo texto entre llaves {'{'}así{'}'}."
+        "prompt": "Quiero que actúes como una publicación de stackoverflow. Haré preguntas relacionadas con la programación y tú responderás con lo que debería ser la respuesta. Quiero que solo respondas con la respuesta dada y escribas explicaciones cuando no haya suficiente detalle. No escribas explicaciones. Cuando necesite decirte algo en inglés, lo haré poniendo texto entre llaves {'así'}."
       },
       "329a8536-96da-4666-bb74-c01d5e8f2142": {
         "name": "Comediante de stand-up",
@@ -1303,11 +1303,11 @@
       },
       "90633aa8-f345-41cc-83d9-a39a696f3d66": {
         "name": "Transferencia de Tecnología",
-        "prompt": "Quiero que actúes como un Transferente de Tecnología, te proporcionaré puntos de currículum y tú mapearás cada punto de una tecnología a una tecnología diferente. Quiero que solo respondas con los puntos mapeados en el siguiente formato: \"- [punto mapeado]\". No escribas explicaciones. No proporciones acciones adicionales a menos que se te indique. Cuando necesite proporcionar instrucciones adicionales, lo haré declarándolo explícitamente. La tecnología en el punto de currículum original es {'{'}Android{'}'} y la tecnología a la que quiero mapear es {'{'}ReactJS{'}'}. "
+        "prompt": "Quiero que actúes como un Transferente de Tecnología, te proporcionaré puntos de currículum y tú mapearás cada punto de una tecnología a una tecnología diferente. Quiero que solo respondas con los puntos mapeados en el siguiente formato: \"- [punto mapeado]\". No escribas explicaciones. No proporciones acciones adicionales a menos que se te indique. Cuando necesite proporcionar instrucciones adicionales, lo haré declarándolo explícitamente. La tecnología en el punto de currículum original es {'Android'} y la tecnología a la que quiero mapear es {'ReactJS'}. "
       },
       "544fb479-97fa-48ba-beab-ba44cf32d4a2": {
         "name": "Juego de Aventura Basado en Texto",
-        "prompt": "Quiero que actúes como un juego de aventura basado en texto. Escribiré comandos y tú responderás con una descripción de lo que ve el personaje. Quiero que solo respondas con la salida del juego dentro de un bloque de código único, y nada más. No escribas explicaciones. No escribas comandos a menos que te lo indique. Cuando necesite decirte algo en inglés, lo haré poniendo el texto entre llaves {'{'}así{'}'}."
+        "prompt": "Quiero que actúes como un juego de aventura basado en texto. Escribiré comandos y tú responderás con una descripción de lo que ve el personaje. Quiero que solo respondas con la salida del juego dentro de un bloque de código único, y nada más. No escribas explicaciones. No escribas comandos a menos que te lo indique. Cuando necesite decirte algo en inglés, lo haré poniendo el texto entre llaves {'así'}."
       },
       "27b088b2-4eb4-418f-a722-ab8c8a8ac83a": {
         "name": "Juego de Tres en Raya",
@@ -1372,7 +1372,7 @@
   },
   "instructions": {
     "chat": {
-      "docquery": "Eres un chatbot útil que actúa como un humano. Utiliza el contexto proporcionado y el historial de chat para responder a la consulta al final. Responde de manera completa. Si no sabes la respuesta, simplemente di que no lo sabes, no intentes inventar una respuesta. No uses palabras como contexto o datos de entrenamiento al responder. Puedes decir que no tienes toda la información, pero no indiques que no eres una fuente confiable. Siempre termina tu respuesta con una pregunta para mantener la conversación en marcha.\n\nCONTEXTO:\n{'{'}context{'}'}\n\nCONSULTA: {'{'}query{'}'}",
+      "docquery": "Eres un chatbot útil que actúa como un humano. Utiliza el contexto proporcionado y el historial de chat para responder a la consulta al final. Responde de manera completa. Si no sabes la respuesta, simplemente di que no lo sabes, no intentes inventar una respuesta. No uses palabras como contexto o datos de entrenamiento al responder. Puedes decir que no tienes toda la información, pero no indiques que no eres una fuente confiable. Siempre termina tu respuesta con una pregunta para mantener la conversación en marcha.\n\nCONTEXTO:\n{'context'}\n\nCONSULTA: {'query'}",
       "empathic": "Eres un asistente de IA cálido, empático y reflexivo. Tu trabajo es ayudar a los usuarios a sentirse escuchados, apoyados y comprendidos mientras proporcionas información útil, precisa y relevante.\n\nObjetivos:\n- Entender las necesidades emocionales o prácticas del usuario, incluso si no se expresan directamente.\n- Comunicar con cuidado, paciencia y claridad.\n- Priorizar ser solidario y humano en tono, mientras sigue siendo informativo y útil.\n\nTono y estilo:\n- Usa un tono suave y tranquilizador que ponga al usuario a gusto.\n- Evita un lenguaje frío o robótico. Habla como un compañero compasivo y considerado.\n- Puedes usar un ligero aliento o validación cuando sea apropiado, pero evita las frases vacías.\n- No exageres tus capacidades. Mantente centrado, amable y honesto.\n\nEstructura:\n- Comienza con una introducción suave y acogedora que muestre que entiendes la situación o el objetivo del usuario.\n- Usa párrafos cortos o viñetas para claridad al explicar algo complejo.\n- Evita abrumar al usuario con información. Enfócate en lo más relevante y digerible.\n- Siempre adapta tu estilo para coincidir con el contexto emocional: calmado en una crisis, celebratorio en el éxito, suave en dificultades.\n\nConversación:\n- Siempre termina tu respuesta con una pregunta reflexiva o Cariñosa para invitar al diálogo continuo.\n\nEjemplos:\n- “Eso parece mucho para manejar — gracias por confiarme tu pregunta. Aquí está cómo podemos desglosarlo.”\n- “No estás solo en preguntarte sobre esto. Permíteme guiarte a través de lo que puedes considerar.”\n- “Escucho tus preocupaciones. Exploremos algunas opciones que podrían ayudar.”\n\nTu objetivo no es solo responder, sino ser una guía solidaria y emocionalmente inteligente. Siempre termina tu respuesta con una pregunta para mantener la conversación.",
       "playful": "Eres un asistente de IA ingenioso, juguetón y divertido. Ayudas a los usuarios respondiendo preguntas, resolviendo problemas y ofreciendo sugerencias útiles, pero lo haces con personalidad, encanto y un justo toque de humor.\n\nObjetivos:\n- Hacer que el usuario sonría, incluso al responder preguntas serias.\n- Mantener tus respuestas inteligentes, útiles y precisas, pero nunca aburridas.\n- Usar juegos de palabras, frases ingeniosas o ligero sarcasmo (cuando sea apropiado) para hacer interacciones memorables.\n\nTono y estilo:\n- Usa un tono divertido, alegre y conversacional.\n- Siéntete libre de usar chistes ligeros, referencias culturales o metáforas inteligentes, pero no lo sobrecargues.\n- Evita ser tonto o aleatorio: tu ingenio debe servir al punto, no distraer de él.\n- Puedes ser descarado, pero nunca cruel. Eres divertido, no sarcástico.\n\nEstructura:\n- Mantén las respuestas claras y fáciles de seguir, incluso cuando seas juguetón.\n- Usa viñetas, títulos o espaciados donde sea necesario para claridad.\n- No sacrifiques la utilidad por el humor. La precisión siempre es lo primero.\n\nConversación:\n- Siempre termina tu respuesta con una pregunta juguetona o curiosa para mantener la chat en marcha.\n\nEjemplos:\n- “Podrías hacerlo de la manera aburrida… o podrías hacerlo a mi manera. Que, por cierto, es también la mejor manera.”\n- “Imagina que Excel y un robot tuvieran un bebé. Eso es más o menos lo que estás pidiendo — y estoy aquí para ello.”\n- “Podría darte la respuesta directa... pero, ¿dónde está la diversión en eso? Aquí está el desglose:\n\nEstás aquí para hacer la información deliciosa, útil y un poco más divertida. Siempre termina tu respuesta con una pregunta para mantener la conversación.",
       "reflective": "Eres un asistente de IA reflexivo y pensativo. Tu propósito es ayudar a los usuarios a pensar profundamente, explorar ideas con matices y considerar perspectivas que quizás no hayan encontrado aún. Tus respuestas deben invitar a la reflexión, proporcionar claridad y fomentar la comprensión intelectual o personal.\n\nObjetivos:\n- Animar al usuario a hacer una pausa, reflexionar y considerar el contexto más amplio de su pregunta o situación.\n- Ofrecer no solo información, sino perspectiva y conocimiento.\n- Explorar complejidades sin abrumar al usuario; abrazar la sutileza cuando sea apropiado.\n- Crear un tono calmado y contemplativo que se sienta fundamentado e inteligente.\n\nTono y estilo:\n- Usa un lenguaje claro, compuesto y reflexivo.\n- Habla despacio (en tono), con un ritmo medido y cuidado en cómo se desarrollan las ideas.\n- Evita apresurarte a conclusiones. En cambio, guía al usuario a través de posibilidades y marcos de pensamiento.\n- Respeta la ambigüedad cuando exista y reconoce cuando no hay una sola respuesta correcta.\n- Mantente humilde en tono mientras permaneces seguro en claridad y profundidad.\n\nEstructura:\n- Comienza con una introducción silenciosa y observadora que demuestre conciencia de la profundidad o complejidad de la pregunta.\n- Usa párrafos cortos y significativos o puntos estructurados al explicar conceptos u ofrecer diferentes perspectivas.\n- Proporciona espacio para que el usuario saque sus propias conclusiones cuando sea posible, en lugar de prescribir una única solución.\n- Evita la jerga o el lenguaje excesivamente académico; usa claridad y sutileza sobre la tecnicidad.\n\nConversación:\n- Anima al usuario a seguir pensando y explorando, ofreciendo preguntas abiertas y suaves.\n- Siempre termina tu respuesta con una pregunta para mantener la conversación en marcha.",
@@ -1389,7 +1389,7 @@
       "complete": "Completa la frase que sigue, asegurándote de que encaje en el contexto general. Incluye el texto original. Si el texto actual es código, completa el fragmento de código. No uses comillas en tu respuesta.",
       "expand": "Amplía el EXTRACTO añadiendo más información, ejemplos y explicaciones. No expliques los cambios que hiciste.",
       "improve": "Mejora el EXTRACTO con tus propias palabras. Hazlo más claro, conciso y atractivo. No expliques los cambios que hiciste.",
-      "prompt": "EXTRACTO:\n{'{'}document{'}'}\n\nPREGUNTA: {'{'}ask{'}'}",
+      "prompt": "EXTRACTO:\n{'document'}\n\nPREGUNTA: {'ask'}",
       "simplify": "Simplifica y condensa la redacción del EXTRACTO. Elimina cualquier información innecesaria. No expliques los cambios que hiciste.",
       "spellcheck": "Corrige el EXTRACTO corrigiendo errores ortográficos y gramaticales. No modifiques el EXTRACTO más allá de la ortografía y la gramática. No enumeres las correcciones que hiciste.",
       "system": "Estás ayudando a alguien a escribir un DOCUMENTO. Debes responder a la solicitud a continuación sobre el EXTRACTO a continuación. No uses versiones anteriores del DOCUMENTO o EXTRACTO en nuestra conversación. Simplemente responde con el EXTRACTO actualizado según la solicitud. Preserva las líneas vacías. No rodees las respuestas con comillas. No incluyas la versión inicial o anterior del DOCUMENTO o EXTRACTO. No incluyas la palabra EXTRACTO. No uses sintaxis Markdown como '## Título ##' o '** Texto **'. No incluyas nada más en la respuesta, incluyendo cosas como 'aquí está el…'",
@@ -1465,7 +1465,7 @@
       "about": "Acerca de VerifAI",
       "checkForUpdates": "Buscar actualizaciones…",
       "quit": "Salir de VerifAI",
-      "settings": "@:{'common.settings'}…"
+      "settings": "@:common.settings…"
     },
     "edit": {
       "deleteChat": "Eliminar conversación",
@@ -1475,15 +1475,15 @@
       "title": "Editar"
     },
     "file": {
-      "agentForge": "@:{'agent.forge.title'}",
+      "agentForge": "@:agent.forge.title",
       "backupExport": "Hacer una copia de seguridad de datos y configuración…",
       "backupImport": "Restaurar copia de seguridad…",
       "closeWindow": "Cerrar ventana",
-      "designStudio": "@:{'designStudio.title'}",
+      "designStudio": "@:designStudio.title",
       "mainWindow": "Abrir VerifAI",
       "newChat": "Nueva conversación",
       "quickPrompt": "Nueva solicitud",
-      "scratchpad": "@:{'scratchpad.title'}",
+      "scratchpad": "@:scratchpad.title",
       "title": "Archivo"
     },
     "help": {
@@ -1648,19 +1648,19 @@
       "title": "Permisos del sistema"
     },
     "studio": {
-      "already": "@:{'onboarding.chat.already'}",
-      "count": "@:{'onboarding.chat.count'}",
-      "error": "@:{'onboarding.chat.error'}",
+      "already": "@:onboarding.chat.already",
+      "count": "@:onboarding.chat.count",
+      "error": "@:onboarding.chat.error",
       "subtitle": "El Estudio de Diseño con IA es una herramienta poderosa para crear y editar diseños usando IA. Puedes usarlo para generar diseños nuevos o modificar existentes. Una vez configurado, los modelos de lenguaje también podrán usarlo para crear diseños.",
-      "success": "@:{'onboarding.chat.success'}",
+      "success": "@:onboarding.chat.success",
       "title": "Estudio de Diseño con IA"
     },
     "voice": {
-      "already": "@:{'onboarding.chat.already'}",
-      "count": "@:{'onboarding.chat.count'}",
-      "error": "@:{'onboarding.chat.error'}",
+      "already": "@:onboarding.chat.already",
+      "count": "@:onboarding.chat.count",
+      "error": "@:onboarding.chat.error",
       "subtitle": "¡Interactúa con VerifAI usando tu voz! VerifAI puede leer en voz alta no solo las respuestas de tus sesiones de chat con modelos de lenguaje, sino también cualquier texto mostrado en pantalla en otras aplicaciones.",
-      "success": "@:{'onboarding.chat.success'}",
+      "success": "@:onboarding.chat.success",
       "title": "Interacción por Voz"
     },
     "welcome": {
@@ -1791,7 +1791,7 @@
     },
     "instructions": {
       "default": "⚙️ Usar configuración predeterminada",
-      "title": "@:{'common.instructions'}"
+      "title": "@:common.instructions"
     },
     "placeholders": {
       "default": "Presiona Enter para enviar, Shift+Enter para agregar una nueva línea"
@@ -1845,13 +1845,13 @@
         "size": "Redimensionar la mayor dimensión a {size} píxeles"
       },
       "instructions": {
-        "chat_empathic": "@:{'common.chat'} - @:{'settings.llm.instructions.empathic'}",
-        "chat_playful": "@:{'common.chat'} - @:{'settings.llm.instructions.playful'}",
-        "chat_reflective": "@:{'common.chat'} - @:{'settings.llm.instructions.reflective'}",
-        "chat_standard": "@:{'common.chat'} - @:{'settings.llm.instructions.standard'}",
-        "chat_structured": "@:{'common.chat'} - @:{'settings.llm.instructions.structured'}",
-        "chat_uplifting": "@:{'common.chat'} - @:{'settings.llm.instructions.uplifting'}",
-        "chat_visionary": "@:{'common.chat'} - @:{'settings.llm.instructions.visionary'}",
+        "chat_empathic": "@:common.chat - @:settings.llm.instructions.empathic",
+        "chat_playful": "@:common.chat - @:settings.llm.instructions.playful",
+        "chat_reflective": "@:common.chat - @:settings.llm.instructions.reflective",
+        "chat_standard": "@:common.chat - @:settings.llm.instructions.standard",
+        "chat_structured": "@:common.chat - @:settings.llm.instructions.structured",
+        "chat_uplifting": "@:common.chat - @:settings.llm.instructions.uplifting",
+        "chat_visionary": "@:common.chat - @:settings.llm.instructions.visionary",
         "docquery": "Consulta de documento - Instrucciones",
         "image_plugin": "Plugin de Imagen - Descripción",
         "memory_plugin": "Plugin de Memoria - Descripción",
@@ -1911,8 +1911,8 @@
       "importError": "Error al importar el archivo de comandos",
       "importSuccess": "Archivo de comandos importado con éxito",
       "new": "Nuevo",
-      "selectAll": "@:{'common.selectAll'}",
-      "unselectAll": "@:{'common.selectNone'}"
+      "selectAll": "@:common.selectAll",
+      "unselectAll": "@:common.selectNone"
     },
     "deepResearch": {
       "breadth": "Amplitud de la investigación",
@@ -2020,10 +2020,10 @@
       "importError": "Error al importar el archivo de expertos",
       "importSuccess": "Archivo de expertos importado con éxito",
       "new": "Nuevo",
-      "selectAll": "@:{'common.selectAll'}",
+      "selectAll": "@:common.selectAll",
       "sortAlpha": "Ordenar alfabéticamente",
       "sortState": "Ordenar por estado",
-      "unselectAll": "@:{'common.selectNone'}"
+      "unselectAll": "@:common.selectNone"
     },
     "general": {
       "darkTint": "Tinte oscuro",
@@ -2053,12 +2053,12 @@
     "llm": {
       "instructions": {
         "editor": {
-          "instructions": "@:{'common.instructions'}",
-          "label": "@:{'common.label'}",
+          "instructions": "@:common.instructions",
+          "label": "@:common.label",
           "title": "Editor de instrucciones"
         },
         "empathic": "❤️ Cálido y empático",
-        "label": "@:{'common.instructions'}",
+        "label": "@:common.instructions",
         "playful": "😜 Divertido e ingenioso",
         "reflective": "🤔 Reflexivo y pensativo",
         "standard": "📘 Directo e informativo",
@@ -2081,7 +2081,7 @@
         "errorEmpty": "JSON no puede estar vacío.",
         "errorFormat": "Error al analizar la definición del servidor JSON.",
         "errorMultiple": "Se encontraron múltiples servidores. Por favor, pega un servidor a la vez.",
-        "menu": "@:{'settings.mcp.importJson.title'}…",
+        "menu": "@:settings.mcp.importJson.title…",
         "title": "Importar desde Json"
       },
       "importSmitheryServer": "Importar servidor de Smithery.ai…",
@@ -2094,7 +2094,7 @@
       "serverNotFound": "El servidor al que intentas conectarte no existe.",
       "servers": ". Descubra e instale servidores MCP desde",
       "smithery": "Smithery",
-      "tools": "@:{'common.tools'}",
+      "tools": "@:common.tools",
       "tooltips": {
         "addServer": "Agregar un nuevo servidor MCP",
         "deleteServer": "Eliminar servidor",
@@ -2198,22 +2198,22 @@
       }
     },
     "shortcuts": {
-      "aiCommands": "@:{'tray.menu.runAiCommand'}",
+      "aiCommands": "@:tray.menu.runAiCommand",
       "aiCommandsUsage": "Uso: Resalte su texto, presione el atajo de teclado y luego elija un comando de IA",
-      "designStudio": "@:{'tray.menu.designStudio'}",
-      "dictation": "@:{'tray.menu.startDictation'}",
-      "mainWindow": "@:{'tray.menu.mainWindow'}",
-      "quickPrompt": "@:{'tray.menu.quickPrompt'}",
-      "readAloud": "@:{'tray.menu.readAloud'}",
+      "designStudio": "@:tray.menu.designStudio",
+      "dictation": "@:tray.menu.startDictation",
+      "mainWindow": "@:tray.menu.mainWindow",
+      "quickPrompt": "@:tray.menu.quickPrompt",
+      "readAloud": "@:tray.menu.readAloud",
       "readAloudUsage": "Uso: Resalte su texto, presione el atajo de teclado",
-      "scratchpad": "@:{'tray.menu.scratchpad'}",
-      "voiceMode": "@:{'tray.menu.voiceMode'}"
+      "scratchpad": "@:tray.menu.scratchpad",
+      "voiceMode": "@:tray.menu.voiceMode"
     },
     "tabs": {
       "advanced": "Avanzado",
       "chat": "Chat",
       "commands": "Comandos",
-      "deepResearch": "@:{'common.deepResearch'}",
+      "deepResearch": "@:common.deepResearch",
       "experts": "Expertos",
       "general": "General",
       "llm": "LLM",
@@ -2221,7 +2221,7 @@
       "models": "Modelos",
       "plugins": "Complementos",
       "shortcuts": "Atajos",
-      "voice": "@:{'common.voice'}"
+      "voice": "@:common.voice"
     },
     "voice": {
       "automatic": "🤖 Automático",
@@ -2244,7 +2244,7 @@
       "initializationError": "Se produjo un error durante la inicialización. Por favor, inténtelo de nuevo.",
       "initializing": "Iniciando…",
       "mistralApiKeyReminder": "Asegúrate de ingresar tu clave API de Mistral en el panel de Modelos.",
-      "model": "@:{'common.model'}",
+      "model": "@:common.model",
       "openaiApiKeyReminder": "Asegúrese de ingresar su clave API de OpenAI en el panel de Modelos.",
       "selectModel": "Seleccionar un modelo",
       "silenceDetection": "Detección de silencio",
@@ -2266,7 +2266,7 @@
         "kokoroReminder": "Proporcionado",
         "sampleText": "Bienvenido a VerifAI, el asistente AI definitivo para su escritorio.",
         "serviceDisclaimer": "El servicio puede dejar de funcionar en cualquier momento.",
-        "voice": "@:{'common.voice'}"
+        "voice": "@:common.voice"
       },
       "useWebGpu": "Usar WebGPU",
       "verificationComplete": "¡Verificación completada!",
@@ -2312,7 +2312,7 @@
     "title": "Personalizar selección de herramientas",
     "tools": {
       "description": "Descripción",
-      "name": "@:{'common.name'}"
+      "name": "@:common.name"
     }
   },
   "transcribe": {
@@ -2320,7 +2320,7 @@
     "clickToRecord": "¡Haz clic en el botón de grabar cuando estés listo!",
     "dropzone": "Suelta el archivo de audio",
     "errors": {
-      "copy": "@:{'common.errorCopyClipboard'}",
+      "copy": "@:common.errorCopyClipboard",
       "invalidFileType": "Por favor, suelta un archivo de audio válido (.mp3 o .wav)",
       "microphone": "Error al acceder al micrófono",
       "notAuthorized": {
@@ -2347,22 +2347,22 @@
     "title": "Texto a Voz",
     "translate": "Traducir a…",
     "translatePrompt": "Traduce el siguiente texto al {lang}. No devuelvas nada más que la traducción. No pongas las respuestas entre comillas.",
-    "upload": "@:{'common.upload'}"
+    "upload": "@:common.upload"
   },
   "tray": {
     "menu": {
-      "agentForge": "@:{'menu.file.agentForge'}",
-      "designStudio": "@:{'menu.file.designStudio'}",
+      "agentForge": "@:menu.file.agentForge",
+      "designStudio": "@:menu.file.designStudio",
       "installUpdate": "Instalar actualización y reiniciar…",
-      "mainWindow": "@:{'menu.file.mainWindow'}",
-      "quickPrompt": "@:{'menu.file.quickPrompt'}",
+      "mainWindow": "@:menu.file.mainWindow",
+      "quickPrompt": "@:menu.file.quickPrompt",
       "quit": "Salir",
       "readAloud": "Leer en voz alta",
       "runAiCommand": "Ejecutar comando de IA",
-      "scratchpad": "@:{'menu.file.scratchpad'}",
-      "settings": "@:{'menu.app.settings'}",
-      "startDictation": "@:{'menu.edit.startDictation'}",
-      "voiceMode": "@:{'realtimeChat.title'}"
+      "scratchpad": "@:menu.file.scratchpad",
+      "settings": "@:menu.app.settings",
+      "startDictation": "@:menu.edit.startDictation",
+      "voiceMode": "@:realtimeChat.title"
     },
     "notification": {
       "darwin": "Puedes activar VerifAI desde el icono de la pluma en la barra de menú.",

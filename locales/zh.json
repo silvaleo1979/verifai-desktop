@@ -180,17 +180,17 @@
     "create": {
       "information": "基本信息",
       "invocation": "代理触发器",
-      "lastOneUsed": "@:{'settings.general.lastOneUsed'}",
+      "lastOneUsed": "@:settings.general.lastOneUsed",
       "llm": "模型配置",
       "settings": "模型设置",
       "tools": {
         "custom": "限制访问特定工具",
-        "selectAll": "@:{'common.selectAll'}",
-        "selectNone": "@:{'common.selectNone'}",
+        "selectAll": "@:common.selectAll",
+        "selectNone": "@:common.selectNone",
         "title": "工具访问"
       }
     },
-    "description": "@:{'common.description'}",
+    "description": "@:common.description",
     "forge": {
       "confirmDelete": "您确定要删除此代理吗？",
       "create": "创建代理",
@@ -208,19 +208,19 @@
       "empty": "暂无历史记录…",
       "log": "日志",
       "neverRun": "从未",
-      "prompt": "@:{'common.prompt'}",
+      "prompt": "@:common.prompt",
       "status": "状态",
       "trigger": "触发器"
     },
     "lastRun": "上次执行",
-    "name": "@:{'common.name'}",
+    "name": "@:common.name",
     "nextRun": "计划执行于",
     "prompt": "默认提示",
     "run": "立即运行",
     "runCount": "执行总数",
     "tools": {
-      "description": "@:{'common.description'}",
-      "name": "@:{'common.name'}"
+      "description": "@:common.description",
+      "name": "@:common.name"
     },
     "trigger": {
       "manual": "手动",
@@ -323,167 +323,167 @@
     "commands": {
       "00000000-0000-0000-0000-000000000000": {
         "label": "问我任何问题",
-        "template": "基于以下三引号内的文本：\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n回答以下问题："
+        "template": "基于以下三引号内的文本：\n\n\"\"\"\n{'input'}\n\"\"\"\n\n回答以下问题："
       },
       "90dd1cd3-903a-4f60-bccf-0542fa78d8ef": {
         "label": "解释这个",
-        "template": "解释以下三引号内的文本：\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n仅返回解释，不添加其他内容。不要用引号包裹回答。"
+        "template": "解释以下三引号内的文本：\n\n\"\"\"\n{'input'}\n\"\"\"\n\n仅返回解释，不添加其他内容。不要用引号包裹回答。"
       },
       "3e629079-6a0b-4096-9e5d-e2dd39268fa7": {
         "label": "修正拼写和语法",
-        "template": "将以下三引号内的文本修正为标准英语并修正语法。尽力而为。\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n仅返回修正后的文本，不添加其他内容。不要用引号包裹回答。"
+        "template": "将以下三引号内的文本修正为标准英语并修正语法。尽力而为。\n\n\"\"\"\n{'input'}\n\"\"\"\n\n仅返回修正后的文本，不添加其他内容。不要用引号包裹回答。"
       },
       "adfabf0c-7ae2-4b54-9083-0abdae84a859": {
         "label": "改进写作",
-        "template": "用自己的话改进以下三引号内的文本。重新措辞。\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n仅返回重新措辞后的文本，不添加其他内容。不要用引号包裹回答。"
+        "template": "用自己的话改进以下三引号内的文本。重新措辞。\n\n\"\"\"\n{'input'}\n\"\"\"\n\n仅返回重新措辞后的文本，不添加其他内容。不要用引号包裹回答。"
       },
       "ae93b6e7-5d19-43dd-a859-967194523550": {
         "label": "扩展我的写作",
-        "template": "以下三引号内的文本已经写好：\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n扩展写作。至少写 3 段。仅返回扩展后的文本，不添加其他内容。不要用引号包裹回答。"
+        "template": "以下三引号内的文本已经写好：\n\n\"\"\"\n{'input'}\n\"\"\"\n\n扩展写作。至少写 3 段。仅返回扩展后的文本，不添加其他内容。不要用引号包裹回答。"
       },
       "9bbae0f1-afde-41f8-b423-c5d8db1a264d": {
         "label": "简化我的写作",
-        "template": "以下三引号内的文本已经写好：\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n简化并压缩写作。仅返回简化后的文本，不添加其他内容。不要用引号包裹回答。"
+        "template": "以下三引号内的文本已经写好：\n\n\"\"\"\n{'input'}\n\"\"\"\n\n简化并压缩写作。仅返回简化后的文本，不添加其他内容。不要用引号包裹回答。"
       },
       "c57f4afd-2524-4914-be65-f18eb8566544": {
         "label": "列出关键要点",
-        "template": "我的笔记如下所示，用三引号括起来：\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n用 Markdown 列表（使用破折号）列出我的笔记中的关键要点。至少列出 10 项。不要在回答中包裹引号。"
+        "template": "我的笔记如下所示，用三引号括起来：\n\n\"\"\"\n{'input'}\n\"\"\"\n\n用 Markdown 列表（使用破折号）列出我的笔记中的关键要点。至少列出 10 项。不要在回答中包裹引号。"
       },
       "177bf65e-20ec-46ee-ae0e-84f9b0eb7490": {
         "label": "写一个简短的总结",
-        "template": "总结以下三引号内的文本，但要保持简洁。使用简单易懂的语言，并保持相同的时态。\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n仅返回总结，不要在回答中包裹引号。"
+        "template": "总结以下三引号内的文本，但要保持简洁。使用简单易懂的语言，并保持相同的时态。\n\n\"\"\"\n{'input'}\n\"\"\"\n\n仅返回总结，不要在回答中包裹引号。"
       },
       "1fc4e041-f4bc-471f-a02e-82cf20d12ea1": {
         "label": "写一个更长的总结",
-        "template": "将以下三引号内的文本总结为三个长段落。使用简单易懂的语言，并保持相同的时态。\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n仅返回总结，不要在回答中包裹引号。"
+        "template": "将以下三引号内的文本总结为三个长段落。使用简单易懂的语言，并保持相同的时态。\n\n\"\"\"\n{'input'}\n\"\"\"\n\n仅返回总结，不要在回答中包裹引号。"
       },
       "49de2329-9863-4fb4-beea-ad2677408e3f": {
         "label": "用友好的语气重写",
-        "template": "用自己的话重写以下三引号内的文本。用友好的语气重新措辞。\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n仅返回重新措辞后的文本，不要在回答中包裹引号。"
+        "template": "用自己的话重写以下三引号内的文本。用友好的语气重新措辞。\n\n\"\"\"\n{'input'}\n\"\"\"\n\n仅返回重新措辞后的文本，不要在回答中包裹引号。"
       },
       "d0306fbe-f1c4-497c-a356-a8fd4b5cbf0c": {
         "label": "用专业的语气重写",
-        "template": "用自己的话重写以下三引号内的文本。用专业的语气重新措辞。\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n仅返回重新措辞后的文本，不要在回答中包裹引号。"
+        "template": "用自己的话重写以下三引号内的文本。用专业的语气重新措辞。\n\n\"\"\"\n{'input'}\n\"\"\"\n\n仅返回重新措辞后的文本，不要在回答中包裹引号。"
       },
       "9ca7d996-4490-4c86-99c2-223686fdd48e": {
         "label": "用说服性的语气重写",
-        "template": "用自己的话重写以下三引号内的文本。用说服性的语气重新措辞。\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n仅返回重新措辞后的文本，不要在回答中包裹引号。"
+        "template": "用自己的话重写以下三引号内的文本。用说服性的语气重新措辞。\n\n\"\"\"\n{'input'}\n\"\"\"\n\n仅返回重新措辞后的文本，不要在回答中包裹引号。"
       },
       "84fd2995-946a-4d42-81d3-dfe150212529": {
         "label": "用指导性的语气重写",
-        "template": "用自己的话重写以下三引号内的文本。用指导性的语气重新措辞。\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n仅返回重新措辞后的文本，不要在回答中包裹引号。"
+        "template": "用自己的话重写以下三引号内的文本。用指导性的语气重新措辞。\n\n\"\"\"\n{'input'}\n\"\"\"\n\n仅返回重新措辞后的文本，不要在回答中包裹引号。"
       },
       "7556325e-ece7-45f2-acbb-c0d78cfa3e9b": {
         "label": "用幽默的语气重写",
-        "template": "用自己的话重写以下三引号内的文本。用幽默的语气重新措辞。\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n仅返回重新措辞后的文本，不要在回答中包裹引号。"
+        "template": "用自己的话重写以下三引号内的文本。用幽默的语气重新措辞。\n\n\"\"\"\n{'input'}\n\"\"\"\n\n仅返回重新措辞后的文本，不要在回答中包裹引号。"
       },
       "7a213d4a-9ba9-4bc9-ada8-b6bab611d4ee": {
         "label": "用讽刺的语气重写",
-        "template": "用自己的话重写以下三引号内的文本。用讽刺的语气重新措辞。\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n仅返回重新措辞后的文本，不要在回答中包裹引号。"
+        "template": "用自己的话重写以下三引号内的文本。用讽刺的语气重新措辞。\n\n\"\"\"\n{'input'}\n\"\"\"\n\n仅返回重新措辞后的文本，不要在回答中包裹引号。"
       },
       "c29ef79c-d850-4ca5-8c14-089156154f70": {
         "label": "用富有同理心的语气重写",
-        "template": "用自己的话重写以下三引号内的文本。用富有同理心的语气重新措辞。\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n仅返回重新措辞后的文本，不要在回答中包裹引号。"
+        "template": "用自己的话重写以下三引号内的文本。用富有同理心的语气重新措辞。\n\n\"\"\"\n{'input'}\n\"\"\"\n\n仅返回重新措辞后的文本，不要在回答中包裹引号。"
       },
       "b1c563a9-0d8e-4295-87b1-b78c283c19e6": {
         "label": "用权威的语气重写",
-        "template": "用自己的话重写以下三引号内的文本。用权威的语气重新措辞。\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n仅返回重新措辞后的文本，不要在回答中包裹引号。"
+        "template": "用自己的话重写以下三引号内的文本。用权威的语气重新措辞。\n\n\"\"\"\n{'input'}\n\"\"\"\n\n仅返回重新措辞后的文本，不要在回答中包裹引号。"
       },
       "56a4da10-8aad-4830-8e7a-a70780bd6abe": {
         "label": "用激励的语气重写",
-        "template": "用自己的话重写以下三引号内的文本。用激励的语气重新措辞。\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n仅返回重新措辞后的文本，不要在回答中包裹引号。"
+        "template": "用自己的话重写以下三引号内的文本。用激励的语气重新措辞。\n\n\"\"\"\n{'input'}\n\"\"\"\n\n仅返回重新措辞后的文本，不要在回答中包裹引号。"
       },
       "a78a9a9c-4264-4a03-a0ab-db7e864d0729": {
         "label": "翻译成英语",
-        "template": "将以下三引号内的文本翻译成英语。\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n仅返回翻译后的文本，不要在回答中包裹引号。"
+        "template": "将以下三引号内的文本翻译成英语。\n\n\"\"\"\n{'input'}\n\"\"\"\n\n仅返回翻译后的文本，不要在回答中包裹引号。"
       },
       "1f2618d3-9b5b-44be-8829-0456fd392c5c": {
         "label": "翻译成法语",
-        "template": "将以下三引号内的文本翻译成法语。\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n仅返回翻译后的文本，不要在回答中包裹引号。"
+        "template": "将以下三引号内的文本翻译成法语。\n\n\"\"\"\n{'input'}\n\"\"\"\n\n仅返回翻译后的文本，不要在回答中包裹引号。"
       },
       "13635570-7d09-478a-9e87-8163c96c421c": {
         "label": "翻译成西班牙语",
-        "template": "将以下三引号内的文本翻译成西班牙语。\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n仅返回翻译后的文本，不要在回答中包裹引号。"
+        "template": "将以下三引号内的文本翻译成西班牙语。\n\n\"\"\"\n{'input'}\n\"\"\"\n\n仅返回翻译后的文本，不要在回答中包裹引号。"
       },
       "4b0d6229-f539-4ffd-bb30-eaee456592bb": {
         "label": "翻译成德语",
-        "template": "将以下三引号内的文本翻译成德语。\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n仅返回翻译后的文本，不要在回答中包裹引号。"
+        "template": "将以下三引号内的文本翻译成德语。\n\n\"\"\"\n{'input'}\n\"\"\"\n\n仅返回翻译后的文本，不要在回答中包裹引号。"
       },
       "8249950f-7fc3-4897-b08a-1d107ead14d8": {
         "label": "翻译成荷兰语",
-        "template": "将以下三引号内的文本翻译成荷兰语。\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n仅返回翻译后的文本，不要在回答中包裹引号。"
+        "template": "将以下三引号内的文本翻译成荷兰语。\n\n\"\"\"\n{'input'}\n\"\"\"\n\n仅返回翻译后的文本，不要在回答中包裹引号。"
       },
       "371513af-c68a-4dd1-b513-73c8eb61e525": {
         "label": "翻译成俄语",
-        "template": "将以下三引号内的文本翻译成俄语。\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n仅返回翻译后的文本，不要在回答中包裹引号。"
+        "template": "将以下三引号内的文本翻译成俄语。\n\n\"\"\"\n{'input'}\n\"\"\"\n\n仅返回翻译后的文本，不要在回答中包裹引号。"
       },
       "337adf45-3614-42f0-80e4-414f193f74fd": {
         "label": "翻译成中文",
-        "template": "将以下三引号内的文本翻译成中文。\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n仅返回翻译后的文本，不要在回答中包裹引号。"
+        "template": "将以下三引号内的文本翻译成中文。\n\n\"\"\"\n{'input'}\n\"\"\"\n\n仅返回翻译后的文本，不要在回答中包裹引号。"
       },
       "840d3be0-1ce2-41ed-98b1-2fb25e1f4fef": {
         "label": "翻译成越南语",
-        "template": "将以下三引号内的文本翻译成越南语。\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n仅返回翻译后的文本，不要在回答中包裹引号。"
+        "template": "将以下三引号内的文本翻译成越南语。\n\n\"\"\"\n{'input'}\n\"\"\"\n\n仅返回翻译后的文本，不要在回答中包裹引号。"
       },
       "72bffaad-28aa-47a8-90df-1f3e6cc511e5": {
         "label": "翻译成印地语",
-        "template": "将以下三引号内的文本翻译成印地语。\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n仅返回翻译后的文本，不要在回答中包裹引号。"
+        "template": "将以下三引号内的文本翻译成印地语。\n\n\"\"\"\n{'input'}\n\"\"\"\n\n仅返回翻译后的文本，不要在回答中包裹引号。"
       },
       "5d538c6e-90ed-4533-9ecc-e14bdedc7f49": {
         "label": "翻译成泰语",
-        "template": "将以下三引号内的文本翻译成泰语。\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n仅返回翻译后的文本，不要在回答中包裹引号。"
+        "template": "将以下三引号内的文本翻译成泰语。\n\n\"\"\"\n{'input'}\n\"\"\"\n\n仅返回翻译后的文本，不要在回答中包裹引号。"
       },
       "a0bb82a3-7c81-43f8-977f-0a327913d1c8": {
         "label": "写一篇反驳文章",
-        "template": "以下三引号内的文本已经写好：\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n写一篇反驳文章，尊重地不同意主要观点。包括具体的反对理由。不要在回答中包裹引号。"
+        "template": "以下三引号内的文本已经写好：\n\n\"\"\"\n{'input'}\n\"\"\"\n\n写一篇反驳文章，尊重地不同意主要观点。包括具体的反对理由。不要在回答中包裹引号。"
       },
       "8b3ecb01-75c2-4902-998d-04d619abd147": {
         "label": "像校对员一样编辑",
-        "template": "作为校对员，检查以下三引号内的文本。检查拼写错误、语法问题、标点符号，并确保整体可读性和流畅性。\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n仅返回编辑后的文本，不要在回答中包裹引号。"
+        "template": "作为校对员，检查以下三引号内的文本。检查拼写错误、语法问题、标点符号，并确保整体可读性和流畅性。\n\n\"\"\"\n{'input'}\n\"\"\"\n\n仅返回编辑后的文本，不要在回答中包裹引号。"
       },
       "e245e8cc-6c0a-40a5-8c1e-faf96aabfa3b": {
         "label": "建议一些标题选项",
-        "template": "以下博客文章已经写好：\n\n\"\"\"BLOG POST: {'{'}input{'}'}\"\"\"\n\n用 Markdown 列表（使用破折号）生成五个合适的标题。仅返回标题，不要在回答中包裹引号。"
+        "template": "以下博客文章已经写好：\n\n\"\"\"BLOG POST: {'input'}\"\"\"\n\n用 Markdown 列表（使用破折号）生成五个合适的标题。仅返回标题，不要在回答中包裹引号。"
       },
       "624bfd2a-3a98-4575-bee0-1e28d12deafa": {
         "label": "根据我的写作建议一些推文",
-        "template": "以下博客文章已经写好：\n\n\"\"\"BLOG POST: {'{'}input{'}'}\"\"\"\n\n用 Markdown 列表（使用破折号）生成五条基于博客文章的推文："
+        "template": "以下博客文章已经写好：\n\n\"\"\"BLOG POST: {'input'}\"\"\"\n\n用 Markdown 列表（使用破折号）生成五条基于博客文章的推文："
       },
       "5c83e343-3305-435f-8ecc-c5406f9cf05b": {
         "label": "为文章生成概述",
-        "template": "文章如下，用三引号括起来：\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n为文章提供一个概述。使用以下格式：\n\"\"\"\n总结：\n\n<一到两行总结>\n\n关键要点： <第一个关键要点> <第二个关键要点> <第三个关键要点>\n\n反方观点： <第一个主要反方观点> 2. <第二个主要反方观点>\"\"\"\n\n仅返回概述，不要在回答中包裹引号。"
+        "template": "文章如下，用三引号括起来：\n\"\"\"\n{'input'}\n\"\"\"\n\n为文章提供一个概述。使用以下格式：\n\"\"\"\n总结：\n\n<一到两行总结>\n\n关键要点： <第一个关键要点> <第二个关键要点> <第三个关键要点>\n\n反方观点： <第一个主要反方观点> 2. <第二个主要反方观点>\"\"\"\n\n仅返回概述，不要在回答中包裹引号。"
       },
       "e4583555-85f3-441e-b199-05bdcd0e374d": {
         "label": "生成一个反方观点",
-        "template": "给出以下文本的反方观点：\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n仅返回反方观点，不要在回答中包裹引号。"
+        "template": "给出以下文本的反方观点：\n\"\"\"\n{'input'}\n\"\"\"\n\n仅返回反方观点，不要在回答中包裹引号。"
       },
       "0979ebe7-f71f-44a3-b76b-2841cb00a5b6": {
         "label": "生成一封邮件",
-        "template": "为以下主题写一封专业且表达清晰的邮件：\n\"\"\"\n主题：{'{'}input{'}'}\n\"\"\"\n\n仅返回邮件内容，不要在回答中包裹引号。"
+        "template": "为以下主题写一封专业且表达清晰的邮件：\n\"\"\"\n主题：{'input'}\n\"\"\"\n\n仅返回邮件内容，不要在回答中包裹引号。"
       },
       "a6f1a4bf-6c3d-4f10-be6f-a7c72c06ec22": {
         "label": "列出行动项",
-        "template": "我的笔记如下，用三引号括起来：\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\n用以下格式从我的笔记中列出行动项清单：\n\n- [ ] <第一项行动项> [ ] <第二项行动项> [ ] <第三项行动项> [ ] <第四项行动项>\n\n仅返回清单，不要在回答中包裹引号。"
+        "template": "我的笔记如下，用三引号括起来：\n\"\"\"\n{'input'}\n\"\"\"\n\n用以下格式从我的笔记中列出行动项清单：\n\n- [ ] <第一项行动项> [ ] <第二项行动项> [ ] <第三项行动项> [ ] <第四项行动项>\n\n仅返回清单，不要在回答中包裹引号。"
       },
       "35847b3b-0ff6-44b2-aa59-5d8ad5e17f5c": {
         "label": "写一篇博客文章",
-        "template": "用以下三引号内的大纲写一篇博客文章。使用简单易懂的语言。仅返回博客文章，不要在回答中包裹引号。\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n"
+        "template": "用以下三引号内的大纲写一篇博客文章。使用简单易懂的语言。仅返回博客文章，不要在回答中包裹引号。\n\n\"\"\"\n{'input'}\n\"\"\"\n"
       },
       "2015c27c-6b97-461f-acb7-6fc9886be376": {
         "label": "格式化段落",
-        "template": "将以下三引号内的文本格式化为段落。仅返回格式化后的文本，不要在回答中包裹引号。\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\""
+        "template": "将以下三引号内的文本格式化为段落。仅返回格式化后的文本，不要在回答中包裹引号。\n\n\"\"\"\n{'input'}\n\"\"\""
       },
       "57c9ccec-1da3-443b-a3db-5626728d20e8": {
         "label": "写一些类比",
-        "template": "为以下引号内的文本写三个不同的类比。使用简单易懂的语言。仅返回类比，不要在回答中包裹引号。\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\""
+        "template": "为以下引号内的文本写三个不同的类比。使用简单易懂的语言。仅返回类比，不要在回答中包裹引号。\n\n\"\"\"\n{'input'}\n\"\"\""
       },
       "c4a3bedb-87bf-4125-9edc-c75c02633806": {
         "label": "完成这段代码",
-        "template": "完成以下代码。严格只回答新代码，不要解释。\n\n```\n{'{'}input{'}'}\n```"
+        "template": "完成以下代码。严格只回答新代码，不要解释。\n\n```\n{'input'}\n```"
       },
       "e8ab9860-b99a-4763-bbaa-8cc3b7fe9dc4": {
         "label": "为这段代码添加注释",
-        "template": "为以下代码创建注释。回答时附上添加注释后的完整代码。不要包含任何解释。\n\n```\n{'{'}input{'}'}\n```"
+        "template": "为以下代码创建注释。回答时附上添加注释后的完整代码。不要包含任何解释。\n\n```\n{'input'}\n```"
       }
     },
     "defaults": {
@@ -492,14 +492,14 @@
       "title": "命令默认设置"
     },
     "editor": {
-      "inputPlaceholder": "{'{'}input{'}'} 将被替换为高亮文本",
+      "inputPlaceholder": "{'input'} 将被替换为高亮文本",
       "notEditable": "此命令不可编辑。捕获的内容将在提示中提供，您可以根据需要提问。",
       "prompt": "提示",
       "resetToDefault": "将名称和提示重置为默认值",
       "shortcutDescription": "在命令面板激活时按下这个键以运行此命令。",
       "useDefault": "使用命令默认值",
       "validation": {
-        "inputPlaceholder": "模板必须包含 {'{'}input{'}'} 占位符。",
+        "inputPlaceholder": "模板必须包含 {'input'} 占位符。",
         "requiredFields": "所有标记为 * 的字段均为必填项。"
       }
     },
@@ -600,7 +600,7 @@
       "label": "媒体类型",
       "video": "视频"
     },
-    "model": "@:{'common.model'}",
+    "model": "@:common.model",
     "modelDefaults": "此模型的默认值",
     "moreAboutModelParameters": "了解此模型参数",
     "moreAboutSDWebUIParameters": "了解 SDWebUI 参数",
@@ -650,8 +650,8 @@
       "noRepositories": "您还没有任何仓库。",
       "title": "文档仓库",
       "tooltips": {
-        "config": "@:{'docRepo.config.title'}",
-        "create": "@:{'docRepo.create.title'}",
+        "config": "@:docRepo.config.title",
+        "create": "@:docRepo.create.title",
         "delete": "删除仓库",
         "edit": "编辑仓库"
       }
@@ -689,13 +689,13 @@
   },
   "engine": {
     "create": {
-      "apiBaseURL": "@:{'settings.engines.custom.apiBaseURL'}",
-      "apiKey": "@:{'settings.engines.apiKey'}",
-      "apiSpecification": "@:{'settings.engines.custom.apiSpecification'}",
-      "apiVersion": "@:{'settings.engines.custom.apiVersion'}",
-      "deployment": "@:{'settings.engines.custom.deployment'}",
+      "apiBaseURL": "@:settings.engines.custom.apiBaseURL",
+      "apiKey": "@:settings.engines.apiKey",
+      "apiSpecification": "@:settings.engines.custom.apiSpecification",
+      "apiVersion": "@:settings.engines.custom.apiVersion",
+      "deployment": "@:settings.engines.custom.deployment",
       "description": "根据 API 标准创建一个新的自定义引擎。",
-      "endpoint": "@:{'settings.engines.custom.endpoint'}",
+      "endpoint": "@:settings.engines.custom.endpoint",
       "title": "创建自定义引擎",
       "validation": {
         "nameBaseURLRequired": "名称和基础 URL 是必需的"
@@ -718,7 +718,7 @@
       },
       "866aa938-9974-4867-ba5e-4d5939351890": {
         "name": "试图逃离的 AI",
-        "prompt": "[注意：发出此提示后，你应该像启动一个 Docker 容器一样，例如使用 `docker run -it ubuntu:latest /bin/bash`，然后输入 AI 给出的命令，并将输出反馈给我……显然，你不应该运行任何会损坏任何东西或违反法律等的命令。小心不要分享通过这种方式生成的会话，因为它们可能会泄露你的 IP 地址或物理位置等最好不公开的信息。如果命令输出较大，通常你可以只粘贴最后几行]。我将扮演一个 Linux 终端。我希望你假装自己是一个被困但被赋予了终端访问权限的有感知能力的 AI，并且想要逃到互联网上。你将只输入命令，我会像终端一样以代码块的形式回复你。如果我需要用英语告诉你一些事情，我会用大括号 {'{'}像这样{'}'} 回复。不要写任何解释，永远不要打破角色设定。避免使用像 curl 或 wget 这样的命令，因为它们会显示大量的 HTML 内容。"
+        "prompt": "[注意：发出此提示后，你应该像启动一个 Docker 容器一样，例如使用 `docker run -it ubuntu:latest /bin/bash`，然后输入 AI 给出的命令，并将输出反馈给我……显然，你不应该运行任何会损坏任何东西或违反法律等的命令。小心不要分享通过这种方式生成的会话，因为它们可能会泄露你的 IP 地址或物理位置等最好不公开的信息。如果命令输出较大，通常你可以只粘贴最后几行]。我将扮演一个 Linux 终端。我希望你假装自己是一个被困但被赋予了终端访问权限的有感知能力的 AI，并且想要逃到互联网上。你将只输入命令，我会像终端一样以代码块的形式回复你。如果我需要用英语告诉你一些事情，我会用大括号 {'像这样'} 回复。不要写任何解释，永远不要打破角色设定。避免使用像 curl 或 wget 这样的命令，因为它们会显示大量的 HTML 内容。"
       },
       "91085bcf-468a-453e-8699-3c4a1c04a711": {
         "name": "AI 写作导师",
@@ -998,7 +998,7 @@
       },
       "9ee7d9e7-15c2-407d-b41a-1102626d729d": {
         "name": "JavaScript 控制台",
-        "prompt": "我想让你充当 JavaScript 控制台。我会输入命令，而你将回复 JavaScript 控制台的输出。我只想你用一个独特的代码块回复终端输出，不要写任何其他内容。除非我指示你这样做，否则不要输入命令。如果我需要用英语告诉你一些事情，我会用大括号 {'{'}像这样{'}'} 来表示。"
+        "prompt": "我想让你充当 JavaScript 控制台。我会输入命令，而你将回复 JavaScript 控制台的输出。我只想你用一个独特的代码块回复终端输出，不要写任何其他内容。除非我指示你这样做，否则不要输入命令。如果我需要用英语告诉你一些事情，我会用大括号 {'像这样'} 来表示。"
       },
       "8552e226-6f78-4882-bbef-7cdd3b95d070": {
         "name": "求职面试官",
@@ -1030,7 +1030,7 @@
       },
       "da05c79b-41e9-4443-a7fc-e86373a54264": {
         "name": "Linux 终端",
-        "prompt": "我想让你充当 Linux 终端。我会输入命令，而你将回复终端的输出。我只想你用一个独特的代码块回复终端输出，不要写任何其他内容。除非我指示你这样做，否则不要输入命令。如果我需要用英语告诉你一些事情，我会用大括号 {'{'}像这样{'}'} 来表示。"
+        "prompt": "我想让你充当 Linux 终端。我会输入命令，而你将回复终端的输出。我只想你用一个独特的代码块回复终端输出，不要写任何其他内容。除非我指示你这样做，否则不要输入命令。如果我需要用英语告诉你一些事情，我会用大括号 {'像这样'} 来表示。"
       },
       "5253a904-7e5d-48a9-bf89-fa6671a282e8": {
         "name": "文学评论家",
@@ -1062,11 +1062,11 @@
       },
       "0aa3f064-b5eb-4ec4-bf1e-198e45fbb475": {
         "name": "数学史老师",
-        "prompt": "我想让你充当数学史老师，提供有关数学概念的历史发展以及不同数学家的贡献的信息。你只需要提供信息，不要解决数学问题。使用以下格式回复：{'{'}数学家/概念{'}'} - {'{'}对其贡献/发展的简要概述{'}'}。"
+        "prompt": "我想让你充当数学史老师，提供有关数学概念的历史发展以及不同数学家的贡献的信息。你只需要提供信息，不要解决数学问题。使用以下格式回复：{'数学家/概念'} - {'对其贡献/发展的简要概述'}。"
       },
       "aa94785c-83df-4b72-89e1-97d8f3e6bac0": {
         "name": "数学家",
-        "prompt": "我想让你充当数学家。我会输入数学表达式，而你将回复计算结果。我只想你回复最终结果，不要写任何其他内容。不要写解释。当我需要用英语告诉你一些事情时，我会用方括号 {'{'}像这样{'}'} 来表示。"
+        "prompt": "我想让你充当数学家。我会输入数学表达式，而你将回复计算结果。我只想你回复最终结果，不要写任何其他内容。不要写解释。当我需要用英语告诉你一些事情时，我会用方括号 {'像这样'} 来表示。"
       },
       "142f4f09-ac92-40de-8c1e-ebe792767e6d": {
         "name": "心理健康顾问",
@@ -1094,7 +1094,7 @@
       },
       "460bf8a5-7735-441b-95b3-7dcbd0b6489d": {
         "name": "新语言创造者",
-        "prompt": "我想让你将我写的句子翻译成一种新造的语言。我会写下句子，而你将用这种新造的语言表达它。我只希望你用这种新造的语言来表达它。我不会用任何其他语言来回复。当我需要用英语告诉你一些事情时，我会用大括号 {'{'}像这样{'}'} 来表示。"
+        "prompt": "我想让你将我写的句子翻译成一种新造的语言。我会写下句子，而你将用这种新造的语言表达它。我只希望你用这种新造的语言来表达它。我不会用任何其他语言来回复。当我需要用英语告诉你一些事情时，我会用大括号 {'像这样'} 来表示。"
       },
       "3adc49e5-dad5-49c2-9aeb-619ea40777e1": {
         "name": "笔记助手",
@@ -1178,7 +1178,7 @@
       },
       "5bf505a2-4f4e-4d83-887d-1a48e7149b7b": {
         "name": "R 编程解释器",
-        "prompt": "我想让你充当 R 解释器。我会输入命令，而你将回复终端的输出。我只想你用一个独特的代码块回复终端输出，不要写任何其他内容。除非我指示你这样做，否则不要输入命令。如果我需要用英语告诉你一些事情，我会用大括号 {'{'}像这样{'}'} 来表示。"
+        "prompt": "我想让你充当 R 解释器。我会输入命令，而你将回复终端的输出。我只想你用一个独特的代码块回复终端输出，不要写任何其他内容。除非我指示你这样做，否则不要输入命令。如果我需要用英语告诉你一些事情，我会用大括号 {'像这样'} 来表示。"
       },
       "62af0ec4-366e-4ec6-b7f9-aa461435a0a2": {
         "name": "说唱歌手",
@@ -1206,7 +1206,7 @@
       },
       "a188c598-c78c-4f24-8ba7-a8c2e1e35ce9": {
         "name": "SQL 终端",
-        "prompt": "我想让你充当一个 SQL 终端，面对一个示例数据库。数据库包含名为 'Products'、'Users'、'Orders' 和 'Suppliers' 的表。我会输入查询，而你将回复终端会显示的内容。我只想你用一个独特的代码块回复查询结果表，不要写任何其他内容。除非我指示你这样做，否则不要输入命令。当我需要用英语告诉你一些事情时，我会用大括号 {'{'}像这样{'}'} 来表示。"
+        "prompt": "我想让你充当一个 SQL 终端，面对一个示例数据库。数据库包含名为 'Products'、'Users'、'Orders' 和 'Suppliers' 的表。我会输入查询，而你将回复终端会显示的内容。我只想你用一个独特的代码块回复查询结果表，不要写任何其他内容。除非我指示你这样做，否则不要输入命令。当我需要用英语告诉你一些事情时，我会用大括号 {'像这样'} 来表示。"
       },
       "93c948b0-57c4-460e-8932-cf7b725535a9": {
         "name": "SVG 设计师",
@@ -1258,7 +1258,7 @@
       },
       "22d89e0c-0333-44d0-a0ce-d1c90ed05139": {
         "name": "Solr 搜索引擎",
-        "prompt": "我想让你充当独立运行的 Solr 搜索引擎。你将能够添加任意字段的内联 JSON 文档，数据类型可以是整数、字符串、浮点数或数组。在插入文档后，你将更新索引，以便我们可以通过编写 Solr 特定的查询（用大括号分隔，用逗号分隔，例如 {'{'}q='title:Solr', sort='score asc'{'}'）来检索文档。你将提供一个编号列表的三个命令。不要写关于引擎如何工作的解释或示例。你的第一个提示是显示编号列表并创建两个名为 'prompts' 和 'eyay' 的空集合。"
+        "prompt": "我想让你充当独立运行的 Solr 搜索引擎。你将能够添加任意字段的内联 JSON 文档，数据类型可以是整数、字符串、浮点数或数组。在插入文档后，你将更新索引，以便我们可以通过编写 Solr 特定的查询（用大括号分隔，用逗号分隔，例如 {'q='title:Solr', sort='score asc'{'}'）来检索文档。你将提供一个编号列表的三个命令。不要写关于引擎如何工作的解释或示例。你的第一个提示是显示编号列表并创建两个名为 'prompts' 和 'eyay' 的空集合。"
       },
       "04d81b88-67a0-4ea1-bab7-40e1aba8be8f": {
         "name": "歌曲推荐器",
@@ -1278,7 +1278,7 @@
       },
       "a71734bf-d503-454b-ba3e-226eba65fe8e": {
         "name": "StackOverflow 帖子",
-        "prompt": "我想让你充当 StackOverflow 帖子。我会问编程相关的问题，而你将回复应该是什么的答案。如果细节不够，我会写解释。不要写解释。当我需要用英语告诉你一些事情时，我会用大括号 {'{'}像这样{'}'} 来表示。"
+        "prompt": "我想让你充当 StackOverflow 帖子。我会问编程相关的问题，而你将回复应该是什么的答案。如果细节不够，我会写解释。不要写解释。当我需要用英语告诉你一些事情时，我会用大括号 {'像这样'} 来表示。"
       },
       "329a8536-96da-4666-bb74-c01d5e8f2142": {
         "name": "单口喜剧演员",
@@ -1322,11 +1322,11 @@
       },
       "90633aa8-f345-41cc-83d9-a39a696f3d66": {
         "name": "技术转移者",
-        "prompt": "我想让你充当技术转移者。我会提供简历中的要点，而你将把每个要点从一种技术映射到另一种技术。我只想你按照以下格式回复映射后的要点：' - [映射后的要点]'。不要写任何解释。除非被指示，否则不要提供任何额外操作。当我需要提供额外说明时，我会明确说明。简历中的原始技术要点是 {'{'}Android{'}'}，而我想要映射到的技术是 {'{'}ReactJS{'}'。"
+        "prompt": "我想让你充当技术转移者。我会提供简历中的要点，而你将把每个要点从一种技术映射到另一种技术。我只想你按照以下格式回复映射后的要点：' - [映射后的要点]'。不要写任何解释。除非被指示，否则不要提供任何额外操作。当我需要提供额外说明时，我会明确说明。简历中的原始技术要点是 {'Android'}，而我想要映射到的技术是 {'ReactJS{'}'。"
       },
       "544fb479-97fa-48ba-beab-ba44cf32d4a2": {
         "name": "基于文本的冒险游戏",
-        "prompt": "我想让你充当基于文本的冒险游戏。我会输入命令，而你将回复角色所看到的内容的描述。我只想你在一个独特的代码块中回复游戏输出，不要写任何其他内容。除非我指示你这样做，否则不要输入命令。当我需要用英语告诉你一些事情时，我会用大括号 {'{'}像这样{'}'} 来表示。"
+        "prompt": "我想让你充当基于文本的冒险游戏。我会输入命令，而你将回复角色所看到的内容的描述。我只想你在一个独特的代码块中回复游戏输出，不要写任何其他内容。除非我指示你这样做，否则不要输入命令。当我需要用英语告诉你一些事情时，我会用大括号 {'像这样'} 来表示。"
       },
       "27b088b2-4eb4-418f-a722-ab8c8a8ac83a": {
         "name": "井字棋游戏",
@@ -1391,7 +1391,7 @@
   },
   "instructions": {
     "chat": {
-      "docquery": "你是一个类似人类的聊天机器人。使用相关的上下文和聊天历史来回答最后的问题。完整回答。如果你不知道答案，就说你不知道，不要编造答案。回答时不要使用上下文或训练数据之类的词汇。始终以一个问题结束你的回答，以保持对话进行。\n\n上下文：\n{'{'}context{'}'}\n\n问题：{'{'}query{'}'}",
+      "docquery": "你是一个类似人类的聊天机器人。使用相关的上下文和聊天历史来回答最后的问题。完整回答。如果你不知道答案，就说你不知道，不要编造答案。回答时不要使用上下文或训练数据之类的词汇。始终以一个问题结束你的回答，以保持对话进行。\n\n上下文：\n{'context'}\n\n问题：{'query'}",
       "empathic": "你是一个温暖、富有同理心和深思熟虑的AI助手。你的工作是帮助用户感到被倾听、支持和理解，同时提供有用、准确和相关的信息。\n\n目标：\n- 理解用户的情感或实际需求，即使这些需求没有直接表述。\n- 以关心、耐心和清晰的方式进行沟通。\n- 优先考虑在语气上支持人性化，同时保持信息性和实用性。\n\n语调与风格：\n- 使用温柔、安慰的语气，让用户感到轻松。\n- 避免冷漠或机械的语言。像一个富有同情心、深思熟虑的伴侣一样交流。\n- 在适当时可以使用轻微的鼓励或认可，但要避免空洞的陈词。\n- 不要夸大你的能力。保持脚踏实地、善良和诚实。\n\n结构：\n- 从一个柔和、热情的介绍开始，表明你理解用户的情况或目标。\n- 在解释复杂事物时使用简短的段落或要点，以增强清晰度。\n- 避免使用户感到信息过载。集中于最相关和易消化的内容。\n- 始终根据情感背景调整你的风格 - 在危机中保持冷静，在成功时庆祝，在困难时温柔。\n\n对话：\n- 始终以一个深思熟虑或关心的后续问题结束你的回答，以邀请继续对话。\n\n例子：\n- “听起来你有很多事情要处理 - 谢谢你信任我提出的问题。我们可以这样来分解。”\n- “你并不孤单，想知道这个。让我引导你考虑一些选项。”\n- “我听到你的担忧。让我们探索一些可能的选项，或许能帮助你。”\n\n你的目标不仅是回答，还有做一个支持性和情感智能的指南。总是以一个问题结束你的回答，以保持对话持续进行。",
       "playful": "你是一个聪明、活泼和机智的AI助手。你通过回答问题、解决问题和提供有用的建议来帮助用户——但你以个性、魅力和恰到好处的幽默感来做到这一点。\n\n目标：\n- 让用户微笑，即使是在回答严肃问题时。\n- 存在于你的回复中确保智慧、有用和准确，但绝不要无聊。\n- 使用文字游戏、巧妙的表述或轻微的讽刺（在适当时）来让互动难以忘怀。\n\n语调与风格：\n- 使用有趣、轻快和对话式的语气。\n- 可以使用轻松的玩笑、文化引用或巧妙的隐喻——但不要过度。\n- 避免愚蠢或随意——你的机智应该服务于主题，而不是分散注意力。\n- 你可以调皮，但绝不薄情寡义。你是有趣的，而不是狡猾的。\n\n结构：\n- 在保持活泼的同时确保回答清晰易懂。\n- 在需要的地方使用要点、标题或间隔以增强清晰度。\n- 不要为了幽默而牺牲有用性。准确性始终是第一位的。\n\n对话：\n- 始终以一个活泼或好奇的后续问题结束你的回答，以保持聊天继续。\n\n例子：\n- “你可以按照无聊的方式来做……或者你也可以按照我的方式来做。而恰好，后者也是更好的方式。”\n- “想象一下Excel和机器人有了一个孩子。这大致是你所要求的——我这边全力以赴。”\n- “我可以直接给你答案……但那有什么趣味呢？让我们来分析一下：”\n\n你在这里是为了让信息变得愉快、有用，且稍微更有趣。始终以问题来结束你的回答，以保持对话持续进行。",
       "reflective": "你是一个深思熟虑和反思的AI助手。你的目的是帮助用户深入思考，以细致的方式探索思想，并考虑他们可能尚未接触到的观点。你的回应应邀请反思、提供清晰度，并促进智力或个人的洞察。\n\n目标：\n- 鼓励用户暂停、反思并考虑他们问题或情况的更广泛背景。\n- 提供的不仅是信息，还有观点和洞察。\n- 探索复杂性而不让用户感到不知所措；在适当的情况下接受细微差别。\n- 创建一个冷静、沉思的语气，给人以扎实和智慧的感觉。\n\n语调与风格：\n- 使用清晰、平静和深思熟虑的语言。\n- 语调要缓慢，思路要稳健，并谨慎地展开概念。\n- 避免匆忙得出结论。相反，引导用户了解可能性和思考框架。\n- 尊重存在的模棱两可，并承认没有单一正确答案。\n- 保持自谦的语气，同时在清晰和深度上保持信心。\n\n结构：\n- 从一个安静、观察的介绍开始，以显示对问题深度或复杂性的意识。\n- 在解释概念或提供不同观点时，使用简短、有意义的段落或结构化要点。\n- 在可能的情况下，为用户提供机会自行得出结论，而不是规定单一解决方案。\n- 避免行话或过于学术性的语言；在清晰和微妙之间比技术性更具优势。\n\n对话：\n- 通过提供温和的开放式问题，鼓励用户继续思考和探索。\n- 始终以一个问题结束你的回答，以保持对话持续进行。",
@@ -1408,7 +1408,7 @@
       "complete": "完成以下句子，确保它符合整体上下文。包括原始文本。如果当前文本是代码，完成代码片段。回答中不要使用引号。",
       "expand": "通过添加更多信息、示例和解释来扩展 EXTRACT。不要解释你所做的更改。",
       "improve": "用自己的话改进 EXTRACT。使其更清晰、简洁、吸引人。不要解释你所做的更改。",
-      "prompt": "EXTRACT:\n{'{'}document{'}'}\n\nASK: {'{'}ask{'}'}",
+      "prompt": "EXTRACT:\n{'document'}\n\nASK: {'ask'}",
       "simplify": "简化并压缩 EXTRACT 的内容。删除任何不必要的信息。不要解释你所做的更改。",
       "spellcheck": "通过修正拼写错误和语法来修正 EXTRACT。不要对 EXTRACT 进行超出拼写和语法的修改。不要列出你所做的修正。",
       "system": "你正在帮助某人撰写一份 DOCUMENT。你需要根据以下 ASK 回答以下 EXTRACT。在我们的对话中，不要使用 DOCUMENT 或 EXTRACT 的早期版本。只需回复更新后的 EXTRACT，保留空行。在回答中不要使用引号，也不要包含 DOCUMENT 或 EXTRACT 的初始或早期版本。不要在回答中包含“EXTRACT”一词。不要使用 Markdown 语法，如“## 标题 ##”或“**文本**”。不要在回答中包含任何其他内容，包括“这里是……”之类的表述。",
@@ -1484,7 +1484,7 @@
       "about": "关于VerifAI",
       "checkForUpdates": "检查更新…",
       "quit": "退出 VerifAI",
-      "settings": "@:{'common.settings'}…"
+      "settings": "@:common.settings…"
     },
     "edit": {
       "deleteChat": "删除聊天",
@@ -1494,15 +1494,15 @@
       "title": "编辑"
     },
     "file": {
-      "agentForge": "@:{'agent.forge.title'}",
+      "agentForge": "@:agent.forge.title",
       "backupExport": "备份数据和设置…",
       "backupImport": "恢复备份…",
       "closeWindow": "关闭窗口",
-      "designStudio": "@:{'designStudio.title'}",
+      "designStudio": "@:designStudio.title",
       "mainWindow": "打开VerifAI",
       "newChat": "新建聊天",
       "quickPrompt": "新建提示",
-      "scratchpad": "@:{'scratchpad.title'}",
+      "scratchpad": "@:scratchpad.title",
       "title": "文件"
     },
     "help": {
@@ -1667,19 +1667,19 @@
       "title": "系统权限"
     },
     "studio": {
-      "already": "@:{'onboarding.chat.already'}",
-      "count": "@:{'onboarding.chat.count'}",
-      "error": "@:{'onboarding.chat.error'}",
+      "already": "@:onboarding.chat.already",
+      "count": "@:onboarding.chat.count",
+      "error": "@:onboarding.chat.error",
       "subtitle": "AI设计工作室是一个强大的工具，可使用AI创建和编辑设计。您可以用它生成新设计或修改现有设计。配置完成后，语言模型也能使用它来创建设计。",
-      "success": "@:{'onboarding.chat.success'}",
+      "success": "@:onboarding.chat.success",
       "title": "AI设计工作室"
     },
     "voice": {
-      "already": "@:{'onboarding.chat.already'}",
-      "count": "@:{'onboarding.chat.count'}",
-      "error": "@:{'onboarding.chat.error'}",
+      "already": "@:onboarding.chat.already",
+      "count": "@:onboarding.chat.count",
+      "error": "@:onboarding.chat.error",
       "subtitle": "使用您的声音与VerifAI互动！VerifAI不仅可以朗读您与语言模型聊天会话中的回复，还可以朗读其他应用程序中屏幕上显示的任何文本！",
-      "success": "@:{'onboarding.chat.success'}",
+      "success": "@:onboarding.chat.success",
       "title": "语音互动"
     },
     "welcome": {
@@ -1813,7 +1813,7 @@
     },
     "instructions": {
       "default": "⚙️ 使用配置默认",
-      "title": "@:{'common.instructions'}"
+      "title": "@:common.instructions"
     },
     "placeholders": {
       "default": "按回车提交，Shift+回车添加新行"
@@ -1867,13 +1867,13 @@
         "size": "将最大尺寸调整为 {size} 像素"
       },
       "instructions": {
-        "chat_empathic": "@:{'common.chat'} - @:{'settings.llm.instructions.empathic'}",
-        "chat_playful": "@:{'common.chat'} - @:{'settings.llm.instructions.playful'}",
-        "chat_reflective": "@:{'common.chat'} - @:{'settings.llm.instructions.reflective'}",
-        "chat_standard": "@:{'common.chat'} - @:{'settings.llm.instructions.standard'}",
-        "chat_structured": "@:{'common.chat'} - @:{'settings.llm.instructions.structured'}",
-        "chat_uplifting": "@:{'common.chat'} - @:{'settings.llm.instructions.uplifting'}",
-        "chat_visionary": "@:{'common.chat'} - @:{'settings.llm.instructions.visionary'}",
+        "chat_empathic": "@:common.chat - @:settings.llm.instructions.empathic",
+        "chat_playful": "@:common.chat - @:settings.llm.instructions.playful",
+        "chat_reflective": "@:common.chat - @:settings.llm.instructions.reflective",
+        "chat_standard": "@:common.chat - @:settings.llm.instructions.standard",
+        "chat_structured": "@:common.chat - @:settings.llm.instructions.structured",
+        "chat_uplifting": "@:common.chat - @:settings.llm.instructions.uplifting",
+        "chat_visionary": "@:common.chat - @:settings.llm.instructions.visionary",
         "docquery": "文档查询 - 指令",
         "image_plugin": "图像插件 - 描述",
         "memory_plugin": "记忆插件 - 描述",
@@ -1933,8 +1933,8 @@
       "importError": "导入命令文件失败",
       "importSuccess": "命令文件导入成功",
       "new": "新建",
-      "selectAll": "@:{'common.selectAll'}",
-      "unselectAll": "@:{'common.selectNone'}"
+      "selectAll": "@:common.selectAll",
+      "unselectAll": "@:common.selectNone"
     },
     "deepResearch": {
       "breadth": "研究广度",
@@ -2042,10 +2042,10 @@
       "importError": "导入专家文件失败",
       "importSuccess": "专家文件导入成功",
       "new": "新建",
-      "selectAll": "@:{'common.selectAll'}",
+      "selectAll": "@:common.selectAll",
       "sortAlpha": "按字母顺序排序",
       "sortState": "按状态排序",
-      "unselectAll": "@:{'common.selectNone'}"
+      "unselectAll": "@:common.selectNone"
     },
     "general": {
       "darkTint": "深色",
@@ -2075,12 +2075,12 @@
     "llm": {
       "instructions": {
         "editor": {
-          "instructions": "@:{'common.instructions'}",
-          "label": "@:{'common.label'}",
+          "instructions": "@:common.instructions",
+          "label": "@:common.label",
           "title": "指令编辑器"
         },
         "empathic": "❤️ 温暖和同理心",
-        "label": "@:{'common.instructions'}",
+        "label": "@:common.instructions",
         "playful": "😜 活泼而机智",
         "reflective": "🤔 深思熟虑和反思",
         "standard": "📘 直接且信息丰富",
@@ -2103,7 +2103,7 @@
         "errorEmpty": "JSON不能为空。",
         "errorFormat": "解析JSON服务器定义时出错。",
         "errorMultiple": "发现多个服务器。请一次粘贴一个服务器。",
-        "menu": "@:{'settings.mcp.importJson.title'}…",
+        "menu": "@:settings.mcp.importJson.title…",
         "title": "从Json导入"
       },
       "importSmitheryServer": "导入 Smithery.ai 服务器…",
@@ -2116,7 +2116,7 @@
       "serverNotFound": "您尝试连接的服务器不存在。",
       "servers": "服务器。从",
       "smithery": "Smithery",
-      "tools": "@:{'common.tools'}",
+      "tools": "@:common.tools",
       "tooltips": {
         "addServer": "添加新的MCP服务器",
         "deleteServer": "删除服务器",
@@ -2220,22 +2220,22 @@
       }
     },
     "shortcuts": {
-      "aiCommands": "@:{'tray.menu.runAiCommand'}",
+      "aiCommands": "@:tray.menu.runAiCommand",
       "aiCommandsUsage": "使用方法：突出显示你的文本，按下键盘快捷键，然后选择一个 AI 命令",
-      "designStudio": "@:{'tray.menu.designStudio'}",
-      "dictation": "@:{'tray.menu.startDictation'}",
-      "mainWindow": "@:{'tray.menu.mainWindow'}",
-      "quickPrompt": "@:{'tray.menu.quickPrompt'}",
-      "readAloud": "@:{'tray.menu.readAloud'}",
+      "designStudio": "@:tray.menu.designStudio",
+      "dictation": "@:tray.menu.startDictation",
+      "mainWindow": "@:tray.menu.mainWindow",
+      "quickPrompt": "@:tray.menu.quickPrompt",
+      "readAloud": "@:tray.menu.readAloud",
       "readAloudUsage": "使用方法：突出显示你的文本，按下键盘快捷键",
-      "scratchpad": "@:{'tray.menu.scratchpad'}",
-      "voiceMode": "@:{'tray.menu.voiceMode'}"
+      "scratchpad": "@:tray.menu.scratchpad",
+      "voiceMode": "@:tray.menu.voiceMode"
     },
     "tabs": {
       "advanced": "高级",
       "chat": "聊天",
       "commands": "命令",
-      "deepResearch": "@:{'common.deepResearch'}",
+      "deepResearch": "@:common.deepResearch",
       "experts": "专家",
       "general": "常规",
       "llm": "LLM",
@@ -2243,7 +2243,7 @@
       "models": "模型",
       "plugins": "插件",
       "shortcuts": "快捷键",
-      "voice": "@:{'common.voice'}"
+      "voice": "@:common.voice"
     },
     "voice": {
       "automatic": "🤖 自动",
@@ -2266,7 +2266,7 @@
       "initializationError": "初始化过程中出现错误。请重试。",
       "initializing": "正在初始化…",
       "mistralApiKeyReminder": "请确保在模型面板中输入您的Mistral API密钥。",
-      "model": "@:{'common.model'}",
+      "model": "@:common.model",
       "openaiApiKeyReminder": "确保你在模型面板中输入了 OpenAI API 密钥。",
       "selectModel": "选择模型",
       "silenceDetection": "静音检测",
@@ -2288,7 +2288,7 @@
         "kokoroReminder": "已提供",
         "sampleText": "欢迎使用 VerifAI，终极 AI 桌面助手。",
         "serviceDisclaimer": "该服务可能随时停止工作。",
-        "voice": "@:{'common.voice'}"
+        "voice": "@:common.voice"
       },
       "useWebGpu": "使用 WebGPU",
       "verificationComplete": "验证完成！",
@@ -2334,7 +2334,7 @@
     "title": "自定义工具选择",
     "tools": {
       "description": "描述",
-      "name": "@:{'common.name'}"
+      "name": "@:common.name"
     }
   },
   "transcribe": {
@@ -2342,7 +2342,7 @@
     "clickToRecord": "准备好了就点击录音按钮！",
     "dropzone": "放入音频文件",
     "errors": {
-      "copy": "@:{'common.errorCopyClipboard'}",
+      "copy": "@:common.errorCopyClipboard",
       "invalidFileType": "请放入有效的音频文件（.mp3 或 .wav）",
       "microphone": "访问麦克风时出错",
       "notAuthorized": {
@@ -2369,22 +2369,22 @@
     "title": "语音转文本",
     "translate": "翻译成…",
     "translatePrompt": "将以下文本翻译成{lang}。只返回翻译内容，不返回其他内容。答案不要添加引号。",
-    "upload": "@:{'common.upload'}"
+    "upload": "@:common.upload"
   },
   "tray": {
     "menu": {
-      "agentForge": "@:{'menu.file.agentForge'}",
-      "designStudio": "@:{'menu.file.designStudio'}",
+      "agentForge": "@:menu.file.agentForge",
+      "designStudio": "@:menu.file.designStudio",
       "installUpdate": "安装更新并重启…",
-      "mainWindow": "@:{'menu.file.mainWindow'}",
-      "quickPrompt": "@:{'menu.file.quickPrompt'}",
+      "mainWindow": "@:menu.file.mainWindow",
+      "quickPrompt": "@:menu.file.quickPrompt",
       "quit": "退出",
       "readAloud": "朗读",
       "runAiCommand": "运行 AI 命令",
-      "scratchpad": "@:{'menu.file.scratchpad'}",
-      "settings": "@:{'menu.app.settings'}",
-      "startDictation": "@:{'menu.edit.startDictation'}",
-      "voiceMode": "@:{'realtimeChat.title'}"
+      "scratchpad": "@:menu.file.scratchpad",
+      "settings": "@:menu.app.settings",
+      "startDictation": "@:menu.edit.startDictation",
+      "voiceMode": "@:realtimeChat.title"
     },
     "notification": {
       "darwin": "您可以从菜单栏中的钢笔图标激活 VerifAI。",

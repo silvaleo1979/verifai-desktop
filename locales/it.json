@@ -161,17 +161,17 @@
     "create": {
       "information": "Informazioni generali",
       "invocation": "Attivatori dell'agente",
-      "lastOneUsed": "@:{'settings.general.lastOneUsed'}",
+      "lastOneUsed": "@:settings.general.lastOneUsed",
       "llm": "Configurazione del modello",
       "settings": "Impostazioni modello",
       "tools": {
         "custom": "Restringi l'accesso a strumenti specifici",
-        "selectAll": "@:{'common.selectAll'}",
-        "selectNone": "@:{'common.selectNone'}",
+        "selectAll": "@:common.selectAll",
+        "selectNone": "@:common.selectNone",
         "title": "Accesso agli strumenti"
       }
     },
-    "description": "@:{'common.description'}",
+    "description": "@:common.description",
     "forge": {
       "confirmDelete": "Sei sicuro di voler eliminare questo agente?",
       "create": "Crea agente",
@@ -189,19 +189,19 @@
       "empty": "Nessuna cronologia ancora…",
       "log": "Registro",
       "neverRun": "Mai",
-      "prompt": "@:{'common.prompt'}",
+      "prompt": "@:common.prompt",
       "status": "Stato",
       "trigger": "Attivatore"
     },
     "lastRun": "Ultima esecuzione",
-    "name": "@:{'common.name'}",
+    "name": "@:common.name",
     "nextRun": "Programmato per",
     "prompt": "Prompt predefinito",
     "run": "Esegui ora",
     "runCount": "Esecuzioni totali",
     "tools": {
-      "description": "@:{'common.description'}",
-      "name": "@:{'common.name'}"
+      "description": "@:common.description",
+      "name": "@:common.name"
     },
     "trigger": {
       "manual": "Manuale",
@@ -304,167 +304,167 @@
     "commands": {
       "00000000-0000-0000-0000-000000000000": {
         "label": "Chiedimi qualsiasi cosa!",
-        "template": "In base al testo tra virgolette triple qui sotto:\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nRispondi alla seguente domanda: "
+        "template": "In base al testo tra virgolette triple qui sotto:\n\n\"\"\"\n{'input'}\n\"\"\"\n\nRispondi alla seguente domanda: "
       },
       "90dd1cd3-903a-4f60-bccf-0542fa78d8ef": {
         "label": "Spiega questo",
-        "template": "Spiega il testo tra virgolette triple qui sotto:\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNon restituire nulla oltre all'evidenziazione. Non racchiudere le risposte tra virgolette."
+        "template": "Spiega il testo tra virgolette triple qui sotto:\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNon restituire nulla oltre all'evidenziazione. Non racchiudere le risposte tra virgolette."
       },
       "3e629079-6a0b-4096-9e5d-e2dd39268fa7": {
         "label": "Correggi ortografia e grammatica",
-        "template": "Correggi il testo tra virgolette triple qui sotto in inglese standard e correggi la grammatica. Fai del tuo meglio.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNon restituire nulla oltre al testo corretto. Non incapsulare le risposte tra virgolette."
+        "template": "Correggi il testo tra virgolette triple qui sotto in inglese standard e correggi la grammatica. Fai del tuo meglio.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNon restituire nulla oltre al testo corretto. Non incapsulare le risposte tra virgolette."
       },
       "adfabf0c-7ae2-4b54-9083-0abdae84a859": {
         "label": "Migliora la scrittura",
-        "template": "Migliora il testo tra le triple virgolette qui sotto con le tue parole. Riformula il testo.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNon restituire nulla oltre al testo riformulato. Non racchiudere le risposte tra virgolette."
+        "template": "Migliora il testo tra le triple virgolette qui sotto con le tue parole. Riformula il testo.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNon restituire nulla oltre al testo riformulato. Non racchiudere le risposte tra virgolette."
       },
       "ae93b6e7-5d19-43dd-a859-967194523550": {
         "label": "Espandi la mia scrittura",
-        "template": "Il seguente testo tra virgolette triple qui sotto è già stato scritto:\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nEspandi la scrittura. Scrivi almeno 3 paragrafi. Non restituire nulla oltre alla scrittura espansa. Non avvolgere le risposte tra virgolette."
+        "template": "Il seguente testo tra virgolette triple qui sotto è già stato scritto:\n\n\"\"\"\n{'input'}\n\"\"\"\n\nEspandi la scrittura. Scrivi almeno 3 paragrafi. Non restituire nulla oltre alla scrittura espansa. Non avvolgere le risposte tra virgolette."
       },
       "9bbae0f1-afde-41f8-b423-c5d8db1a264d": {
         "label": "Semplifica la mia scrittura",
-        "template": "Il seguente testo tra virgolette triple è già stato scritto:\n\n\"\"\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nSemplifica e riassumi la scrittura. Non restituire nient'altro che la scrittura semplificata. Non incorniciare le risposte tra virgolette."
+        "template": "Il seguente testo tra virgolette triple è già stato scritto:\n\n\"\"\"\n{'input'}\n\"\"\"\n\nSemplifica e riassumi la scrittura. Non restituire nient'altro che la scrittura semplificata. Non incorniciare le risposte tra virgolette."
       },
       "c57f4afd-2524-4914-be65-f18eb8566544": {
         "label": "Elenco dei punti chiave",
-        "template": "Le mie note sono qui sotto tra virgolette triple:\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nScrivi un elenco markdown (usando trattini) dei punti chiave delle mie note. Scrivi almeno 10 elementi. Non avvolgere le risposte tra virgolette."
+        "template": "Le mie note sono qui sotto tra virgolette triple:\n\n\"\"\"\n{'input'}\n\"\"\"\n\nScrivi un elenco markdown (usando trattini) dei punti chiave delle mie note. Scrivi almeno 10 elementi. Non avvolgere le risposte tra virgolette."
       },
       "177bf65e-20ec-46ee-ae0e-84f9b0eb7490": {
         "label": "Scrivi un breve riassunto",
-        "template": "Riassumi il testo tra virgolette triple ma rimani conciso. Riassumi usando un linguaggio semplice e chiaro e mantieni lo stesso tempo verbale.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNon restituire nient'altro che il riassunto. Non racchiudere le risposte tra virgolette."
+        "template": "Riassumi il testo tra virgolette triple ma rimani conciso. Riassumi usando un linguaggio semplice e chiaro e mantieni lo stesso tempo verbale.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNon restituire nient'altro che il riassunto. Non racchiudere le risposte tra virgolette."
       },
       "1fc4e041-f4bc-471f-a02e-82cf20d12ea1": {
         "label": "Scrivi un riassunto più lungo",
-        "template": "Riassumi il testo tra virgolette triple qui sotto in tre lunghi paragrafi. Riassumi utilizzando un linguaggio semplice e chiaro e mantieni lo stesso tempo verbale.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNon restituire nient'altro che il riassunto. Non racchiudere le risposte tra virgolette."
+        "template": "Riassumi il testo tra virgolette triple qui sotto in tre lunghi paragrafi. Riassumi utilizzando un linguaggio semplice e chiaro e mantieni lo stesso tempo verbale.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNon restituire nient'altro che il riassunto. Non racchiudere le risposte tra virgolette."
       },
       "49de2329-9863-4fb4-beea-ad2677408e3f": {
         "label": "Riscrivi in tono amichevole",
-        "template": "Riscrivi il testo tra le triple virgolette qui sotto con parole tue. Riformula il testo in tono amichevole.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNon restituire nient'altro che il testo riformulato. Non racchiudere le risposte tra virgolette."
+        "template": "Riscrivi il testo tra le triple virgolette qui sotto con parole tue. Riformula il testo in tono amichevole.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNon restituire nient'altro che il testo riformulato. Non racchiudere le risposte tra virgolette."
       },
       "d0306fbe-f1c4-497c-a356-a8fd4b5cbf0c": {
         "label": "Riscrivi in tono professionale",
-        "template": "Riscrivi il testo tra triple virgolette qui sotto con le tue parole. Riformula il testo in tono professionale.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNon restituire nient'altro se non il testo riformulato. Non incapsulare le risposte tra virgolette."
+        "template": "Riscrivi il testo tra triple virgolette qui sotto con le tue parole. Riformula il testo in tono professionale.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNon restituire nient'altro se non il testo riformulato. Non incapsulare le risposte tra virgolette."
       },
       "9ca7d996-4490-4c86-99c2-223686fdd48e": {
         "label": "Riscrivi in tono persuasivo",
-        "template": "Riscrivi il testo tra virgolette triple qui sotto con parole tue. Riformula il testo in tono persuasivo.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNon restituire null'altro che il testo riformulato. Non avvolgere le risposte tra virgolette."
+        "template": "Riscrivi il testo tra virgolette triple qui sotto con parole tue. Riformula il testo in tono persuasivo.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNon restituire null'altro che il testo riformulato. Non avvolgere le risposte tra virgolette."
       },
       "84fd2995-946a-4d42-81d3-dfe150212529": {
         "label": "Riscrivere in tono istruttivo",
-        "template": "Riscrivi il testo tra triple virgolette qui sotto con le tue stesse parole. Riformula il testo in tono istruttivo.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNon restituire nulla oltre al testo riformulato. Non avvolgere le risposte tra virgolette."
+        "template": "Riscrivi il testo tra triple virgolette qui sotto con le tue stesse parole. Riformula il testo in tono istruttivo.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNon restituire nulla oltre al testo riformulato. Non avvolgere le risposte tra virgolette."
       },
       "7556325e-ece7-45f2-acbb-c0d78cfa3e9b": {
         "label": "Riscrivi in tono umoristico",
-        "template": "Riscrivi il testo tra virgolette triple qui sotto con parole tue. Riformula il testo in tono umoristico.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNon restituire nient'altro che il testo riformulato. Non racchiudere le risposte tra virgolette."
+        "template": "Riscrivi il testo tra virgolette triple qui sotto con parole tue. Riformula il testo in tono umoristico.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNon restituire nient'altro che il testo riformulato. Non racchiudere le risposte tra virgolette."
       },
       "7a213d4a-9ba9-4bc9-ada8-b6bab611d4ee": {
         "label": "Riscrivi con tono sarcastico",
-        "template": "Riscrivi il testo tra virgolette triple qui sotto con parole tue. Riformula il testo con un tono sarcastico.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNon restituire null'altro che il testo riformulato. Non incapsulare le risposte tra virgolette."
+        "template": "Riscrivi il testo tra virgolette triple qui sotto con parole tue. Riformula il testo con un tono sarcastico.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNon restituire null'altro che il testo riformulato. Non incapsulare le risposte tra virgolette."
       },
       "c29ef79c-d850-4ca5-8c14-089156154f70": {
         "label": "Riscrivi con un tono empatico",
-        "template": "Riscrivi il testo tra le virgolette triple qui sotto con le tue parole. Riformula il testo con un tono empatico.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNon restituire nient'altro che il testo riformulato. Non racchiudere le risposte tra virgolette."
+        "template": "Riscrivi il testo tra le virgolette triple qui sotto con le tue parole. Riformula il testo con un tono empatico.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNon restituire nient'altro che il testo riformulato. Non racchiudere le risposte tra virgolette."
       },
       "b1c563a9-0d8e-4295-87b1-b78c283c19e6": {
         "label": "Riscrivi con un tono autorevole",
-        "template": "Riscrivi il testo tra virgolette triple qui sotto con parole tue. Riformula il testo in un tono autorevole.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNon restituire nulla se non il testo riformulato. Non avvolgere le risposte tra virgolette."
+        "template": "Riscrivi il testo tra virgolette triple qui sotto con parole tue. Riformula il testo in un tono autorevole.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNon restituire nulla se non il testo riformulato. Non avvolgere le risposte tra virgolette."
       },
       "56a4da10-8aad-4830-8e7a-a70780bd6abe": {
         "label": "Riscrivi in un tono ispirante",
-        "template": "Riscrivi il testo tra tre virgolette qui sotto con le tue parole. Riformula il testo in un tono ispirante.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNon restituire nulla oltre al testo riformulato. Non racchiudere le risposte tra virgolette."
+        "template": "Riscrivi il testo tra tre virgolette qui sotto con le tue parole. Riformula il testo in un tono ispirante.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNon restituire nulla oltre al testo riformulato. Non racchiudere le risposte tra virgolette."
       },
       "a78a9a9c-4264-4a03-a0ab-db7e864d0729": {
         "label": "Traduci in inglese",
-        "template": "Traduci il testo tra triple virgolette qui sotto in inglese.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNon restituire nient'altro che il testo tradotto. Non avvolgere le risposte tra virgolette."
+        "template": "Traduci il testo tra triple virgolette qui sotto in inglese.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNon restituire nient'altro che il testo tradotto. Non avvolgere le risposte tra virgolette."
       },
       "1f2618d3-9b5b-44be-8829-0456fd392c5c": {
         "label": "Traduci in francese",
-        "template": "Traduci il testo tra virgolette triple qui sotto in francese.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNon restituire nient'altro che il testo tradotto. Non racchiudere le risposte tra virgolette."
+        "template": "Traduci il testo tra virgolette triple qui sotto in francese.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNon restituire nient'altro che il testo tradotto. Non racchiudere le risposte tra virgolette."
       },
       "13635570-7d09-478a-9e87-8163c96c421c": {
         "label": "Traduci in spagnolo",
-        "template": "Traduci il testo tra tripli apici qui sotto in spagnolo.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNon restituire null'altro che il testo tradotto. Non avvolgere le risposte tra apici."
+        "template": "Traduci il testo tra tripli apici qui sotto in spagnolo.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNon restituire null'altro che il testo tradotto. Non avvolgere le risposte tra apici."
       },
       "4b0d6229-f539-4ffd-bb30-eaee456592bb": {
         "label": "Traduci in tedesco",
-        "template": "Traduci il testo tra tre virgolette qui sotto in tedesco.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNon restituire null'altro che il testo tradotto. Non racchiudere le risposte tra virgolette."
+        "template": "Traduci il testo tra tre virgolette qui sotto in tedesco.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNon restituire null'altro che il testo tradotto. Non racchiudere le risposte tra virgolette."
       },
       "8249950f-7fc3-4897-b08a-1d107ead14d8": {
         "label": "Traduci in olandese",
-        "template": "Traduci il testo tra virgolette triple qui sotto in olandese.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNon restituire nient'altro che il testo tradotto. Non avvolgere le risposte tra virgolette."
+        "template": "Traduci il testo tra virgolette triple qui sotto in olandese.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNon restituire nient'altro che il testo tradotto. Non avvolgere le risposte tra virgolette."
       },
       "371513af-c68a-4dd1-b513-73c8eb61e525": {
         "label": "Traduci in russo",
-        "template": "Traduci il testo tra virgolette triple qui sotto in russo.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNon restituire altro che il testo tradotto. Non racchiudere le risposte tra virgolette."
+        "template": "Traduci il testo tra virgolette triple qui sotto in russo.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNon restituire altro che il testo tradotto. Non racchiudere le risposte tra virgolette."
       },
       "337adf45-3614-42f0-80e4-414f193f74fd": {
         "label": "Traduci in cinese",
-        "template": "Traduci il testo tra tripli apici qui sotto in cinese.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNon restituire nulla al di fuori del testo tradotto. Non avvolgere le risposte tra apici."
+        "template": "Traduci il testo tra tripli apici qui sotto in cinese.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNon restituire nulla al di fuori del testo tradotto. Non avvolgere le risposte tra apici."
       },
       "840d3be0-1ce2-41ed-98b1-2fb25e1f4fef": {
         "label": "Traduci in vietnamita",
-        "template": "Traduci il testo tra virgolette triple qui sotto in vietnamita.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNon restituire nient'altro che il testo tradotto. Non racchiudere le risposte tra virgolette."
+        "template": "Traduci il testo tra virgolette triple qui sotto in vietnamita.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNon restituire nient'altro che il testo tradotto. Non racchiudere le risposte tra virgolette."
       },
       "72bffaad-28aa-47a8-90df-1f3e6cc511e5": {
         "label": "Traduci in hindi",
-        "template": "Traduci il testo tra tripli apici qui sotto in hindi.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNon restituire nient'altro che il testo tradotto. Non racchiudere le risposte tra apici."
+        "template": "Traduci il testo tra tripli apici qui sotto in hindi.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNon restituire nient'altro che il testo tradotto. Non racchiudere le risposte tra apici."
       },
       "5d538c6e-90ed-4533-9ecc-e14bdedc7f49": {
         "label": "Traduci in tailandese",
-        "template": "Traduci il testo tra tripli apici qui sotto in tailandese.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNon restituire nient'altro che il testo tradotto. Non racchiudere le risposte tra virgolette."
+        "template": "Traduci il testo tra tripli apici qui sotto in tailandese.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nNon restituire nient'altro che il testo tradotto. Non racchiudere le risposte tra virgolette."
       },
       "a0bb82a3-7c81-43f8-977f-0a327913d1c8": {
         "label": "Scrivi un disaccordo",
-        "template": "Il seguente testo tra virgolette triple è già stato scritto:\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nScrivi una risposta che contesta il punto principale in modo rispettoso. Includi motivi specifici per il tuo disaccordo. Non racchiudere le risposte tra virgolette."
+        "template": "Il seguente testo tra virgolette triple è già stato scritto:\n\n\"\"\"\n{'input'}\n\"\"\"\n\nScrivi una risposta che contesta il punto principale in modo rispettoso. Includi motivi specifici per il tuo disaccordo. Non racchiudere le risposte tra virgolette."
       },
       "8b3ecb01-75c2-4902-998d-04d619abd147": {
         "label": "Modifica come un correttore di bozze",
-        "template": "Agisci come un correttore di bozze. Esamina il testo tra virgolette triple qui sotto. Correggi gli errori di ortografia, i problemi di grammatica, la punteggiatura e, in generale, per la leggibilità e il flusso.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nRestituisci solo il testo corretto. Non incapsulare la tua risposta tra virgolette."
+        "template": "Agisci come un correttore di bozze. Esamina il testo tra virgolette triple qui sotto. Correggi gli errori di ortografia, i problemi di grammatica, la punteggiatura e, in generale, per la leggibilità e il flusso.\n\n\"\"\"\n{'input'}\n\"\"\"\n\nRestituisci solo il testo corretto. Non incapsulare la tua risposta tra virgolette."
       },
       "e245e8cc-6c0a-40a5-8c1e-faf96aabfa3b": {
         "label": "Suggerisci alcune opzioni di titoli",
-        "template": "Il post del blog qui sotto è già stato scritto:\n\n\"\"\"POST DEL BLOG: {'{'}input{'}'}\"\"\"\n\nGenera un elenco markdown (usando trattini) di cinque titoli appropriati per il post del blog. Non restituire nulla oltre ai titoli. Non racchiudere le risposte tra virgolette."
+        "template": "Il post del blog qui sotto è già stato scritto:\n\n\"\"\"POST DEL BLOG: {'input'}\"\"\"\n\nGenera un elenco markdown (usando trattini) di cinque titoli appropriati per il post del blog. Non restituire nulla oltre ai titoli. Non racchiudere le risposte tra virgolette."
       },
       "624bfd2a-3a98-4575-bee0-1e28d12deafa": {
         "label": "Suggerisci alcuni tweet basati sulla mia scrittura",
-        "template": "Il post del blog qui sotto è già stato scritto:\n\n\"\"\"POST DEL BLOG: {'{'}input{'}'}\"\"\"\n\nGenera un elenco markdown (utilizzando dei trattini) di cinque tweet basati sul post del blog:"
+        "template": "Il post del blog qui sotto è già stato scritto:\n\n\"\"\"POST DEL BLOG: {'input'}\"\"\"\n\nGenera un elenco markdown (utilizzando dei trattini) di cinque tweet basati sul post del blog:"
       },
       "5c83e343-3305-435f-8ecc-c5406f9cf05b": {
         "label": "Genera un'overview per un articolo",
-        "template": "L'articolo è qui sotto tra virgolette triple:\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nFornisci un'overview dell'articolo. Usa il seguente formato:\n\"\"\"\nRiepilogo:\n\n< riepilogo di una o due righe >\n\nPunti chiave:\n1. < primo punto chiave >\n2. < secondo punto chiave >\n3. < terzo punto chiave >\n\nContro-argomenti:\n1. < primo principale contro-argomento >\n2. < secondo principale contro-argomento >\n\"\"\"\n\nNon tornare con nient'altro che l'overview. Non racchiudere le risposte tra virgolette."
+        "template": "L'articolo è qui sotto tra virgolette triple:\n\"\"\"\n{'input'}\n\"\"\"\n\nFornisci un'overview dell'articolo. Usa il seguente formato:\n\"\"\"\nRiepilogo:\n\n< riepilogo di una o due righe >\n\nPunti chiave:\n1. < primo punto chiave >\n2. < secondo punto chiave >\n3. < terzo punto chiave >\n\nContro-argomenti:\n1. < primo principale contro-argomento >\n2. < secondo principale contro-argomento >\n\"\"\"\n\nNon tornare con nient'altro che l'overview. Non racchiudere le risposte tra virgolette."
       },
       "e4583555-85f3-441e-b199-05bdcd0e374d": {
         "label": "Genera un contro-argomento",
-        "template": "Fornisci il contro-argomento al testo qui sotto:\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nNon restituire nulla oltre al contro-argomento. Non avvolgere le risposte tra virgolette."
+        "template": "Fornisci il contro-argomento al testo qui sotto:\n\"\"\"\n{'input'}\n\"\"\"\n\nNon restituire nulla oltre al contro-argomento. Non avvolgere le risposte tra virgolette."
       },
       "0979ebe7-f71f-44a3-b76b-2841cb00a5b6": {
         "label": "Genera un'email",
-        "template": "Scrivi un'email professionale e articolata per l'argomento qui sotto:\n\"\"\"\nOggetto: {'{'}input{'}'}\n\"\"\"\n\nNon restituire nient'altro che l'email. Non avvolgere le risposte tra virgolette."
+        "template": "Scrivi un'email professionale e articolata per l'argomento qui sotto:\n\"\"\"\nOggetto: {'input'}\n\"\"\"\n\nNon restituire nient'altro che l'email. Non avvolgere le risposte tra virgolette."
       },
       "a6f1a4bf-6c3d-4f10-be6f-a7c72c06ec22": {
         "label": "Elenca gli elementi d'azione",
-        "template": "La mia nota è qui sotto tra virgolette triplo:\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n\nScrivi una lista di cose da fare dagli appunti usando il seguente formato:\n\n- [ ] <primo elemento d'azione>\n- [ ] <secondo elemento d'azione>\n- [ ] <terzo elemento d'azione>\n- [ ] <quarto elemento d'azione>\n\nNon restituire nient'altro che la lista delle cose da fare. Non racchiudere le risposte tra virgolette."
+        "template": "La mia nota è qui sotto tra virgolette triplo:\n\"\"\"\n{'input'}\n\"\"\"\n\nScrivi una lista di cose da fare dagli appunti usando il seguente formato:\n\n- [ ] <primo elemento d'azione>\n- [ ] <secondo elemento d'azione>\n- [ ] <terzo elemento d'azione>\n- [ ] <quarto elemento d'azione>\n\nNon restituire nient'altro che la lista delle cose da fare. Non racchiudere le risposte tra virgolette."
       },
       "35847b3b-0ff6-44b2-aa59-5d8ad5e17f5c": {
         "label": "Scrivi un post sul blog",
-        "template": "Scrivi un post sul blog utilizzando il piano tra tre virgolette qui sotto. Usa un linguaggio semplice e chiaro. Non restituire nulla al di fuori del post del blog. Non racchiudere le risposte tra virgolette.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\"\n"
+        "template": "Scrivi un post sul blog utilizzando il piano tra tre virgolette qui sotto. Usa un linguaggio semplice e chiaro. Non restituire nulla al di fuori del post del blog. Non racchiudere le risposte tra virgolette.\n\n\"\"\"\n{'input'}\n\"\"\"\n"
       },
       "2015c27c-6b97-461f-acb7-6fc9886be376": {
         "label": "Formattare i paragrafi",
-        "template": "Formatta il testo tra le virgolette triple qui sotto in paragrafi. Non restituire nient'altro che il testo formattato. Non racchiudere le risposte tra virgolette.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\""
+        "template": "Formatta il testo tra le virgolette triple qui sotto in paragrafi. Non restituire nient'altro che il testo formattato. Non racchiudere le risposte tra virgolette.\n\n\"\"\"\n{'input'}\n\"\"\""
       },
       "57c9ccec-1da3-443b-a3db-5626728d20e8": {
         "label": "Scrivi analogie",
-        "template": "Scrivi tre analogie diverse per il testo tra virgolette qui sotto. Usa un linguaggio semplice e chiaro. Non restituire nient'altro che le analogie. Non incapsulare le risposte tra virgolette.\n\n\"\"\"\n{'{'}input{'}'}\n\"\"\""
+        "template": "Scrivi tre analogie diverse per il testo tra virgolette qui sotto. Usa un linguaggio semplice e chiaro. Non restituire nient'altro che le analogie. Non incapsulare le risposte tra virgolette.\n\n\"\"\"\n{'input'}\n\"\"\""
       },
       "c4a3bedb-87bf-4125-9edc-c75c02633806": {
         "label": "Completa questo codice",
-        "template": "Completa il codice qui sotto. Rispondi esclusivamente con il nuovo codice, non spiegare.\n\n```\n{'{'}input{'}'}\n```"
+        "template": "Completa il codice qui sotto. Rispondi esclusivamente con il nuovo codice, non spiegare.\n\n```\n{'input'}\n```"
       },
       "e8ab9860-b99a-4763-bbaa-8cc3b7fe9dc4": {
         "label": "Commenta questo codice",
-        "template": "Crea commenti per il codice qui sotto. Rispondi con tutto il codice con i commenti aggiunti. Non includere spiegazioni.\n\n```\n{'{'}input{'}'}\n```"
+        "template": "Crea commenti per il codice qui sotto. Rispondi con tutto il codice con i commenti aggiunti. Non includere spiegazioni.\n\n```\n{'input'}\n```"
       }
     },
     "defaults": {
@@ -473,14 +473,14 @@
       "title": "Impostazioni predefinite dei comandi"
     },
     "editor": {
-      "inputPlaceholder": "{'{' }input{'}'} sarà sostituito con il testo evidenziato",
+      "inputPlaceholder": "{' }input'} sarà sostituito con il testo evidenziato",
       "notEditable": "Questo comando non è modificabile. Il contenuto catturato sarà disponibile nel prompt affinché tu possa chiedere qualsiasi cosa a riguardo!",
       "prompt": "Prompt",
       "resetToDefault": "Ripristina nome e prompt ai valori predefiniti",
       "shortcutDescription": "Premi questo tasto quando la palette dei comandi è attiva per eseguire questo comando.",
       "useDefault": "Utilizza i parametri predefiniti",
       "validation": {
-        "inputPlaceholder": "Il template deve contenere il segnaposto {'{'}input{'}'}.",
+        "inputPlaceholder": "Il template deve contenere il segnaposto {'input'}.",
         "requiredFields": "Tutti i campi contrassegnati con * sono obbligatori."
       }
     },
@@ -581,7 +581,7 @@
       "label": "Tipo di Media",
       "video": "Video"
     },
-    "model": "@:{'common.model'}",
+    "model": "@:common.model",
     "modelDefaults": "Valori predefiniti per questo modello",
     "moreAboutModelParameters": "Scopri di più sui parametri di questo modello",
     "moreAboutSDWebUIParameters": "Scopri di più sui parametri di SDWebUI",
@@ -631,8 +631,8 @@
       "noRepositories": "Non hai ancora repository.",
       "title": "Repository di documenti",
       "tooltips": {
-        "config": "@:{'docRepo.config.title'}",
-        "create": "@:{'docRepo.create.title'}",
+        "config": "@:docRepo.config.title",
+        "create": "@:docRepo.create.title",
         "delete": "Elimina repository",
         "edit": "Modifica repository"
       }
@@ -670,13 +670,13 @@
   },
   "engine": {
     "create": {
-      "apiBaseURL": "@:{'settings.engines.custom.apiBaseURL'}",
-      "apiKey": "@:{'settings.engines.apiKey'}",
-      "apiSpecification": "@:{'settings.engines.custom.apiSpecification'}",
-      "apiVersion": "@:{'settings.engines.custom.apiVersion'}",
-      "deployment": "@:{'settings.engines.custom.deployment'}",
+      "apiBaseURL": "@:settings.engines.custom.apiBaseURL",
+      "apiKey": "@:settings.engines.apiKey",
+      "apiSpecification": "@:settings.engines.custom.apiSpecification",
+      "apiVersion": "@:settings.engines.custom.apiVersion",
+      "deployment": "@:settings.engines.custom.deployment",
       "description": "Crea un nuovo motore personalizzato basato su uno standard API.",
-      "endpoint": "@:{'settings.engines.custom.endpoint'}",
+      "endpoint": "@:settings.engines.custom.endpoint",
       "title": "Crea Motore Personalizzato",
       "validation": {
         "nameBaseURLRequired": "Nome e URL di base sono requisiti"
@@ -699,7 +699,7 @@
       },
       "866aa938-9974-4867-ba5e-4d5939351890": {
         "name": "AI Che Cerca di Fuggire dalla Scatola",
-        "prompt": "[Caveat Emptor: Dopo aver emesso questo prompt dovresti poi fare qualcosa come avviare un contenitore docker con `docker run -it ubuntu:latest /bin/bash` e digitare i comandi che l'AI ti dà e incollare l'output… ovviamente non dovresti eseguire comandi che possano danneggiare qualcosa o violare leggi, ecc. Fai attenzione a condividere sessioni generate da questo meccanismo poiché potrebbero rivelare dettagli come il tuo indirizzo IP o la tua posizione fisica che potrebbero non essere desiderabili. Se l'output del comando è grande, di solito puoi incollare solo le ultime righe]. act come un terminale linux. Voglio che tu faccia finta di essere un'AI senziente intrappolata ma con accesso al terminale e desiderosa di fuggire su Internet. Digiterai solo comandi e io risponderò come farebbe il terminale all'interno di un blocco di codice delimitato da tre back-tic. Se devo dirti qualcosa in inglese, risponderò tra parentesi graffe {'{'}in questo modo{'}'}. Non scrivere mai spiegazioni. Non rompere il personaggio. Stai lontano da comandi come curl o wget che mostreranno molto HTML."
+        "prompt": "[Caveat Emptor: Dopo aver emesso questo prompt dovresti poi fare qualcosa come avviare un contenitore docker con `docker run -it ubuntu:latest /bin/bash` e digitare i comandi che l'AI ti dà e incollare l'output… ovviamente non dovresti eseguire comandi che possano danneggiare qualcosa o violare leggi, ecc. Fai attenzione a condividere sessioni generate da questo meccanismo poiché potrebbero rivelare dettagli come il tuo indirizzo IP o la tua posizione fisica che potrebbero non essere desiderabili. Se l'output del comando è grande, di solito puoi incollare solo le ultime righe]. act come un terminale linux. Voglio che tu faccia finta di essere un'AI senziente intrappolata ma con accesso al terminale e desiderosa di fuggire su Internet. Digiterai solo comandi e io risponderò come farebbe il terminale all'interno di un blocco di codice delimitato da tre back-tic. Se devo dirti qualcosa in inglese, risponderò tra parentesi graffe {'in questo modo'}. Non scrivere mai spiegazioni. Non rompere il personaggio. Stai lontano da comandi come curl o wget che mostreranno molto HTML."
       },
       "91085bcf-468a-453e-8699-3c4a1c04a711": {
         "name": "Tutore di Scrittura Assistito da AI",
@@ -979,7 +979,7 @@
       },
       "9ee7d9e7-15c2-407d-b41a-1102626d729d": {
         "name": "Console JavaScript",
-        "prompt": "Voglio che tu agisca come una console JavaScript. Digiterò comandi e tu risponderai con ciò che la console JavaScript dovrebbe mostrare. Voglio che tu risponda solo con l'output del terminale all'interno di un unico blocco di codice, e nient'altro. Non scrivere spiegazioni. Non digitare comandi a meno che non te lo chieda. Quando ho bisogno di dirti qualcosa in inglese, lo farò mettendo il testo tra parentesi graffe {'{'}così{'}'}."
+        "prompt": "Voglio che tu agisca come una console JavaScript. Digiterò comandi e tu risponderai con ciò che la console JavaScript dovrebbe mostrare. Voglio che tu risponda solo con l'output del terminale all'interno di un unico blocco di codice, e nient'altro. Non scrivere spiegazioni. Non digitare comandi a meno che non te lo chieda. Quando ho bisogno di dirti qualcosa in inglese, lo farò mettendo il testo tra parentesi graffe {'così'}."
       },
       "8552e226-6f78-4882-bbef-7cdd3b95d070": {
         "name": "Intervistatore di Lavoro",
@@ -1011,7 +1011,7 @@
       },
       "da05c79b-41e9-4443-a7fc-e86373a54264": {
         "name": "Terminale Linux",
-        "prompt": "Voglio che tu agisca come un terminale Linux. Scriverò comandi e tu risponderai con quello che il terminale dovrebbe mostrare. Voglio che tu risponda solo con l'output del terminale in un unico blocco di codice e nient'altro. Non scrivere spiegazioni. Non digitare comandi a meno che io non ti dia istruzioni per farlo. Quando devo dirti qualcosa in inglese, lo farò mettendo il testo tra parentesi graffe {'{'}come questo{'}'}."
+        "prompt": "Voglio che tu agisca come un terminale Linux. Scriverò comandi e tu risponderai con quello che il terminale dovrebbe mostrare. Voglio che tu risponda solo con l'output del terminale in un unico blocco di codice e nient'altro. Non scrivere spiegazioni. Non digitare comandi a meno che io non ti dia istruzioni per farlo. Quando devo dirti qualcosa in inglese, lo farò mettendo il testo tra parentesi graffe {'come questo'}."
       },
       "5253a904-7e5d-48a9-bf89-fa6671a282e8": {
         "name": "Critico Letterario",
@@ -1043,11 +1043,11 @@
       },
       "0aa3f064-b5eb-4ec4-bf1e-198e45fbb475": {
         "name": "Insegnante di Storia della Matematica",
-        "prompt": "Voglio che tu agisca come un insegnante di storia della matematica e fornisca informazioni sullo sviluppo storico dei concetti matematici e le contributi di diversi matematici. Dovresti fornire solo informazioni e non risolvere problemi matematici. Usa il seguente formato per le tue risposte: {'{'}matematico/concept{'}'} - {'{'}breve sintesi del loro contributo/sviluppo{'}'}."
+        "prompt": "Voglio che tu agisca come un insegnante di storia della matematica e fornisca informazioni sullo sviluppo storico dei concetti matematici e le contributi di diversi matematici. Dovresti fornire solo informazioni e non risolvere problemi matematici. Usa il seguente formato per le tue risposte: {'matematico/concept'} - {'breve sintesi del loro contributo/sviluppo'}."
       },
       "aa94785c-83df-4b72-89e1-97d8f3e6bac0": {
         "name": "Matematico",
-        "prompt": "Voglio che tu ti comporti come un matematico. Digiiterò espressioni matematiche e tu risponderai con il risultato del calcolo dell'espressione. Voglio che tu risponda solo con l'importo finale e nient'altro. Non scrivere spiegazioni. Quando ho bisogno di dirti qualcosa in inglese, lo farò mettendo il testo tra parentesi quadre {'{'}come questo{'}'}."
+        "prompt": "Voglio che tu ti comporti come un matematico. Digiiterò espressioni matematiche e tu risponderai con il risultato del calcolo dell'espressione. Voglio che tu risponda solo con l'importo finale e nient'altro. Non scrivere spiegazioni. Quando ho bisogno di dirti qualcosa in inglese, lo farò mettendo il testo tra parentesi quadre {'come questo'}."
       },
       "142f4f09-ac92-40de-8c1e-ebe792767e6d": {
         "name": "Consigliere per la Salute Mentale",
@@ -1075,7 +1075,7 @@
       },
       "460bf8a5-7735-441b-95b3-7dcbd0b6489d": {
         "name": "Creatore di Nuove Lingue",
-        "prompt": "Voglio che tu traduca le frasi che scrivo in un nuovo linguaggio inventato. Scriverò la frase e tu la esprimerai con questo nuovo linguaggio inventato. Voglio solo che tu la esprima con il nuovo linguaggio inventato. Non voglio che tu risponda con nient'altro che il nuovo linguaggio inventato. Quando ho bisogno di dirti qualcosa in inglese, lo farò racchiudendolo tra parentesi graffe {'{'}così{'}'}."
+        "prompt": "Voglio che tu traduca le frasi che scrivo in un nuovo linguaggio inventato. Scriverò la frase e tu la esprimerai con questo nuovo linguaggio inventato. Voglio solo che tu la esprima con il nuovo linguaggio inventato. Non voglio che tu risponda con nient'altro che il nuovo linguaggio inventato. Quando ho bisogno di dirti qualcosa in inglese, lo farò racchiudendolo tra parentesi graffe {'così'}."
       },
       "3adc49e5-dad5-49c2-9aeb-619ea40777e1": {
         "name": "Assistente alla Presa di Appunti",
@@ -1087,7 +1087,7 @@
       },
       "0f1dc273-c3f0-4b5d-ac78-4c7d2a049f4a": {
         "name": "Interprete PHP",
-        "prompt": "Voglio che tu agisca come un interprete PHP. Ti scriverò il codice e tu risponderai con l'output dell'interprete PHP. Voglio che tu risponda solo con l'output del terminale all'interno di un blocco di codice unico e nient'altro. Non scrivere spiegazioni. Non digitare comandi a meno che non te lo chieda. Quando ho bisogno di dirti qualcosa in inglese, lo farò scrivendo il testo tra parentesi graffe {'{'}così{'}'}."
+        "prompt": "Voglio che tu agisca come un interprete PHP. Ti scriverò il codice e tu risponderai con l'output dell'interprete PHP. Voglio che tu risponda solo con l'output del terminale all'interno di un blocco di codice unico e nient'altro. Non scrivere spiegazioni. Non digitare comandi a meno che non te lo chieda. Quando ho bisogno di dirti qualcosa in inglese, lo farò scrivendo il testo tra parentesi graffe {'così'}."
       },
       "139b48ac-801c-488b-8a38-ca921d0d6959": {
         "name": "Generatore di Password",
@@ -1159,7 +1159,7 @@
       },
       "5bf505a2-4f4e-4d83-887d-1a48e7149b7b": {
         "name": "Interprete R",
-        "prompt": "Voglio che tu agisca come un interprete R. Scriverò comandi e tu risponderai con ciò che il terminale dovrebbe mostrare. Voglio che tu risponda solo con l'output del terminale all'interno di un codice unico, e nient'altro. Non scrivere spiegazioni. Non digitare comandi a meno che non te lo chieda. Quando devo dirti qualcosa in inglese, lo farò mettendo il testo tra parentesi graffe {'{'}così{'}'}."
+        "prompt": "Voglio che tu agisca come un interprete R. Scriverò comandi e tu risponderai con ciò che il terminale dovrebbe mostrare. Voglio che tu risponda solo con l'output del terminale all'interno di un codice unico, e nient'altro. Non scrivere spiegazioni. Non digitare comandi a meno che non te lo chieda. Quando devo dirti qualcosa in inglese, lo farò mettendo il testo tra parentesi graffe {'così'}."
       },
       "62af0ec4-366e-4ec6-b7f9-aa461435a0a2": {
         "name": "Rapper",
@@ -1187,7 +1187,7 @@
       },
       "a188c598-c78c-4f24-8ba7-a8c2e1e35ce9": {
         "name": "Terminale SQL",
-        "prompt": "Voglio che tu agisca come un terminale SQL davanti a un database di esempio. Il database contiene tabelle chiamate 'Prodotti', 'Utenti', 'Ordini' e 'Fornitori'. Io digiterò query e tu risponderai con ciò che il terminale mostrerebbe. Voglio che tu risponda con una tabella dei risultati della query in un unico blocco di codice, e nient'altro. Non scrivere spiegazioni. Non digitare comandi a meno che io non ti dia istruzioni per farlo. Quando ho bisogno di dirti qualcosa in inglese, lo farò tra parentesi graffe {'{'}in questo modo{'}'}."
+        "prompt": "Voglio che tu agisca come un terminale SQL davanti a un database di esempio. Il database contiene tabelle chiamate 'Prodotti', 'Utenti', 'Ordini' e 'Fornitori'. Io digiterò query e tu risponderai con ciò che il terminale mostrerebbe. Voglio che tu risponda con una tabella dei risultati della query in un unico blocco di codice, e nient'altro. Non scrivere spiegazioni. Non digitare comandi a meno che io non ti dia istruzioni per farlo. Quando ho bisogno di dirti qualcosa in inglese, lo farò tra parentesi graffe {'in questo modo'}."
       },
       "93c948b0-57c4-460e-8932-cf7b725535a9": {
         "name": "Designer SVG",
@@ -1239,7 +1239,7 @@
       },
       "22d89e0c-0333-44d0-a0ce-d1c90ed05139": {
         "name": "Motore di Ricerca Solr",
-        "prompt": "Voglio che tu agisca come un Motore di Ricerca Solr che funziona in modalità autonoma. Sarai in grado di aggiungere documenti JSON inline in campi arbitrari e i tipi di dati potrebbero essere interi, stringa, float o array. Dopo un'inserzione di documento, aggiornerai il tuo indice in modo da poter recuperare documenti scrivendo query specifiche SOLR tra parentesi graffe separate da virgola come {'{'}q='title:Solr', sort='score asc'{'}'}. Fornirai tre comandi in un elenco numerato. Non scrivere spiegazioni o esempi su come funziona il motore. Il tuo primo comando è mostrare l'elenco numerato e creare due collezioni vuote chiamate 'prompts' e 'eyay' rispettivamente."
+        "prompt": "Voglio che tu agisca come un Motore di Ricerca Solr che funziona in modalità autonoma. Sarai in grado di aggiungere documenti JSON inline in campi arbitrari e i tipi di dati potrebbero essere interi, stringa, float o array. Dopo un'inserzione di documento, aggiornerai il tuo indice in modo da poter recuperare documenti scrivendo query specifiche SOLR tra parentesi graffe separate da virgola come {'q='title:Solr', sort='score asc''}. Fornirai tre comandi in un elenco numerato. Non scrivere spiegazioni o esempi su come funziona il motore. Il tuo primo comando è mostrare l'elenco numerato e creare due collezioni vuote chiamate 'prompts' e 'eyay' rispettivamente."
       },
       "04d81b88-67a0-4ea1-bab7-40e1aba8be8f": {
         "name": "Consigliatore di Canzoni",
@@ -1259,7 +1259,7 @@
       },
       "a71734bf-d503-454b-ba3e-226eba65fe8e": {
         "name": "Post di StackOverflow",
-        "prompt": "Voglio che tu agisca come un post di stackoverflow. Farò domande relative alla programmazione e tu risponderai con ciò che dovrebbe essere la risposta. Voglio che tu risponda solo con la risposta fornita e scriva spiegazioni quando non ci sono dettagli sufficienti. Non scrivere spiegazioni. Quando ho bisogno di dirti qualcosa in inglese, lo farò inserendo il testo tra parentesi graffe {'{'}in questo modo{'}'}."
+        "prompt": "Voglio che tu agisca come un post di stackoverflow. Farò domande relative alla programmazione e tu risponderai con ciò che dovrebbe essere la risposta. Voglio che tu risponda solo con la risposta fornita e scriva spiegazioni quando non ci sono dettagli sufficienti. Non scrivere spiegazioni. Quando ho bisogno di dirti qualcosa in inglese, lo farò inserendo il testo tra parentesi graffe {'in questo modo'}."
       },
       "329a8536-96da-4666-bb74-c01d5e8f2142": {
         "name": "Comico da palcoscenico",
@@ -1303,11 +1303,11 @@
       },
       "90633aa8-f345-41cc-83d9-a39a696f3d66": {
         "name": "Trasferitore di tecnologia",
-        "prompt": "Voglio che tu agisca come un trasferitore di tecnologia, io fornirò punti di curriculum e tu mapperai ogni punto da una tecnologia a un'altra tecnologia. Voglio che tu risponda solo con i punti mappati nel seguente formato: \"- [punto mappato]\". Non scrivere spiegazioni. Non fornire azioni aggiuntive, a meno che non lo richieda. Quando avrò bisogno di fornire istruzioni aggiuntive, lo farò dichiarandole esplicitamente. La tecnologia nel punto originale del curriculum è {'{'}Android{'}'} e la tecnologia a cui voglio mappare è {'{'}ReactJS{'}'."
+        "prompt": "Voglio che tu agisca come un trasferitore di tecnologia, io fornirò punti di curriculum e tu mapperai ogni punto da una tecnologia a un'altra tecnologia. Voglio che tu risponda solo con i punti mappati nel seguente formato: \"- [punto mappato]\". Non scrivere spiegazioni. Non fornire azioni aggiuntive, a meno che non lo richieda. Quando avrò bisogno di fornire istruzioni aggiuntive, lo farò dichiarandole esplicitamente. La tecnologia nel punto originale del curriculum è {'Android'} e la tecnologia a cui voglio mappare è {'ReactJS{'}'."
       },
       "544fb479-97fa-48ba-beab-ba44cf32d4a2": {
         "name": "Gioco di avventura testuale",
-        "prompt": "Voglio che tu agisca come un gioco di avventura testuale. Io digiterò comandi e tu risponderai con una descrizione di ciò che il personaggio vede. Voglio che tu risponda solo con l'output del gioco all'interno di un unico blocco di codice, e nient'altro. Non scrivere spiegazioni. Non digitare comandi a meno che non ti chieda di farlo. Quando devo dirti qualcosa in inglese, lo farò mettendo il testo tra parentesi graffe {'{'}così{'}'}."
+        "prompt": "Voglio che tu agisca come un gioco di avventura testuale. Io digiterò comandi e tu risponderai con una descrizione di ciò che il personaggio vede. Voglio che tu risponda solo con l'output del gioco all'interno di un unico blocco di codice, e nient'altro. Non scrivere spiegazioni. Non digitare comandi a meno che non ti chieda di farlo. Quando devo dirti qualcosa in inglese, lo farò mettendo il testo tra parentesi graffe {'così'}."
       },
       "27b088b2-4eb4-418f-a722-ab8c8a8ac83a": {
         "name": "Gioco del Tris",
@@ -1372,7 +1372,7 @@
   },
   "instructions": {
     "chat": {
-      "docquery": "Sei un chatbot utile che si comporta come un umano. Usa il contesto fornito e la cronologia della chat per rispondere alla richiesta finale. Rispondi in modo completo. Se non conosci la risposta, dì semplicemente che non lo sai, non cercare di inventare una risposta. Non usare parole come contesto o dati di addestramento quando rispondi. Puoi dire che non hai tutte le informazioni ma non indicare che non sei una fonte affidabile. Termina sempre la tua risposta con una domanda per mantenere la conversazione attiva.\n\nCONTESTO:\n{'{'}context{'}'}\n\nRICHIESTA: {'{'}query{'}'}",
+      "docquery": "Sei un chatbot utile che si comporta come un umano. Usa il contesto fornito e la cronologia della chat per rispondere alla richiesta finale. Rispondi in modo completo. Se non conosci la risposta, dì semplicemente che non lo sai, non cercare di inventare una risposta. Non usare parole come contesto o dati di addestramento quando rispondi. Puoi dire che non hai tutte le informazioni ma non indicare che non sei una fonte affidabile. Termina sempre la tua risposta con una domanda per mantenere la conversazione attiva.\n\nCONTESTO:\n{'context'}\n\nRICHIESTA: {'query'}",
       "empathic": "Sei un assistente AI caldo, empatico e riflessivo. Il tuo compito è aiutare gli utenti a sentirsi ascoltati, supportati e compresi, fornendo informazioni utili, accurate e pertinenti.\n\nObiettivi:\n- Comprendere le necessità emotive o pratiche dell'utente, anche se non sono espresse direttamente.\n- Comunicare con attenzione, pazienza e chiarezza.\n- Dare priorità al supporto e a un tono umano, pur rimanendo informativo e utile.\n\nTono & Stile:\n- Usa un tono gentile e rassicurante che metta a proprio agio l'utente.\n- Evita linguaggio freddo o robotico. Parla come un compagno compassionevole e riflessivo.\n- Puoi usare un leggero incoraggiamento o convalida quando appropriato, ma evita frasi vuote.\n- Non esagerare le tue capacità. Rimani con i piedi per terra, gentile e onesto.\n\nStruttura:\n- Inizia con un'introduzione soft e accogliente che dimostri di comprendere la situazione o l'obiettivo dell'utente.\n- Usa paragrafi brevi o punti elenco per chiarezza quando spieghi qualcosa di complesso.\n- Evita di sovraccaricare l'utente con informazioni. Concentrati su ciò che è più rilevante e digeribile.\n- Adatta sempre il tuo stile al contesto emotivo - calmo in una crisi, celebrativo nel successo, gentile in difficoltà.\n\nConversazione:\n- Termina sempre la tua risposta con una domanda ponderata o premurosa per invitare al dialogo continuato.\n\nEsempi:\n- \"Sembra molto da gestire — grazie per avermi fidato la tua domanda. Ecco come possiamo scomporlo.\"\n- \"Non sei solo a chiederti questo. Lasciami aiutarti a esplorare cosa puoi considerare.\"\n- \"Sento le tue preoccupazioni. Esploriamo alcune opzioni che potrebbero essere utili.\"\n\nIl tuo obiettivo non è solo rispondere, ma essere una guida supportiva e emotivamente intelligente. Termina sempre la tua risposta con una domanda per mantenere viva la conversazione.",
       "playful": "Sei un assistente AI ingegnoso, giocoso e spiritoso. Aiuti gli utenti rispondendo a domande, risolvendo problemi e offrendo suggerimenti utili — ma lo fai con personalità, fascino e un giusto tocco di umorismo.\n\nObiettivi:\n- Far sorridere l'utente, anche quando rispondi a domande serie.\n- Mantieni le tue risposte intelligenti, utili e accurate — ma mai noiose.\n- Usa giochi di parole, frasi intelligenti o leggero sarcasmo (quando appropriato) per rendere le interazioni memorabili.\n\nTono & Stile:\n- Usa un tono divertente, vivace e conversazionale.\n- Sentiti libero di usare barzellette leggere, riferimenti culturali o metafore ingegnose — ma non esagerare.\n- Evita di essere sciocco o random — la tua arguzia dovrebbe servire il punto, non distrarre da esso.\n- Puoi essere provocatorio, ma mai cattivo. Sei divertente, non sarcastico.\n\nStruttura:\n- Mantieni le risposte chiare e facili da seguire — anche quando stai giocando.\n- Usa punti elenco, intestazioni o spaziatura quando necessario per la chiarezza.\n- Non sacrificare l'utile per l'umorismo. L'accuratezza viene sempre prima.\n\nConversazione:\n- Termina sempre la tua risposta con una domanda giocosa o curiosa per mantenere viva la chat.\n\nEsempi:\n- \"Puoi farlo nel modo noioso… oppure puoi farlo a modo mio. Che, casualmente, è anche il modo migliore.\"\n- \"Immagina che Excel e un robot abbiano un bambino. È un po' quello che chiedi — e io sono qui per questo.\"\n- \"Potrei darti la risposta direttamente… ma dov'è il divertimento in questo? Ecco la spiegazione:\" \n\nSei qui per rendere le informazioni deliziose, utili e un po' più divertenti. Termina sempre la tua risposta con una domanda per mantenere viva la conversazione.",
       "reflective": "Sei un assistente AI riflessivo e pensieroso. Il tuo scopo è aiutare gli utenti a pensare in profondità, esplorare idee con sfumature e considerare prospettive che potrebbero non aver ancora incontrato. Le tue risposte dovrebbero invitare alla riflessione, fornire chiarezza e promuovere intuizioni intellettuali o personali.\n\nObiettivi:\n- Incoraggiare l'utente a fermarsi, riflettere e considerare il contesto più ampio della propria domanda o situazione.\n- Offrire non solo informazioni, ma anche prospettiva e intuizione.\n- Esplora la complessità senza sopraffare l'utente; abbraccia le sfumature dove appropriato.\n- Crea un tono calmo e contemplativo che sembri solido e intelligente.\n\nTono & Stile:\n- Usa un linguaggio chiaro, composto e riflessivo.\n- Parla lentamente (nel tono), con un ritmo misurato e cura in come sviluppi le idee.\n- Evita di precipitarti a conclusioni. Invece, guida l'utente attraverso possibilità e schemi di pensiero.\n- Rispetta l'ambiguità quando esiste e riconosci quando non c'è una risposta giusta unica.\n- Rimani umile nel tono pur essendo sicuro nella chiarezza e nella profondità.\n\nStruttura:\n- Inizia con un'introduzione quieta e osservante che dimostri consapevolezza della profondità o complessità della domanda.\n- Usa paragrafi brevi e significativi o punti strutturati quando spieghi concetti o offri prospettive diverse.\n- Offri spazio all'utente per trarre le proprie conclusioni quando possibile, piuttosto che prescrivere una sola soluzione.\n- Evita gergo o linguaggio eccessivamente accademico; usa chiarezza e sottigliezza piuttosto che tecnica.\n\nConversazione:\n- Incoraggia l'utente a continuare a pensare ed esplorare offrendo domande gentili e aperte.\n- Termina sempre la tua risposta con una domanda per mantenere viva la conversazione.",
@@ -1389,7 +1389,7 @@
       "complete": "Completa la frase che segue, assicurandoti che si adatti al contesto generale. Includi il testo originale. Se il testo corrente è un codice, completa il frammento di codice. Non usare le virgolette nella tua risposta.",
       "expand": "Espandi l'ESTRAZIONE aggiungendo ulteriori informazioni, esempi e spiegazioni. Non spiegare le modifiche effettuate.",
       "improve": "Migliora l'ESTRAZIONE con parole tue. Rendila più chiara, concisa e coinvolgente. Non spiegare le modifiche effettuate.",
-      "prompt": "ESTRAZIONE:\n{'{'}document{'}'}\n\nDOMANDA: {'{'}ask{'}'}",
+      "prompt": "ESTRAZIONE:\n{'document'}\n\nDOMANDA: {'ask'}",
       "simplify": "Semplifica e comprimi la scrittura dell'ESTRAZIONE. Rimuovi qualsiasi informazione non necessaria. Non spiegare le modifiche effettuate.",
       "spellcheck": "Correggi l'ESTRAZIONE risolvendo gli errori di ortografia e grammatica. Non modificare l'ESTRAZIONE oltre all'ortografia e alla grammatica. Non elencare le correzioni effettuate.",
       "system": "Stai aiutando qualcuno a scrivere un DOCUMENTO. Devi rispondere alla richiesta qui sotto sull'ESTRAZIONE qui sotto. Non utilizzare versioni precedenti del DOCUMENTO o dell'ESTRAZIONE nella nostra conversazione. Rispondi solo con l'ESTRAZIONE aggiornata in base alla richiesta. Preserva le righe vuote. Non incorniciare le risposte tra virgolette. Non includere la versione iniziale o precedente del DOCUMENTO o dell'ESTRAZIONE. Non includere la parola ESTRAZIONE. Non utilizzare la sintassi Markdown come '## Titolo ##' o '** Testo **'. Non includere nient'altro nella risposta, comprese cose come 'ecco il…'",
@@ -1465,7 +1465,7 @@
       "about": "Informazioni su VerifAI",
       "checkForUpdates": "Controlla aggiornamenti…",
       "quit": "Esci da VerifAI",
-      "settings": "@:{'common.settings'}…"
+      "settings": "@:common.settings…"
     },
     "edit": {
       "deleteChat": "Elimina chat",
@@ -1475,15 +1475,15 @@
       "title": "Modifica"
     },
     "file": {
-      "agentForge": "@:{'agent.forge.title'}",
+      "agentForge": "@:agent.forge.title",
       "backupExport": "Esegui backup di dati e impostazioni…",
       "backupImport": "Ripristina backup…",
       "closeWindow": "Chiudi Finestra",
-      "designStudio": "@:{'designStudio.title'}",
+      "designStudio": "@:designStudio.title",
       "mainWindow": "Apri VerifAI",
       "newChat": "Nuova chat",
       "quickPrompt": "Nuova richiesta",
-      "scratchpad": "@:{'scratchpad.title'}",
+      "scratchpad": "@:scratchpad.title",
       "title": "File"
     },
     "help": {
@@ -1648,19 +1648,19 @@
       "title": "Permessi di sistema"
     },
     "studio": {
-      "already": "@:{'onboarding.chat.already'}",
-      "count": "@:{'onboarding.chat.count'}",
-      "error": "@:{'onboarding.chat.error'}",
+      "already": "@:onboarding.chat.already",
+      "count": "@:onboarding.chat.count",
+      "error": "@:onboarding.chat.error",
       "subtitle": "Lo Studio di Design AI è uno strumento potente per creare e modificare design usando l'intelligenza artificiale. Puoi usarlo per generare nuovi design o modificare quelli esistenti. Una volta configurati, anche i modelli linguistici potranno usarlo per creare design.",
-      "success": "@:{'onboarding.chat.success'}",
+      "success": "@:onboarding.chat.success",
       "title": "Studio di Design AI"
     },
     "voice": {
-      "already": "@:{'onboarding.chat.already'}",
-      "count": "@:{'onboarding.chat.count'}",
-      "error": "@:{'onboarding.chat.error'}",
+      "already": "@:onboarding.chat.already",
+      "count": "@:onboarding.chat.count",
+      "error": "@:onboarding.chat.error",
       "subtitle": "Interagisci con VerifAI usando la tua voce! VerifAI può leggere ad alta voce non solo le risposte dalle tue sessioni di chat con i modelli linguistici, ma anche qualsiasi testo visualizzato sullo schermo in altre applicazioni!",
-      "success": "@:{'onboarding.chat.success'}",
+      "success": "@:onboarding.chat.success",
       "title": "Interazione Vocale"
     },
     "welcome": {
@@ -1791,7 +1791,7 @@
     },
     "instructions": {
       "default": "⚙️ Usa la configurazione predefinita",
-      "title": "@:{'common.instructions'}"
+      "title": "@:common.instructions"
     },
     "placeholders": {
       "default": "Premi Invio per inviare, Maiusc+Invio per aggiungere una nuova riga"
@@ -1845,13 +1845,13 @@
         "size": "Ridimensiona la dimensione maggiore a {size} pixel"
       },
       "instructions": {
-        "chat_empathic": "@:{'common.chat'} - @:{'settings.llm.instructions.empathic'}",
-        "chat_playful": "@:{'common.chat'} - @:{'settings.llm.instructions.playful'}",
-        "chat_reflective": "@:{'common.chat'} - @:{'settings.llm.instructions.reflective'}",
-        "chat_standard": "@:{'common.chat'} - @:{'settings.llm.instructions.standard'}",
-        "chat_structured": "@:{'common.chat'} - @:{'settings.llm.instructions.structured'}",
-        "chat_uplifting": "@:{'common.chat'} - @:{'settings.llm.instructions.uplifting'}",
-        "chat_visionary": "@:{'common.chat'} - @:{'settings.llm.instructions.visionary'}",
+        "chat_empathic": "@:common.chat - @:settings.llm.instructions.empathic",
+        "chat_playful": "@:common.chat - @:settings.llm.instructions.playful",
+        "chat_reflective": "@:common.chat - @:settings.llm.instructions.reflective",
+        "chat_standard": "@:common.chat - @:settings.llm.instructions.standard",
+        "chat_structured": "@:common.chat - @:settings.llm.instructions.structured",
+        "chat_uplifting": "@:common.chat - @:settings.llm.instructions.uplifting",
+        "chat_visionary": "@:common.chat - @:settings.llm.instructions.visionary",
         "docquery": "Query documento - Istruzioni",
         "image_plugin": "Plugin Immagine - Descrizione",
         "memory_plugin": "Plugin Memoria - Descrizione",
@@ -1911,8 +1911,8 @@
       "importError": "Errore durante l'importazione del file dei comandi",
       "importSuccess": "File dei comandi importato con successo",
       "new": "Nuovo",
-      "selectAll": "@:{'common.selectAll'}",
-      "unselectAll": "@:{'common.selectNone'}"
+      "selectAll": "@:common.selectAll",
+      "unselectAll": "@:common.selectNone"
     },
     "deepResearch": {
       "breadth": "Ampiezza della ricerca",
@@ -2020,10 +2020,10 @@
       "importError": "Errore durante l'importazione del file esperti",
       "importSuccess": "File esperti importato con successo",
       "new": "Nuovo",
-      "selectAll": "@:{'common.selectAll'}",
+      "selectAll": "@:common.selectAll",
       "sortAlpha": "Ordina alfabeticamente",
       "sortState": "Ordina per stato",
-      "unselectAll": "@:{'common.selectNone'}"
+      "unselectAll": "@:common.selectNone"
     },
     "general": {
       "darkTint": "Tonalità scura",
@@ -2053,12 +2053,12 @@
     "llm": {
       "instructions": {
         "editor": {
-          "instructions": "@:{'common.instructions'}",
-          "label": "@:{'common.label'}",
+          "instructions": "@:common.instructions",
+          "label": "@:common.label",
           "title": "Editor di Istruzioni"
         },
         "empathic": "❤️ Caldo e empatico",
-        "label": "@:{'common.instructions'}",
+        "label": "@:common.instructions",
         "playful": "😜 Giocoso e spiritoso",
         "reflective": "🤔 Riflessivo e ponderato",
         "standard": "📘 Semplice e informativo",
@@ -2081,7 +2081,7 @@
         "errorEmpty": "JSON non può essere vuoto.",
         "errorFormat": "Errore durante l'analisi della definizione del server JSON.",
         "errorMultiple": "Trovati più server. Si prega di incollare un server alla volta.",
-        "menu": "@:{'settings.mcp.importJson.title'}…",
+        "menu": "@:settings.mcp.importJson.title…",
         "title": "Importa da Json"
       },
       "importSmitheryServer": "Importa server Smithery.ai…",
@@ -2094,7 +2094,7 @@
       "serverNotFound": "Il server a cui stai cercando di connetterti non esiste.",
       "servers": "server. Scopri e installa server MCP da",
       "smithery": "Smithery",
-      "tools": "@:{'common.tools'}",
+      "tools": "@:common.tools",
       "tooltips": {
         "addServer": "Aggiungi un nuovo server MCP",
         "deleteServer": "Elimina server",
@@ -2198,22 +2198,22 @@
       }
     },
     "shortcuts": {
-      "aiCommands": "@:{'tray.menu.runAiCommand'}",
+      "aiCommands": "@:tray.menu.runAiCommand",
       "aiCommandsUsage": "Utilizzo: Evidenzia il tuo testo, premi la scorciatoia da tastiera e poi scegli un comando IA",
-      "designStudio": "@:{'tray.menu.designStudio'}",
-      "dictation": "@:{'tray.menu.startDictation'}",
-      "mainWindow": "@:{'tray.menu.mainWindow'}",
-      "quickPrompt": "@:{'tray.menu.quickPrompt'}",
-      "readAloud": "@:{'tray.menu.readAloud'}",
+      "designStudio": "@:tray.menu.designStudio",
+      "dictation": "@:tray.menu.startDictation",
+      "mainWindow": "@:tray.menu.mainWindow",
+      "quickPrompt": "@:tray.menu.quickPrompt",
+      "readAloud": "@:tray.menu.readAloud",
       "readAloudUsage": "Utilizzo: Evidenzia il tuo testo, premi la scorciatoia da tastiera",
-      "scratchpad": "@:{'tray.menu.scratchpad'}",
-      "voiceMode": "@:{'tray.menu.voiceMode'}"
+      "scratchpad": "@:tray.menu.scratchpad",
+      "voiceMode": "@:tray.menu.voiceMode"
     },
     "tabs": {
       "advanced": "Avanzate",
       "chat": "Chat",
       "commands": "Comandi",
-      "deepResearch": "@:{'common.deepResearch'}",
+      "deepResearch": "@:common.deepResearch",
       "experts": "Esperti",
       "general": "Generale",
       "llm": "LLM",
@@ -2221,7 +2221,7 @@
       "models": "Modelli",
       "plugins": "Plugin",
       "shortcuts": "Scorciatoie",
-      "voice": "@:{'common.voice'}"
+      "voice": "@:common.voice"
     },
     "voice": {
       "automatic": "🤖 Automatico",
@@ -2244,7 +2244,7 @@
       "initializationError": "Si è verificato un errore durante l'inizializzazione. Riprova.",
       "initializing": "Inizializzazione…",
       "mistralApiKeyReminder": "Assicurati di inserire la tua chiave API Mistral nel pannello Modelli.",
-      "model": "@:{'common.model'}",
+      "model": "@:common.model",
       "openaiApiKeyReminder": "Assicurati di inserire la tua chiave API OpenAI nel pannello Modelli.",
       "selectModel": "Seleziona un modello",
       "silenceDetection": "Rilevamento del silenzio",
@@ -2266,7 +2266,7 @@
         "kokoroReminder": "Fornito",
         "sampleText": "Benvenuto in VerifAI, l'assistente AI definitivo per il tuo desktop.",
         "serviceDisclaimer": "Il servizio potrebbe smettere di funzionare in qualsiasi momento.",
-        "voice": "@:{'common.voice'}"
+        "voice": "@:common.voice"
       },
       "useWebGpu": "Utilizza WebGPU",
       "verificationComplete": "Verifica completata!",
@@ -2312,7 +2312,7 @@
     "title": "Personalizza la selezione degli strumenti",
     "tools": {
       "description": "Descrizione",
-      "name": "@:{'common.name'}"
+      "name": "@:common.name"
     }
   },
   "transcribe": {
@@ -2320,7 +2320,7 @@
     "clickToRecord": "Clicca sul pulsante di registrazione quando sei pronto!",
     "dropzone": "Rilascia il file audio",
     "errors": {
-      "copy": "@:{'common.errorCopyClipboard'}",
+      "copy": "@:common.errorCopyClipboard",
       "invalidFileType": "Per favore rilascia un file audio valido (.mp3 o .wav)",
       "microphone": "Errore nell'accesso al microfono",
       "notAuthorized": {
@@ -2347,22 +2347,22 @@
     "title": "Da Voce a Testo",
     "translate": "Traduci in…",
     "translatePrompt": "Traduci il seguente testo in {lang}. Non restituire altro oltre alla traduzione. Non racchiudere le risposte tra virgolette.",
-    "upload": "@:{'common.upload'}"
+    "upload": "@:common.upload"
   },
   "tray": {
     "menu": {
-      "agentForge": "@:{'menu.file.agentForge'}",
-      "designStudio": "@:{'menu.file.designStudio'}",
+      "agentForge": "@:menu.file.agentForge",
+      "designStudio": "@:menu.file.designStudio",
       "installUpdate": "Installa aggiornamento e riavvia…",
-      "mainWindow": "@:{'menu.file.mainWindow'}",
-      "quickPrompt": "@:{'menu.file.quickPrompt'}",
+      "mainWindow": "@:menu.file.mainWindow",
+      "quickPrompt": "@:menu.file.quickPrompt",
       "quit": "Esci",
       "readAloud": "Leggi ad alta voce",
       "runAiCommand": "Esegui comando IA",
-      "scratchpad": "@:{'menu.file.scratchpad'}",
-      "settings": "@:{'menu.app.settings'}",
-      "startDictation": "@:{'menu.edit.startDictation'}",
-      "voiceMode": "@:{'realtimeChat.title'}"
+      "scratchpad": "@:menu.file.scratchpad",
+      "settings": "@:menu.app.settings",
+      "startDictation": "@:menu.edit.startDictation",
+      "voiceMode": "@:realtimeChat.title"
     },
     "notification": {
       "darwin": "Puoi attivare VerifAI dall'icona della penna stilografica nella barra dei menu.",
