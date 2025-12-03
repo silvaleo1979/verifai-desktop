@@ -223,24 +223,14 @@ const config: ForgeConfig = {
           fs.unlinkSync(binPath);
         }
       };
-      unlink(
-        "node_modules/@iktakahiro/markdown-it-katex/node_modules/.bin/katex"
-      );
-      unlink("node_modules/officeparser/node_modules/.bin/rimraf");
-      unlink("node_modules/@langchain/core/node_modules/.bin/uuid");
-      unlink("node_modules/clipboardy/node_modules/.bin/semver");
-      unlink("node_modules/clipboardy/node_modules/.bin/which");
-      unlink("node_modules/execa/node_modules/.bin/semver");
-      unlink("node_modules/execa/node_modules/.bin/which");
-      unlink("node_modules/.bin/mkdirp");
-      unlink("node_modules/temp/node_modules/.bin/mkdirp");
-      unlink("node_modules/cacache/node_modules/.bin/mkdirp");
-      unlink("node_modules/@npmcli/move-file/node_modules/.bin/mkdirp");
-      unlink(
-        "node_modules/onnxruntime-node/node_modules/tar/node_modules/.bin/mkdirp"
-      );
-      unlink("node_modules/unzip-crx-3/node_modules/.bin/mkdirp");
-      unlink("node_modules/tar/node_modules/.bin/mkdirp");
+      unlink('node_modules/@iktakahiro/markdown-it-katex/node_modules/.bin/katex')
+      unlink('node_modules/officeparser/node_modules/.bin/rimraf')
+      unlink('node_modules/@langchain/core/node_modules/.bin/uuid')
+      unlink('node_modules/portfinder/node_modules/.bin/mkdirp')
+      unlink('node_modules/clipboardy/node_modules/.bin/semver')
+      unlink('node_modules/clipboardy/node_modules/.bin/which')
+      unlink('node_modules/execa/node_modules/.bin/semver')
+      unlink('node_modules/execa/node_modules/.bin/which')
     },
   },
 };
