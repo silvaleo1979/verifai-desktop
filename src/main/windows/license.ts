@@ -52,10 +52,13 @@ export const openLicenseActivationWindow = (): BrowserWindow => {
     console.error('License window failed to load:', errorCode, errorDescription);
   });
 
-  // Enable dev tools temporarily to debug
-  if (process.env.DEBUG) {
-    licenseActivationWindow.webContents.openDevTools();
-  }
+  // Enable dev tools - always in development
+  licenseActivationWindow.webContents.on('did-finish-load', () => {
+    console.log('License window finished loading, opening DevTools');
+    if (process.env.DEBUG) {
+      licenseActivationWindow.webContents.openDevTools({ mode: 'detach' });
+    }
+  });
 
   licenseActivationWindow.once('ready-to-show', () => {
     console.log('License activation window ready to show');
