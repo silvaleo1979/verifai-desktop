@@ -17,6 +17,10 @@ export default function useAppearanceTheme() {
     },
     
     getTint(): string {
+      // Ensure config is loaded before accessing appearance settings
+      if (!store.config?.appearance) {
+        return this.isDark ? 'blue' : 'white'
+      }
       if (this.isDark) {
         return store.config.appearance.darkTint
       } else {
