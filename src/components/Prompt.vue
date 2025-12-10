@@ -1,6 +1,6 @@
 <template>
   <div class="prompt" :class="{ 'drag-over': isDragOver }" @drop="onDrop" @dragover="onDragOver" @dragenter="onDragEnter" @dragleave="onDragLeave">
-    <slot name="before" />
+    <slot name="before"></slot>
     <div class="attachments" v-if="attachments.length > 0">
       <div class="attachment" v-for="(attachment, index) in attachments" :key="index">
         <AttachmentView :attachment="attachment" />
@@ -11,6 +11,7 @@
     <div class="input" @paste="onPaste">
       <div class="textarea-wrapper">
         <div class="icon left processing loader-wrapper" v-if="isProcessing"><Loader /><Loader /><Loader /></div>
+        <div v-if="agent" class="icon left agent" @click="onClickActiveAgent"><BIconRobot /></div>
         <div v-if="expert" class="icon left expert" @click="onClickActiveExpert"><BIconMortarboard /></div>
         <div v-if="command" class="icon left command" @click="onClickActiveCommand"><BIconCommand /></div>
         <textarea v-model="prompt" :placeholder="placeholder" @keydown="onKeyDown" @keyup="onKeyUp" ref="input" autofocus="true" :disabled="conversationMode?.length > 0" />
@@ -37,6 +38,12 @@
         v-tooltip="{ text: t('prompt.experts.tooltip'), position: 'top' }"
         class="icon experts"
         @click="onClickExperts"
+      />
+      <BIconRobot
+        v-if="enableAgents"
+        v-tooltip="{ text: t('prompt.agents.tooltip'), position: 'top' }"
+        class="icon agents"
+        @click="onClickAgents"
       />
       <BIconPaperclip
         v-if="enableAttachments"
@@ -71,6 +78,8 @@
     <ContextMenu v-if="showDocRepo" @close="closeContextMenu" :actions="docReposMenuItems" @action-clicked="handleDocRepoClick" :x="menuX" :y="menuY" :position="menusPosition" />
     <ContextMenu v-if="showExperts" @close="closeContextMenu" :show-filter="true" :actions="expertsMenuItems" :selected="expertsMenuItems[0]" @action-clicked="handleExpertClick" :x="menuX" :y="menuY" :position="menusPosition" />
     <ContextMenu v-if="showActiveExpert" @close="closeContextMenu" :actions="activeExpertMenuItems" @action-clicked="handleExpertClick" :x="menuX" :y="menuY" :position="menusPosition" />
+    <ContextMenu v-if="showAgents" @close="closeContextMenu" :show-filter="true" :actions="agentsMenuItems" :selected="agentsMenuItems[0]" @action-clicked="handleAgentClick" :x="menuX" :y="menuY" :position="menusPosition" />
+    <ContextMenu v-if="showActiveAgent" @close="closeContextMenu" :actions="activeAgentMenuItems" @action-clicked="handleAgentClick" :x="menuX" :y="menuY" :position="menusPosition" />
     <ContextMenu v-if="showCommands" @close="closeContextMenu" :show-filter="true" :actions="commands" @action-clicked="handleCommandClick" :x="menuX" :y="menuY" :position="menusPosition" />
     <ContextMenu v-if="showConversationMenu" @close="closeContextMenu" :actions="conversationMenu" @action-clicked="handleConversationClick" :x="menuX" :y="menuY" :position="menusPosition" />
   </div>
@@ -84,7 +93,7 @@ import { StreamingChunk } from '../voice/stt'
 import { ref, computed, onMounted, onUnmounted, nextTick, watch, PropType } from 'vue'
 import { store } from '../services/store'
 import { expertI18n, commandI18n, t, i18nInstructions, getLlmLocale, setLlmLocale } from '../services/i18n'
-import { BIconBinoculars, BIconCommand, BIconDatabase, BIconMagic, BIconMic, BIconMortarboard, BIconPaperclip, BIconSendFill, BIconStars, BIconStopCircleFill, BIconTerminal, BIconXLg } from 'bootstrap-icons-vue'
+import { BIconBinoculars, BIconCommand, BIconDatabase, BIconMagic, BIconMic, BIconMortarboard, BIconPaperclip, BIconRobot, BIconSendFill, BIconStars, BIconStopCircleFill, BIconTerminal, BIconXLg } from 'bootstrap-icons-vue'
 import LlmFactory, { ILlmManager } from '../llms/llm'
 import { mimeTypeToExtension, extensionToMimeType } from 'multi-llm-ts'
 import useAudioRecorder, { isAudioRecordingSupported } from '../composables/audio_recorder'
@@ -100,6 +109,7 @@ import Attachment from '../models/attachment'
 import Message from '../models/message'
 import Loader from './Loader.vue'
 import Chat from '../models/chat'
+import Agent from '../models/agent'
 
 export type SendPromptParams = {
   instructions?: string,
@@ -107,6 +117,7 @@ export type SendPromptParams = {
   attachments?: Attachment[]
   docrepo?: string,
   expert?: Expert,
+  agent?: Agent,
   deepResearch?: boolean
   a2a?: boolean
 }
@@ -143,6 +154,10 @@ const props = defineProps({
     default: true
   },
   enableExperts: {
+    type: Boolean,
+    default: true
+  },
+  enableAgents: {
     type: Boolean,
     default: true
   },
@@ -190,6 +205,7 @@ let userStoppedDictation = false
 const prompt = ref('')
 const instructions = ref(null)
 const expert = ref<Expert|null>(null)
+const agent = ref<Agent|null>(null)
 const command = ref<Command|null>(null)
 const attachments = ref<Attachment[]>([])
 const docrepo = ref(null)
@@ -199,6 +215,8 @@ const showInstructions = ref(false)
 const showDocRepo = ref(false)
 const showExperts = ref(false)
 const showActiveExpert = ref(false)
+const showAgents = ref(false)
+const showActiveAgent = ref(false)
 const showCommands = ref(false)
 const showConversationMenu = ref(false)
 const deepResearchActive = ref(false)
@@ -294,6 +312,24 @@ const activeExpertMenuItems = computed(() => {
     { label: expert.value.prompt || expertI18n(expert.value, 'prompt'), disabled: true, wrap: true },
     { separator: true },
     { label: t('prompt.experts.clear'), action: 'clear' },
+  ];
+})
+
+const agentsMenuItems = computed(() => {
+  const items = store.agents.map(a => {
+    return { label: a.name, action: a.id, icon: BIconRobot }
+  })
+  items.push({ separator: true })
+  items.push({ label: t('prompt.agents.create'), action: 'create', icon: BIconRobot })
+  return items
+})
+
+const activeAgentMenuItems = computed(() => {
+  return [
+    { label: agent.value.name, icon: BIconRobot },
+    { label: agent.value.description, disabled: true, wrap: true },
+    { separator: true },
+    { label: t('prompt.agents.clear'), action: 'clear' },
   ];
 })
 
@@ -458,6 +494,16 @@ const setExpert = (xpert: Expert) => {
   })
 }
 
+const setAgent = (agentObj: Agent) => {
+  agent.value = agentObj
+  if (prompt.value == '@') {
+    prompt.value = ''
+  }
+  nextTick(() => {
+    input.value?.focus()
+  })
+}
+
 const onSendPrompt = () => {
   let message = prompt.value.trim()
   if (command.value) {
@@ -473,6 +519,7 @@ const onSendPrompt = () => {
       attachments: attachments.value,
       docrepo: docrepo.value,
       expert: expert.value,
+      agent: agent.value,
       deepResearch: deepResearchActive.value,
       a2a: a2aActive.value
     } as SendPromptParams)
@@ -658,6 +705,26 @@ const openExperts = () => {
 
 const onClickExperts = () => {
   openExperts()
+}
+
+const openAgents = () => {
+  const icon = document.querySelector('.prompt .agents')
+  const rect = icon?.getBoundingClientRect()
+  menuX.value = rect?.left + (props.menusPosition === 'below' ? -10 : 0)
+  menuY.value = rect?.height + (props.menusPosition === 'below' ? rect?.y : 16 )  + 24
+  showAgents.value = true
+}
+
+const onClickAgents = () => {
+  openAgents()
+}
+
+const onClickActiveAgent = () => {
+  const icon = document.querySelector('.prompt .agent')
+  const rect = icon?.getBoundingClientRect()
+  menuX.value = rect?.left + (props.menusPosition === 'below' ? -10 : 0)
+  menuY.value = rect?.height + (props.menusPosition === 'below' ? rect?.y : 8 )  + 24
+  showActiveAgent.value = true
 }
 
 const onClickActiveExpert = () => {
@@ -887,15 +954,17 @@ const handleDocRepoClick = (action: string) => {
 }
 
 const isContextMenuOpen = () => {
-  return showDocRepo.value || showExperts.value || showCommands.value || showActiveExpert.value || showConversationMenu.value
+  return showDocRepo.value || showExperts.value || showAgents.value || showCommands.value || showActiveExpert.value || showActiveAgent.value || showConversationMenu.value
 }
 
 const closeContextMenu = () => {
   showInstructions.value = false
   showDocRepo.value = false
   showExperts.value = false
+  showAgents.value = false
   showCommands.value = false
   showActiveExpert.value = false
+  showActiveAgent.value = false
   showConversationMenu.value = false
   nextTick(() => {
     input.value.focus()
@@ -904,7 +973,7 @@ const closeContextMenu = () => {
 
 const handleExpertClick = (action: string) => {
   closeContextMenu()
-  if (action === 'clear') {
+  if (action == 'clear') {
     disableExpert()
     return
   } else if (action) {
@@ -914,6 +983,23 @@ const handleExpertClick = (action: string) => {
 
 const disableExpert = () => {
   expert.value = null
+}
+
+const handleAgentClick = (action: string) => {
+  closeContextMenu()
+  if (action == 'clear') {
+    disableAgent()
+    return
+  } else if (action == 'create') {
+    // Open agent forge to create a new agent
+    emitEvent('main-view-changed', 'agents')
+  } else if (action) {
+    setAgent(store.agents.find(a => a.id === action))
+  }
+}
+
+const disableAgent = () => {
+  agent.value = null
 }
 
 const disableCommand = () => {
@@ -1076,6 +1162,7 @@ defineExpose({
   focus: () => input.value.focus(),
 
   setExpert,
+  setAgent,
   setDeepResearch,
   isContextMenuOpen,
   startDictation: onDictate,

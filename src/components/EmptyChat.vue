@@ -8,7 +8,7 @@
       <div class="current">
         <div class="tip engine" v-if="showEngineTip()">
           {{ t('emptyChat.tips.switchProvider') }}<br/>
-          <img src="/assets/arrow_dashed.svg" @load="centerLogos()" />
+          <img src="/arrow_dashed.svg" @load="centerLogos()" />
         </div>
         <EngineLogo :engine="engine" :grayscale="true" :custom-label="true" @click="onEngine(engine)" />
         <div class="models" v-if="models?.length">
@@ -42,7 +42,7 @@
           <span class="shortcut" v-if="modelShortcut">{{ t('emptyChat.favorites.shortcut', { shortcut: modelShortcut }) }}</span>
         </div>
         <div class="tip model" v-if="showModelTip()">
-          <img src="/assets/arrow_dashed.svg" @load="centerLogos()" /><br/>
+          <img src="/arrow_dashed.svg" @load="centerLogos()" /><br/>
           {{ t('emptyChat.tips.switchModel') }}
         </div>
       </div>
