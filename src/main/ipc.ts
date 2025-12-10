@@ -318,6 +318,10 @@ export const installIpc = (
     //window.openAgentForgeWindow();
   });
 
+  ipcMain.on(IPC.AGENTS.GET_DIR, (event) => {
+    event.returnValue = agents.agentsDirPath(app);
+  });
+
   ipcMain.on(IPC.AGENTS.LOAD, (event) => {
     event.returnValue = JSON.stringify(agents.loadAgents(app));
   });
