@@ -1860,6 +1860,11 @@
       "clear": "Clear expert",
       "tooltip": "Select expert"
     },
+    "agents": {
+      "clear": "Clear agent",
+      "create": "Create new agent",
+      "tooltip": "Select agent"
+    },
     "instructions": {
       "default": "⚙️ Use configuration default",
       "title": "@:common.instructions"
