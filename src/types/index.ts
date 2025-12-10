@@ -110,6 +110,8 @@ export type AgentStep = {
 
 export interface Agent {
   id: string
+  remoteId?: number | null
+  source?: 'verifai' | 'a2a'
   createdAt: number
   updatedAt: number
   name: string

@@ -7,6 +7,7 @@ import { ZodType } from 'zod'
 export default class Agent implements AgentBase {
 
   id: string
+  remoteId: number | null
   source: 'verifai' | 'a2a'
   createdAt: number
   updatedAt: number
@@ -30,6 +31,7 @@ export default class Agent implements AgentBase {
 
   constructor() {
     this.id = crypto.randomUUID()
+    this.remoteId = null
     this.source = 'verifai'
     this.createdAt = Date.now()
     this.updatedAt = Date.now()
@@ -63,6 +65,7 @@ export default class Agent implements AgentBase {
   ): Agent {
     const agent = new Agent()
     agent.id = obj.id || crypto.randomUUID()
+    agent.remoteId = obj.remoteId ?? null
     agent.source = obj.source ?? 'verifai'
     agent.createdAt = obj.createdAt ?? Date.now()
     agent.updatedAt = obj.updatedAt ?? Date.now()
