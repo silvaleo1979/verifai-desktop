@@ -143,6 +143,7 @@ contextBridge.exposeInMainWorld(
     },
     agents: {
       forge(): void { return ipcRenderer.send(IPC.AGENTS.OPEN_FORGE) },
+      getDir: (): string => { return ipcRenderer.sendSync(IPC.AGENTS.GET_DIR) },
       load: (): Agent[] => { return JSON.parse(ipcRenderer.sendSync(IPC.AGENTS.LOAD)) },
       save(agent: Agent): boolean { return ipcRenderer.sendSync(IPC.AGENTS.SAVE, JSON.stringify(agent)) },
       delete(agentId: string): boolean { return ipcRenderer.sendSync(IPC.AGENTS.DELETE, agentId) },

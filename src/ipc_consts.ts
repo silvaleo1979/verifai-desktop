@@ -87,6 +87,7 @@ export const EXPERTS = {
 
 export const AGENTS = {
   OPEN_FORGE: 'agents-open-forge',
+  GET_DIR: 'agents-get-dir',
   LOAD: 'agents-load',
   SAVE: 'agents-save',
   DELETE: 'agents-delete',
