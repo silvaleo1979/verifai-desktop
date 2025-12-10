@@ -4,6 +4,12 @@ import { App } from 'electron'
 import path from 'path'
 import fs from 'fs'
 import Agent from '../models/agent'
+import Monitor from './monitor'
+import * as window from './window'
+
+const monitor: Monitor = new Monitor(() => {
+  window.notifyBrowserWindows('file-modified', 'agents')
+})
 
 export const agentsDirPath = (app: App): string => {
   const userDataPath = app.getPath('userData')
@@ -40,6 +46,11 @@ export const loadAgents = (source: App|string): Agent[] => {
     }
   }
 
+  // start monitoring
+  if (typeof source !== 'string') {
+    monitor.start(agentsDir)
+  }
+
   // done
   return agents
 
@@ -60,6 +71,10 @@ export const saveAgent = (source: App|string, json: anyDict): boolean => {
   // write file
   try {
     fs.writeFileSync(filePath, JSON.stringify(agent, null, 2))
+    // notify all windows to reload agents
+    if (typeof source !== 'string') {
+      window.notifyBrowserWindows('file-modified', 'agents')
+    }
     return true
   } catch (error) {
     console.log('Error saving agent', filePath, error)
@@ -77,6 +92,10 @@ export const deleteAgent = (source: App|string, agentId: string): boolean => {
   // delete file
   try {
     fs.unlinkSync(filePath)
+    // notify all windows to reload agents
+    if (typeof source !== 'string') {
+      window.notifyBrowserWindows('file-modified', 'agents')
+    }
   } catch (error) {
     console.log('Error deleting agent', filePath, error)
     return false

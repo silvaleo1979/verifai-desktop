@@ -1,4 +1,5 @@
 import fs, { FSWatcher } from 'fs'
+import path from 'path'
 import crypto from 'crypto'
 
 export default class {
@@ -8,6 +9,7 @@ export default class {
   callback: CallableFunction
   timeout: NodeJS.Timeout
   watcher: FSWatcher
+  isDirectory: boolean
   
   constructor(callback: CallableFunction) {
     this.callback = callback
@@ -32,10 +34,11 @@ export default class {
     // init
     this.timeout = null
     this.filepath = filepath
+    this.isDirectory = fs.statSync(filepath).isDirectory()
     this.fileDigest = this.calculateDigest()
 
-    // start
-    this.watcher = fs.watch(filepath, async () => {
+    // start - use recursive option for directories
+    this.watcher = fs.watch(filepath, { recursive: this.isDirectory }, async () => {
       const digest = this.calculateDigest()
       if (digest !== this.fileDigest) {
         this.fileDigest = digest
@@ -55,8 +58,24 @@ export default class {
 
   calculateDigest(): string {
     try {
-      const fileContent = fs.readFileSync(this.filepath, 'utf8')
-      return crypto.createHash('md5').update(fileContent).digest('hex')
+      if (this.isDirectory) {
+        // For directories, calculate digest based on file listing and their mtimes
+        const files = fs.readdirSync(this.filepath)
+          .filter(f => f.endsWith('.json'))
+          .sort()
+        const dirContent = files.map(f => {
+          try {
+            const stat = fs.statSync(path.join(this.filepath, f))
+            return `${f}:${stat.mtimeMs}`
+          } catch {
+            return f
+          }
+        }).join('|')
+        return crypto.createHash('md5').update(dirContent).digest('hex')
+      } else {
+        const fileContent = fs.readFileSync(this.filepath, 'utf8')
+        return crypto.createHash('md5').update(fileContent).digest('hex')
+      }
     } catch {
       return ''
     }
