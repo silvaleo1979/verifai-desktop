@@ -24,7 +24,7 @@
         <View :style="{ display: isPaneVisible('view') ? 'flex' : 'none' }" :agent="selected" @run="runAgent" @delete="deleteAgent" @analyze-log="analyzeLogInChat" />
       </main>
     </div>
-    <PromptBuilder :title="running?.name" ref="builder" />
+    <PromptBuilder :title="running?.name || ''" ref="builder" />
   </div>
 </template>
 

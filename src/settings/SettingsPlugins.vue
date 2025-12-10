@@ -51,9 +51,12 @@ const plugins = computed((): PluginUI[] => {
 
   // Plugins disabled for VerifAI Desktop
   const disabledPlugins = ['image', 'video', 'youtube', 'python']
+  
+  // Internal plugins not shown in settings UI
+  const internalPlugins = ['agentBuilder']
 
   let res = Object.keys(availablePlugins).filter(plugin => 
-    plugin != 'mcp' && !disabledPlugins.includes(plugin)
+    plugin != 'mcp' && !disabledPlugins.includes(plugin) && !internalPlugins.includes(plugin)
   ).map(plugin => {
     return {
       id: plugin,

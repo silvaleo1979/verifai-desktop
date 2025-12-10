@@ -97,9 +97,19 @@ export default class extends Generator {
             return acc
           }, {})
         )
-        if (!stepPrompt.length) {
-          return null
+        
+        // If first step has no prompt and no input was provided, use agent description as prompt
+        if (stepIdx === 0 && !prompt && (!stepPrompt || !stepPrompt.length)) {
+          if (this.agent.description) {
+            // Use the agent description as the implicit prompt
+            prompt = this.agent.description
+          } else {
+            // Cannot proceed without any prompt
+            return null
+          }
         }
+        // For subsequent steps, allow null prompts (tool-only execution)
+        // The prompt will be generated from previous step outputs if needed
 
         // merge with defaults
         const defaults: GenerationOpts = {
@@ -129,20 +139,33 @@ export default class extends Generator {
         // make sure llm has latest tools
         this.llm.clearPlugins()
         const multiPluginsAdded: Record<string, MultiToolPlugin> = {}
+        
+        // Clean up step tools (remove prefixes like "functions.", filter "none")
+        // This handles legacy agents that were created before cleaning was added
+        let stepTools = step.tools
+        if (stepTools && Array.isArray(stepTools)) {
+          stepTools = stepTools
+            .filter(t => t && t.toLowerCase() !== 'none')
+            .map(t => t.replace(/^(functions\.|tools\.)/, ''))
+          if (stepTools.length === 0) {
+            stepTools = null
+          }
+        }
+        
         for (const pluginName in availablePlugins) {
           
           const pluginClass = availablePlugins[pluginName]
           const plugin = new pluginClass(this.config.plugins[pluginName])
 
           // if no filters add
-          if (step.tools === null) {
+          if (stepTools === null) {
             this.llm.addPlugin(plugin)
             continue
           }
 
           // single-tool plugins is easy
           if (!(plugin instanceof MultiToolPlugin)) {
-            if (step.tools.includes(plugin.getName())) {
+            if (stepTools.includes(plugin.getName())) {
               this.llm.addPlugin(plugin)
             }
             continue
@@ -151,7 +174,7 @@ export default class extends Generator {
           // multi-tool plugins are more complex
           const pluginTools = await plugin.getTools()
           for (const pluginTool of pluginTools) {
-            if (step.tools.includes(pluginTool.function.name)) {
+            if (stepTools.includes(pluginTool.function.name)) {
 
               let instance = multiPluginsAdded[pluginName]
               if (!instance) {
@@ -181,8 +204,10 @@ export default class extends Generator {
           }
         }
 
-        // add user message
-        const userMessage = new Message('user', stepPrompt)
+        // add user message (if there's a prompt)
+        // For tool-only steps, we might not have a prompt
+        const userMessageContent = stepPrompt || (stepIdx > 0 ? `Continue with step ${stepIdx + 1}` : 'Execute the task')
+        const userMessage = new Message('user', userMessageContent)
         userMessage.engine = opts.engine
         userMessage.model = opts.model
         run.messages.push(userMessage)
