@@ -219,6 +219,9 @@
       "speechmatics": {
         "apiKey": ""
       }
+    },
+    "agentBuilder": {
+      "enabled": true
     }
   },
   "mcp": {
@@ -232,5 +235,8 @@
     "model": "text-embedding-3-small",
     "maxResults": 5,
     "threshold": 0.7
+  },
+  "features": {
+    "agents": true
   }
 } 

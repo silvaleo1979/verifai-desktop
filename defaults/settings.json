@@ -472,6 +472,9 @@
     "mcp": {
       "enabled": true
     },
+    "agentBuilder": {
+      "enabled": true
+    },
     "filesystem": {
       "enabled": false,
       "allowedPaths": [],
@@ -484,5 +487,8 @@
     "mcpServersExtra": {},
     "smitheryApiKey": ""
   },
-  "mcpServers": {}
+  "mcpServers": {},
+  "features": {
+    "agents": true
+  }
 }
