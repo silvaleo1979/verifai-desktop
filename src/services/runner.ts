@@ -110,13 +110,24 @@ export default class extends Generator {
           citations: true,
         }
         opts = {...defaults, ...opts }
+        opts.run = run
 
         // disable streaming
         opts.streaming = opts.streaming ?? (this.agent.disableStreaming !== true)
 
         // we need a llm
         opts.engine = this.agent.engine || opts.engine
-        opts.model = this.agent.model || this.llmManager.getChatModel(opts.engine, opts.model).id
+        const requestedModel = this.agent.model || opts.model
+        const chatModel = this.llmManager.getChatModel(opts.engine, requestedModel)
+        let finalModel = chatModel?.id || requestedModel
+        // fallback if not found
+        if (!chatModel) {
+          const fallback = this.llmManager.getDefaultChatModel(opts.engine) || this.llmManager.getFallbackModel(opts.engine)
+          if (fallback) {
+            finalModel = fallback
+          }
+        }
+        opts.model = finalModel
         this.llm = this.llmManager.igniteEngine(opts.engine)
 
         // update chat if relevant
@@ -272,7 +283,8 @@ export default class extends Generator {
 
       // get the current assistant message (last in the array) to ensure reactivity
       const assistantMessage = run.messages[run.messages.length - 1]
-      assistantMessage.appendText({ type: 'content', text: t('generator.errors.cannotContinue'), done: true })
+      const translate = typeof t === 'function' ? t : (key: string) => key
+      assistantMessage.appendText({ type: 'content', text: translate('generator.errors.cannotContinue'), done: true })
 
       // record the error
       run.status = 'error'

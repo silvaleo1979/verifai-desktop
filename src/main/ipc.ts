@@ -43,6 +43,9 @@ import * as interpreter from './interpreter';
 import * as backup from './backup';
 import * as ollama from './ollama';
 import * as google from './google';
+import BrowserManager from './browser';
+
+const browserManager = new BrowserManager()
 
 export const installIpc = (
   store: Store,
@@ -718,6 +721,31 @@ export const installIpc = (
     }
   });
 
+  ipcMain.handle(IPC.BROWSER.CREATE_SESSION, async (_event, opts) => {
+    const settings = config.loadSettings(app)
+    const pluginCfg = settings.plugins?.browser || {}
+    return await browserManager.createSession({
+      headless: opts?.headless ?? pluginCfg.headless ?? false,
+    })
+  })
+
+  ipcMain.handle(IPC.BROWSER.CLOSE_SESSION, async (_event, sessionId: string) => {
+    return await browserManager.closeSession(sessionId)
+  })
+
+  ipcMain.handle(IPC.BROWSER.RUN_ACTION, async (_event, payload) => {
+    const { sessionId, action } = payload
+    const settings = config.loadSettings(app)
+    const pluginCfg = settings.plugins?.browser || {}
+    return await browserManager.runAction(sessionId, action, {
+      allowedDomains: pluginCfg.allowedDomains || [],
+      actionTimeoutMs: pluginCfg.actionTimeoutMs ?? 15000,
+      headless: pluginCfg.headless ?? false,
+      captureScreenshots: pluginCfg.captureScreenshots ?? true,
+      maxTextLength: pluginCfg.maxTextLength ?? 6000,
+    })
+  })
+
   ipcMain.handle(IPC.GOOGLE.DOWNLOAD_MEDIA, async (event, payload: any) => {
     try {
       const { url, mimeType } = payload;
@@ -726,6 +754,10 @@ export const installIpc = (
       console.error('Error downloading Google media:', error);
       return null;
     }
+  })
+
+  app.on('before-quit', async () => {
+    await browserManager.closeAll()
   })
 
 }

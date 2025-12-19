@@ -363,12 +363,30 @@ const steps = (): string[] => {
 }
 
 const promptInputs = (step: number) => {
-  return extractPromptInputs(agent.value.steps[step].prompt).map((input) => {
-    if (input.name.startsWith('output.')) {
-      input.description = t('agent.create.workflow.help.outputVarDesc', { step: input.name.split('.')[1] })
-    }
-    return input
-  })
+
+  // #region agent log
+  fetch('http://127.0.0.1:7242/ingest/791ea04a-4c16-42c6-a91f-001c294f6e3f',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'run3',hypothesisId:'H1',location:'Editor.vue:promptInputs',message:'promptInputs entry',data:{step,stepsLen:agent.value.steps?.length,hasStepObj:!!agent.value.steps?.[step],promptType:typeof agent.value.steps?.[step]?.prompt,promptSnippet:(agent.value.steps?.[step]?.prompt||'').slice?.(0,80)},timestamp:Date.now()})}).catch(()=>{});
+  // #endregion
+
+  try {
+    const inputs = extractPromptInputs(agent.value.steps?.[step]?.prompt || '').map((input) => {
+      if (input.name.startsWith('output.')) {
+        input.description = t('agent.create.workflow.help.outputVarDesc', { step: input.name.split('.')[1] })
+      }
+      return input
+    })
+
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/791ea04a-4c16-42c6-a91f-001c294f6e3f',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'run3',hypothesisId:'H1',location:'Editor.vue:promptInputs',message:'promptInputs success',data:{step,inputsLen:inputs.length},timestamp:Date.now()})}).catch(()=>{});
+    // #endregion
+
+    return inputs
+  } catch (error) {
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/791ea04a-4c16-42c6-a91f-001c294f6e3f',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'run3',hypothesisId:'H1',location:'Editor.vue:promptInputs',message:'promptInputs error',data:{step,error:String(error)},timestamp:Date.now()})}).catch(()=>{});
+    // #endregion
+    return []
+  }
 }
 
 const hasSettings = computed(() => {
@@ -402,7 +420,13 @@ const stepIndex = (step: string) => {
 }
 
 const hasStep = (step: string) => {
-  return stepIndex(step) >= 0
+  const result = stepIndex(step) >= 0
+  if (step === kStepWorkflow) {
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/791ea04a-4c16-42c6-a91f-001c294f6e3f',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'run3',hypothesisId:'H4',location:'Editor.vue:hasStep',message:'hasStep workflow',data:{result,steps:steps()},timestamp:Date.now()})}).catch(()=>{});
+    // #endregion
+  }
+  return result
 }
 
 const isStepCompleted = (step: string) => {
@@ -410,7 +434,13 @@ const isStepCompleted = (step: string) => {
 }
 
 const isStepVisible = (step: string) => {
-  return stepIndex(step) === currentStep.value
+  const visible = stepIndex(step) === currentStep.value
+  if (step === kStepWorkflow) {
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/791ea04a-4c16-42c6-a91f-001c294f6e3f',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'run3',hypothesisId:'H4',location:'Editor.vue:isStepVisible',message:'isStepVisible workflow',data:{visible,currentStep:currentStep.value,steps:steps(),expandedStep:expandedStep.value},timestamp:Date.now()})}).catch(()=>{});
+    // #endregion
+  }
+  return visible
 }
 
 const onPrevStep = () => {
@@ -436,6 +466,9 @@ const goToStepAfter = (step: string, stepSize: number = 1) => {
   const currentIndex = stepIndex(step)
   currentStep.value = currentIndex + stepSize
   completedStep.value = Math.max(completedStep.value, currentIndex)
+  // #region agent log
+  fetch('http://127.0.0.1:7242/ingest/791ea04a-4c16-42c6-a91f-001c294f6e3f',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'run3',hypothesisId:'H2',location:'Editor.vue:goToStepAfter',message:'step navigation',data:{from:step,stepSize,currentIndex,newCurrent:currentStep.value,steps:steps()},timestamp:Date.now()})}).catch(()=>{});
+  // #endregion
 }
 
 // prepare inputs for the invocation screen
@@ -561,6 +594,9 @@ onMounted(async () => {
     agent.value = props.agent ? Agent.fromJson(props.agent) : new Agent()
     resetWizard()
   
+  // #region agent log
+  fetch('http://127.0.0.1:7242/ingest/791ea04a-4c16-42c6-a91f-001c294f6e3f',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'run3',hypothesisId:'H3',location:'Editor.vue:agentWatch',message:'agent loaded/reset',data:{source:agent.value.source,stepsLen:agent.value.steps?.length,stepsList:steps()},timestamp:Date.now()})}).catch(()=>{});
+  // #endregion
   }, { deep: false, immediate: true })
 
   // watch step change
@@ -568,6 +604,9 @@ onMounted(async () => {
     if (newStep === stepIndex(kStepInvocation)) {
       prepareAgentInvocationInputs()
     }
+  // #region agent log
+  fetch('http://127.0.0.1:7242/ingest/791ea04a-4c16-42c6-a91f-001c294f6e3f',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'run3',hypothesisId:'H2',location:'Editor.vue:currentStepWatch',message:'currentStep changed',data:{newStep,steps:steps(),expandedStep:expandedStep.value},timestamp:Date.now()})}).catch(()=>{});
+  // #endregion
   })
 
 })

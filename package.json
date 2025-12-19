@@ -133,6 +133,7 @@
     "mitt": "^3.0.1",
     "multi-llm-ts": "^4.2.2",
     "number-flip-animation": "github:nbonamy/number-flip-animation",
+    "playwright": "^1.52.0",
     "officeparser": "^5.1.1",
     "ollama": "^0.5.15",
     "openai": "^4.104.0",

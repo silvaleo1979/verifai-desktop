@@ -10,6 +10,7 @@ import { McpInstallStatus, McpServer, McpStatus, McpTool } from './mcp'
 import { ToolSelection } from './llm'
 import { ListDirectoryResponse } from './filesystem'
 import { FileContents, FileDownloadParams, FilePickParams, FileSaveParams } from './file'
+import { BrowserActionRequest } from './browser'
 
 export type strDict = Record<string, string>
 export type anyDict = Record<string, any>
@@ -495,6 +496,11 @@ declare global {
       ollama: {
         downloadStart(targetDirectory: string): Promise<{ success: boolean; downloadId?: string; error?: string }>
         downloadCancel(): Promise<{ success: boolean }>
+      }
+      browser: {
+        createSession(opts?: anyDict): Promise<anyDict>
+        closeSession(sessionId: string): Promise<boolean>
+        runAction(sessionId: string, action: BrowserActionRequest): Promise<anyDict>
       }
       google: {
         downloadMedia(url: string, mimeType: string): Promise<string>

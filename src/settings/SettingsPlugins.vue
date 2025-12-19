@@ -26,6 +26,7 @@ import { ref, computed, nextTick } from 'vue'
 import { availablePlugins } from '../plugins/plugins'
 import { t } from '../services/i18n'
 import SettingsBrowse from './SettingsBrowse.vue'
+import SettingsBrowser from './SettingsBrowser.vue'
 import SettingsPython from './SettingsPython.vue'
 import SettingsSearch from './SettingsSearch.vue'
 import SettingsImage from './SettingsImage.vue'
@@ -34,7 +35,7 @@ import SettingsYouTube from './SettingsYouTube.vue'
 import SettingsMemory from './SettingsMemory.vue'
 import SettingsVega from './SettingsVega.vue'
 import SettingsFilesystem from './SettingsFilesystem.vue'
-import { BIconBinocularsFill, BIconCameraReelsFill, BIconCloudArrowDownFill, BIconPaletteFill, BIconYoutube, BIconPersonVcardFill, BIconFolderFill } from 'bootstrap-icons-vue'
+import { BIconBinocularsFill, BIconCameraReelsFill, BIconCloudArrowDownFill, BIconPaletteFill, BIconYoutube, BIconPersonVcardFill, BIconFolderFill, BIconGlobe } from 'bootstrap-icons-vue'
 import WIconPython from '../../assets/python.svg?component'
 import WIconVega from '../../assets/vega.svg?component'
 
@@ -68,6 +69,7 @@ const plugins = computed((): PluginUI[] => {
         youtube: { icon: BIconYoutube },
         vega: { icon: WIconVega },
         filesystem: { icon: BIconFolderFill },
+        browser: { icon: BIconGlobe },
         // mcp: { icon: WIconMcp },
       }[plugin],
     }
@@ -77,6 +79,7 @@ const plugins = computed((): PluginUI[] => {
 
 const currentView = computed(() => {
   if (currentPlugin.value == 'browse') return SettingsBrowse
+  if (currentPlugin.value == 'browser') return SettingsBrowser
   // Plugins disabled for VerifAI Desktop: python, image, video, youtube
   // if (currentPlugin.value == 'python') return SettingsPython
   if (currentPlugin.value == 'search') return SettingsSearch

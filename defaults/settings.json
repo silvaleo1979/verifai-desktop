@@ -441,6 +441,14 @@
     "browse": {
       "enabled": true
     },
+    "browser": {
+      "enabled": false,
+      "allowedDomains": [],
+      "headless": false,
+      "actionTimeoutMs": 15000,
+      "captureScreenshots": true,
+      "maxTextLength": 6000
+    },
     "python": {
       "enabled": false
     },

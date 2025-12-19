@@ -2190,6 +2190,16 @@
         "description": "This plugin allows LLM engines to download content from the Internet and use it to generate more accurate responses.",
         "title": "Download"
       },
+      "browser": {
+        "description": "Headful web navigation for agents using Playwright. Configure allowed domains, timeouts, and screenshot policy.",
+        "title": "Web Browser",
+        "allowedDomains": "Allowed domains (one per line, empty = all)",
+        "captureScreenshots": "Allow screenshots",
+        "headless": "Run without window (headless)",
+        "actionTimeout": "Action timeout (ms)",
+        "maxTextLength": "Max extracted text length",
+        "observe": "Observe page (title/url/text, optional screenshot)"
+      },
       "filesystem": {
         "allowedPaths": "Allowed Directories",
         "allowWrite": "Allow write operations (existing file overwrite and delete)",

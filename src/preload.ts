@@ -3,6 +3,7 @@
 
 import { contextBridge, ipcRenderer } from 'electron'
 import { Command, ComputerAction, Expert, ExternalApp, anyDict, strDict, NetworkRequest, OpenSettingsPayload, MainWindowMode, Agent, AgentRun } from './types';
+import { BrowserActionRequest } from './types/browser';
 import { FileContents, FileDownloadParams, FilePickParams, FileSaveParams } from './types/file';
 import { Configuration } from './types/config';
 import { DocRepoQueryResponseItem } from './types/rag';
@@ -231,6 +232,17 @@ contextBridge.exposeInMainWorld(
       },
       downloadCancel: (): Promise<{ success: boolean }> => { 
         return ipcRenderer.invoke(IPC.OLLAMA.DOWNLOAD_CANCEL) 
+      },
+    },
+    browser: {
+      createSession: (opts?: anyDict): Promise<anyDict> => { 
+        return ipcRenderer.invoke(IPC.BROWSER.CREATE_SESSION, opts) 
+      },
+      closeSession: (sessionId: string): Promise<boolean> => { 
+        return ipcRenderer.invoke(IPC.BROWSER.CLOSE_SESSION, sessionId) 
+      },
+      runAction: (sessionId: string, action: BrowserActionRequest): Promise<anyDict> => { 
+        return ipcRenderer.invoke(IPC.BROWSER.RUN_ACTION, { sessionId, action }) 
       },
     },
     google: {

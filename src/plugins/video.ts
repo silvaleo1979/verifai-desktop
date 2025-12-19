@@ -16,10 +16,22 @@ export default class extends Plugin {
   }
 
   isEnabled(): boolean {
-    return this.config?.enabled && (
-      (this.config.engine == 'replicate' && store.config?.engines.replicate.apiKey?.trim().length > 0) ||
-      (this.config.engine == 'falai' && store.config?.engines.falai.apiKey?.trim().length > 0)
-    )
+    if (!this.config?.enabled) return false
+    const engines = store.config?.engines || {}
+
+    switch (this.config.engine) {
+      case 'replicate': {
+        const ok = !!engines.replicate?.apiKey?.trim()
+        return ok
+      }
+      case 'falai': {
+        const ok = !!engines.falai?.apiKey?.trim()
+        return ok
+      }
+      default: {
+        return false
+      }
+    }
   }
 
   getName(): string {

@@ -9,6 +9,7 @@ import YouTubePlugin from './youtube'
 import MemoryPlugin from './memory'
 import McpPlugin from './mcp'
 import FilesystemPlugin from './filesystem'
+import BrowserPlugin from './browser'
 import { CustomToolPlugin, MultiToolPlugin } from 'multi-llm-ts'
 
 export type PluginInstance = Plugin | CustomToolPlugin | MultiToolPlugin
@@ -25,4 +26,5 @@ export const availablePlugins: PluginsList = {
   python:  PythonPlugin,
   memory: MemoryPlugin,
   filesystem: FilesystemPlugin,
+  browser: BrowserPlugin,
 }

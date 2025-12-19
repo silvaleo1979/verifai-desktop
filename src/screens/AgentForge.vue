@@ -24,7 +24,7 @@
         <View :style="{ display: isPaneVisible('view') ? 'flex' : 'none' }" :agent="selected" @run="runAgent" @delete="deleteAgent" @analyze-log="analyzeLogInChat" />
       </main>
     </div>
-    <PromptBuilder :title="running?.name" ref="builder" />
+    <PromptBuilder :title="running?.name || ''" ref="builder" />
   </div>
 </template>
 
@@ -156,6 +156,50 @@ ${summary}`
 .split-pane {
   
   .sp-main {
+
+    .web-session {
+      margin: 12px 16px;
+      padding: 12px 16px;
+      border: 1px solid var(--light-border-color);
+      border-radius: 10px;
+      background: var(--panel-bg-color, #111);
+
+      .web-session__row {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: center;
+
+        .label {
+          font-weight: 600;
+        }
+        .help {
+          color: var(--faded-text-color);
+          font-size: 12px;
+        }
+        .actions {
+          display: flex;
+          gap: 8px;
+          align-items: center;
+        }
+        .btn.secondary {
+          background: none;
+          border: 1px solid var(--light-border-color);
+        }
+      }
+
+      .web-session__status {
+        margin-top: 6px;
+        color: var(--faded-text-color);
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        font-size: 12px;
+        .error {
+          color: #d9534f;
+        }
+      }
+    }
 
     main {
     

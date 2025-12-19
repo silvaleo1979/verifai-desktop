@@ -45,7 +45,7 @@ export default class Agent implements AgentBase {
     this.parameters = []
     this.steps = [{
       name: undefined,
-      prompt: null,
+      prompt: '',
       tools: null,
       agents: [],
       docrepo: null

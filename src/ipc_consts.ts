@@ -232,3 +232,9 @@ export const OLLAMA = {
 export const GOOGLE = {
   DOWNLOAD_MEDIA: 'google-download-media',
 } as const;
+
+export const BROWSER = {
+  CREATE_SESSION: 'browser-create-session',
+  CLOSE_SESSION: 'browser-close-session',
+  RUN_ACTION: 'browser-run-action',
+} as const;

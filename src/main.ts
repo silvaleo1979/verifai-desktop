@@ -15,6 +15,7 @@ import DocumentRepository from './rag/docrepo';
 import MemoryManager from './main/memory';
 import Mcp from './main/mcp';
 import TrayIconManager from './main/tray';
+import Scheduler from './main/scheduler';
 
 import { fixPath } from './main/utils';
 import { useI18n } from './main/i18n';
@@ -27,6 +28,7 @@ import * as menu from './main/menu';
 import * as backup from './main/backup';
 
 let mcp: Mcp = null
+let scheduler: Scheduler = null
 
 // first-thing: single instance
 // on darwin/mas this is done through Info.plist (LSMultipleInstancesProhibited)
@@ -179,6 +181,12 @@ app.whenReady().then(async () => {
     await fixPath()
     mcp = new Mcp(app);
     mcp.connect();
+  }
+
+  // start scheduler once MCP is available
+  if (mcp) {
+    scheduler = new Scheduler(app, mcp);
+    scheduler.start();
   }
 
   // create the main window

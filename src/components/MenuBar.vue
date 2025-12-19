@@ -16,11 +16,10 @@
         <span>{{ t('common.chat') }}</span>
       </MenuBarItem>
 
-      <!-- Funções desabilitadas - Design Studio -->
-      <!-- <MenuBarItem action="studio" :active="mode === 'studio'" @click="emit('change', 'studio')">
+      <MenuBarItem action="studio" :active="mode === 'studio'" @click="emit('change', 'studio')">
         <BIconPalette />
         <span>{{ t('designStudio.title') }}</span>
-      </MenuBarItem> -->
+      </MenuBarItem>
 
       <!-- Funções desabilitadas - Scratchpad -->
       <!-- <MenuBarItem action="scratchpad" :active="mode === 'scratchpad'" @click="emit('change', 'scratchpad')">
