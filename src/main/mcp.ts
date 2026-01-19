@@ -396,16 +396,64 @@ export default class {
 
     try {
 
-      // build command and args
-      const command = process.platform === 'win32' ? 'cmd' : server.command
-      const args = process.platform === 'win32' ? ['/C', `"${server.command}" ${server.url}`] : server.url.split(' ')
+      // Clean and normalize inputs
+      const cleanCommand = server.command?.trim() || ''
+      const cleanUrl = server.url?.trim().replace(/^["']|["']$/g, '') || '' // Remove leading/trailing quotes
+      const cleanCwd = server.cwd?.trim().replace(/^["']|["']$/g, '') || '' // Remove leading/trailing quotes
+
+      // Parse command and arguments
+      let commandParts: string[] = []
+      if (cleanCommand.includes('"')) {
+        // Handle quoted paths: py "C:\path\file.py" or "C:\path\python.exe" script.py
+        const match = cleanCommand.match(/^(\S+)\s+"([^"]+)"(.*)$/)
+        if (match) {
+          // Format: command "quoted path" remaining
+          commandParts = [match[1], match[2], ...(match[3].trim() ? match[3].trim().split(/\s+/) : [])]
+        } else {
+          // Try: "quoted command" args
+          const match2 = cleanCommand.match(/^"([^"]+)"(.*)$/)
+          if (match2) {
+            commandParts = [match2[1], ...(match2[2].trim() ? match2[2].trim().split(/\s+/) : [])]
+          } else {
+            commandParts = [cleanCommand]
+          }
+        }
+      } else if (cleanCommand.includes(' ')) {
+        // Simple space-separated command
+        commandParts = cleanCommand.split(/\s+/).filter(p => p)
+      } else {
+        commandParts = [cleanCommand]
+      }
+
+      let command = commandParts[0]
+      const commandArgs = commandParts.slice(1)
+      let args: string[] = []
+      
+      if (process.platform === 'win32') {
+        // On Windows, check if command is an executable
+        const isExe = command.toLowerCase().endsWith('.exe')
+        
+        if (isExe) {
+          // For .exe files, run directly without cmd wrapper
+          args = [...commandArgs, ...(cleanUrl ? cleanUrl.split(/\s+/).filter(a => a) : [])]
+        } else {
+          // For other commands (like python, node, etc), use cmd wrapper
+          command = 'cmd'
+          const urlArgs = cleanUrl ? cleanUrl.split(/\s+/).filter(a => a) : []
+          args = ['/C', commandParts[0], ...commandArgs, ...urlArgs]
+        }
+      } else {
+        // On Unix systems, use command directly with args from url
+        args = [...commandArgs, ...(cleanUrl ? cleanUrl.split(/\s+/).filter(a => a) : [])]
+      }
+      
       let env = {
         ...getDefaultEnvironment(),
         ...server.env,
       }
 
       // clean up double cmd /c with smithery on windows
-      if (command === 'cmd' && args.length > 0 && args[1].toLowerCase().startsWith('"cmd" /c')) {
+      if (command === 'cmd' && args.length > 0 && args[1]?.toLowerCase().startsWith('"cmd" /c')) {
         args[1] = args[1].slice(9)
       }
 
@@ -414,10 +462,10 @@ export default class {
         env = undefined
       }
 
-      // working directory
-      const cwd = server.cwd || undefined
+      // working directory - use cleaned version
+      const cwd = cleanCwd || undefined
 
-      // console.log('MCP Stdio command', process.platform, command, args, env)
+      console.log('MCP Stdio command', process.platform, command, args, env, cwd)
 
       const transport = new StdioClientTransport({
         command, args, env, stderr: 'pipe', cwd

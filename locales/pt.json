@@ -1876,6 +1876,11 @@
       "clear": "Limpar especialista",
       "tooltip": "Selecionar especialista"
     },
+    "agents": {
+      "clear": "Limpar agente",
+      "create": "Criar novo agente",
+      "tooltip": "Selecionar agente"
+    },
     "instructions": {
       "default": "⚙️ Usar configuração padrão",
       "title": "@:common.instructions"
