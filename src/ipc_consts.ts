@@ -242,3 +242,9 @@ export const LICENSE = {
   IS_AUTHENTICATED: 'license-is-authenticated',
   CLOSE_ACTIVATION_WINDOW: 'license-close-activation-window',
 } as const;
+
+export const BROWSER = {
+  CREATE_SESSION: 'browser-create-session',
+  CLOSE_SESSION: 'browser-close-session',
+  RUN_ACTION: 'browser-run-action',
+} as const;

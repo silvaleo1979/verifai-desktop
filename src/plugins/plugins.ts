@@ -10,6 +10,7 @@ import MemoryPlugin from './memory'
 import McpPlugin from './mcp'
 import FilesystemPlugin from './filesystem'
 import AgentBuilderPlugin from './agent_builder'
+import BrowserPlugin from './browser'
 import { CustomToolPlugin, MultiToolPlugin } from 'multi-llm-ts'
 
 export type PluginInstance = Plugin | CustomToolPlugin | MultiToolPlugin
@@ -27,4 +28,5 @@ export const availablePlugins: PluginsList = {
   memory: MemoryPlugin,
   filesystem: FilesystemPlugin,
   agentBuilder: AgentBuilderPlugin,
+  browser: BrowserPlugin,
 }

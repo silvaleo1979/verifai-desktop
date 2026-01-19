@@ -186,10 +186,8 @@ export const openMainWindow = (opts: CreateWindowOpts = {}): void => {
   mainWindow.focus();
   app.focus({ steal: true });
 
-  // open the DevTools
-  if (process.env.DEBUG && firstOpen) {
-    mainWindow.webContents.openDevTools({ mode: 'right' });
-  }
+  // open the DevTools (force in dev and build for debugging)
+  mainWindow.webContents.openDevTools({ mode: 'detach' });
 
   // notify
   mainWindow.webContents.send('window-opened');

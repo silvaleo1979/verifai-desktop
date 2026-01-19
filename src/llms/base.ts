@@ -173,7 +173,8 @@ export default class LlmManagerBase implements ILlmManager {
         }
       }).sort((a, b) => a.name.localeCompare(b.name))
     } else {
-      return this.config.engines[engine]?.models?.chat || []
+      const models = this.config.engines[engine]?.models?.chat || []
+      return models
     }
   }
 
@@ -183,7 +184,8 @@ export default class LlmManagerBase implements ILlmManager {
       return this.getChatModel(favorite.engine, favorite.model)
     } else {
       const models = this.getChatModels(engine)
-      return models.find(m => m.id === model) || null
+      const found = models.find(m => m.id === model) || null
+      return found
     }
   }
   

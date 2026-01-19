@@ -249,6 +249,10 @@ export type GenerationResult =
         // final error: depends if we already have some content and if plugins are enabled
         } else {
           console.error('Error while generating text:', status, message)
+          // capture provider error details for diagnostics
+          if (opts?.run) {
+            opts.run.error = `${status}: ${message}`
+          }
           if (response.content === '') {
             if (opts?.contextWindowSize || opts?.maxTokens || opts?.temperature || opts?.top_k || opts?.top_p || Object.keys(opts?.customOpts || {}).length > 0) {
               response.setText(t('generator.errors.tryWithoutParams'))

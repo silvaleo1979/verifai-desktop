@@ -20,8 +20,9 @@ if (!i18nLlm && typeof window !== 'undefined') {
 }
 
 const localeToLangName = (locale: string): string => {
-  const t = i18nLlm.global.t as CallableFunction
-  const language = t(`common.language.${locale}`)
+  const translate = i18nLlm?.global?.t as CallableFunction | undefined
+  if (!translate) return locale
+  const language = translate(`common.language.${locale}`)
   return language.startsWith('common.language.') ? locale : language
 }
 
@@ -35,22 +36,27 @@ const i18nInstructions = (config: anyDict, key: string, params?: any): string =>
 
   // default
   // @ts-expect-error not sure why
-  return i18nLlm.global.t(key, params)
+  const translate = i18nLlm?.global?.t as CallableFunction | undefined
+  if (!translate) return key
+  return translate(key, params)
 
 }
 
 const getLlmLocale = (): string => {
-  const i18nLlmLocale = (i18nLlm.global.locale as WritableComputedRef<Locale>)
-  return i18nLlmLocale.value
+  const i18nLlmLocale = (i18nLlm?.global?.locale as WritableComputedRef<Locale>) || null
+  return i18nLlmLocale?.value ?? 'en-US'
 }
 
 const setLlmLocale = (locale: string): void => {
-  const i18nLlmLocale = (i18nLlm.global.locale as WritableComputedRef<Locale>)
-  i18nLlmLocale.value = locale
+  const i18nLlmLocale = (i18nLlm?.global?.locale as WritableComputedRef<Locale>) || null
+  if (i18nLlmLocale) {
+    i18nLlmLocale.value = locale
+  }
 }
 
-const t: CallableFunction = i18n?.global?.t
-const tllm: CallableFunction = i18nLlm?.global?.t
+const noopT = (key: string) => key
+const t: CallableFunction = i18n?.global?.t || noopT
+const tllm: CallableFunction = i18nLlm?.global?.t || noopT
 
 type i18nCommandAttr = 'label' | 'template'
 type i18nExpertAttr = 'name' | 'prompt'

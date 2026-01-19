@@ -2206,6 +2206,16 @@
         "description": "Este plugin permite que os mecanismos LLM baixem conteúdo da Internet e o usem para gerar respostas mais precisas.",
         "title": "Download"
       },
+      "browser": {
+        "description": "Navegação web headful para agentes via Playwright. Configure domínios permitidos, timeouts e política de screenshots.",
+        "title": "Navegador Web",
+        "allowedDomains": "Domínios permitidos (um por linha, vazio = todos)",
+        "captureScreenshots": "Permitir capturas de tela",
+        "headless": "Executar sem janela (headless)",
+        "actionTimeout": "Timeout por ação (ms)",
+        "maxTextLength": "Tamanho máximo do texto extraído",
+        "observe": "Observar página (título/url/texto, screenshot opcional)"
+      },
       "filesystem": {
         "allowedPaths": "Diretórios Permitidos",
         "allowWrite": "Permitir operações de escrita (sobrescrever e deletar arquivos existentes)",

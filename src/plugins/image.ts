@@ -16,15 +16,27 @@ export default class extends Plugin {
   }
 
   isEnabled(): boolean {
-    return this.config?.enabled && (
-      (this.config.engine == 'openai' && store.config?.engines.openai.apiKey?.trim().length > 0) ||
-      (this.config.engine == 'google' && store.config?.engines.google.apiKey?.trim().length > 0) ||
-      (this.config.engine == 'xai' && store.config?.engines.xai.apiKey?.trim().length > 0) ||
-      (this.config.engine == 'replicate' && store.config?.engines.replicate.apiKey?.trim().length > 0) ||
-      (this.config.engine == 'falai' && store.config?.engines.falai.apiKey?.trim().length > 0) ||
-      (this.config.engine == 'huggingface' && store.config?.engines.huggingface.apiKey?.trim().length > 0) ||
-      (this.config.engine == 'sdwebui')
-    )
+    if (!this.config?.enabled) return false
+    const engines = store.config?.engines || {}
+
+    switch (this.config.engine) {
+      case 'openai':
+        return !!engines.openai?.apiKey?.trim()
+      case 'google':
+        return !!engines.google?.apiKey?.trim()
+      case 'xai':
+        return !!engines.xai?.apiKey?.trim()
+      case 'replicate':
+        return !!engines.replicate?.apiKey?.trim()
+      case 'falai':
+        return !!engines.falai?.apiKey?.trim()
+      case 'huggingface':
+        return !!engines.huggingface?.apiKey?.trim()
+      case 'sdwebui':
+        return true
+      default:
+        return false
+    }
   }
 
   getName(): string {
