@@ -1598,6 +1598,7 @@
     },
     "toolCall": {
       "call": "Tool call: {name}",
+      "resource": "Consulting Resource {name}",
       "params": "Parameters",
       "results": "Results"
     }
@@ -1866,6 +1867,16 @@
     },
     "placeholders": {
       "default": "Enter to submit, Shift+Enter to add a new line"
+    },
+    "mcpPrompts": {
+      "title": "MCP Prompts",
+      "noPrompts": "No MCP prompts available",
+      "error": "Failed to load MCP prompts"
+    },
+    "mcpServers": {
+      "title": "MCP Servers",
+      "noServers": "No MCP servers connected",
+      "error": "Failed to load MCP servers"
     }
   },
   "realtimeChat": {
@@ -2166,6 +2177,10 @@
       "modelContextProtocol": "Model Context Protocol",
       "noServersFound": "No MCP Servers found. Click on the + icon above to add a new server or refresh the list.",
       "noTools": "No tools available",
+      "noPrompts": "No prompts available",
+      "noResources": "No resources available",
+      "prompts": "Prompts",
+      "resources": "Resources",
       "retryWithApiKey": "It seems an API key is required to install this server. Do you want to retry with your API key? Else you can copy the command and try it a Terminal.",
       "serverLogs": "MCP Server Logs",
       "serverNotFound": "The server you are trying to connect does not exist.",
@@ -2181,7 +2196,9 @@
         "startServer": "Start server",
         "stopServer": "Stop server",
         "viewLogs": "View server logs",
-        "viewTools": "View available tools"
+        "viewTools": "View available tools",
+        "viewPrompts": "View available prompts",
+        "viewResources": "View available resources"
       },
       "totalTools": "Total of {count} service{count > 1 ? 's' : ''} available"
     },

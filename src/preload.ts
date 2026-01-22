@@ -8,7 +8,7 @@ import { FileContents, FileDownloadParams, FilePickParams, FileSaveParams } from
 import { Configuration } from './types/config';
 import { DocRepoQueryResponseItem } from './types/rag';
 import { Application, RunCommandParams } from './types/automation';
-import { McpServer, McpStatus, McpTool } from './types/mcp';
+import { McpServer, McpStatus, McpTool, McpPrompt, McpResource } from './types/mcp';
 import { ListDirectoryResponse } from './types/filesystem';
 import { LocalSearchResult } from './main/search';
 import { Size } from './main/computer';
@@ -190,6 +190,12 @@ contextBridge.exposeInMainWorld(
       getTools: (): Promise<LlmTool[]> => { return ipcRenderer.invoke(IPC.MCP.GET_TOOLS) },
       callTool: (name: string, parameters: anyDict): Promise<any> => { return ipcRenderer.invoke(IPC.MCP.CALL_TOOL, { name, parameters }) },
       originalToolName(name: string): string { return ipcRenderer.sendSync(IPC.MCP.ORIGINAL_TOOL_NAME, name) },
+      getServerPrompts: (uuid: string): Promise<McpPrompt[]> => { return ipcRenderer.invoke(IPC.MCP.GET_SERVER_PROMPTS, uuid) },
+      getServerResources: (uuid: string): Promise<McpResource[]> => { return ipcRenderer.invoke(IPC.MCP.GET_SERVER_RESOURCES, uuid) },
+      callPrompt: (name: string, args: anyDict): Promise<any> => { return ipcRenderer.invoke(IPC.MCP.CALL_PROMPT, { name, arguments: args }) },
+      getResource: (uri: string): Promise<any> => { return ipcRenderer.invoke(IPC.MCP.GET_RESOURCE, { uri }) },
+      getResourceUriByToolName: (toolName: string): string | null => { return ipcRenderer.sendSync(IPC.MCP.GET_RESOURCE_URI_BY_TOOL_NAME, toolName) },
+      getToolsByServer: (serverUuid: string): Promise<LlmTool[]> => { return ipcRenderer.invoke(IPC.MCP.GET_TOOLS_BY_SERVER, serverUuid) },
     },
     scratchpad: {
       open: (textId?: string): void => { return ipcRenderer.send(IPC.SCRATCHPAD.OPEN, textId) },

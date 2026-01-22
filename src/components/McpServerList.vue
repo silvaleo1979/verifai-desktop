@@ -62,6 +62,16 @@
                 v-tooltip="{ text: t('settings.mcp.tooltips.viewTools'), position: 'top-left' }"
                 @click="showTools(server)" />
               
+              <BIconChatDots class="prompts" 
+                :class="{ 'disabled': !isRunning(server) }"
+                v-tooltip="{ text: t('settings.mcp.tooltips.viewPrompts'), position: 'top-left' }"
+                @click="showPrompts(server)" />
+              
+              <BIconFolder class="resources" 
+                :class="{ 'disabled': !isRunning(server) }"
+                v-tooltip="{ text: t('settings.mcp.tooltips.viewResources'), position: 'top-left' }"
+                @click="showResources(server)" />
+              
               <BIconPencil class="edit" 
                 v-tooltip="{ text: t('settings.mcp.tooltips.editServer'), position: 'top-left' }"
                 @click="onEdit(server)" />
@@ -170,6 +180,40 @@ const showTools = async (server: McpServer) => {
   } else {
     Dialog.show({
       title: t('settings.mcp.noTools'),
+      confirmButtonText: t('common.close'),
+    })
+  }
+}
+
+const showPrompts = async (server: McpServer) => {
+  const prompts = await window.api.mcp.getServerPrompts(server.registryId)
+  if (prompts.length) {
+    Dialog.show({
+      title: t('settings.mcp.prompts'),
+      html: prompts.map((prompt: any) => `<li><b>${prompt.name}</b><br/>${prompt.description || ''}</li>`).join(''),
+      customClass: { confirmButton: 'alert-confirm', htmlContainer: 'list' },
+      confirmButtonText: t('common.close'),
+    })
+  } else {
+    Dialog.show({
+      title: t('settings.mcp.noPrompts'),
+      confirmButtonText: t('common.close'),
+    })
+  }
+}
+
+const showResources = async (server: McpServer) => {
+  const resources = await window.api.mcp.getServerResources(server.registryId)
+  if (resources.length) {
+    Dialog.show({
+      title: t('settings.mcp.resources'),
+      html: resources.map((resource: any) => `<li><b>${resource.uri}</b><br/>${resource.name || resource.description || ''}</li>`).join(''),
+      customClass: { confirmButton: 'alert-confirm', htmlContainer: 'list' },
+      confirmButtonText: t('common.close'),
+    })
+  } else {
+    Dialog.show({
+      title: t('settings.mcp.noResources'),
       confirmButtonText: t('common.close'),
     })
   }

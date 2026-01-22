@@ -56,6 +56,7 @@ export interface Message extends IMessageBase {
   attachments: Attachment[]
   transient: boolean
   uiOnly: boolean
+  mcpServer?: string|null
   setExpert(expert: Expert, fallbackPrompt: string): void
   setText(text: string): void
   setImage(url: string): void
@@ -79,6 +80,7 @@ export interface Chat {
   tools: ToolSelection
   locale: string|null
   docrepo: string|null
+  mcpServer: string|null
   modelOpts: LlmModelOpts|null
   patchFromJson(jsonChat: any): boolean
   disableTools(): void

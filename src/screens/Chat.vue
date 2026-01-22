@@ -443,7 +443,7 @@ const onDeleteFolder = async (folderId: string) => {
 const onSendPrompt = async (params: SendPromptParams) => {
 
   // deconstruct params
-  const { instructions, prompt, attachments, docrepo, expert, deepResearch, a2a } = params
+  const { instructions, prompt, attachments, docrepo, expert, deepResearch, a2a, mcpServer } = params
 
   // make sure we can have an llm
   assistant.value.initLlm(store.config.llm.engine)
@@ -482,6 +482,7 @@ const onSendPrompt = async (params: SendPromptParams) => {
     docrepo: docrepo || null,
     expert: expert || null,
     deepResearch: deepResearch || false,
+    mcpServer: mcpServer || null,
   }, (chunk) => {
   
     // if we get a chunk, emit it

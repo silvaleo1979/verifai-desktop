@@ -19,6 +19,7 @@ export default class Message extends MessageBase implements IMessage {
   usage?: LlmUsage
   transient: boolean
   uiOnly: boolean
+  mcpServer?: string|null
   declare attachments: Attachment[]
 
   constructor(role: LlmRole, content?: string) {
@@ -36,6 +37,7 @@ export default class Message extends MessageBase implements IMessage {
     this.attachments = []
     this.usage = null
     this.uiOnly = false
+    this.mcpServer = null
     this.transient = (content == null)
     if (content === undefined) {
       this.setText(null)
@@ -68,6 +70,7 @@ export default class Message extends MessageBase implements IMessage {
     })) || []
     message.usage = obj.usage || null
     message.uiOnly = obj.uiOnly || false
+    message.mcpServer = obj.mcpServer || null
     return message
   }
 

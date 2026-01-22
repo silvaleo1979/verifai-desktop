@@ -25,11 +25,26 @@ export type McpClient = {
   client: Client
   server: McpServer
   tools: string[]
+  prompts: string[]
+  resources: string[]
 }
 
 export type McpTool = {
   name: string
   description: string
+}
+
+export type McpPrompt = {
+  name: string
+  description?: string
+  arguments?: any[]
+}
+
+export type McpResource = {
+  uri: string
+  name?: string
+  description?: string
+  mimeType?: string
 }
 
 export type McpClaudeServer = {
@@ -42,6 +57,8 @@ export type McpClaudeServer = {
 
 export type McpServerStatus = McpServer & {
   tools: string[]
+  prompts: string[]
+  resources: string[]
 }
 
 export type McpStatus = {

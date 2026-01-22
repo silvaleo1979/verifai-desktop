@@ -1614,6 +1614,7 @@
     },
     "toolCall": {
       "call": "Chamada da ferramenta: {name}",
+      "resource": "Consultando Resource {name}",
       "params": "Parâmetros",
       "results": "Resultados"
     }
@@ -1882,6 +1883,16 @@
     },
     "placeholders": {
       "default": "Pressione Enter para enviar, Shift+Enter para adicionar uma nova linha"
+    },
+    "mcpPrompts": {
+      "title": "MCP Prompts",
+      "noPrompts": "Nenhum prompt MCP disponível",
+      "error": "Erro ao carregar prompts MCP"
+    },
+    "mcpServers": {
+      "title": "MCP Servers",
+      "noServers": "Nenhum servidor MCP conectado",
+      "error": "Erro ao carregar servidores MCP"
     }
   },
   "realtimeChat": {
@@ -2182,6 +2193,10 @@
       "modelContextProtocol": "Protocolo de Contexto de Modelo",
       "noServersFound": "Nenhum servidor MCP encontrado. Clique no ícone + acima para adicionar um novo servidor ou atualizar a lista.",
       "noTools": "Nenhuma ferramenta disponível",
+      "noPrompts": "Nenhum prompt disponível",
+      "noResources": "Nenhum recurso disponível",
+      "prompts": "Prompts",
+      "resources": "Recursos",
       "retryWithApiKey": "Parece que uma chave de API é necessária para instalar este servidor. Você deseja tentar novamente com sua chave de API? Caso contrário, você pode copiar o comando e tentar em um terminal.",
       "serverLogs": "Logs do Servidor MCP",
       "serverNotFound": "O servidor que você está tentando conectar não existe.",
@@ -2197,7 +2212,9 @@
         "startServer": "Iniciar servidor",
         "stopServer": "Parar servidor",
         "viewLogs": "Visualizar logs do servidor",
-        "viewTools": "Visualizar ferramentas disponíveis"
+        "viewTools": "Visualizar ferramentas disponíveis",
+        "viewPrompts": "Visualizar prompts disponíveis",
+        "viewResources": "Visualizar recursos disponíveis"
       },
       "totalTools": "Total de {count} serviço{count > 1 ? 's' : ''} disponível{count > 1 ? 's' : ''}"
     },

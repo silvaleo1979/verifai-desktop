@@ -1,7 +1,7 @@
 
 import { anyDict } from '../types/index'
 import { App } from 'electron'
-import { McpInstallStatus, McpServer, McpClient, McpStatus, McpTool } from '../types/mcp'
+import { McpInstallStatus, McpServer, McpClient, McpStatus, McpTool, McpPrompt, McpResource } from '../types/mcp'
 import { Client } from '@modelcontextprotocol/sdk/client/index.js'
 import { StdioClientTransport, getDefaultEnvironment } from '@modelcontextprotocol/sdk/client/stdio.js'
 import { SSEClientTransport } from '@modelcontextprotocol/sdk/client/sse.js'
@@ -19,6 +19,7 @@ export default class {
   currentConfig: string|null
   clients: McpClient[]
   logs: { [key: string]: string[] }
+  resourceUriMap: Map<string, string>
   
   constructor(app: App) {
     this.app = app
@@ -26,13 +27,16 @@ export default class {
     this.monitor = null
     this.currentConfig = null
     this.logs = {}
+    this.resourceUriMap = new Map()
   }
 
   getStatus = (): McpStatus => {
     return {
       servers: this.clients.map(client => ({
         ...client.server,
-        tools: client.tools
+        tools: client.tools,
+        prompts: client.prompts,
+        resources: client.resources
       })),
       logs: this.logs
     }
@@ -380,11 +384,35 @@ export default class {
     const tools = await client.listTools()
     const toolNames = tools.tools.map(tool => this.uniqueToolName(server, tool.name))
 
+    // get prompts
+    let promptNames: string[] = []
+    try {
+      const prompts = await client.listPrompts()
+      promptNames = prompts.prompts.map(prompt => this.uniquePromptName(server, prompt.name))
+      this.logs[server.uuid].push(`Registered ${prompts.prompts.length} prompt(s)\n`)
+    } catch (e: any) {
+      // Prompts podem não estar disponíveis em todos os servidores
+      console.log(`MCP server ${server.uuid} does not support prompts:`, e.message)
+    }
+
+    // get resources
+    let resourceUris: string[] = []
+    try {
+      const resources = await client.listResources()
+      resourceUris = resources.resources.map(resource => resource.uri)
+      this.logs[server.uuid].push(`Registered ${resources.resources.length} resource(s)\n`)
+    } catch (e: any) {
+      // Resources podem não estar disponíveis em todos os servidores
+      console.log(`MCP server ${server.uuid} does not support resources:`, e.message)
+    }
+
     // store
     this.clients.push({
       client,
       server,
-      tools: toolNames
+      tools: toolNames,
+      prompts: promptNames,
+      resources: resourceUris
     })
 
     // done
@@ -435,7 +463,11 @@ export default class {
         name: 'verifai-mcp-client',
         version: '1.0.0'
       }, {
-        capabilities: { tools: {} }
+        capabilities: { 
+          tools: {},
+          prompts: {},
+          resources: {}
+        }
       })
 
       client.onerror = (e) => {
@@ -488,7 +520,11 @@ export default class {
         name: 'verifai-mcp-client',
         version: '1.0.0'
       }, {
-        capabilities: { tools: {} }
+        capabilities: { 
+          tools: {},
+          prompts: {},
+          resources: {}
+        }
       })
 
       client.onerror = (e) => {
@@ -531,7 +567,11 @@ export default class {
         name: 'verifai-mcp-client',
         version: '1.0.0'
       }, {
-        capabilities: { tools: {} }
+        capabilities: { 
+          tools: {},
+          prompts: {},
+          resources: {}
+        }
       })
 
       client.onerror = (e) => {
@@ -570,8 +610,43 @@ export default class {
 
   }
 
+  getServerPrompts = async (uuid: string): Promise<McpPrompt[]> => {
+    const client = this.clients.find(client => client.server.uuid === uuid)
+    if (!client) return []
+
+    try {
+      const prompts = await client.client.listPrompts()
+      return prompts.prompts.map((prompt: any) => ({
+        name: prompt.name,
+        description: prompt.description,
+        arguments: prompt.arguments
+      }))
+    } catch (e: any) {
+      return []
+    }
+  }
+
+  getServerResources = async (uuid: string): Promise<McpResource[]> => {
+    const client = this.clients.find(client => client.server.uuid === uuid)
+    if (!client) return []
+
+    try {
+      const resources = await client.client.listResources()
+      return resources.resources.map((resource: any) => ({
+        uri: resource.uri,
+        name: resource.name,
+        description: resource.description,
+        mimeType: resource.mimeType
+      }))
+    } catch (e: any) {
+      return []
+    }
+  }
+
   getTools = async (): Promise<LlmTool[]> => {
     const allTools: LlmTool[] = []
+    
+    // Adicionar tools normais
     for (const client of this.clients) {
       try {
         const tools = await client.client.listTools()
@@ -587,7 +662,118 @@ export default class {
         console.error(`Failed to get tools from MCP server ${client.server.url}:`, e)
       }
     }
+    
+    // NÃO adicionar prompts como tools - LLM não deve chamar prompts
+    // Prompts são apenas para uso manual via "/" no chat
+    
+    // Adicionar resources como tools
+    const resourceTools = await this.getResourcesAsTools()
+    allTools.push(...resourceTools)
+    
     return allTools
+  }
+
+  getToolsByServer = async (serverUuid: string): Promise<LlmTool[]> => {
+    const allTools: LlmTool[] = []
+    
+    // Encontrar o cliente do servidor
+    const client = this.clients.find(c => c.server.uuid === serverUuid)
+    if (!client) {
+      return []
+    }
+    
+    // Limpar mapeamento anterior
+    this.resourceUriMap.clear()
+    
+    // Adicionar tools do servidor
+    try {
+      const tools = await client.client.listTools()
+      for (const tool of tools.tools) {
+        try {
+          const functionTool = this.mcpToOpenAI(client.server, tool)
+          allTools.push(functionTool)
+        } catch (e) {
+          console.error(`Failed to convert MCP tool ${tool.name} from MCP server ${client.server.url} to OpenAI tool:`, e)
+        }
+      }
+    } catch (e) {
+      console.error(`Failed to get tools from MCP server ${client.server.url}:`, e)
+    }
+    
+    // Adicionar resources do servidor
+    try {
+      const resources = await client.client.listResources()
+      for (const resource of resources.resources) {
+        try {
+          const toolName = this.uniqueResourceName(client.server, resource.uri)
+          const fullToolName = `read_resource_${toolName}`
+          
+          // Mapear nome da tool para URI
+          this.resourceUriMap.set(fullToolName, resource.uri)
+          
+          const resourceTool = this.mcpResourceToOpenAI(client.server, resource)
+          allTools.push(resourceTool)
+        } catch (e) {
+          console.error(`Failed to convert MCP resource ${resource.uri} to OpenAI tool:`, e)
+        }
+      }
+    } catch (e) {
+      // Resources podem não estar disponíveis
+    }
+    
+    return allTools
+  }
+
+  getPromptsAsTools = async (): Promise<LlmTool[]> => {
+    const allTools: LlmTool[] = []
+    for (const client of this.clients) {
+      try {
+        const prompts = await client.client.listPrompts()
+        for (const prompt of prompts.prompts) {
+          try {
+            const promptTool = this.mcpPromptToOpenAI(client.server, prompt)
+            allTools.push(promptTool)
+          } catch (e) {
+            console.error(`Failed to convert MCP prompt ${prompt.name} to OpenAI tool:`, e)
+          }
+        }
+      } catch (e) {
+        // Prompts podem não estar disponíveis em todos os servidores
+      }
+    }
+    return allTools
+  }
+
+  getResourcesAsTools = async (): Promise<LlmTool[]> => {
+    const allTools: LlmTool[] = []
+    this.resourceUriMap.clear() // Limpar mapeamento anterior
+    
+    for (const client of this.clients) {
+      try {
+        const resources = await client.client.listResources()
+        for (const resource of resources.resources) {
+          try {
+            const toolName = this.uniqueResourceName(client.server, resource.uri)
+            const fullToolName = `read_resource_${toolName}`
+            
+            // Mapear nome da tool para URI
+            this.resourceUriMap.set(fullToolName, resource.uri)
+            
+            const resourceTool = this.mcpResourceToOpenAI(client.server, resource)
+            allTools.push(resourceTool)
+          } catch (e) {
+            console.error(`Failed to convert MCP resource ${resource.uri} to OpenAI tool:`, e)
+          }
+        }
+      } catch (e) {
+        // Resources podem não estar disponíveis em todos os servidores
+      }
+    }
+    return allTools
+  }
+
+  getResourceUriByToolName(toolName: string): string | null {
+    return this.resourceUriMap.get(toolName) || null
   }
 
   callTool = async (name: string, args: anyDict): Promise<any> => {
@@ -608,12 +794,68 @@ export default class {
 
   }
 
+  callPrompt = async (name: string, args: anyDict): Promise<any> => {
+    const client = this.clients.find(client => client.prompts.includes(name))
+    if (!client) {
+      throw new Error(`Prompt ${name} not found`)
+    }
+
+    // remove unique suffix
+    const prompt = this.originalPromptName(name)
+    console.log('Calling MCP prompt', prompt, args)
+    this.logs[client.server.uuid].push(`[${new Date().toISOString()}] Calling prompt: ${prompt}\n`)
+    this.logs[client.server.uuid].push(`Arguments: ${JSON.stringify(args)}\n`)
+
+    try {
+      const result = await client.client.getPrompt({
+        name: prompt,
+        arguments: args
+      })
+      
+      this.logs[client.server.uuid].push(`[${new Date().toISOString()}] Prompt result received\n`)
+      return result
+    } catch (error: any) {
+      this.logs[client.server.uuid].push(`[${new Date().toISOString()}] Prompt error: ${error.message}\n`)
+      throw error
+    }
+  }
+
+  getResource = async (uri: string): Promise<any> => {
+    const client = this.clients.find(client => client.resources.includes(uri))
+    if (!client) {
+      throw new Error(`Resource ${uri} not found`)
+    }
+
+    console.log('Getting MCP resource', uri)
+    this.logs[client.server.uuid].push(`[${new Date().toISOString()}] Getting resource: ${uri}\n`)
+
+    try {
+      const result = await client.client.readResource({
+        uri: uri
+      })
+      
+      this.logs[client.server.uuid].push(`[${new Date().toISOString()}] Resource retrieved\n`)
+      return result
+    } catch (error: any) {
+      this.logs[client.server.uuid].push(`[${new Date().toISOString()}] Resource error: ${error.message}\n`)
+      throw error
+    }
+  }
+
   originalToolName(name: string): string {
     return name.replace(/___....$/, '')
   }
 
   protected uniqueToolName(server: McpServer, name: string): string {
     return `${name}___${server.uuid.padStart(4, '_').slice(-4)}`
+  }
+
+  protected uniquePromptName(server: McpServer, name: string): string {
+    return `prompt_${name}___${server.uuid.padStart(4, '_').slice(-4)}`
+  }
+
+  originalPromptName(name: string): string {
+    return name.replace(/^prompt_/, '').replace(/___....$/, '')
   }
 
   protected mcpToOpenAI = (server: McpServer, tool: any): LlmTool => {
@@ -637,6 +879,59 @@ export default class {
         }
       }
     }
+  }
+
+  protected mcpPromptToOpenAI = (server: McpServer, prompt: any): LlmTool => {
+    // Construir schema de parâmetros baseado nos argumentos do prompt
+    const properties: anyDict = {}
+    const required: string[] = []
+    
+    if (prompt.arguments && Array.isArray(prompt.arguments)) {
+      for (const arg of prompt.arguments) {
+        properties[arg.name] = {
+          type: arg.type || 'string',
+          description: arg.description || arg.name
+        }
+        if (arg.required) {
+          required.push(arg.name)
+        }
+      }
+    }
+
+    return {
+      type: 'function',
+      function: {
+        name: this.uniquePromptName(server, prompt.name),
+        description: prompt.description || `Execute MCP prompt: ${prompt.name}. This prompt will be executed and its result will be included in the conversation.`,
+        parameters: {
+          type: 'object',
+          properties,
+          required
+        }
+      }
+    }
+  }
+
+  protected mcpResourceToOpenAI = (server: McpServer, resource: any): LlmTool => {
+    const toolName = this.uniqueResourceName(server, resource.uri)
+    return {
+      type: 'function',
+      function: {
+        name: `read_resource_${toolName}`,
+        description: resource.description || `Read MCP resource: ${resource.uri}. This will retrieve the content of the resource for analysis.`,
+        parameters: {
+          type: 'object',
+          properties: {},
+          required: []
+        }
+      }
+    }
+  }
+
+  protected uniqueResourceName(server: McpServer, uri: string): string {
+    // Criar um nome único baseado no URI
+    const uriHash = uri.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 30)
+    return `${uriHash}___${server.uuid.padStart(4, '_').slice(-4)}`
   }
 
 }

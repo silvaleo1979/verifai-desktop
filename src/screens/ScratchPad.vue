@@ -478,6 +478,7 @@ const onSendPrompt = async (params: SendPromptParams) => {
   // add to thead
   const userMessage = new Message('user', finalPrompt)
   userMessage.setExpert(expert, expertI18n(expert, 'prompt'))
+  userMessage.mcpServer = mcpServer || chat.value?.mcpServer || null
   for (const attachment of attachments ?? []) {
     attachment.loadContents()
     userMessage.attach(attachment)

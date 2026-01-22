@@ -25,6 +25,7 @@ export interface AssistantCompletionOpts extends GenerationOpts {
   instructions?: string|null
   attachments?: Attachment[]
   expert?: Expert
+  mcpServer?: string | null
 }
 
 export default class extends Generator {
@@ -130,6 +131,10 @@ export default class extends Generator {
     opts.engine = this.chat.engine || opts.engine
     opts.model = this.chat.model || opts.model
     opts.docrepo = this.chat.docrepo || opts.docrepo
+    // Usar mcpServer do chat se não foi fornecido em opts
+    if (opts.mcpServer === undefined) {
+      opts.mcpServer = this.chat.mcpServer || null
+    }
 
     // disable streaming
     opts.streaming = opts.streaming ?? (this.chat.disableStreaming !== true)
@@ -137,6 +142,11 @@ export default class extends Generator {
     // make sure chat options are set
     this.chat.setEngineModel(opts.engine, opts.model)
     this.chat.docrepo = opts.docrepo
+    
+    // Atualizar mcpServer do chat se fornecido em opts
+    if (opts.mcpServer !== undefined) {
+      this.chat.mcpServer = opts.mcpServer
+    }
 
     // we need an llm
     this.initLlm(opts.engine)
@@ -146,7 +156,31 @@ export default class extends Generator {
 
     // make sure llm has latest tools
     if (!this.llmManager.isComputerUseModel(opts.engine, opts.model)) {
-      await this.llmManager.loadTools(this.llm, availablePlugins, this.chat.tools)
+      // Se um servidor MCP está ativo, carregar APENAS o plugin MCP
+      // Isso garante que a LLM não veja tools de outros plugins (search, browse, python, etc.)
+      let pluginsToLoad = availablePlugins
+      const activeMcpServer = opts.mcpServer !== undefined ? opts.mcpServer : (this.chat?.mcpServer || null)
+      if (activeMcpServer) {
+        // Filtrar para carregar apenas o plugin MCP
+        // Quando um MCP específico está selecionado, apenas suas tools estarão disponíveis
+        pluginsToLoad = { mcp: availablePlugins.mcp }
+        console.log(`[Assistant] Servidor MCP ativo: ${activeMcpServer}, carregando apenas plugin MCP`)
+        
+        // Passar o mcpServer diretamente para o plugin através da configuração
+        if (this.config.plugins.mcp) {
+          this.config.plugins.mcp.activeMcpServer = activeMcpServer
+        }
+      } else {
+        // Limpar o mcpServer quando não há servidor ativo
+        if (this.config.plugins.mcp) {
+          this.config.plugins.mcp.activeMcpServer = null
+        }
+      }
+      
+      // Expor chat atual para plugins acessarem (para compatibilidade)
+      ;(window as any).__currentChat = this.chat
+      await this.llmManager.loadTools(this.llm, pluginsToLoad, this.chat?.tools || null)
+      ;(window as any).__currentChat = null
     } else {
       this.llm.clearPlugins()
     }
@@ -163,6 +197,8 @@ export default class extends Generator {
     userMessage.engine = opts.engine
     userMessage.model = opts.model
     userMessage.deepResearch = deepReseach
+    // Usar mcpServer de opts se fornecido, senão usar do chat
+    userMessage.mcpServer = opts.mcpServer !== undefined ? opts.mcpServer : (this.chat?.mcpServer || null)
     opts.attachments.map(a => userMessage.attach(a))
     this.chat.addMessage(userMessage)
 

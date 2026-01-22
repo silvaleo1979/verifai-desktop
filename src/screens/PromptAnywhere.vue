@@ -424,7 +424,7 @@ const onSendPrompt = async (params: SendPromptParams) => {
   try {
 
     // deconstruct params
-    const { instructions, prompt, attachments, docrepo, expert } = params
+    const { instructions, prompt, attachments, docrepo, expert, mcpServer } = params
     //console.log('PromptAnywhere.onSendPrompt', prompt, attachment, docrepo, expert)
   
     // this should not happen but it happens
@@ -455,6 +455,7 @@ const onSendPrompt = async (params: SendPromptParams) => {
     // update thread
     const userMessage = new Message('user', finalPrompt)
     userMessage.setExpert(expert, expertI18n(expert, 'prompt'))
+    userMessage.mcpServer = mcpServer || chat.value?.mcpServer || null
     for (const attachment of attachments ?? []) {
       attachment.loadContents()
       userMessage.attach(attachment)

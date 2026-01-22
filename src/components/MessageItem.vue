@@ -1,7 +1,7 @@
 <template>
   <div class="message" :class="[ message.role, message.type ]" @mouseenter="onHover(true)" @mouseleave="onHover(false)">
     <div class="role" :class="message.role" v-if="showRole">
-      <EngineLogo :engine="message.engine || chat.engine!" :grayscale="theme == 'dark'" class="avatar" v-if="message.role == 'assistant'" />
+      <EngineLogo :engine="message.engine || chat?.engine" :grayscale="theme == 'dark'" class="avatar" v-if="message.role == 'assistant'" />
       <UserAvatar class="avatar" v-else />
       <div class="name variable-font-size">{{ authorName }}</div>
     </div>
@@ -20,6 +20,16 @@
       <!-- expert -->
        <div v-if="message.expert" class="expert text variable-font-size">
         <p><BIconStars/> {{  message.expert.name }}</p>
+      </div>
+
+      <!-- mcp server badge (only for user messages) -->
+      <div v-if="message.role === 'user' && message.mcpServer" 
+           class="mcp-server-badge text variable-font-size"
+           :class="{ 'mcp-active': isMcpActive }"
+           v-tooltip="{ text: mcpTooltip, position: 'top' }">
+        <BIconBox class="mcp-icon" />
+        <span class="mcp-name">{{ mcpServerName }}</span>
+        <span v-if="mcpStatus" class="mcp-status-indicator" :class="mcpStatus"></span>
       </div>
 
       <!-- content -->
@@ -58,6 +68,7 @@ import Message from '../models/message'
 import Loader from './Loader.vue'
 import AttachmentView from './Attachment.vue'
 import EngineLogo from './EngineLogo.vue'
+import { BIconStars, BIconBox } from 'bootstrap-icons-vue'
 // import { getMarkdownSelection } from '../services/markdown'
 
 // events
@@ -135,6 +146,48 @@ onUnmounted(() => {
 const authorName = computed(() => {
   return props.message.role === 'assistant' ? t('chat.role.assistant') : t('chat.role.user')
 })
+
+const mcpServerName = computed(() => {
+  if (!props.message.mcpServer) return ''
+  
+  try {
+    const status = window.api.mcp.getStatus()
+    const server = status?.servers?.find(s => s.uuid === props.message.mcpServer)
+    return server?.label || server?.name || server?.url || 'MCP Server'
+  } catch (e) {
+    return 'MCP Server'
+  }
+})
+
+const mcpStatus = computed(() => {
+  if (!props.message.mcpServer) return null
+  
+  try {
+    const status = window.api.mcp.getStatus()
+    const server = status?.servers?.find(s => s.uuid === props.message.mcpServer)
+    if (server?.state === 'connected') {
+      return 'connected'
+    } else if (server?.state === 'disconnected' || server?.state === 'error') {
+      return 'disconnected'
+    }
+    return null
+  } catch (e) {
+    return null
+  }
+})
+
+const isMcpActive = computed(() => {
+  return mcpStatus.value === 'connected'
+})
+
+const mcpTooltip = computed(() => {
+  if (!props.message.mcpServer) return ''
+  
+  const serverName = mcpServerName.value
+  const status = mcpStatus.value === 'connected' ? 'Conectado' : 'Desconectado'
+  return `Servidor MCP: ${serverName}\nStatus: ${status}`
+})
+
 
 const imageUrl = computed(() => {
 
@@ -243,6 +296,47 @@ defineExpose({
 .expert {
   margin-top: 12px;
   margin-bottom: -12px;
+}
+
+.mcp-server-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  background-color: var(--highlight-color);
+  border: 1px solid var(--highlight-color);
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: white;
+  margin-top: 12px;
+  margin-bottom: -12px;
+  white-space: nowrap;
+  cursor: default;
+  
+  &.mcp-active {
+    background-color: var(--highlight-color);
+  }
+  
+  .mcp-icon {
+    width: 0.875rem;
+    height: 0.875rem;
+    color: white;
+    flex-shrink: 0;
+  }
+  
+  .mcp-name {
+    white-space: nowrap;
+    line-height: 1;
+  }
+  
+  .mcp-status-indicator {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background-color: #10b981;
+  }
 }
 
 img {

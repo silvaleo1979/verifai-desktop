@@ -173,6 +173,12 @@ export const MCP = {
   GET_TOOLS: 'mcp-get-tools',
   CALL_TOOL: 'mcp-call-tool',
   ORIGINAL_TOOL_NAME: 'mcp-original-tool-name',
+  GET_SERVER_PROMPTS: 'mcp-get-server-prompts',
+  GET_SERVER_RESOURCES: 'mcp-get-server-resources',
+  CALL_PROMPT: 'mcp-call-prompt',
+  GET_RESOURCE: 'mcp-get-resource',
+  GET_RESOURCE_URI_BY_TOOL_NAME: 'mcp-get-resource-uri-by-tool-name',
+  GET_TOOLS_BY_SERVER: 'mcp-get-tools-by-server',
 } as const;
 
 export const SCRATCHPAD = {

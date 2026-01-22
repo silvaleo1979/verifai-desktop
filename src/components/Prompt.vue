@@ -13,6 +13,15 @@
         <div class="icon left processing loader-wrapper" v-if="isProcessing"><Loader /><Loader /><Loader /></div>
         <div v-if="expert" class="icon left expert" @click="onClickActiveExpert"><BIconMortarboard /></div>
         <div v-if="command" class="icon left command" @click="onClickActiveCommand"><BIconCommand /></div>
+        <div v-if="activeMcpServer" 
+             class="mcp-server-badge" 
+             :class="{ 'mcp-active': isMcpServerActive }"
+             @click="onClickActiveMcpServer"
+             v-tooltip="{ text: `Servidor MCP ativo: ${activeMcpServerName}\nClique para desativar`, position: 'top' }">
+          <BIconBox class="mcp-icon" />
+          <span class="mcp-name">{{ activeMcpServerName }}</span>
+          <span v-if="mcpServerStatus" class="mcp-status-indicator" :class="mcpServerStatus"></span>
+        </div>
         <textarea v-model="prompt" :placeholder="placeholder" @keydown="onKeyDown" @keyup="onKeyUp" ref="input" autofocus="true" :disabled="conversationMode?.length > 0" />
         <BIconMagic class="icon command right" @click="onCommands(true)" v-if="enableCommands && prompt" />
         <BIconStopCircleFill class="icon stop" @click="onStopPrompting" v-if="isPrompting" />
@@ -63,6 +72,18 @@
         class="icon research" :class="{ active: a2aActive }"
         @click="onA2A"
       />
+      <BIconBox
+        v-if="isMcpAvailable"
+        v-tooltip="{ text: activeMcpServer ? `MCP: ${activeMcpServerName}` : 'Selecionar servidor MCP', position: 'top' }"
+        :class="{ icon: true, mcp: true, active: activeMcpServer }"
+        @click="onMcpServers"
+      />
+      <BIconBox
+        v-if="activeMcpPrompt"
+        v-tooltip="{ text: `Prompt MCP: ${activeMcpPromptName}\nClique para desativar`, position: 'top' }"
+        :class="{ icon: true, 'mcp-prompt': true, active: true }"
+        @click="onClickActiveMcpPrompt"
+      />
       <slot name="actions" />
     </div>
     <slot name="between" />
@@ -72,6 +93,7 @@
     <ContextMenu v-if="showExperts" @close="closeContextMenu" :show-filter="true" :actions="expertsMenuItems" :selected="expertsMenuItems[0]" @action-clicked="handleExpertClick" :x="menuX" :y="menuY" :position="menusPosition" />
     <ContextMenu v-if="showActiveExpert" @close="closeContextMenu" :actions="activeExpertMenuItems" @action-clicked="handleExpertClick" :x="menuX" :y="menuY" :position="menusPosition" />
     <ContextMenu v-if="showCommands" @close="closeContextMenu" :show-filter="true" :actions="commands" @action-clicked="handleCommandClick" :x="menuX" :y="menuY" :position="menusPosition" />
+    <ContextMenu v-if="showPrompts" @close="closeContextMenu" :show-filter="true" :actions="mcpServers" @action-clicked="handleMcpServerClick" :x="menuX" :y="menuY" :position="menusPosition" />
     <ContextMenu v-if="showConversationMenu" @close="closeContextMenu" :actions="conversationMenu" @action-clicked="handleConversationClick" :x="menuX" :y="menuY" :position="menusPosition" />
   </div>
 </template>
@@ -84,7 +106,7 @@ import { StreamingChunk } from '../voice/stt'
 import { ref, computed, onMounted, onUnmounted, nextTick, watch, PropType } from 'vue'
 import { store } from '../services/store'
 import { expertI18n, commandI18n, t, i18nInstructions, getLlmLocale, setLlmLocale } from '../services/i18n'
-import { BIconBinoculars, BIconStars } from 'bootstrap-icons-vue'
+import { BIconBinoculars, BIconStars, BIconBox } from 'bootstrap-icons-vue'
 import LlmFactory, { ILlmManager } from '../llms/llm'
 import { mimeTypeToExtension, extensionToMimeType } from 'multi-llm-ts'
 import useAudioRecorder, { isAudioRecordingSupported } from '../composables/audio_recorder'
@@ -109,6 +131,7 @@ export type SendPromptParams = {
   expert?: Expert,
   deepResearch?: boolean
   a2a?: boolean
+  mcpServer?: string | null
 }
 
 export type HistoryProvider = (event: KeyboardEvent) => string[]
@@ -191,15 +214,23 @@ const prompt = ref('')
 const instructions = ref(null)
 const expert = ref<Expert|null>(null)
 const command = ref<Command|null>(null)
+const activeMcpPrompt = ref<{ serverUuid: string, promptName: string, promptInfo: any }|null>(null)
+const activeMcpPromptName = ref<string>('')
+const activeMcpServer = ref<string|null>(null)
+const activeMcpServerName = ref<string>('')
 const attachments = ref<Attachment[]>([])
 const docrepo = ref(null)
 const input = ref(null)
 const docRepos = ref<DocumentBase[]>([])
+const mcpPrompts = ref<MenuAction[]>([])
+const mcpServers = ref<MenuAction[]>([])
+let shouldSyncMcpServer = true
 const showInstructions = ref(false)
 const showDocRepo = ref(false)
 const showExperts = ref(false)
 const showActiveExpert = ref(false)
 const showCommands = ref(false)
+const showPrompts = ref(false)
 const showConversationMenu = ref(false)
 const deepResearchActive = ref(false)
 const a2aActive = ref(false)
@@ -225,6 +256,31 @@ const isProcessing = computed(() => {
 
 const isPrompting = computed(() => {
   return props.chat?.lastMessage()?.transient
+})
+
+const isMcpAvailable = computed(() => {
+  return window.api.mcp?.isAvailable() || false
+})
+
+const mcpServerStatus = computed(() => {
+  if (!activeMcpServer.value) return null
+  
+  try {
+    const status = window.api.mcp.getStatus()
+    const server = status?.servers?.find(s => s.uuid === activeMcpServer.value)
+    if (server?.state === 'connected') {
+      return 'connected'
+    } else if (server?.state === 'disconnected' || server?.state === 'error') {
+      return 'disconnected'
+    }
+    return null
+  } catch (e) {
+    return null
+  }
+})
+
+const isMcpServerActive = computed(() => {
+  return mcpServerStatus.value === 'connected'
 })
 
 const docRepoActive = computed(() => {
@@ -298,9 +354,38 @@ const activeExpertMenuItems = computed(() => {
 })
 
 const commands = computed(() => {
-  return store.commands.filter((c) => c.state == 'enabled').map(c => {
-    return { label: c.label ?? commandI18n(c, 'label'), action: c.id, icon: c.icon }
-  })
+  const allItems: MenuAction[] = []
+  
+  // PRIMEIRO: Adicionar prompts MCP se houver (quando usar #)
+  if (mcpPrompts.value.length > 0) {
+    // Adicionar título para prompts MCP
+    allItems.push({
+      label: t('prompt.mcpPrompts.title') || 'MCP Prompts',
+      action: null,
+      disabled: true
+    })
+    allItems.push({ separator: true })
+    allItems.push(...mcpPrompts.value)
+    
+    // Se houver comandos locais também, adicionar separador
+    const localCommands = store.commands.filter((c) => c.state == 'enabled')
+    if (localCommands.length > 0) {
+      allItems.push({ separator: true })
+    }
+  }
+  
+  // DEPOIS: Adicionar comandos locais
+  const commandItems: MenuAction[] = store.commands
+    .filter((c) => c.state == 'enabled')
+    .map(c => ({ 
+      label: c.label ?? commandI18n(c, 'label'), 
+      action: c.id, 
+      icon: c.icon 
+    }))
+  
+  allItems.push(...commandItems)
+  
+  return allItems
 })
 
 const conversationMenu = computed(() => {
@@ -325,13 +410,30 @@ onMounted(() => {
 
   // other stuff
   loadDocRepos()
+  loadMcpServers()
+  loadMcpPrompts()
   initDictation()
 
   // reset doc repo and expert
   watch(() => props.chat || {}, () => {
     docrepo.value = props.chat?.docrepo
     instructions.value = props.chat?.instructions || null
+    
+    // Sincronizar servidor MCP do chat
+    if (shouldSyncMcpServer && props.chat?.mcpServer) {
+      activeMcpServer.value = props.chat.mcpServer
+      updateMcpServerName()
+    } else if (shouldSyncMcpServer && !props.chat?.mcpServer) {
+      activeMcpServer.value = null
+      activeMcpServerName.value = ''
+    }
   }, { immediate: true })
+  
+  // Recarregar quando MCP servers mudarem
+  watch(() => store.config.mcp?.servers, () => {
+    loadMcpServers()
+    loadMcpPrompts()
+  }, { deep: true })
 
 })
 
@@ -458,15 +560,102 @@ const setExpert = (xpert: Expert) => {
   })
 }
 
-const onSendPrompt = () => {
+const onSendPrompt = async () => {
   let message = prompt.value.trim()
-  if (command.value) {
+  
+  // Se for um prompt MCP selecionado via #, chamar o prompt MCP e concatenar com a mensagem
+  if (command.value && command.value.id?.startsWith('mcp:')) {
+    const mcpCommand = command.value as any
+    const serverUuid = mcpCommand.mcpServerUuid
+    const promptName = mcpCommand.mcpPromptName
+    const promptInfo = mcpCommand.mcpPromptInfo
+    
+    try {
+      // Preparar argumentos para o prompt MCP
+      let promptArgs: anyDict = {}
+      
+      // Se o prompt tem argumentos e há mensagem do usuário
+      if (promptInfo.arguments && Array.isArray(promptInfo.arguments) && message) {
+        // Se houver apenas um argumento, usar a mensagem diretamente
+        if (promptInfo.arguments.length === 1) {
+          promptArgs[promptInfo.arguments[0].name] = message
+        } else {
+          // Se houver múltiplos argumentos, tentar parsear ou usar o primeiro
+          promptArgs[promptInfo.arguments[0].name] = message
+        }
+      }
+      
+      // Construir o nome único do prompt no formato esperado: prompt_${name}___${uuid.slice(-4)}
+      const uuidSuffix = serverUuid.padStart(4, '_').slice(-4)
+      const uniquePromptName = `prompt_${promptName}___${uuidSuffix}`
+      
+      // Chamar o prompt MCP
+      const promptResult = await window.api.mcp.callPrompt(
+        uniquePromptName,
+        promptArgs
+      )
+      
+      // Extrair o texto do resultado do prompt MCP
+      let promptText = ''
+      if (promptResult.messages && Array.isArray(promptResult.messages)) {
+        promptText = promptResult.messages
+          .map((msg: any) => {
+            if (typeof msg.content === 'string') {
+              return msg.content
+            } else if (msg.content?.text) {
+              return msg.content.text
+            } else if (Array.isArray(msg.content)) {
+              return msg.content
+                .map((c: any) => c.text || c)
+                .filter(Boolean)
+                .join('\n')
+            }
+            return ''
+          })
+          .filter(Boolean)
+          .join('\n\n')
+      }
+      
+      // Concatenar: texto do prompt MCP + mensagem do usuário
+      if (promptText) {
+        message = `${promptText}\n\n${message}`
+      } else if (message) {
+        // Se não houver texto do prompt, usar apenas a mensagem
+        message = message
+      } else {
+        // Se não houver nem prompt nem mensagem, usar string vazia
+        message = ''
+      }
+    } catch (e) {
+      console.error('Error calling MCP prompt:', e)
+      // Em caso de erro, usar apenas a mensagem do usuário
+      if (!message) {
+        message = ''
+      }
+    }
+    
+    // Limpar o comando após processar
+    command.value = null
+  } else if (command.value) {
+    // Comando normal
     message = commandI18n(command.value, 'template').replace('{input}', message)
     command.value = null
   }
+  
+  // Limpar o badge MCP do campo de entrada após enviar
+  // O mcpServer permanece no chat para ser usado na mensagem, mas o badge desaparece do prompt
+  shouldSyncMcpServer = false
+  activeMcpServer.value = null
+  activeMcpServerName.value = ''
+  nextTick(() => {
+    shouldSyncMcpServer = true
+  })
+  
   prompt.value = defaultPrompt(props.conversationMode)
   nextTick(() => {
     autoGrow(input.value)
+    // Usar mcpServer do chat se disponível, senão usar do activeMcpServer
+    const mcpServerToSend = props.chat?.mcpServer || activeMcpServer.value || null
     emit('prompt', {
       instructions: instructions.value,
       prompt: message,
@@ -474,7 +663,8 @@ const onSendPrompt = () => {
       docrepo: docrepo.value,
       expert: expert.value,
       deepResearch: deepResearchActive.value,
-      a2a: a2aActive.value
+      a2a: a2aActive.value,
+      mcpServer: mcpServerToSend
     } as SendPromptParams)
     attachments.value = []
   })
@@ -887,7 +1077,7 @@ const handleDocRepoClick = (action: string) => {
 }
 
 const isContextMenuOpen = () => {
-  return showDocRepo.value || showExperts.value || showCommands.value || showActiveExpert.value || showConversationMenu.value
+  return showDocRepo.value || showExperts.value || showCommands.value || showActiveExpert.value || showConversationMenu.value || showPrompts.value
 }
 
 const closeContextMenu = () => {
@@ -896,6 +1086,7 @@ const closeContextMenu = () => {
   showExperts.value = false
   showCommands.value = false
   showActiveExpert.value = false
+  showPrompts.value = false
   showConversationMenu.value = false
   nextTick(() => {
     input.value.focus()
@@ -920,7 +1111,191 @@ const disableCommand = () => {
   command.value = null
 }
 
-const onCommands = (immediate: boolean) => {
+const onClickActiveMcpPrompt = () => {
+  disableMcpPrompt()
+}
+
+const disableMcpPrompt = () => {
+  activeMcpPrompt.value = null
+  activeMcpPromptName.value = ''
+}
+
+const loadMcpServers = async () => {
+  if (!window.api.mcp.isAvailable()) {
+    mcpServers.value = []
+    return
+  }
+  
+  try {
+    // Usar getStatus() para obter servidores realmente conectados
+    const status = window.api.mcp.getStatus()
+    const serverActions: MenuAction[] = []
+    
+    // Adicionar título do menu MCP
+    serverActions.push({
+      label: t('prompt.mcpServers.title') || 'MCP Servers',
+      action: null,
+      disabled: true
+    })
+    serverActions.push({ separator: true })
+    
+    let hasServers = false
+    
+    // status.servers contém apenas servidores conectados
+    for (const server of status.servers || []) {
+      hasServers = true
+      serverActions.push({
+        label: `📦 ${server.label || server.name || server.url || 'MCP Server'}`,
+        action: server.uuid || '',
+        description: `${server.tools?.length || 0} tools, ${server.prompts?.length || 0} prompts`
+      })
+    }
+    
+    // Se não houver servidores, mostrar mensagem
+    if (!hasServers) {
+      serverActions.push({
+        label: t('prompt.mcpServers.noServers') || 'No MCP servers connected',
+        action: null,
+        disabled: true
+      })
+    }
+    
+    mcpServers.value = serverActions
+  } catch (e) {
+    console.error('Failed to load MCP servers:', e)
+    mcpServers.value = [{
+      label: t('prompt.mcpServers.error') || 'Failed to load MCP servers',
+      action: null,
+      disabled: true
+    }]
+  }
+}
+
+const updateMcpServerName = async () => {
+  if (!activeMcpServer.value) {
+    activeMcpServerName.value = ''
+    return
+  }
+  
+  try {
+    const status = window.api.mcp.getStatus()
+    const server = status?.servers?.find(s => s.uuid === activeMcpServer.value)
+    activeMcpServerName.value = server?.label || server?.name || server?.url || 'MCP Server'
+  } catch (e) {
+    activeMcpServerName.value = 'MCP Server'
+  }
+}
+
+const loadMcpPrompts = async () => {
+  if (!window.api.mcp?.isAvailable()) {
+    mcpPrompts.value = []
+    return
+  }
+  
+  try {
+    // Usar getStatus() para obter servidores realmente conectados
+    const status = window.api.mcp.getStatus()
+    const allPrompts: MenuAction[] = []
+    
+    let hasPrompts = false
+    
+    // status.servers contém apenas servidores conectados (já filtrados)
+    for (const server of status?.servers || []) {
+      // getServerPrompts procura por uuid no client.server.uuid
+      const serverId = server.uuid
+      if (!serverId) {
+        console.warn('Server without uuid:', server)
+        continue
+      }
+      
+      try {
+        const prompts = await window.api.mcp.getServerPrompts(serverId)
+        
+        if (prompts && prompts.length > 0) {
+          hasPrompts = true
+          
+          // Adicionar header do servidor
+          allPrompts.push({
+            label: `📦 ${server.label || server.name || server.url || 'MCP Server'}`,
+            action: null,
+            disabled: true
+          })
+          
+          // Adicionar prompts do servidor
+          for (const prompt of prompts) {
+            allPrompts.push({
+              label: prompt.name,
+              action: `${serverId}:${prompt.name}`,
+              description: prompt.description
+            })
+          }
+          
+          // Separador entre servidores
+          allPrompts.push({ separator: true })
+        }
+      } catch (e) {
+        console.error(`Failed to load prompts from server ${serverId}:`, e)
+      }
+    }
+    
+    // Se não houver prompts, não adicionar nada
+    if (!hasPrompts) {
+      mcpPrompts.value = []
+    } else {
+      // Remover último separador se houver prompts
+      if (allPrompts[allPrompts.length - 1]?.separator) {
+        allPrompts.pop()
+      }
+      mcpPrompts.value = allPrompts
+    }
+  } catch (e) {
+    console.error('Failed to load MCP prompts:', e)
+    mcpPrompts.value = []
+  }
+}
+
+const onMcpServers = async () => {
+  await loadMcpServers()
+  showPrompts.value = true
+  const textarea = document.querySelector('.prompt textarea')
+  const rect = textarea?.getBoundingClientRect()
+  menuX.value = rect?.right + (props.menusPosition === 'below' ? rect?.y - 150 : 0 ) - 250
+  menuY.value = rect?.height + (props.menusPosition === 'below' ? rect?.y + 24 : 0 ) + 32
+}
+
+const handleMcpServerClick = async (serverUuid: string) => {
+  closeContextMenu()
+  
+  // Ativar o servidor MCP no chat atual
+  if (props.chat) {
+    props.chat.mcpServer = serverUuid
+  }
+  
+  activeMcpServer.value = serverUuid
+  await updateMcpServerName()
+  
+  // Limpar o "/" do campo de texto quando selecionar servidor MCP
+  if (prompt.value === '/') {
+    prompt.value = ''
+  }
+}
+
+const onClickActiveMcpServer = () => {
+  // Desativar servidor MCP
+  if (props.chat) {
+    props.chat.mcpServer = null
+  }
+  activeMcpServer.value = null
+  activeMcpServerName.value = ''
+}
+
+const onCommands = async (immediate: boolean) => {
+  // Carregar prompts MCP antes de mostrar o menu (para aparecer no #)
+  await loadMcpPrompts()
+  
+  // Aguardar próximo tick para garantir que o computed seja reavaliado
+  await nextTick()
+  
   showCommands.value = true
   runCommandImmediate = immediate
   const textarea = document.querySelector('.prompt textarea')
@@ -929,11 +1304,67 @@ const onCommands = (immediate: boolean) => {
   menuY.value = rect?.height + (props.menusPosition === 'below' ? rect?.y + 24 : 0 ) + 32
 }
 
-const handleCommandClick = (action: string) => {
+const handleCommandClick = async (action: string) => {
   closeContextMenu()
+  
+  // Verificar se é um prompt MCP (formato: "serverUuid:promptName")
+  if (action && action.includes(':') && !action.startsWith('custom:')) {
+    const [serverUuid, promptName] = action.split(':')
+    
+    try {
+      // Obter informações do prompt
+      const prompts = await window.api.mcp.getServerPrompts(serverUuid)
+      const promptInfo = prompts.find(p => p.name === promptName)
+      
+      if (!promptInfo) {
+        return
+      }
+      
+      // Criar um comando virtual para prompts MCP (funciona como comando normal)
+      // Armazenar informações do prompt MCP no comando para uso posterior
+      command.value = {
+        id: `mcp:${serverUuid}:${promptName}`,
+        label: promptName,
+        template: '', // Não usar template, será processado em onSendPrompt
+        icon: null,
+        // Armazenar informações do prompt MCP como propriedades customizadas
+        mcpServerUuid: serverUuid,
+        mcpPromptName: promptName,
+        mcpPromptInfo: promptInfo
+      } as any
+      
+      // NÃO usar activeMcpPrompt quando selecionado via # (para não mostrar badge MCP)
+      // Limpar activeMcpPrompt se existir
+      activeMcpPrompt.value = null
+      activeMcpPromptName.value = ''
+      
+      // Limpar o prompt do campo de texto (deixar vazio, apenas com o ícone)
+      if (prompt.value.endsWith('#')) {
+        prompt.value = ''
+      } else {
+        prompt.value = ''
+      }
+      
+      if (runCommandImmediate) {
+        onSendPrompt()
+      }
+    } catch (e) {
+      console.error('Error handling MCP prompt click:', e)
+    }
+    return
+  }
+  
+  // Comando normal
   command.value = store.commands.find(c => c.id === action)
+  // Limpar prompt MCP se houver
+  activeMcpPrompt.value = null
+  activeMcpPromptName.value = ''
+  
+  // Limpar o prompt do campo de texto (deixar vazio, apenas com o ícone)
   if (prompt.value.endsWith('#')) {
-    prompt.value = prompt.value.slice(0, -1)
+    prompt.value = ''
+  } else {
+    prompt.value = ''
   }
   if (runCommandImmediate) {
     onSendPrompt()
@@ -1026,6 +1457,13 @@ const onKeyDown = (event: KeyboardEvent) => {
       prompt.value = '@'
       return false
     }
+  } else if (event.key === '/') {
+    if (isMcpAvailable.value && prompt.value === '') {
+      onMcpServers()
+      prompt.value = '/'
+      event.preventDefault()
+      return false
+    }
   } else if (event.key === '#') {
     if (props.enableCommands && prompt.value === '') {
       onCommands(false)
@@ -1039,6 +1477,11 @@ const onKeyDown = (event: KeyboardEvent) => {
         backSpaceHitsWhenEmpty = 0
         disableExpert()
         disableCommand()
+        disableMcpPrompt()
+        // Limpar servidor MCP ativo também
+        if (activeMcpServer.value) {
+          onClickActiveMcpServer()
+        }
       }
     } else {
       backSpaceHitsWhenEmpty = 0
@@ -1221,6 +1664,51 @@ defineExpose({
         transform: scale(0.9);
       }
 
+      .mcp-server-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        padding: 0.25rem 0.625rem;
+        background-color: var(--highlight-color);
+        border: 1px solid var(--highlight-color);
+        border-radius: 8px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: white;
+        cursor: pointer;
+        white-space: nowrap;
+        flex-shrink: 0;
+        margin-left: 0.25rem;
+        
+        &:hover {
+          opacity: 0.9;
+        }
+        
+        &.mcp-active {
+          background-color: var(--highlight-color);
+        }
+        
+        .mcp-icon {
+          width: 0.875rem;
+          height: 0.875rem;
+          color: white;
+          flex-shrink: 0;
+        }
+        
+        .mcp-name {
+          white-space: nowrap;
+          line-height: 1;
+        }
+        
+        .mcp-status-indicator {
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+          flex-shrink: 0;
+          background-color: #10b981;
+        }
+      }
+
       .icon.left.loader-wrapper {
         position: relative;
         top: -4px;
@@ -1304,6 +1792,13 @@ defineExpose({
       margin-left: -2px;
     }
 
+    .icon.mcp-prompt {
+      &.active {
+        fill: var(--highlight-color);
+        color: var(--highlight-color);
+      }
+    }
+
     .icon.research {
       margin: 0 0.25rem;
       width: auto;
@@ -1313,6 +1808,20 @@ defineExpose({
       gap: 0.25rem;
       span {
         font-size: 0.95em;
+      }
+    }
+
+    .icon.mcp {
+      &.active {
+        fill: var(--highlight-color);
+        color: var(--highlight-color);
+      }
+    }
+
+    .icon.mcp-prompt {
+      &.active {
+        fill: var(--highlight-color);
+        color: var(--highlight-color);
       }
     }
 

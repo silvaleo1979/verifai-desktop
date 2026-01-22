@@ -3,7 +3,7 @@
 import { History, Command, Expert } from '../types/index';
 import { Configuration } from '../types/config';
 import { Application, RunCommandParams } from '../types/automation';
-import { McpInstallStatus, McpTool } from '../types/mcp';
+import { McpInstallStatus, McpTool, McpPrompt, McpResource } from '../types/mcp';
 import { LlmTool } from 'multi-llm-ts';
 
 import process from 'node:process';
@@ -592,6 +592,30 @@ export const installIpc = (
 
   ipcMain.on(IPC.MCP.ORIGINAL_TOOL_NAME, (event, payload) => {
     event.returnValue = mcp ? mcp.originalToolName(payload) : null;
+  });
+
+  ipcMain.handle(IPC.MCP.GET_SERVER_PROMPTS, async (_, payload): Promise<McpPrompt[]> => {
+    return mcp ? await mcp.getServerPrompts(payload) : [];
+  });
+
+  ipcMain.handle(IPC.MCP.GET_SERVER_RESOURCES, async (_, payload): Promise<McpResource[]> => {
+    return mcp ? await mcp.getServerResources(payload) : [];
+  });
+
+  ipcMain.handle(IPC.MCP.CALL_PROMPT, async (_, payload) => {
+    return mcp ? await mcp.callPrompt(payload.name, payload.arguments) : null;
+  });
+
+  ipcMain.handle(IPC.MCP.GET_RESOURCE, async (_, payload) => {
+    return mcp ? await mcp.getResource(payload.uri) : null;
+  });
+
+  ipcMain.on(IPC.MCP.GET_RESOURCE_URI_BY_TOOL_NAME, (event, payload) => {
+    event.returnValue = mcp ? (mcp as any).getResourceUriByToolName(payload) : null;
+  });
+
+  ipcMain.handle(IPC.MCP.GET_TOOLS_BY_SERVER, async (_, payload): Promise<LlmTool[]> => {
+    return mcp ? await mcp.getToolsByServer(payload) : [];
   });
 
   ipcMain.on(IPC.SCRATCHPAD.OPEN, async (_, payload) => {

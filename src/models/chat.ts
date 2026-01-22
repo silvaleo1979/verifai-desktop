@@ -20,6 +20,7 @@ export default class Chat implements ChatBase {
   modelOpts: LlmModelOpts|null = null
   locale: string|null
   docrepo: string|null
+  mcpServer: string|null
   messages: Message[]
   temporary: boolean
 
@@ -38,6 +39,7 @@ export default class Chat implements ChatBase {
     this.modelOpts = null
     this.locale = null
     this.docrepo = null
+    this.mcpServer = null
     this.messages = []
     this.temporary = false
   
@@ -57,6 +59,7 @@ export default class Chat implements ChatBase {
     chat.modelOpts = obj.modelOpts
     chat.locale = obj.locale
     chat.docrepo = obj.docrepo
+    chat.mcpServer = obj.mcpServer || null
     chat.messages = []
     for (const msg of obj.messages) {
       const message = Message.fromJson(msg)
@@ -82,6 +85,7 @@ export default class Chat implements ChatBase {
     this.modelOpts = obj.modelOpts
     this.locale = obj.locale
     this.docrepo = obj.docrepo
+    this.mcpServer = obj.mcpServer || null
 
     // messages
     if (this.messages.length < obj.messages.length) {
