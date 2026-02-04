@@ -41,9 +41,10 @@ export default class ImageCreator implements MediaCreator {
     return ImageCreator.getEngines(checkApiKey)
   }
 
-  async execute(engine: string, model: string, parameters: anyDict, reference?: MediaReference): Promise<anyDict> {
+  async execute(engine: string, model: string, parameters: anyDict, reference?: MediaReference|MediaReference[]): Promise<anyDict> {
+    const references = Array.isArray(reference) ? reference : (reference ? [reference] : [])
     if (engine == 'openai') {
-      return this.openai(model, parameters, reference)
+      return this.openai(model, parameters, references)
     } else if (engine == 'huggingface') {
       return this.huggingface(model, parameters)
     } else if (engine == 'replicate') {
@@ -51,9 +52,9 @@ export default class ImageCreator implements MediaCreator {
     } else if (engine == 'sdwebui') {
       return this.sdwebui(model, parameters)
     } else if (engine == 'google') {
-      return this.google(model, parameters, reference)
+      return this.google(model, parameters, references)
     } else if (engine == 'falai') {
-      return this.falai(model, parameters, reference)
+      return this.falai(model, parameters, references)
     } else if (engine == 'xai') {
       return this.xai(model, parameters)
     } else {
@@ -61,7 +62,7 @@ export default class ImageCreator implements MediaCreator {
     }
   }
 
-  async openai(model: string, parameters: anyDict, reference?: MediaReference): Promise<anyDict> {
+  async openai(model: string, parameters: anyDict, reference?: MediaReference[]): Promise<anyDict> {
     return this._openai('openai', store.config.engines.openai.apiKey, store.config.engines.openai.baseURL, model, parameters, reference)
   }
 
@@ -152,7 +153,7 @@ export default class ImageCreator implements MediaCreator {
     
   }
 
-  async google(model: string, parameters: anyDict, reference?: MediaReference): Promise<anyDict> {
+  async google(model: string, parameters: anyDict, reference?: MediaReference[]): Promise<anyDict> {
 
     const client = new GoogleGenAI({ apiKey: store.config.engines.google.apiKey })
   
@@ -160,7 +161,7 @@ export default class ImageCreator implements MediaCreator {
 
       let response = null
 
-      if (!reference) {
+      if (!reference?.length) {
   
         response = await client.models.generateImages({
           model: model,
@@ -175,17 +176,38 @@ export default class ImageCreator implements MediaCreator {
 
       } else {
 
-        const referenceImage = new SubjectReferenceImage()
-        referenceImage.referenceId = 1
-        referenceImage.referenceImage = {
-          imageBytes: reference.contents,
-          mimeType: reference.mimeType,
+        let editModel = model
+        if (!editModel.includes('imagen')) {
+          const googleModels = store.config.engines.google?.models
+          const candidateLists = [
+            googleModels?.imageEdit || [],
+            googleModels?.image || [],
+          ]
+          const imagenModel = candidateLists.flat().find((m) => m.id.includes('imagen'))?.id
+          if (imagenModel) {
+            editModel = imagenModel
+          }
+        }
+        if (!editModel.includes('imagen')) {
+          return {
+            error: 'O modelo do Google selecionado não suporta imagens de referência. Selecione um modelo Imagen (ex.: imagen-3.0-capability-001).'
+          }
         }
 
+        const refs = reference.map((ref, idx) => {
+          const referenceImage = new SubjectReferenceImage()
+          referenceImage.referenceId = idx + 1
+          referenceImage.referenceImage = {
+            imageBytes: ref.contents,
+            mimeType: ref.mimeType,
+          }
+          return referenceImage
+        })
+
         response = await client.models.editImage({
-          model: model,
+          model: editModel,
           prompt: parameters.prompt,
-          referenceImages: [referenceImage],
+          referenceImages: refs,
           config: {
             numberOfImages: 1,
             safetyFilterLevel: SafetyFilterLevel.BLOCK_NONE,
@@ -231,7 +253,7 @@ export default class ImageCreator implements MediaCreator {
 
   }
 
-  async falai(model: string, parameters: anyDict, reference?: MediaReference): Promise<anyDict> {
+  async falai(model: string, parameters: anyDict, reference?: MediaReference[]): Promise<anyDict> {
 
     try {
 
@@ -244,7 +266,7 @@ export default class ImageCreator implements MediaCreator {
       const response = await fal.subscribe(model, {
         input: {
           ...parameters,
-          ...(reference ? { image_url: `data:${reference.mimeType};base64,${reference.contents}` } : {}),
+          ...(reference?.length ? { image_url: `data:${reference[0].mimeType};base64,${reference[0].contents}` } : {}),
         }
       })
 
@@ -260,7 +282,7 @@ export default class ImageCreator implements MediaCreator {
   
   }
 
-  protected async _openai(name: string, apiKey: string, baseURL: string, model: string, parameters: anyDict, reference?: MediaReference): Promise<anyDict> {
+  protected async _openai(name: string, apiKey: string, baseURL: string, model: string, parameters: anyDict, reference?: MediaReference[]): Promise<anyDict> {
 
     // init
     const client = new OpenAI({
@@ -272,21 +294,26 @@ export default class ImageCreator implements MediaCreator {
     // call
     console.log(`[${name}] prompting model ${model}`)
     let response = null
-    if (reference) {
+    if (reference?.length) {
 
-      // we need the binary data
-      const binaryString = atob(reference.contents);
-      const len = binaryString.length;
-      const bytes = new Uint8Array(len);
-      for (let i = 0; i < len; i++) {
-        bytes[i] = binaryString.charCodeAt(i);
+      const files = []
+      for (const ref of reference) {
+        const binaryString = atob(ref.contents)
+        const len = binaryString.length
+        const bytes = new Uint8Array(len)
+        for (let i = 0; i < len; i++) {
+          bytes[i] = binaryString.charCodeAt(i)
+        }
+        files.push(await toFile(bytes, '', { type: ref.mimeType }))
       }
 
-      // now submit
       response = await client.images.edit({
         model: model,
         prompt: parameters?.prompt,
-        image: await toFile(bytes, '', { type: reference.mimeType }),
+        image: files[0],
+        ...(files[1] ? { mask: files[1] } : {}),
+        // OpenAI images API não aceita múltiplas refs simultâneas além de image/mask.
+        // Mantemos compat com uso de 2 refs: primeira como base, segunda como mask.
       })
 
     } else {

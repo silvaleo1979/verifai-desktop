@@ -51,7 +51,7 @@ type PluginUI = {
 const plugins = computed((): PluginUI[] => {
 
   // Plugins disabled for VerifAI Desktop
-  const disabledPlugins = ['image', 'video', 'youtube', 'python']
+  const disabledPlugins = ['video', 'youtube', 'python']
 
   let res = Object.keys(availablePlugins).filter(plugin => 
     plugin != 'mcp' && !disabledPlugins.includes(plugin)
@@ -83,7 +83,7 @@ const currentView = computed(() => {
   // Plugins disabled for VerifAI Desktop: python, image, video, youtube
   // if (currentPlugin.value == 'python') return SettingsPython
   if (currentPlugin.value == 'search') return SettingsSearch
-  // if (currentPlugin.value == 'image') return SettingsImage
+  if (currentPlugin.value == 'image') return SettingsImage
   // if (currentPlugin.value == 'video') return SettingsVideo
   // if (currentPlugin.value == 'youtube') return SettingsYouTube
   if (currentPlugin.value == 'memory') return SettingsMemory

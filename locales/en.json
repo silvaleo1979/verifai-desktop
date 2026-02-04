@@ -644,6 +644,7 @@
       "title": "History"
     },
     "loadMediaSettings": "Load settings",
+    "referenceImages": "Reference images",
     "mediaType": {
       "image": "Image",
       "label": "Media Type",

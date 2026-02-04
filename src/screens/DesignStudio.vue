@@ -10,7 +10,7 @@
           <button :class="{active: mode === 'create'}" @click="mode = 'create'">{{ t('common.create') }}</button>
           <button :class="{active: mode === 'history'}" @click="mode = 'history'">{{ t('designStudio.history.title') }}</button>
         </div>
-        <Settings :class="{ hidden: mode !== 'create' }" ref="settings" :current-media="currentMedia" :is-generating="isGenerating" @upload="onUpload" @generate="onMediaGenerationRequest" />
+        <Settings :class="{ hidden: mode !== 'create' }" ref="settings" :current-media="currentMedia" :is-generating="isGenerating" @generate="onMediaGenerationRequest" />
         <History :class="{ hidden: mode !== 'history' }" :history="history" :selected-messages="selection" @select-message="selectMessage" @context-menu="showContextMenu" />
       </main>
     </div>
@@ -32,7 +32,6 @@
 </template>
 
 <script setup lang="ts">
-import { FileContents } from '../types/file'
 import { ref, onMounted, onUnmounted, computed, nextTick } from 'vue'
 import { t } from '../services/i18n'
 import { store, kMediaChatId, kReferenceParamValue } from '../services/store'
@@ -369,18 +368,6 @@ const processUpload = (fileName: string, mimeType: string, fileUrl: string) => {
   clearStacks()
 }
 
-const onUpload = () => {
-  let file = window.api.file.pickFile({ filters: [
-    { name: 'Images', extensions: ['jpg', 'png', 'gif'] }
-  ] })
-  if (file) {
-    const fileContents = file as FileContents
-    const fileUrl = saveFileContents(fileContents.url.split('.').pop(), fileContents.contents)
-    const fileName = fileContents.url.split(/[\\/]/).pop()
-    processUpload(fileName, fileContents.mimeType, fileUrl)
-  }
-}
-
 const onDragOver = (event: DragEvent) => {
   if (isGenerating.value) return
   
@@ -511,6 +498,7 @@ const onMediaGenerationRequest = async (data: any) => {
   const isEditing = data.action === 'edit' && !!currentUrl
   const isTransforming = data.action === 'transform' && !!currentUrl
   let attachReference = isEditing || isTransforming
+  const references = Array.isArray(data.references) ? [...data.references] : []
 
   // make a copy as we are going to change that
   const params = JSON.parse(JSON.stringify(data.params))
@@ -548,6 +536,7 @@ const onMediaGenerationRequest = async (data: any) => {
       // attach here
       const reference = window.api.file.read(currentUrl)
       params[referenceKey] = `data:${reference.mimeType};base64,${reference.contents}`
+      references.unshift(reference)
       attachReference = false
 
       // ask Settings.vue to save the key
@@ -590,10 +579,15 @@ const onMediaGenerationRequest = async (data: any) => {
 
     // generate
     const creator = data.mediaType === 'image' ? new ImageCreator() : new VideoCreator()
+    if (attachReference && currentUrl) {
+      const fileRef = window.api.file.read(currentUrl)
+      references.unshift(fileRef)
+    }
+
     const media = await creator.execute(data.engine, data.model, {
       prompt: data.prompt,
       ...params
-    }, attachReference ? window.api.file.read(currentUrl) : undefined)
+    }, references.length ? references : undefined)
 
     // check
     if (!media?.url) {

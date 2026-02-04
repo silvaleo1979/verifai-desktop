@@ -27,13 +27,14 @@ export default class VideoCreator implements MediaCreator {
     return VideoCreator.getEngines(checkApiKey)
   }
    
-  async execute(engine: string, model: string, parameters: anyDict, reference?: MediaReference): Promise<any> {
+  async execute(engine: string, model: string, parameters: anyDict, reference?: MediaReference|MediaReference[]): Promise<any> {
+    const references = Array.isArray(reference) ? reference : (reference ? [reference] : [])
     if (engine === 'replicate') {
       return this.replicate(model, parameters)
     } else if (engine === 'falai') {
-      return this.falai(model, parameters, reference)
+      return this.falai(model, parameters, references)
     } else if (engine == 'google') {
-      return this.google(model, parameters, reference)
+      return this.google(model, parameters, references)
     } else {
       throw new Error('Unsupported engine')
     }
@@ -65,7 +66,7 @@ export default class VideoCreator implements MediaCreator {
 
   }
   
-  async falai(model: string, parameters: anyDict, reference?: MediaReference): Promise<anyDict> {
+  async falai(model: string, parameters: anyDict, reference?: MediaReference[]): Promise<anyDict> {
 
     try {
 
@@ -78,7 +79,7 @@ export default class VideoCreator implements MediaCreator {
       const response = await fal.subscribe(model, {
         input: {
           ...(parameters.prompt ? { prompt: parameters.prompt } : {}),
-          ...(reference ? { image_url: `data:${reference.mimeType};base64,${reference.contents}` } : {}),
+          ...(reference?.length ? { image_url: `data:${reference[0].mimeType};base64,${reference[0].contents}` } : {}),
         }
       })
 
@@ -95,7 +96,7 @@ export default class VideoCreator implements MediaCreator {
   }
      
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async google(model: string, parameters: anyDict, reference?: MediaReference): Promise<anyDict> {
+  async google(model: string, parameters: anyDict, reference?: MediaReference[]): Promise<anyDict> {
 
     const client = new GoogleGenAI({ apiKey: store.config.engines.google.apiKey })
   
@@ -104,8 +105,9 @@ export default class VideoCreator implements MediaCreator {
       let operation = await client.models.generateVideos({
         model: model,
         prompt: parameters.prompt,
-        // ...(reference && reference.mimeType.startsWith('image') ? { image: { imageBytes: reference.contents } } : {}),
-        // ...(reference && reference.mimeType.startsWith('video') ? { video: { videoBytes: reference.contents } } : {}),
+        // TODO: handle multiple references for video when API supports it
+        // ...(reference?.length && reference[0].mimeType.startsWith('image') ? { image: { imageBytes: reference[0].contents } } : {}),
+        // ...(reference?.length && reference[0].mimeType.startsWith('video') ? { video: { videoBytes: reference[0].contents } } : {}),
         config: {
           numberOfVideos: 1,
           //safetyFilterLevel: SafetyFilterLevel.BLOCK_NONE,

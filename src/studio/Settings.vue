@@ -61,6 +61,25 @@
         </textarea>
       </div>
 
+      <div class="form-field">
+        <label>{{ t('designStudio.referenceImages') }}</label>
+        <div class="form-subgroup">
+          <label class="file-button">
+            <span>{{ t('common.upload') }}</span>
+            <input class="file-input-hidden" type="file" name="references" multiple accept="image/*" @change="onReferenceFiles" />
+          </label>
+        </div>
+        <div v-if="references.length" class="reference-list">
+          <div class="reference-item" v-for="(ref, idx) in references" :key="`ref-${idx}`">
+            <div class="reference-meta">
+              <span class="reference-name">{{ ref.name || `ref-${idx+1}` }}</span>
+              <span class="reference-mime" v-if="ref.mimeType">{{ ref.mimeType }}</span>
+            </div>
+            <button type="button" @click="removeReference(idx)">{{ t('common.delete') }}</button>
+          </div>
+        </div>
+      </div>
+
       <div v-if="modelHasParams" class="form-field">
         
         <label class="expander" @click="showParams = !showParams">
@@ -121,7 +140,6 @@
           <button name="generate" class="generate-button" type="button" @click="generateMedia()" :disabled="isGenerating">
             {{ isGenerating ? t('designStudio.generating') : isEditing ? t('common.edit') : t('designStudio.generate') }}
           </button>
-          <button v-if="canUpload" name="upload" type="button" @click="$emit('upload')" :disabled="isGenerating">{{ t('common.upload') }}</button>
         </div>
       </div>
     </div>
@@ -135,7 +153,7 @@
 
 <script setup lang="ts">
 
-import { MediaCreator, DesignStudioMediaType } from '../types/index'
+import { MediaCreator, DesignStudioMediaType, MediaReference } from '../types/index'
 import { onMounted, ref, computed, watch } from 'vue'
 import { t } from '../services/i18n'
 import { store, kReferenceParamValue } from '../services/store'
@@ -175,7 +193,7 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['upload', 'generate'])
+const emit = defineEmits(['generate'])
 
 const editor = ref(null)
 const mediaType= ref<DesignStudioMediaType>('image')
@@ -183,6 +201,7 @@ const engine = ref('')
 const model = ref('')
 const prompt = ref('')
 const params = ref<Record<string, string>>({})
+const references = ref<MediaReference[]>([])
 const transform = ref(false)
 const preserve = ref(false)
 const showParams = ref(false)
@@ -235,6 +254,27 @@ const promptLibrary = computed((): any => {
   return prompts.filter(p => p.enabled ?? true).map((p) => ({ ...p, action: p.label }))
 
 })
+
+const onReferenceFiles = async (event: Event) => {
+  const target = event.target as HTMLInputElement
+  if (!target?.files?.length) return
+  const files = Array.from(target.files)
+  for (const file of files) {
+    if (!file.type.startsWith('image/')) continue
+    const dataUrl = await new Promise<string>((resolve) => {
+      const reader = new FileReader()
+      reader.onload = () => resolve(reader.result as string)
+      reader.readAsDataURL(file)
+    })
+    const base64 = dataUrl.split(',')[1]
+    references.value.push({ mimeType: file.type, contents: base64, name: file.name })
+  }
+  target.value = ''
+}
+
+const removeReference = (idx: number) => {
+  references.value.splice(idx, 1)
+}
 
 const addCurrentModel = (models: Model[]): Model[] => {
   if (model.value) {
@@ -390,10 +430,6 @@ const canTransform = computed(() => {
   return ['falai', 'replicate'].includes(engine.value) ||
     //(engine.value === 'google' && mediaType.value === 'image' && !props.currentMedia?.isVideo()) ||
     (engine.value === 'openai' && model.value.startsWith('gpt-image-') && mediaType.value === 'image' && !props.currentMedia?.isVideo())
-})
-
-const canUpload = computed(() => {
-  return canEdit.value || canTransform.value
 })
 
 const isEditing = computed(() => {
@@ -576,6 +612,7 @@ const loadSettings = (settings: any) => {
   model.value = settings.model || model.value
   prompt.value = settings.prompt || prompt.value
   params.value = settings.params || {}
+  references.value = settings.references || []
   showParams.value = Object.values(params.value).filter(v => v != kReferenceParamValue).length > 0
   saveSettings()
 }
@@ -616,7 +653,8 @@ const generateMedia = async () => {
     engine: engine.value,
     model: model.value,
     prompt: userPrompt,
-    params: params.value
+    params: params.value,
+    references: references.value,
   })
 }
 
@@ -672,6 +710,59 @@ defineExpose({
 .studio-settings .list-with-actions {
   margin-top: 0.5rem;
   width: 100%;
+}
+
+.studio-settings .reference-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+}
+
+.studio-settings .file-button {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid var(--control-border-color);
+  border-radius: 0.25rem;
+  background-color: var(--control-bg-color);
+}
+
+.studio-settings .file-input-hidden {
+  position: absolute;
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.studio-settings .reference-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--control-border-color);
+  padding: 0.35rem 0.65rem;
+  border-radius: 0.25rem;
+  gap: 0.5rem;
+}
+
+.studio-settings .reference-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.studio-settings .reference-name {
+  font-weight: 600;
+  word-break: break-all;
+}
+
+.studio-settings .reference-mime {
+  color: var(--text-muted-color);
+  font-size: 0.85em;
 }
 
 .studio-settings .form .form-field label.expander {

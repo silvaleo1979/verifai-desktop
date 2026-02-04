@@ -268,11 +268,12 @@ export type MediaCreationEngine = {
 export type MediaReference = {
   mimeType: string
   contents: string
+  name?: string
 }
 
 export interface MediaCreator {
   getEngines(checkApiKey: boolean): MediaCreationEngine[]
-  execute(engine: string, model: string, parameters: anyDict, reference?: MediaReference): Promise<any>
+  execute(engine: string, model: string, parameters: anyDict, reference?: MediaReference | MediaReference[]): Promise<any>
 }
 
 export type DesignStudioMediaType = 'image' | 'video' | 'imageEdit' | 'videoEdit'
