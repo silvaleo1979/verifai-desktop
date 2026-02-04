@@ -75,10 +75,9 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, PropType, nextTick } from 'vue'
 
-// Importar AppBridge do SDK oficial (após npm install)
-// TODO: Descomentar quando @modelcontextprotocol/ext-apps estiver instalado
-// import { AppBridge } from '@modelcontextprotocol/ext-apps/app-bridge'
-// import type { McpUiTheme } from '@modelcontextprotocol/ext-apps/app-bridge'
+// Importar AppBridge do SDK oficial MCP Apps
+import { AppBridge } from '@modelcontextprotocol/ext-apps/app-bridge'
+import type { McpUiTheme } from '@modelcontextprotocol/ext-apps/app-bridge'
 
 const props = defineProps({
   resource: {
@@ -93,7 +92,7 @@ const containerRef = ref<HTMLElement | null>(null)
 const iframeRef = ref<HTMLIFrameElement | null>(null)
 const isFullscreen = ref(false)
 const fullscreenIframeRef = ref<HTMLIFrameElement | null>(null)
-let bridge: any | null = null  // AppBridge instance
+let bridge: AppBridge | null = null  // AppBridge instance
 
 const resourceTitle = computed(() => {
   return props.resource._meta?.title || null
@@ -162,9 +161,7 @@ const onFrameLoad = () => {
   const meta = props.resource._meta
   const initialData = meta?.['mcpui.dev/ui-initial-render-data']
   
-  // TODO: Descomentar quando AppBridge estiver instalado
   // Inicializar AppBridge (SDK oficial MCP Apps)
-  /*
   try {
     bridge = new AppBridge({
       onToolCall: async (toolName, args) => {
@@ -202,7 +199,6 @@ const onFrameLoad = () => {
     console.warn('AppBridge not available, using legacy mode:', error)
     bridge = null
   }
-  */
   
   // Fallback: Sistema legado (mcpui:render) para retrocompatibilidade
   if (initialData) {
@@ -372,12 +368,9 @@ const onFullscreenFrameLoad = () => {
 
 const handleIframeMessage = (event: MessageEvent) => {
   // AppBridge processa automaticamente mensagens do protocolo oficial
-  // TODO: Descomentar quando AppBridge estiver instalado
-  /*
   if (bridge) {
     bridge.handleMessage(event)
   }
-  */
   
   // Manter handler legado para retrocompatibilidade
   if (event.data?.type === 'mcpui:action') {
