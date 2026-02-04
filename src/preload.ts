@@ -189,6 +189,7 @@ contextBridge.exposeInMainWorld(
       getServerTools: (uuid: string): Promise<McpTool[]> => { return ipcRenderer.invoke(IPC.MCP.GET_SERVER_TOOLS, uuid) },
       getTools: (): Promise<LlmTool[]> => { return ipcRenderer.invoke(IPC.MCP.GET_TOOLS) },
       callTool: (name: string, parameters: anyDict): Promise<any> => { return ipcRenderer.invoke(IPC.MCP.CALL_TOOL, { name, parameters }) },
+      readResource: (uri: string): Promise<any> => { return ipcRenderer.invoke(IPC.MCP.READ_RESOURCE, uri) },
       originalToolName(name: string): string { return ipcRenderer.sendSync(IPC.MCP.ORIGINAL_TOOL_NAME, name) },
     },
     scratchpad: {

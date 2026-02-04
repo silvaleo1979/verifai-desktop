@@ -46,6 +46,19 @@ export default class extends MultiToolPlugin {
   async getTools(): Promise<any> {
     try {
       this.tools = await window.api.mcp.getTools()
+      
+      // Detectar ferramentas com suporte a UI (MCP Apps)
+      this.tools.forEach((tool: any) => {
+        if (tool.function._meta?.ui?.resourceUri) {
+          console.log(`🎨 MCP App detected: "${tool.function.name}" with UI at ${tool.function._meta.ui.resourceUri}`)
+          
+          // Opcional: Pré-carregar recurso UI para cache
+          this.preloadUIResource(tool.function._meta.ui.resourceUri).catch(err => {
+            console.warn(`Failed to preload UI for ${tool.function.name}:`, err)
+          })
+        }
+      })
+      
       if (this.toolsEnabled) {
         return this.tools.filter((tool: any) => {
           return this.toolsEnabled.includes(tool.function.name)
@@ -57,6 +70,16 @@ export default class extends MultiToolPlugin {
       console.error(error)
       this.tools = []
       return []
+    }
+  }
+
+  private async preloadUIResource(resourceUri: string): Promise<void> {
+    try {
+      const resource = await window.api.mcp.readResource(resourceUri)
+      console.log(`✅ UI resource preloaded: ${resourceUri}`)
+      // TODO: Implementar cache se necessário
+    } catch (error) {
+      console.error(`❌ Failed to preload UI resource ${resourceUri}:`, error)
     }
   }
 

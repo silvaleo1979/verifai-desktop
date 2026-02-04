@@ -590,6 +590,10 @@ export const installIpc = (
     return mcp ? await mcp.callTool(payload.name, payload.parameters) : null;
   });
 
+  ipcMain.handle(IPC.MCP.READ_RESOURCE, async (_, uri: string) => {
+    return mcp ? await mcp.readResource(uri) : null;
+  });
+
   ipcMain.on(IPC.MCP.ORIGINAL_TOOL_NAME, (event, payload) => {
     event.returnValue = mcp ? mcp.originalToolName(payload) : null;
   });

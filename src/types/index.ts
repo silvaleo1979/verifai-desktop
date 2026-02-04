@@ -15,6 +15,27 @@ import { BrowserActionRequest } from './browser'
 export type strDict = Record<string, string>
 export type anyDict = Record<string, any>
 
+// MCP UI Metadata (MCP Apps SDK)
+export interface McpUiMetadata {
+  ui?: {
+    resourceUri: string  // Ex: "ui://calculator/interface"
+  }
+  title?: string
+  [key: string]: any
+}
+
+// Estender LlmTool para incluir _meta (MCP Apps)
+declare module 'multi-llm-ts' {
+  interface LlmTool {
+    function: {
+      name: string
+      description?: string
+      parameters: any
+      _meta?: McpUiMetadata
+    }
+  }
+}
+
 export type MainWindowMode = 'none' | 'chat' | 'studio' | 'dictation' | 'agents' | 'voice-mode' | 'docrepo' | 'settings'
 
 export interface Attachment extends IAttachmentBase {

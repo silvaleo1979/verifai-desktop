@@ -173,6 +173,7 @@ export const MCP = {
   GET_TOOLS: 'mcp-get-tools',
   CALL_TOOL: 'mcp-call-tool',
   ORIGINAL_TOOL_NAME: 'mcp-original-tool-name',
+  READ_RESOURCE: 'mcp-read-resource',
 } as const;
 
 export const SCRATCHPAD = {

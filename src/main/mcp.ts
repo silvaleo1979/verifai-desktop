@@ -608,6 +608,32 @@ export default class {
 
   }
 
+  readResource = async (uri: string): Promise<any> => {
+    // Extrair nome do servidor da URI (ex: ui://calculator -> calculator)
+    const serverName = uri.replace('ui://', '').split('/')[0]
+    
+    const client = this.clients.find(c => 
+      c.server.config.name === serverName
+    )
+    
+    if (!client) {
+      throw new Error(`MCP Server not found for URI: ${uri}`)
+    }
+
+    try {
+      console.log('Reading MCP UI resource:', uri)
+      const response = await client.client.request({
+        method: 'resources/read',
+        params: { uri }
+      })
+      
+      return response.contents[0]
+    } catch (error) {
+      console.error(`Error reading resource ${uri}:`, error)
+      throw error
+    }
+  }
+
   originalToolName(name: string): string {
     return name.replace(/___....$/, '')
   }
@@ -634,7 +660,9 @@ export default class {
             return obj
           }, {}) : {},
           required: tool.inputSchema?.required ?? []
-        }
+        },
+        // Preservar _meta para detectar suporte a UI (MCP Apps)
+        ...(tool._meta && { _meta: tool._meta })
       }
     }
   }

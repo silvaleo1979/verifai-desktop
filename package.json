@@ -98,6 +98,7 @@
     "@langchain/textsplitters": "^0.0.3",
     "@mistralai/mistralai": "^1.1.0",
     "@modelcontextprotocol/sdk": "^1.11.2",
+    "@modelcontextprotocol/ext-apps": "^1.0.1",
     "@nut-tree-fork/nut-js": "^4.2.6",
     "@speechmatics/auth": "^0.0.1",
     "@speechmatics/real-time-client": "^6.0.0",

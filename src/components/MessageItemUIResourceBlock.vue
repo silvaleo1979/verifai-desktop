@@ -75,6 +75,11 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, PropType, nextTick } from 'vue'
 
+// Importar AppBridge do SDK oficial (após npm install)
+// TODO: Descomentar quando @modelcontextprotocol/ext-apps estiver instalado
+// import { AppBridge } from '@modelcontextprotocol/ext-apps/app-bridge'
+// import type { McpUiTheme } from '@modelcontextprotocol/ext-apps/app-bridge'
+
 const props = defineProps({
   resource: {
     type: Object as PropType<any>,
@@ -88,6 +93,7 @@ const containerRef = ref<HTMLElement | null>(null)
 const iframeRef = ref<HTMLIFrameElement | null>(null)
 const isFullscreen = ref(false)
 const fullscreenIframeRef = ref<HTMLIFrameElement | null>(null)
+let bridge: any | null = null  // AppBridge instance
 
 const resourceTitle = computed(() => {
   return props.resource._meta?.title || null
@@ -156,7 +162,49 @@ const onFrameLoad = () => {
   const meta = props.resource._meta
   const initialData = meta?.['mcpui.dev/ui-initial-render-data']
   
-  // Send initial render data to the iframe if available
+  // TODO: Descomentar quando AppBridge estiver instalado
+  // Inicializar AppBridge (SDK oficial MCP Apps)
+  /*
+  try {
+    bridge = new AppBridge({
+      onToolCall: async (toolName, args) => {
+        console.log('Widget calling tool:', toolName, args)
+        try {
+          return await window.api.mcp.callTool(toolName, args)
+        } catch (error) {
+          console.error('Tool call failed:', error)
+          throw error
+        }
+      },
+      
+      onInitialize: (params) => {
+        console.log('🎨 Widget initialized:', params)
+      },
+      
+      onOpenLink: (url) => {
+        window.open(url, '_blank')
+      }
+    })
+    
+    // Detectar tema atual
+    const isDark = document.documentElement.classList.contains('dark')
+    const theme: McpUiTheme = isDark ? 'dark' : 'light'
+    
+    // Inicializar com contexto
+    bridge.initialize(iframeRef.value, {
+      theme,
+      displayMode: 'inline',
+      hostContext: initialData || {}
+    })
+    
+    console.log('✅ AppBridge initialized for widget')
+  } catch (error) {
+    console.warn('AppBridge not available, using legacy mode:', error)
+    bridge = null
+  }
+  */
+  
+  // Fallback: Sistema legado (mcpui:render) para retrocompatibilidade
   if (initialData) {
     iframeRef.value.contentWindow.postMessage({
       type: 'mcpui:render',
@@ -323,10 +371,17 @@ const onFullscreenFrameLoad = () => {
 }
 
 const handleIframeMessage = (event: MessageEvent) => {
-  // Handle messages from the iframe
+  // AppBridge processa automaticamente mensagens do protocolo oficial
+  // TODO: Descomentar quando AppBridge estiver instalado
+  /*
+  if (bridge) {
+    bridge.handleMessage(event)
+  }
+  */
+  
+  // Manter handler legado para retrocompatibilidade
   if (event.data?.type === 'mcpui:action') {
     console.log('UI Action received:', event.data)
-    // Emit event for parent components to handle
     emits('ui-action', event.data)
   }
 }
@@ -346,6 +401,12 @@ onUnmounted(() => {
   window.removeEventListener('message', handleIframeMessage)
   window.removeEventListener('keydown', handleKeydown)
   document.body.style.overflow = ''
+  
+  // Cleanup AppBridge
+  if (bridge) {
+    bridge.destroy?.()
+    bridge = null
+  }
 })
 </script>
 
