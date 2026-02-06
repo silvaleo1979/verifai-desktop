@@ -398,7 +398,8 @@ export default class {
 
       // build command and args
       const command = process.platform === 'win32' ? 'cmd' : server.command
-      const args = process.platform === 'win32' ? ['/C', `"${server.command}" ${server.url}`] : server.url.split(' ')
+      // On Windows: pass command and args as-is since they come pre-formatted from config
+      const args = process.platform === 'win32' ? ['/C', `${server.command} ${server.url}`.trim()] : server.url.split(' ')
       let env = {
         ...getDefaultEnvironment(),
         ...server.env,
@@ -425,6 +426,7 @@ export default class {
 
       // start transport to get errors
       await transport.start()
+      
       transport.stderr?.on('data', async (data: Buffer) => {
         const error = data.toString()
         this.logs[server.uuid].push(error)
